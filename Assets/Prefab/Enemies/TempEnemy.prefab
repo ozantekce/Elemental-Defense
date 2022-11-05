@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8015161501743810179}
   - component: {fileID: 8015161501743810176}
   - component: {fileID: 8015161501743810205}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TempEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

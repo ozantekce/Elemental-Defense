@@ -130,9 +130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 0}
   destination: {fileID: 0}
-  speed: 100
+  speed: 200
   attackPower: 120
-  activate: 0
 --- !u!1001 &3123235003926603830
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -508,6 +508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 411524}
   - component: {fileID: 9566220}
+  - component: {fileID: 2061714837}
   m_Layer: 0
   m_Name: Tower Mage
   m_TagString: Untagged
@@ -524,7 +525,7 @@ Transform:
   m_GameObject: {fileID: 187918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 12.5, y: 50, z: 12.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 409546}
@@ -533,6 +534,7 @@ Transform:
   - {fileID: 472130}
   - {fileID: 491468}
   - {fileID: 450010}
+  - {fileID: 2823242041104249685}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -556,3 +558,54 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2061714837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49188cea0e626a143bda4df8c8a1a255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: deneme
+  bulleySpawnPoint: {fileID: 2823242041104249685}
+  bulletPrefab: {fileID: 3123235004745107303, guid: c73604005248abc4ab8a1b69b7cd9859, type: 3}
+  range: 100
+  attackPower: 70
+  attackPerSecond: 2
+  currentLevel: 1
+  updateCost: 20
+--- !u!1 &1713082892849181420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2823242041104249685}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2823242041104249685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713082892849181420}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 411524}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

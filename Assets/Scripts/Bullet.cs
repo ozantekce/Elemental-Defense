@@ -15,19 +15,28 @@ public class Bullet : MonoBehaviour
 
     private bool destroying = false;
 
+    public Enemy Destination { get => destination; set => destination = value; }
+    public GameObject Source { get => source; set => source = value; }
+    public float Speed { get => speed; set => speed = value; }
+    public float AttackPower { get => attackPower; set => attackPower = value; }
+
     void Update()
     {
         if(destination == null)
         {
             if (!destroying)
             {
-                Destroy(gameObject,0.5f);
+                Destroy(gameObject);
                 destroying = true;
             }
-                
+
+        }
+        else
+        {
+            MoveToDestination();
         }
 
-        MoveToDestination();
+        
     }
 
 
