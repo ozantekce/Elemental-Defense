@@ -5,63 +5,74 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    private GameObject source;
+    private GameObject _source;
     [SerializeField]
-    private Enemy destination;
+    private Enemy _destination;
     [SerializeField]
-    private float speed;
+    private float _speed;
     [SerializeField]
-    private float attackPower;
+    private float _attackPower;
 
-    private bool destroying = false;
+    private bool _destroying = false;
 
-    public Enemy Destination { get => destination; set => destination = value; }
-    public GameObject Source { get => source; set => source = value; }
-    public float Speed { get => speed; set => speed = value; }
-    public float AttackPower { get => attackPower; set => attackPower = value; }
+    public Enemy Destination { get => _destination; set => _destination = value; }
+    public GameObject Source { get => _source; set => _source = value; }
+    public float Speed { get => _speed; set => _speed = value; }
+    public float AttackPower { get => _attackPower; set => _attackPower = value; }
 
     void Update()
     {
-        if(destination == null)
+        if(_destination == null)
         {
-            if (!destroying)
+            if (!_destroying)
             {
-                Destroy(gameObject);
-                destroying = true;
+                Destroy(gameObject,1f);
+                _destroying = true;
             }
 
         }
-        else
-        {
-            MoveToDestination();
-        }
+
+        MoveToDestination();
 
         
     }
 
-
+    private Vector3 _destinationLastPos;
     private void MoveToDestination()
     {
 
-        Vector3 directionVector = destination.transform.position - transform.position;
+
+        Vector3 directionVector;
+        if(Destination != null)
+        {
+            _destinationLastPos = Destination.transform.position;
+            directionVector = _destination.transform.position - transform.position;
+        }
+        else
+        {
+            directionVector = _destinationLastPos - transform.position;
+        }
+        
         directionVector = directionVector.normalized;
-        transform.Translate(directionVector * Time.deltaTime * speed);
+        transform.Translate(directionVector * Time.deltaTime * _speed);
+
 
     }
 
 
+
     private void OnTriggerEnter(Collider other)
     {
-        if(destroying || destination == null)
+        if(_destroying || _destination == null)
         {
             return;
         }
 
-        if (other.gameObject == destination.gameObject)
+        if (other.gameObject == _destination.gameObject)
         {
-            destination.TakeDamage(attackPower);
+            _destination.TakeDamage(_attackPower);
             Destroy(gameObject, 0.5f);
-            destroying = true;
+            _destroying = true;
         }
     }
 

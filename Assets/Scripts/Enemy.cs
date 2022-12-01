@@ -52,6 +52,11 @@ public class Enemy : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.RemoveEnemy(this);
+    }
+
     private void DestroyedByTower()
     {
         Destroy(gameObject, 0.1f);

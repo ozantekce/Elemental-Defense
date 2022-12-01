@@ -9,3 +9,8 @@ public enum EnemyStatus
 {
     none,slowed,stunned
 }
+
+public enum TowerAttackType
+{
+    closed,
+}

@@ -62,21 +62,23 @@ public class Tower : MonoBehaviour
     
     private Enemy FindEnemy()
     {
-        int layerMask = 1 << 6;
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, range, layerMask);
-        /*
-        foreach (var hitCollider in hitColliders)
+        float minDistance = float.MaxValue;
+        Enemy target = null;
+        foreach (Enemy enemy in GameManager.Instance.EnemyList)
         {
-            //hitCollider.SendMessage("AddDamage");
-        }*/
-
-        if(hitColliders.Length > 0)
-        {
-            return hitColliders[0].GetComponent<Enemy>();
+            float dist = Vector3.Distance(transform.position, enemy.transform.position);
+            if(dist<=range &&dist < minDistance)
+            {
+                minDistance = dist;
+                target = enemy;
+            }
         }
 
-        return null;
+        return target;
     }
+
+
+
 
     private bool UpdateTower()
     {
@@ -90,6 +92,12 @@ public class Tower : MonoBehaviour
 
     }
 
+
+    private void ShowRange()
+    {
+
+
+    }
 
 
 

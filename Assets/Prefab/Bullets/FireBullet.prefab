@@ -128,10 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100ae8d9e7414cc4bbfab6f050f6c6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  destination: {fileID: 0}
-  speed: 200
-  attackPower: 120
+  _source: {fileID: 0}
+  _destination: {fileID: 0}
+  _speed: 200
+  _attackPower: 0
 --- !u!1001 &3123235003926603830
 PrefabInstance:
   m_ObjectHideFlags: 0

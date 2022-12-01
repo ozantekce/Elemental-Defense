@@ -76,6 +76,8 @@ public class Portal : MonoBehaviour
         enemy.Direction = enemyStartDirection;
         enemy.transform.SetParent(enemiesGO.transform);
 
+        GameManager.Instance.AddEnemy(enemy);
+
     }
 
 
