@@ -143,6 +143,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flame2
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 79ea71ffadab038428d7002939ad9077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 79ea71ffadab038428d7002939ad9077, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -198,6 +202,26 @@ PrefabInstance:
     - target: {fileID: 400004, guid: 79ea71ffadab038428d7002939ad9077, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 79ea71ffadab038428d7002939ad9077, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 79ea71ffadab038428d7002939ad9077, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 79ea71ffadab038428d7002939ad9077, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: 79ea71ffadab038428d7002939ad9077, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: 79ea71ffadab038428d7002939ad9077, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: 79ea71ffadab038428d7002939ad9077, type: 3}
       propertyPath: InitialModule.startRotationX.minMaxState

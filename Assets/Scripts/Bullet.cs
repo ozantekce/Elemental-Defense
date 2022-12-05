@@ -13,21 +13,23 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float _attackPower;
 
-    private bool _destroying = false;
+    
 
     public Enemy Destination { get => _destination; set => _destination = value; }
     public GameObject Source { get => _source; set => _source = value; }
     public float Speed { get => _speed; set => _speed = value; }
     public float AttackPower { get => _attackPower; set => _attackPower = value; }
-
+    
+    private bool _selfDestroying = false;
     void Update()
     {
         if(_destination == null)
         {
-            if (!_destroying)
+            if (!_selfDestroying)
             {
+                gameObject.SetActive(false);
                 Destroy(gameObject,1f);
-                _destroying = true;
+                _selfDestroying = true;
             }
 
         }
@@ -63,7 +65,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(_destroying || _destination == null)
+        if(_selfDestroying || _destination == null)
         {
             return;
         }
@@ -72,7 +74,7 @@ public class Bullet : MonoBehaviour
         {
             _destination.TakeDamage(_attackPower);
             Destroy(gameObject, 0.5f);
-            _destroying = true;
+            _selfDestroying = true;
         }
     }
 

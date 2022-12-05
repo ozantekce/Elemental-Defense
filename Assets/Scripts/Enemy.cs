@@ -27,9 +27,17 @@ public class Enemy : MonoBehaviour
 
     public Direction Direction { get => direction; set => direction = value; }
 
+
+    private ChangeDirectionController _changeDirectionController;
+
     private void Start()
     {
-        
+        GameObject changeDirectionGO = new GameObject("ChangeDirection");
+        changeDirectionGO.transform.SetParent(transform);
+        changeDirectionGO.transform.localPosition = Vector3.zero;
+        _changeDirectionController = changeDirectionGO.AddComponent<ChangeDirectionController>();
+        _changeDirectionController.Parent = this;
+
     }
 
 
@@ -96,9 +104,36 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        ChangeDirection(other);
+
+        //ChangeDirection(other);
         ReachedToBase(other);
 
+
     }
+
+
+
+    private class ChangeDirectionController : MonoBehaviour
+    {
+
+        private Enemy _parent;
+        private SphereCollider _collider;
+
+        public Enemy Parent { get => _parent; set => _parent = value; }
+
+        private void Start()
+        {
+            _collider = gameObject.AddComponent<SphereCollider>();
+            _collider.radius = 0.1f;
+            _collider.isTrigger = true;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            _parent.ChangeDirection(other);
+        }
+
+    }
+
 
 }

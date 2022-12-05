@@ -72,7 +72,7 @@ public class Portal : MonoBehaviour
         }
 
         enemy = GameObject.Instantiate(enemy);
-        enemy.transform.position = transform.position;
+        enemy.transform.position = transform.position+ new Vector3(0,enemy.transform.lossyScale.y,0);
         enemy.Direction = enemyStartDirection;
         enemy.transform.SetParent(enemiesGO.transform);
 

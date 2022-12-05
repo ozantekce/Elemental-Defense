@@ -5,43 +5,47 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
 
-    private static int MaxLevel;
+    const int MaxLevel = 99999;
 
     [SerializeField]
-    private string name;
+    private string _name;
     [SerializeField]
-    private Transform bulleySpawnPoint;
+    private Transform _bulletSpawnPoint;
     [SerializeField]
-    private Bullet bulletPrefab;
+    private Bullet _bulletPrefab;
     [SerializeField]
-    private float range;
+    private float _range;
     [SerializeField]
-    private float attackPower;
+    private float _attackPower;
     [SerializeField]
-    private float attackPerSecond;
+    private float _attackPerSecond;
     [SerializeField]
-    private int currentLevel;
+    private float _criticalChange;
     [SerializeField]
-    private int updateCost;
+    private float _criticalDamage;
+    [SerializeField]
+    private int _currentLevel;
+    [SerializeField]
+    private int _updateCost;
 
-    private Cooldown attackCD;
+    private CooldownDynamic _attackCD;
 
     private void Start()
     {
-
-        attackCD = new Cooldown(1000/attackPerSecond);
-
+        _attackCD = new CooldownDynamic();
     }
+
 
     private Enemy currentEnemy;
 
     private void Update()
     {
         
-        if(currentEnemy == null|| Vector3.Distance(transform.position,currentEnemy.transform.position)>=range)
+        if(currentEnemy == null
+            || Vector3.Distance(transform.position,currentEnemy.transform.position)>=_range)
             currentEnemy = FindEnemy();
 
-        if(attackCD.Ready()&& currentEnemy != null)
+        if(_attackCD.Ready(1000 / _attackPerSecond) && currentEnemy != null)
         {
             SendBullet(currentEnemy);
         }
@@ -51,15 +55,18 @@ public class Tower : MonoBehaviour
     private void SendBullet(Enemy target)
     {
 
-        Bullet bullet = Instantiate(bulletPrefab);
-        bullet.transform.position = bulleySpawnPoint.position;
-        bullet.AttackPower = attackPower;
+        Bullet bullet = Instantiate(_bulletPrefab);
+        bullet.transform.position = _bulletSpawnPoint.position;
+        bullet.AttackPower = _attackPower;
         bullet.Source = gameObject;
         bullet.Destination = target;
 
     }
 
-    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     private Enemy FindEnemy()
     {
         float minDistance = float.MaxValue;
@@ -67,7 +74,7 @@ public class Tower : MonoBehaviour
         foreach (Enemy enemy in GameManager.Instance.EnemyList)
         {
             float dist = Vector3.Distance(transform.position, enemy.transform.position);
-            if(dist<=range &&dist < minDistance)
+            if(dist<=_range &&dist < minDistance)
             {
                 minDistance = dist;
                 target = enemy;
@@ -99,6 +106,18 @@ public class Tower : MonoBehaviour
 
     }
 
+
+
+    #region GetterSetter
+
+    public float AttackPower { get => _attackPower; set => _attackPower = value; }
+    public float Range { get => _range; set => _range = value; }
+    public float AttackPerSecond { get => _attackPerSecond; set => _attackPerSecond = value; }
+    public float CriticalChange { get => _criticalChange; set => _criticalChange = value; }
+    public float CriticalDamage { get => _criticalDamage; set => _criticalDamage = value; }
+
+
+    #endregion
 
 
 }

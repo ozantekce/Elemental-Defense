@@ -7,7 +7,10 @@ public class Player
 
     private static string name;
     private static int gold;
-    private static int level;
+    private static int essence;
+    private static int rebornPoint;
+    private static int wave;
+    private static int maxWave;
 
     public static string Name {
         get { 
@@ -29,15 +32,15 @@ public class Player
         }
     }
 
-    public static int Level
+    public static int Wave
     {
         get
         {
-            return PlayerPrefs.GetInt("level", 1);
+            return PlayerPrefs.GetInt("wave", 1);
         }
         set
         {
-            PlayerPrefs.SetInt("level", value);
+            PlayerPrefs.SetInt("wave", value);
         }
     }
 
