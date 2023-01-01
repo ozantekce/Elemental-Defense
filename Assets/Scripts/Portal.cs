@@ -13,13 +13,13 @@ public class Portal : MonoBehaviour
     private CooldownManualReset firstSpawnCooldown;
 
     public Direction enemyStartDirection;
-
-
-    private int sublevel = 0;
-    public List<SubLevel> sublevels;
     
 
     private GameObject enemiesGO;
+
+    [SerializeField]
+    private Enemy _enemyType1;
+
 
     void Start()
     {
@@ -35,41 +35,53 @@ public class Portal : MonoBehaviour
     void Update()
     {
 
-        if (sublevel >= sublevels.Count|| !firstSpawnCooldown.TimeOver())
+        if (!firstSpawnCooldown.TimeOver())
         {
             return;
         }
 
-        if (spawnCooldown.Ready())
+        if (!_waveRunnnig)
+        {
+            
+            WaveStart();
+        }
+
+
+        if (_enemyCount>0 && spawnCooldown.Ready())
         {
             SpawnEnemy();
         }
 
-        if (enemyCountPairsIndex >= sublevels[sublevel].enemyCountPairs.Length
-            && enemiesGO.transform.childCount==0)
+        if(_waveRunnnig&&GameManager.Instance.EnemyList.Count == 0)
         {
-            SubLevelOver();
-            return;
+            WaveOver();
         }
-
 
     }
 
-    private int enemyCountPairsIndex = 0;
+    
+    private int _enemyCount;
+    private bool _waveRunnnig;
+
+    private void WaveStart()
+    {
+        _waveRunnnig = true;
+        _enemyCount = Local.Instance.EnemyCount;
+
+    }
+
+    private void WaveOver()
+    {
+        _waveRunnnig = false;
+        firstSpawnCooldown.ResetTimer();
+        Local.Instance.Wave++;
+    }
+
     private void SpawnEnemy()
     {
-        if (enemyCountPairsIndex >= sublevels[sublevel].enemyCountPairs.Length)
-        {
-            return;
-        }
+        _enemyCount--;
 
-        Enemy enemy = sublevels[sublevel].enemyCountPairs[enemyCountPairsIndex].enemy;
-
-        sublevels[sublevel].enemyCountPairs[enemyCountPairsIndex].count--;
-        if (sublevels[sublevel].enemyCountPairs[enemyCountPairsIndex].count <= 0)
-        {
-            enemyCountPairsIndex++;
-        }
+        Enemy enemy = _enemyType1;
 
         enemy = GameObject.Instantiate(enemy);
         enemy.transform.position = transform.position+ new Vector3(0,enemy.transform.lossyScale.y,0);
@@ -81,35 +93,8 @@ public class Portal : MonoBehaviour
     }
 
 
-    private void SubLevelOver()
-    {
-        enemyCountPairsIndex = 0;
-        sublevel++;
-        firstSpawnCooldown.ResetTimer();
-        if (sublevel >= sublevels.Count)
-        {
-            LevelOver();
-        }
-    }
-
-    private void LevelOver()
-    {
-        // change scene
-    }
 
 
-    [Serializable]
-    public struct EnemyCountPair
-    {
-        public Enemy enemy;
-        public int count;
-    }
-
-    [Serializable]
-    public struct SubLevel
-    {
-        public EnemyCountPair[] enemyCountPairs;
-    }
 
 
 }

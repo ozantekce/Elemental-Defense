@@ -5,7 +5,6 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
 
-    const int MaxLevel = 99999;
 
     [SerializeField]
     private string _name;
@@ -13,6 +12,22 @@ public class Tower : MonoBehaviour
     private Transform _bulletSpawnPoint;
     [SerializeField]
     private Bullet _bulletPrefab;
+
+
+    [SerializeField]
+    private TowerType _towerType;
+
+
+    #region BaseValues
+    public float baseRange = 500f;
+    public float baseAttackPower = 1;
+    public float baseAttackPerSecond = 1;
+    public float baseCriticalChange = 1;
+    public float baseCriticalDamage = 1;
+    #endregion
+
+
+    #region CurrentValues
     [SerializeField]
     private float _range;
     [SerializeField]
@@ -23,16 +38,18 @@ public class Tower : MonoBehaviour
     private float _criticalChange;
     [SerializeField]
     private float _criticalDamage;
+    #endregion
+
+
     [SerializeField]
     private int _currentLevel;
-    [SerializeField]
-    private int _updateCost;
 
     private CooldownDynamic _attackCD;
 
     private void Start()
     {
         _attackCD = new CooldownDynamic();
+        UpdateValues();
     }
 
 
@@ -40,6 +57,7 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
+        UpdateValues();
         
         if(currentEnemy == null
             || Vector3.Distance(transform.position,currentEnemy.transform.position)>=_range)
@@ -52,12 +70,46 @@ public class Tower : MonoBehaviour
 
     }
 
+
+    private const int UpdateRate = 10;
+    private int _currentUpdate = 11;
+
+    private void UpdateValues()
+    {
+        _currentUpdate++;
+        if(_currentUpdate >= UpdateRate)
+        {
+            _currentUpdate = 0;
+        }
+        else
+        {
+            return;
+        }
+
+        _range = baseRange * Local.Instance.Range;
+        _attackPower = baseAttackPower * Local.Instance.Damage;
+        _attackPerSecond = baseAttackPerSecond * Local.Instance.AttackSpeed;
+        _criticalChange = baseCriticalChange * Local.Instance.CriticalHitChange;
+        _criticalDamage = baseCriticalDamage * Local.Instance.CriticalHitDamage;
+
+    }
+
+
+
     private void SendBullet(Enemy target)
     {
 
+        float damage = _attackPower;
+        int r = Random.Range(0, 101);
+        if (r < CriticalChange)
+        {
+            // Critical Attack
+            damage *= (1+_criticalDamage);
+        }
+
         Bullet bullet = Instantiate(_bulletPrefab);
         bullet.transform.position = _bulletSpawnPoint.position;
-        bullet.AttackPower = _attackPower;
+        bullet.AttackPower = damage;
         bullet.Source = gameObject;
         bullet.Destination = target;
 
@@ -115,6 +167,8 @@ public class Tower : MonoBehaviour
     public float AttackPerSecond { get => _attackPerSecond; set => _attackPerSecond = value; }
     public float CriticalChange { get => _criticalChange; set => _criticalChange = value; }
     public float CriticalDamage { get => _criticalDamage; set => _criticalDamage = value; }
+    public TowerType TowerType { get => _towerType; set => _towerType = value; }
+    public int CurrentLevel { get => _currentLevel; set => _currentLevel = value; }
 
 
     #endregion

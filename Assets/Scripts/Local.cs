@@ -16,9 +16,92 @@ public class Local : MonoBehaviour
     }
 
 
+    [ContextMenu("Reset Local Data")]
+    public void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+
     private const int BaseGoldDrop = 1;
     private const int BaseEssenceChange = 1;
     private const float BaseEnemyHP = 10;
+
+
+    private const int BaseTowerCost = 10;
+    private const int TowerCostIncrease = 10;
+
+
+    public int FireTowerCost
+    {
+        get { return BaseTowerCost + TowerCostIncrease * NumberOfFireTowers; }
+    }
+
+    public int WaterTowerCost
+    {
+        get { return BaseTowerCost + TowerCostIncrease * NumberOfWaterTowers; }
+    }
+
+    public int EarthTowerCost
+    {
+        get { return BaseTowerCost + TowerCostIncrease * NumberOfEarthTowers; }
+    }
+
+    public int AirTowerCost
+    {
+        get { return BaseTowerCost + TowerCostIncrease * NumberOfAirTowers; }
+    }
+
+    public int NumberOfFireTowers
+    {
+        set
+        {
+            PlayerPrefs.SetInt("numOfFireTowers", value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("numOfFireTowers", 0);
+        }
+    }
+
+    public int NumberOfWaterTowers
+    {
+        set
+        {
+            PlayerPrefs.SetInt("numOfWaterTowers", value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("numOfWaterTowers", 0);
+        }
+    }
+
+    public int NumberOfEarthTowers
+    {
+        set
+        {
+            PlayerPrefs.SetInt("numOfEarthTowers", value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("numOfEarthTowers", 0);
+        }
+    }
+
+    public int NumberOfAirTowers
+    {
+        set
+        {
+            PlayerPrefs.SetInt("numOfAirTowers", value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("numOfAirTowers", 0);
+        }
+    }
+
+
+
 
     #region Resources
 
@@ -386,7 +469,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return 5 + ((Wave%10)) * 2;
+            return 5 + ((Wave%10)*1);
         }
 
     }
@@ -395,7 +478,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return 1 + ((Wave / 10)) * 0.2f;
+            return 1 + ((Wave / 5)) * 0.5f;
         }
     }
 

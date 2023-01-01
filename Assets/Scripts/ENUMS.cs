@@ -10,6 +10,12 @@ public enum EnemyStatus
     none,slowed,stunned
 }
 
+
+public enum TowerType
+{
+    fire,water,earth,air
+}
+
 public enum TowerAttackType
 {
     closed,

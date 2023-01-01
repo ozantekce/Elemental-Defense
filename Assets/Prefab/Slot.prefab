@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1054956719158996548}
   - component: {fileID: 1054956719158996549}
   - component: {fileID: 1054956719158996554}
+  - component: {fileID: 1766250750146086558}
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
@@ -98,3 +99,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1766250750146086558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054956719158996552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afaad60de6b0bae4ebf4ff1e1e41ea43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isEmpty: 1
+  slotEmptyPopUp: {fileID: 0}
+  slotFullPopUp: {fileID: 0}
+  slotNumber: 0
+  fireTowerPrefab: {fileID: 910766235597683071, guid: b42cf60d750cfd84bb029b6140db692e, type: 3}
+  waterTowerPrefab: {fileID: 1862409463211683208, guid: 017dfd25291293848b0230158b66acc9, type: 3}
+  earthTowerPrefab: {fileID: 7130870646710837443, guid: 48df02ff25aadfe4eb4bd265fc516e92, type: 3}
+  airTowerPrefab: {fileID: 3997915982083620474, guid: 771ae099c0d04ab44abdbccccdcabf6f, type: 3}

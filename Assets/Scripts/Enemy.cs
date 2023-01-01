@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     private string name;
     [SerializeField]
     private float movementSpeed;
-    [SerializeField]
+
     private float maxHP,currentHP;
 
     [SerializeField]
@@ -37,6 +37,10 @@ public class Enemy : MonoBehaviour
         changeDirectionGO.transform.localPosition = Vector3.zero;
         _changeDirectionController = changeDirectionGO.AddComponent<ChangeDirectionController>();
         _changeDirectionController.Parent = this;
+
+        maxHP = Local.Instance.EnemyHP;
+        currentHP = maxHP;
+
 
     }
 
@@ -67,6 +71,7 @@ public class Enemy : MonoBehaviour
 
     private void DestroyedByTower()
     {
+        Local.Instance.Gold += Local.Instance.GoldDrop;
         Destroy(gameObject, 0.1f);
     }
 
@@ -74,7 +79,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("PlayerBase"))
         {
-            // increase player hp
+            // reset wave
             Destroy(gameObject,0.1f);
         }
     }
@@ -124,7 +129,7 @@ public class Enemy : MonoBehaviour
         private void Start()
         {
             _collider = gameObject.AddComponent<SphereCollider>();
-            _collider.radius = 0.1f;
+            _collider.radius = 0.3f;
             _collider.isTrigger = true;
         }
 
