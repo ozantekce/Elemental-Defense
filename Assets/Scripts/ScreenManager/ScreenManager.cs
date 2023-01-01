@@ -19,15 +19,22 @@ public class ScreenManager : MonoBehaviour
 
     public Screen initialScreen;
     private Screen _currentScreen;
-    private PopUp _currentPopUp;
+
+
+
+    private ISet<PopUp> _openedPopUps;
 
 
     private List<Command> _commands = new List<Command>();
     private void Awake()
     {
+
+        _openedPopUps = new HashSet<PopUp>();
+
         _screenDictionary = new Dictionary<string, Screen>();
         foreach (Screen s in _screens)
         {
+            s.Configurations();
             _screenDictionary.Add(s.name, s);
             _screenDictionary[s.name].gameObject.SetActive(false);
         }
@@ -35,13 +42,19 @@ public class ScreenManager : MonoBehaviour
         _popUpDictionary = new Dictionary<string, PopUp>();
         foreach (PopUp s in _popUps)
         {
+            s.Configurations();
             _popUpDictionary.Add(s.name, s);
             _popUpDictionary[s.name].gameObject.SetActive(false);
         }
         MakeSingleton();
 
-        LoadScreen(initialScreen.name);
+        
 
+    }
+
+    private void Start()
+    {
+        LoadScreen(initialScreen.name);
     }
 
 
@@ -69,9 +82,6 @@ public class ScreenManager : MonoBehaviour
 
     public void LoadScreen(string screenName)
     {
-
-        if (_currentPopUp != null)
-            _commands.Add(new CloseCommand(_currentPopUp));
         if(_currentScreen != null)
             _commands.Add(new CloseCommand(_currentScreen));
         _currentScreen =_screenDictionary[screenName];
@@ -81,24 +91,73 @@ public class ScreenManager : MonoBehaviour
 
     public void OpenPopUp(string popUpName)
     {
+        /*
         if (_currentPopUp != null)
             _commands.Add(new CloseCommand(_currentPopUp));
         _currentPopUp = _popUpDictionary[popUpName];
-        _commands.Add(new OpenCommand(_currentPopUp));
+        */
+
+        PopUp openPopUp = _popUpDictionary[popUpName];
+
+        if (_openedPopUps.Contains(openPopUp))
+            return;
+
+        _commands.Add(new OpenCommand(openPopUp));
+        
+        _openedPopUps.Add(openPopUp);
+
     }
 
-    public void ClosePopUp()
+    public void ClosePopUp(string popUpName)
     {
+        /*
         if(_currentPopUp!=null)
             _commands.Add(new CloseCommand(_currentPopUp));
+        */
+        PopUp closePopUp = _popUpDictionary[popUpName];
+        _commands.Add(new CloseCommand(closePopUp));
+
+        _openedPopUps.Remove(closePopUp);
+
+    }
+
+    public void CloseAllPopUps()
+    {
+        foreach (PopUp popUp in _openedPopUps)
+        {
+            _commands.Add(new CloseCommand(popUp));
+
+            _openedPopUps.Remove(popUp);
+        }
+    }
+
+    private List<PopUp> closeList = new List<PopUp>();
+    public void CloseAllPopUpWithout(string popUpName)
+    {
+        closeList.Clear();
+        foreach (PopUp popUp in _openedPopUps)
+        {
+            if(popUp.name == popUpName)
+            {
+                continue;
+            }
+            _commands.Add(new CloseCommand(popUp));
+            closeList.Add(popUp);
+            
+        }
+
+        foreach (PopUp popUp in closeList)
+        {
+            _openedPopUps.Remove(popUp);
+        }
+
+
     }
 
     public void QuitApplication()
     {
         Application.Quit();
     }
-
-
 
 
     private void MakeSingleton()
@@ -118,7 +177,6 @@ public class ScreenManager : MonoBehaviour
 
     public static ScreenManager Instance { get => instance; }
     public Screen CurrentScreen { get => _currentScreen; }
-    public PopUp CurrentPopUp { get => _currentPopUp;}
 
 
     #endregion
