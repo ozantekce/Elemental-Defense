@@ -1,19 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameMainScreen : Screen
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+
+    public TextMeshProUGUI waveText;
+    public TextMeshProUGUI enemyCountText;
+    public TextMeshProUGUI enemyHpText;
+
+
+    public TextMeshProUGUI goldText;
+    public TextMeshProUGUI essenceText;
+    public TextMeshProUGUI rebornPointText;
+
+
+
+    private const int UpdateRate = 10;
+    private int currentUpdate = 0;
+    private void Update()
     {
         
+        currentUpdate++;
+        if(currentUpdate >= UpdateRate)
+        {
+            currentUpdate = 0;
+            waveText.text = "Wave:"+Local.Instance.Wave;
+            enemyCountText.text = "Enemy:"+Local.Instance.EnemyCount;
+            enemyHpText.text = "EnemyHP:"+Local.Instance.EnemyHP;
+
+            goldText.text = "G:" + Local.Instance.Gold;
+            essenceText.text = "E:" + Local.Instance.Essence;
+            rebornPointText.text = "RP:" + Local.Instance.RebornPoint;
+
+        }
+
+
     }
 
 

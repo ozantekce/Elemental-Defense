@@ -41,6 +41,7 @@ public interface IScreenElement
         Debug.Log("OPEN");
         Opened = true;
         MonoBehaviour.gameObject.SetActive(true);
+        MonoBehaviour.transform.SetAsLastSibling();
         yield return null;
     }
 
