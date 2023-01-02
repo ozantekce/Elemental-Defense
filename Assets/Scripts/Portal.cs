@@ -74,8 +74,18 @@ public class Portal : MonoBehaviour
     {
         _waveRunnnig = false;
         firstSpawnCooldown.ResetTimer();
+
         Local.Instance.Wave++;
+
     }
+
+    public void ResetWave()
+    {
+        _waveRunnnig = false;
+        firstSpawnCooldown.ResetTimer();
+
+    }
+
 
     private void SpawnEnemy()
     {

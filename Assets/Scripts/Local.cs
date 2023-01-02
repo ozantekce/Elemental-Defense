@@ -202,7 +202,7 @@ public class Local : MonoBehaviour
         }
         get
         {
-            return PlayerPrefs.GetInt("essence", 100);
+            return PlayerPrefs.GetInt("essence", 10);
         }
     }
 

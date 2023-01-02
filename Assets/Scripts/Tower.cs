@@ -29,9 +29,9 @@ public class Tower : MonoBehaviour
     #region UpdateIncreaseValues
     private float increaseRange = 1f;
     private float increaseAttackPower = 0.5f;
-    private float increaseAttackPerSecond = 0.05f;
+    private float increaseAttackPerSecond = 0.03f;
     private float increaseCriticalChange = 0.1f;
-    private float increaseCriticalDamage = 0.1f;
+    private float increaseCriticalDamage = 0.05f;
     #endregion
 
 

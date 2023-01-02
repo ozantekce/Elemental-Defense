@@ -89,7 +89,9 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("PlayerBase"))
         {
             // reset wave
-            Destroy(gameObject,0.1f);
+            GameManager.Instance.ResetWave();
+
+            //Destroy(gameObject,0.1f);
         }
     }
 
