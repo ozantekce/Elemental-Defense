@@ -117,6 +117,36 @@ public class SlotFullPopUp : PopUp
     {
 
 
+        int price = 0;
+
+        if (_openerSlot.Tower.TowerType == TowerType.fire)
+        {
+            price = Local.Instance.FireTowerSellPrice(_openerSlot.Tower.CurrentLevel);
+            Local.Instance.NumberOfFireTowers--;
+        }
+        else if (_openerSlot.Tower.TowerType == TowerType.water)
+        {
+            price = Local.Instance.WaterTowerSellPrice(_openerSlot.Tower.CurrentLevel);
+            Local.Instance.NumberOfWaterTowers--;
+        }
+        else if (_openerSlot.Tower.TowerType == TowerType.earth)
+        {
+            price = Local.Instance.EarthTowerSellPrice(_openerSlot.Tower.CurrentLevel);
+            Local.Instance.NumberOfEarthTowers--;
+        }
+        else if (_openerSlot.Tower.TowerType == TowerType.air)
+        {
+            price = Local.Instance.AirTowerSellPrice(_openerSlot.Tower.CurrentLevel);
+            Local.Instance.NumberOfAirTowers--;
+        }
+
+        _openerSlot.DestroyTower();
+
+        Local.Instance.Gold += price;
+
+
+        ScreenManager.Instance.ClosePopUp("SlotFullPopUp");
+
     }
 
 

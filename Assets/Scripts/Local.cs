@@ -24,7 +24,7 @@ public class Local : MonoBehaviour
 
 
     private const int BaseGoldDrop = 1;
-    private const int BaseEssenceChange = 1;
+    private const int BaseEssenceChange = 3;
     private const float BaseEnemyHP = 10;
 
 
@@ -34,23 +34,50 @@ public class Local : MonoBehaviour
 
     public int FireTowerCost
     {
-        get { return BaseTowerCost + TowerCostIncrease * NumberOfFireTowers; }
+        get { return BaseTowerCost 
+                + TowerCostIncrease * NumberOfFireTowers
+                + TowerCostIncrease/4 * (NumberOfAllTowers-NumberOfFireTowers)
+                ; 
+
+        }
     }
 
     public int WaterTowerCost
     {
-        get { return BaseTowerCost + TowerCostIncrease * NumberOfWaterTowers; }
+        get
+        {
+            return BaseTowerCost
+              + TowerCostIncrease * NumberOfWaterTowers
+              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfWaterTowers)
+              ;
+
+        }
     }
 
     public int EarthTowerCost
     {
-        get { return BaseTowerCost + TowerCostIncrease * NumberOfEarthTowers; }
+        get
+        {
+            return BaseTowerCost
+              + TowerCostIncrease * NumberOfEarthTowers
+              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfEarthTowers)
+              ;
+
+        }
     }
 
     public int AirTowerCost
     {
-        get { return BaseTowerCost + TowerCostIncrease * NumberOfAirTowers; }
+        get
+        {
+            return BaseTowerCost
+              + TowerCostIncrease * NumberOfAirTowers
+              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfAirTowers)
+              ;
+
+        }
     }
+
 
 
     private const int BaseUpdateCost = 10;
@@ -75,24 +102,26 @@ public class Local : MonoBehaviour
         return BaseUpdateCost + level * BaseUpdateCost;
     }
 
+
+
     public int FireTowerSellPrice(int level)
     {
-        return BaseUpdateCost + level * BaseUpdateCost;
+        return 5+(level * (level+1))/5 * BaseUpdateCost;
     }
 
     public int WaterTowerSellPrice(int level)
     {
-        return BaseUpdateCost + level * BaseUpdateCost;
+        return 5+(level * (level + 1)) / 5 * BaseUpdateCost;
     }
 
     public int EarthTowerSellPrice(int level)
     {
-        return BaseUpdateCost + level * BaseUpdateCost;
+        return 5+(level * (level + 1)) / 5 * BaseUpdateCost;
     }
 
     public int AirTowerSellPrice(int level)
     {
-        return BaseUpdateCost + level * BaseUpdateCost;
+        return 5+(level * (level + 1)) / 5 * BaseUpdateCost;
     }
 
 
@@ -145,7 +174,10 @@ public class Local : MonoBehaviour
         }
     }
 
-
+    public int NumberOfAllTowers
+    {
+        get { return NumberOfFireTowers + NumberOfWaterTowers + NumberOfEarthTowers + NumberOfAirTowers; }
+    }
 
 
     #region Resources

@@ -71,7 +71,16 @@ public class Enemy : MonoBehaviour
 
     private void DestroyedByTower()
     {
+
         Local.Instance.Gold += Local.Instance.GoldDrop;
+
+        int r = Random.Range(0, 101);
+        if (r < Local.Instance.EssenceChange)
+        {
+            // Essence 
+            Local.Instance.Essence++;
+        }
+
         Destroy(gameObject, 0.1f);
     }
 

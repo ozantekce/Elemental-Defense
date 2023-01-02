@@ -7,8 +7,11 @@ using UnityEngine.EventSystems;
 public class Slot : MonoBehaviour
 {
 
-    [SerializeField]
-    private bool _isEmpty = true;
+
+    private bool _isEmpty
+    {
+        get { return _tower == null; }   
+    }
 
     private Tower _tower;
 
@@ -37,6 +40,7 @@ public class Slot : MonoBehaviour
 
         if(_tower == null)
         {
+            PlayerPrefs.DeleteKey("Slot" + slotNumber);
             yield break;
         }
 
@@ -88,7 +92,6 @@ public class Slot : MonoBehaviour
         _tower.transform.localPosition = Vector3.zero;
 
         _tower.CurrentLevel = towerData.currentLevel;
-        _isEmpty = false;
 
         
     }
@@ -171,8 +174,6 @@ public class Slot : MonoBehaviour
         _tower.transform.SetParent(transform);
         _tower.transform.localPosition = Vector3.zero;
 
-        _isEmpty = false;
-
         StartCoroutine(SaveTowerData());
     }
 
@@ -180,9 +181,9 @@ public class Slot : MonoBehaviour
     {
         Debug.Log("Destroy Tower");
 
+        Destroy(_tower.gameObject);
 
-
-
+        _tower = null;
         StartCoroutine(SaveTowerData());
 
     }

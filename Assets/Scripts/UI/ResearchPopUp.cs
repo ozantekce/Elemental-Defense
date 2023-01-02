@@ -17,6 +17,10 @@ public class ResearchPopUp : PopUp
     }
 
 
+
+
+
+
     public override void Configurations()
     {
         AfterOpen = AfterOpen_;
