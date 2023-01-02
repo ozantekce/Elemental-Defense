@@ -7269,7 +7269,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 705997293}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 812589263}
+        m_TargetAssemblyTypeName: ResearchPopUp, Assembly-CSharp
+        m_MethodName: OnClickRangeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &705997293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9071,6 +9083,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad539435a3d18484abff49e505de81c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageInfoTitleText: {fileID: 1762195133}
+  _attackSpeedInfoTitleText: {fileID: 1401633496}
+  _criticalHitChanceInfoTitleText: {fileID: 1357297388}
+  _criticalHitDamageInfoTitleText: {fileID: 486108916}
+  _rangeInfoTitleText: {fileID: 2021391373}
+  _damageInfoText: {fileID: 1608249199}
+  _attackSpeedInfoText: {fileID: 1020423649}
+  _criticalHitChanceInfoText: {fileID: 207758376}
+  _criticalHitDamageInfoText: {fileID: 1425103336}
+  _rangeInfoText: {fileID: 422082588}
+  _damageButtonText: {fileID: 329178812}
+  _attackSpeedButtonText: {fileID: 1282934668}
+  _criticalHitChanceButtonText: {fileID: 1510825657}
+  _criticalHitDamageButtonText: {fileID: 765271874}
+  _rangeButtonText: {fileID: 8342181}
 --- !u!1 &817288311
 GameObject:
   m_ObjectHideFlags: 0
@@ -14899,10 +14926,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 30.65
   m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -15564,7 +15591,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1426862739}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 812589263}
+        m_TargetAssemblyTypeName: ResearchPopUp, Assembly-CSharp
+        m_MethodName: OnClickDamageButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1426862739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16729,7 +16768,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1499910658}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 812589263}
+        m_TargetAssemblyTypeName: ResearchPopUp, Assembly-CSharp
+        m_MethodName: OnClickAttackSpeedButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1499910658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17251,7 +17302,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1530617680}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 812589263}
+        m_TargetAssemblyTypeName: ResearchPopUp, Assembly-CSharp
+        m_MethodName: OnClickCriticalHitChanceButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1530617680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22374,7 +22437,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1942841395}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 812589263}
+        m_TargetAssemblyTypeName: ResearchPopUp, Assembly-CSharp
+        m_MethodName: OnClickCriticalHitDamageButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1942841395
 MonoBehaviour:
   m_ObjectHideFlags: 0

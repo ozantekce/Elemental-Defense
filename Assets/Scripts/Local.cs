@@ -202,7 +202,7 @@ public class Local : MonoBehaviour
         }
         get
         {
-            return PlayerPrefs.GetInt("essence", 0);
+            return PlayerPrefs.GetInt("essence", 100);
         }
     }
 
@@ -323,14 +323,14 @@ public class Local : MonoBehaviour
 
     #region Research
 
-    private const float DamageIncrease = 10;
-    private const float AttackSpeedIncrease = 1;
-    private const float CriticalHitChangeIncrease = 0.5f;
-    private const float CriticalHitDamageIncrease = 1;
-    private const float RangeIncrease = 0.1f;
+    public const float DamageIncrease = 10;
+    public const float AttackSpeedIncrease = 1;
+    public const float CriticalHitChangeIncrease = 0.5f;
+    public const float CriticalHitDamageIncrease = 1;
+    public const float RangeIncrease = 0.1f;
 
 
-    private const int EssenceIncreaseForResearch = 10;
+    private const int EssenceIncreaseForResearch = 2;
     public int ResearchCost(int level)
     {
         return level * EssenceIncreaseForResearch;
