@@ -326,17 +326,21 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 3123235004745107303, guid: c73604005248abc4ab8a1b69b7cd9859, type: 3}
   _towerType: 0
   baseRange: 150
-  baseAttackPower: 10
-  baseAttackPerSecond: 1
+  baseAttackPower: 3
+  baseAttackPerSecond: 1.5
   baseCriticalChange: 10
   baseCriticalDamage: 1
+  increaseRange: 0.2
+  increaseAttackPower: 0.5
+  increaseAttackPerSecond: 0.1
+  increaseCriticalChange: 0.1
+  increaseCriticalDamage: 0.1
   _range: 1000
   _attackPower: 1
   _attackPerSecond: 1
   _criticalChange: 1
   _criticalDamage: 1
   _currentLevel: 1
-  _updateCost: 1
 --- !u!1 &910766234635183854
 GameObject:
   m_ObjectHideFlags: 0

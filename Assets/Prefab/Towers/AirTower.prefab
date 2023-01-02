@@ -601,19 +601,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49188cea0e626a143bda4df8c8a1a255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: WaterTower
+  _name: AirTower
   _bulletSpawnPoint: {fileID: 1176944504480434362}
   _bulletPrefab: {fileID: 7382678393902859878, guid: f1ba81f3da75ea140953b135679eb947, type: 3}
   _towerType: 3
   baseRange: 150
-  baseAttackPower: 10
-  baseAttackPerSecond: 1
+  baseAttackPower: 3
+  baseAttackPerSecond: 1.5
   baseCriticalChange: 10
   baseCriticalDamage: 1
+  increaseRange: 0.2
+  increaseAttackPower: 0.5
+  increaseAttackPerSecond: 0.1
+  increaseCriticalChange: 0.1
+  increaseCriticalDamage: 0.1
   _range: 1000
   _attackPower: 1
   _attackPerSecond: 1
   _criticalChange: 1
   _criticalDamage: 1
   _currentLevel: 1
-  _updateCost: 1

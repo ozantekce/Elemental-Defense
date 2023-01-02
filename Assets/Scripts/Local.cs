@@ -52,6 +52,51 @@ public class Local : MonoBehaviour
         get { return BaseTowerCost + TowerCostIncrease * NumberOfAirTowers; }
     }
 
+
+    private const int BaseUpdateCost = 10;
+
+    public int FireTowerUpdateCost(int level)
+    {
+        return BaseUpdateCost + level * BaseUpdateCost;
+    }
+
+    public int WaterTowerUpdateCost(int level)
+    {
+        return BaseUpdateCost + level * BaseUpdateCost;
+    }
+
+    public int EarthTowerUpdateCost(int level)
+    {
+        return BaseUpdateCost + level * BaseUpdateCost;
+    }
+
+    public int AirTowerUpdateCost(int level)
+    {
+        return BaseUpdateCost + level * BaseUpdateCost;
+    }
+
+    public int FireTowerSellPrice(int level)
+    {
+        return BaseUpdateCost + level * BaseUpdateCost;
+    }
+
+    public int WaterTowerSellPrice(int level)
+    {
+        return BaseUpdateCost + level * BaseUpdateCost;
+    }
+
+    public int EarthTowerSellPrice(int level)
+    {
+        return BaseUpdateCost + level * BaseUpdateCost;
+    }
+
+    public int AirTowerSellPrice(int level)
+    {
+        return BaseUpdateCost + level * BaseUpdateCost;
+    }
+
+
+
     public int NumberOfFireTowers
     {
         set
@@ -250,7 +295,7 @@ public class Local : MonoBehaviour
     private const float AttackSpeedIncrease = 1;
     private const float CriticalHitChangeIncrease = 0.5f;
     private const float CriticalHitDamageIncrease = 1;
-    private const float RangeIncrease = 1;
+    private const float RangeIncrease = 0.1f;
 
 
     private const int EssenceIncreaseForResearch = 10;

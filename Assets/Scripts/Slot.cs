@@ -30,11 +30,14 @@ public class Slot : MonoBehaviour
         LoadTowerData();
     }
 
-    public void SaveTowerData()
+    public IEnumerator SaveTowerData()
     {
+
+        yield return new WaitForEndOfFrame();
+
         if(_tower == null)
         {
-            return;
+            yield break;
         }
 
         TowerData towerData = new TowerData();
@@ -55,7 +58,7 @@ public class Slot : MonoBehaviour
 
         TowerData towerData = JsonConvert.DeserializeObject<TowerData>(json);
 
-        Debug.Log("Load Tower");
+        //Debug.Log("Load Tower");
         Tower tower;
 
         if (towerData.type == TowerType.fire)
@@ -84,6 +87,7 @@ public class Slot : MonoBehaviour
         _tower.transform.SetParent(transform);
         _tower.transform.localPosition = Vector3.zero;
 
+        _tower.CurrentLevel = towerData.currentLevel;
         _isEmpty = false;
 
         
@@ -126,14 +130,16 @@ public class Slot : MonoBehaviour
 
     }
 
+    public Tower Tower { get => _tower; set => _tower = value; }
 
-    public void UpdateTower()
+    public void UpdateTower(int cost)
     {
         Debug.Log("Update Tower");
 
+        Local.Instance.Gold -= cost;
+        _tower.UpdateTower();
 
-
-        SaveTowerData();
+        StartCoroutine(SaveTowerData());
     }
 
     public void AddTower(Tower tower)
@@ -166,7 +172,8 @@ public class Slot : MonoBehaviour
         _tower.transform.localPosition = Vector3.zero;
 
         _isEmpty = false;
-        SaveTowerData();
+
+        StartCoroutine(SaveTowerData());
     }
 
     public void DestroyTower()
@@ -176,7 +183,7 @@ public class Slot : MonoBehaviour
 
 
 
-        SaveTowerData();
+        StartCoroutine(SaveTowerData());
 
     }
 

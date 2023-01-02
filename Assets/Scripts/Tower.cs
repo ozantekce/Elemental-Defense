@@ -19,11 +19,19 @@ public class Tower : MonoBehaviour
 
 
     #region BaseValues
-    public float baseRange = 500f;
-    public float baseAttackPower = 1;
-    public float baseAttackPerSecond = 1;
-    public float baseCriticalChange = 1;
+    public float baseRange = 150f;
+    public float baseAttackPower = 3;
+    public float baseAttackPerSecond = 1.5f;
+    public float baseCriticalChange = 10f;
     public float baseCriticalDamage = 1;
+    #endregion
+
+    #region UpdateIncreaseValues
+    private float increaseRange = 1f;
+    private float increaseAttackPower = 0.5f;
+    private float increaseAttackPerSecond = 0.05f;
+    private float increaseCriticalChange = 0.1f;
+    private float increaseCriticalDamage = 0.1f;
     #endregion
 
 
@@ -86,11 +94,11 @@ public class Tower : MonoBehaviour
             return;
         }
 
-        _range = baseRange * Local.Instance.Range;
-        _attackPower = baseAttackPower * Local.Instance.Damage;
-        _attackPerSecond = baseAttackPerSecond * Local.Instance.AttackSpeed;
-        _criticalChange = baseCriticalChange * Local.Instance.CriticalHitChange;
-        _criticalDamage = baseCriticalDamage * Local.Instance.CriticalHitDamage;
+        _range = (baseRange + increaseRange * _currentLevel) * Local.Instance.Range;
+        _attackPower = (baseAttackPower + increaseAttackPower * _currentLevel ) * Local.Instance.Damage;
+        _attackPerSecond = (baseAttackPerSecond + increaseAttackPerSecond * _currentLevel) * Local.Instance.AttackSpeed;
+        _criticalChange = (baseCriticalChange + increaseCriticalChange * _currentLevel) * Local.Instance.CriticalHitChange;
+        _criticalDamage = (baseCriticalDamage + increaseCriticalDamage * _currentLevel) * Local.Instance.CriticalHitDamage;
 
     }
 
@@ -139,15 +147,12 @@ public class Tower : MonoBehaviour
 
 
 
-    private bool UpdateTower()
+    public void UpdateTower()
     {
+        _currentLevel++;
 
-
-        return false;
-    }
-
-    private void UpdateUpdateCost()
-    {
+        _currentUpdate = 11;
+        UpdateValues();
 
     }
 
@@ -156,6 +161,20 @@ public class Tower : MonoBehaviour
     {
 
 
+    }
+
+
+    public string GetTowerInfo()
+    {
+        string info = "";
+
+        info += "Attack Power:" + AttackPower;
+        info += "\n" + "Attack Speed:" + AttackPerSecond;
+        info += "\n" + "Critical Hit Change:" + CriticalChange+"%";
+        info += "\n" + "Critical Hit Damage:" + 100*CriticalDamage+"%";
+        info += "\n" + "Range:" + Range;
+
+        return info;
     }
 
 
@@ -169,6 +188,7 @@ public class Tower : MonoBehaviour
     public float CriticalDamage { get => _criticalDamage; set => _criticalDamage = value; }
     public TowerType TowerType { get => _towerType; set => _towerType = value; }
     public int CurrentLevel { get => _currentLevel; set => _currentLevel = value; }
+    public string Name { get => _name; set => _name = value; }
 
 
     #endregion

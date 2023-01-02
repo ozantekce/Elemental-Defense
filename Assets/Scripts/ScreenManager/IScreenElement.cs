@@ -38,7 +38,7 @@ public interface IScreenElement
 
     private IEnumerator OpenNow()
     {
-        Debug.Log("OPEN");
+        //Debug.Log("OPEN");
         Opened = true;
         MonoBehaviour.gameObject.SetActive(true);
         MonoBehaviour.transform.SetAsLastSibling();
@@ -61,7 +61,7 @@ public interface IScreenElement
 
     private IEnumerator CloseNow()
     {
-        Debug.Log("CLOSE");
+        //Debug.Log("CLOSE");
         Opened = false;
         MonoBehaviour.gameObject.SetActive(false);
         yield return null;
