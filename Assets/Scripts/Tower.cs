@@ -65,16 +65,33 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
+
         UpdateValues();
         
         if(currentEnemy == null
-            || Vector3.Distance(transform.position,currentEnemy.transform.position)>=_range)
+            || DistanceWithEnemy ()>= _range)
             currentEnemy = FindEnemy();
 
         if(_attackCD.Ready(1000 / _attackPerSecond) && currentEnemy != null)
         {
             SendBullet(currentEnemy);
         }
+
+    }
+
+    private float DistanceWithEnemy()
+    {
+
+        Vector2 enemyVector;
+        enemyVector.x = currentEnemy.transform.position.x;
+        enemyVector.y = currentEnemy.transform.position.z;
+
+        Vector2 towerVector;
+        towerVector.x = transform.position.x;
+        towerVector.y = transform.position.z;
+
+        return Vector2.Distance(towerVector, enemyVector);
+
 
     }
 
@@ -157,9 +174,31 @@ public class Tower : MonoBehaviour
     }
 
 
-    private void ShowRange()
-    {
 
+    public void ShowRange()
+    {
+        if(GameManager.Instance.RangeArea != null)
+        {
+
+            GameManager.Instance.RangeArea.SetActive(true);
+            Vector3 temp;
+            temp.x = transform.position.x;
+            temp.y = 2;
+            temp.z = transform.position.z;
+            GameManager.Instance.RangeArea.transform.position = temp;
+            GameManager.Instance.RangeArea.transform.localScale = new Vector3(Range, Range, 0);
+        }
+
+    }
+
+    public void HideRange()
+    {
+        if (GameManager.Instance.RangeArea != null)
+        {
+
+            GameManager.Instance.RangeArea.SetActive(false);
+            //GameManager.Instance.RangeArea.transform.localScale = new Vector3(Range, Range, 0);
+        }
 
     }
 

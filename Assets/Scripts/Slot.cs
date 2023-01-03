@@ -111,6 +111,28 @@ public class Slot : MonoBehaviour
             slotFullPopUp.Open(this);
     }
 
+    private void OnMouseEnter()
+    {
+        if (CursorOnUI)
+        {
+            return;
+        }
+
+        if (!GameManager.Instance.RangeArea.active && _tower!=null)
+        {
+            _tower.ShowRange();
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (GameManager.Instance.RangeArea.active && _tower!=null)
+        {
+            _tower.HideRange();
+        }
+    }
+
+
     public bool CursorOnUI
     {
         get

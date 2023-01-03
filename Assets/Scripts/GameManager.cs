@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     private Portal _portal;
 
 
+    [SerializeField]
+    private GameObject _rangeArea;
+
     private void Awake()
     {
         _instance = this;
@@ -47,4 +50,5 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => _instance; set => _instance = value; }
     public List<Enemy> EnemyList { get => _enemyList; set => _enemyList = value; }
     public Portal Portal { get => _portal; set => _portal = value; }
+    public GameObject RangeArea { get => _rangeArea; set => _rangeArea = value; }
 }

@@ -356,16 +356,11 @@ MonoBehaviour:
   _bulletSpawnPoint: {fileID: 4537007360284695368}
   _bulletPrefab: {fileID: 2424316024149801962, guid: 6711d2619a0ff7343a1b169ae7e3f055, type: 3}
   _towerType: 1
-  baseRange: 150
-  baseAttackPower: 3
+  baseRange: 100
+  baseAttackPower: 5
   baseAttackPerSecond: 1.5
   baseCriticalChange: 10
   baseCriticalDamage: 1
-  increaseRange: 0.2
-  increaseAttackPower: 0.5
-  increaseAttackPerSecond: 0.1
-  increaseCriticalChange: 0.1
-  increaseCriticalDamage: 0.1
   _range: 1000
   _attackPower: 1
   _attackPerSecond: 1

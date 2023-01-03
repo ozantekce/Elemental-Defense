@@ -603,18 +603,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: AirTower
   _bulletSpawnPoint: {fileID: 1176944504480434362}
-  _bulletPrefab: {fileID: 7382678393902859878, guid: f1ba81f3da75ea140953b135679eb947, type: 3}
+  _bulletPrefab: {fileID: 4161917722950556361, guid: 4b479e437200fe24186e429be29557f8, type: 3}
   _towerType: 3
-  baseRange: 150
-  baseAttackPower: 3
+  baseRange: 100
+  baseAttackPower: 5
   baseAttackPerSecond: 1.5
   baseCriticalChange: 10
   baseCriticalDamage: 1
-  increaseRange: 0.2
-  increaseAttackPower: 0.5
-  increaseAttackPerSecond: 0.1
-  increaseCriticalChange: 0.1
-  increaseCriticalDamage: 0.1
   _range: 1000
   _attackPower: 1
   _attackPerSecond: 1

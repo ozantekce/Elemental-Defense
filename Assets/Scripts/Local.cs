@@ -327,7 +327,7 @@ public class Local : MonoBehaviour
     public const float AttackSpeedIncrease = 1;
     public const float CriticalHitChangeIncrease = 0.5f;
     public const float CriticalHitDamageIncrease = 1;
-    public const float RangeIncrease = 0.1f;
+    public const float RangeIncrease = 0.5f;
 
 
     private const int EssenceIncreaseForResearch = 2;
