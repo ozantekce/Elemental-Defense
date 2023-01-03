@@ -162,15 +162,7 @@ public class ScreenManager : MonoBehaviour
 
     private void MakeSingleton()
     {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        instance = this;
     }
 
     #region GetterSetter

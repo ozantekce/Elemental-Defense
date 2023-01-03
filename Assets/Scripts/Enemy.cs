@@ -30,6 +30,10 @@ public class Enemy : MonoBehaviour
 
     private ChangeDirectionController _changeDirectionController;
 
+    [SerializeField]
+    private GameObject _visual;
+
+
     private void Start()
     {
         GameObject changeDirectionGO = new GameObject("ChangeDirection");
@@ -54,6 +58,10 @@ public class Enemy : MonoBehaviour
     {
         if(direction!=Direction.none)
             transform.Translate(directionDic[direction] * Time.deltaTime * movementSpeed);
+
+        _visual.transform.forward = Vector3.Lerp(_visual.transform.forward
+            , directionDic[direction], 3f*Time.deltaTime);
+
     }
 
     public void TakeDamage(float amount)
@@ -80,6 +88,12 @@ public class Enemy : MonoBehaviour
             // Essence 
             Local.Instance.Essence++;
         }
+
+        _visual.transform.SetParent(null);
+        Animator animator = _visual.GetComponent<Animator>();
+        animator.animatePhysics = true;
+        animator.SetTrigger("Die");
+        Destroy(_visual.gameObject, 2f);
 
         Destroy(gameObject, 0.1f);
     }
