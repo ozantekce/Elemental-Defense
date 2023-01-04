@@ -27,11 +27,11 @@ public class Tower : MonoBehaviour
     #endregion
 
     #region UpdateIncreaseValues
-    private float increaseRange = 1f;
+    private float increaseRange = 0.7f;
     private float increaseAttackPower = 0.5f;
-    private float increaseAttackPerSecond = 0.03f;
+    private float increaseAttackPerSecond = 0.01f;
     private float increaseCriticalChange = 0.1f;
-    private float increaseCriticalDamage = 0.05f;
+    private float increaseCriticalDamage = 0.01f;
     #endregion
 
 
@@ -62,6 +62,7 @@ public class Tower : MonoBehaviour
 
 
     private Enemy currentEnemy;
+
 
     private void Update()
     {
@@ -96,8 +97,8 @@ public class Tower : MonoBehaviour
     }
 
 
-    private const int UpdateRate = 10;
-    private int _currentUpdate = 11;
+    private const int UpdateRate = 20;
+    private int _currentUpdate = 21;
 
     private void UpdateValues()
     {
@@ -113,6 +114,11 @@ public class Tower : MonoBehaviour
 
         _range = (baseRange + increaseRange * _currentLevel) * Local.Instance.Range;
         _attackPower = (baseAttackPower + increaseAttackPower * _currentLevel ) * Local.Instance.Damage;
+        if (TowerType == TowerType.fire)
+        {
+            _attackPower *= (1f + Local.Instance.FireEffect);
+        }
+
         _attackPerSecond = (baseAttackPerSecond + increaseAttackPerSecond * _currentLevel) * Local.Instance.AttackSpeed;
         _criticalChange = (baseCriticalChange + increaseCriticalChange * _currentLevel) * Local.Instance.CriticalHitChange;
         _criticalDamage = (baseCriticalDamage + increaseCriticalDamage * _currentLevel) * Local.Instance.CriticalHitDamage;
@@ -132,10 +138,11 @@ public class Tower : MonoBehaviour
             damage *= (1+_criticalDamage);
         }
 
+
         Bullet bullet = Instantiate(_bulletPrefab);
         bullet.transform.position = _bulletSpawnPoint.position;
         bullet.AttackPower = damage;
-        bullet.Source = gameObject;
+        bullet.Source = this;
         bullet.Destination = target;
 
     }
@@ -168,7 +175,7 @@ public class Tower : MonoBehaviour
     {
         _currentLevel++;
 
-        _currentUpdate = 11;
+        _currentUpdate = 21;
         UpdateValues();
 
     }

@@ -607,7 +607,7 @@ MonoBehaviour:
   _towerType: 3
   baseRange: 100
   baseAttackPower: 5
-  baseAttackPerSecond: 1.5
+  baseAttackPerSecond: 1
   baseCriticalChange: 10
   baseCriticalDamage: 1
   _range: 1000

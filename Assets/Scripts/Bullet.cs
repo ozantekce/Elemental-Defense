@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _source;
+    private Tower _source;
     [SerializeField]
     private Enemy _destination;
     [SerializeField]
@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     
 
     public Enemy Destination { get => _destination; set => _destination = value; }
-    public GameObject Source { get => _source; set => _source = value; }
+    public Tower Source { get => _source; set => _source = value; }
     public float Speed { get => _speed; set => _speed = value; }
     public float AttackPower { get => _attackPower; set => _attackPower = value; }
     
@@ -73,6 +73,35 @@ public class Bullet : MonoBehaviour
         if (other.gameObject == _destination.gameObject)
         {
             _destination.TakeDamage(_attackPower);
+
+            if(Source.TowerType == TowerType.air)
+            {
+                int layerMask = 1 << LayerMask.NameToLayer("Enemy");
+                Collider[] hitColliders 
+                    = Physics.OverlapSphere(transform.position, Local.AirEffectRange, layerMask);
+                foreach (Collider hitCollider in hitColliders)
+                {
+
+                    hitCollider.GetComponent<Enemy>().TakeDamage(_attackPower * Local.Instance.AirEffect);
+
+                }
+            }
+
+            if(Source.TowerType == TowerType.water)
+            {
+                _destination.Status = EnemyStatus.slowed;
+            }
+            if (Source.TowerType == TowerType.earth)
+            {
+                int r = Random.Range(0, 101);
+                if(r <= 100f*Local.Instance.EarthEffect)
+                {
+                    _destination.Status = EnemyStatus.stunned;
+                }
+                
+
+            }
+
             Destroy(gameObject, 0.5f);
             _selfDestroying = true;
         }

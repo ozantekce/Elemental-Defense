@@ -1,23 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private string name;
+    private string _name;
     [SerializeField]
-    private float movementSpeed;
+    private float _movementSpeed;
 
-    private float maxHP,currentHP;
-
-    [SerializeField]
-    private Direction direction;
+    private float _maxHP,_currentHP;
 
     [SerializeField]
-    private EnemyStatus status;
+    private Direction _direction;
 
-    private Dictionary<Direction, Vector3> directionDic = new Dictionary<Direction, Vector3>()
+    [SerializeField]
+    private EnemyStatus _status;
+
+    private Dictionary<Direction, Vector3> _directionDic = new Dictionary<Direction, Vector3>()
     {
         { Direction.up, new Vector3(-1,0,0)},
         { Direction.down, new Vector3(1,0,0)},
@@ -25,14 +26,45 @@ public class Enemy : MonoBehaviour
         { Direction.right, new Vector3(0,0,1)},
     };
 
-    public Direction Direction { get => direction; set => direction = value; }
+    public Direction Direction { get => _direction; set => _direction = value; }
+    public EnemyStatus Status { 
+        
+        get => _status;
 
+        set { 
+            
+
+            if(_status==EnemyStatus.stunned && value == EnemyStatus.slowed)
+            {
+                return;
+            }
+            if (value == EnemyStatus.stunned)
+            {
+                _stunCD.ResetTimer();
+            }
+            if (value == EnemyStatus.slowed)
+            {
+                _slowCD.ResetTimer();
+            }
+            _status = value;
+        }
+    
+    
+    }
+    public CooldownManualReset SlowCD { get => _slowCD; set => _slowCD = value; }
 
     private ChangeDirectionController _changeDirectionController;
+
+
+    private CooldownManualReset _slowCD;
+    private CooldownManualReset _stunCD;
 
     [SerializeField]
     private GameObject _visual;
 
+
+    [SerializeField]
+    private Image _hpBarFill;
 
     private void Start()
     {
@@ -42,9 +74,11 @@ public class Enemy : MonoBehaviour
         _changeDirectionController = changeDirectionGO.AddComponent<ChangeDirectionController>();
         _changeDirectionController.Parent = this;
 
-        maxHP = Local.Instance.EnemyHP;
-        currentHP = maxHP;
+        _maxHP = Local.Instance.EnemyHP;
+        _currentHP = _maxHP;
 
+        _slowCD = new CooldownManualReset(1000f);
+        _stunCD = new CooldownManualReset(300f);
 
     }
 
@@ -56,19 +90,53 @@ public class Enemy : MonoBehaviour
 
     private void Move()
     {
-        if(direction!=Direction.none)
-            transform.Translate(directionDic[direction] * Time.deltaTime * movementSpeed);
+
+        if (_status == EnemyStatus.slowed &&  _slowCD.TimeOver())
+        {
+            _status = EnemyStatus.none;
+        }
+        if (_status == EnemyStatus.stunned && _stunCD.TimeOver())
+        {
+            _status = EnemyStatus.none;
+        }
+
+        if(_status == EnemyStatus.stunned)
+        {
+            return;
+        }
+
+        if (_direction != Direction.none)
+        {
+            float movSpeed = _movementSpeed;
+            if(Status == EnemyStatus.slowed)
+            {
+                movSpeed *= (1f-Local.Instance.WaterEffect);
+            }
+
+            transform.Translate(_directionDic[_direction] * Time.deltaTime * movSpeed);
+        }
+            
+
+
 
         _visual.transform.forward = Vector3.Lerp(_visual.transform.forward
-            , directionDic[direction], 3f*Time.deltaTime);
+            , _directionDic[_direction], 3f*Time.deltaTime);
 
     }
 
     public void TakeDamage(float amount)
     {
-        currentHP -= amount;
-        if (currentHP <= 0)
+        _currentHP -= amount;
+        if (_currentHP <= 0)
+        {
             DestroyedByTower();
+            _hpBarFill.fillAmount = 0;
+        }
+        else
+        {
+            _hpBarFill.fillAmount = _currentHP / _maxHP;
+        }
+            
 
     }
 
@@ -113,19 +181,19 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("ChangeDirection/Up"))
         {
-            direction = Direction.up;
+            _direction = Direction.up;
         }
         else if (other.CompareTag("ChangeDirection/Down"))
         {
-            direction = Direction.down;
+            _direction = Direction.down;
         }
         else if (other.CompareTag("ChangeDirection/Left"))
         {
-            direction = Direction.left;
+            _direction = Direction.left;
         }
         else if (other.CompareTag("ChangeDirection/Right"))
         {
-            direction = Direction.right;
+            _direction = Direction.right;
         }
     }
 

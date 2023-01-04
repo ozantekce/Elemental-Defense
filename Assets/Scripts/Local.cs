@@ -80,48 +80,48 @@ public class Local : MonoBehaviour
 
 
 
-    private const int BaseUpdateCost = 10;
+    private const int BaseUpdateCost = 2;
 
     public int FireTowerUpdateCost(int level)
     {
-        return BaseUpdateCost + level * BaseUpdateCost;
+        return BaseUpdateCost + (level * BaseUpdateCost)/2;
     }
 
     public int WaterTowerUpdateCost(int level)
     {
-        return BaseUpdateCost + level * BaseUpdateCost;
+        return BaseUpdateCost + (level * BaseUpdateCost) / 2;
     }
 
     public int EarthTowerUpdateCost(int level)
     {
-        return BaseUpdateCost + level * BaseUpdateCost;
+        return BaseUpdateCost + (level * BaseUpdateCost) / 2;
     }
 
     public int AirTowerUpdateCost(int level)
     {
-        return BaseUpdateCost + level * BaseUpdateCost;
+        return BaseUpdateCost + (level * BaseUpdateCost) / 2;
     }
 
 
 
     public int FireTowerSellPrice(int level)
     {
-        return 5+(level * (level+1))/5 * BaseUpdateCost;
+        return 1+(level * (level+1))/10 * BaseUpdateCost;
     }
 
     public int WaterTowerSellPrice(int level)
     {
-        return 5+(level * (level + 1)) / 5 * BaseUpdateCost;
+        return 1+(level * (level + 1)) /10 * BaseUpdateCost;
     }
 
     public int EarthTowerSellPrice(int level)
     {
-        return 5+(level * (level + 1)) / 5 * BaseUpdateCost;
+        return 1+(level * (level + 1)) / 10 * BaseUpdateCost;
     }
 
     public int AirTowerSellPrice(int level)
     {
-        return 5+(level * (level + 1)) / 5 * BaseUpdateCost;
+        return 1+(level * (level + 1)) / 10 * BaseUpdateCost;
     }
 
 
@@ -225,10 +225,19 @@ public class Local : MonoBehaviour
 
     
 
-    private const float FireEffectIncrease = 10;
-    private const float WaterEffectIncrease = 1;
+    private const float FireEffectIncrease = 2f;
+    private const float WaterEffectIncrease = 1f;
     private const float EarthEffectIncrease = 0.5f;
-    private const float AirEffectIncrease = 1;
+    private const float AirEffectIncrease = 1f;
+
+
+    private const float FireEffectBase = 10f;
+    private const float WaterEffectBase = 2f;
+    private const float EarthEffectBase = 2f;
+    private const float AirEffectBase = 8f;
+
+
+    public const float AirEffectRange = 100f;
 
     private const int EssenceIncreaseForElements = 10;
     public int ElementCost(int level)
@@ -289,7 +298,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return FireLevel * FireEffectIncrease;
+            return (FireEffectBase + FireLevel * FireEffectIncrease) / 100f;
         }
     }
 
@@ -297,7 +306,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return WaterLevel * WaterEffectIncrease;
+            return (WaterEffectBase + WaterLevel * WaterEffectIncrease) / 100f;
         }
     }
 
@@ -305,7 +314,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return EarthLevel * EarthEffectIncrease;
+            return (EarthEffectBase + EarthLevel * EarthEffectIncrease) / 100f;
         }
     }
 
@@ -314,9 +323,11 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return AirLevel * AirEffectIncrease;
+            return (AirEffectBase + AirLevel * AirEffectIncrease)/100f;
         }
     }
+
+
 
     #endregion
 
@@ -523,7 +534,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return BaseEnemyHP * EnemyHPMultiplier / (EnemyHPLevel*EnemyHpDecrease);
+            return (BaseEnemyHP + Wave/20f) * EnemyHPMultiplier / (EnemyHPLevel*EnemyHpDecrease);
         }
     }
 
@@ -546,7 +557,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return 5 + ((Wave%10)*1);
+            return 5 +(Wave/20)+ ((Wave%20)*1);
         }
 
     }
@@ -555,7 +566,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return 1 + ((Wave / 5)) * 0.5f;
+            return ((1f + Wave * 0.04f) * ( 1f + Wave * 0.005f )) ;
         }
     }
 

@@ -18,8 +18,8 @@ public class GameMainScreen : Screen
 
 
 
-    private const int UpdateRate = 10;
-    private int currentUpdate = 0;
+    private const int UpdateRate = 20;
+    private int currentUpdate = 21;
     private void Update()
     {
         
@@ -29,7 +29,7 @@ public class GameMainScreen : Screen
             currentUpdate = 0;
             waveText.text = "Wave:"+Local.Instance.Wave;
             enemyCountText.text = "Enemy:"+Local.Instance.EnemyCount;
-            enemyHpText.text = "EnemyHP:"+Local.Instance.EnemyHP;
+            enemyHpText.text = "EnemyHP:"+((int)Local.Instance.EnemyHP);
 
             goldText.text = "G:" + Local.Instance.Gold;
             essenceText.text = "E:" + Local.Instance.Essence;
