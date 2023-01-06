@@ -79,6 +79,7 @@ public class Bullet : MonoBehaviour
                 int layerMask = 1 << LayerMask.NameToLayer("Enemy");
                 Collider[] hitColliders 
                     = Physics.OverlapSphere(transform.position, Local.AirEffectRange, layerMask);
+                //Debug.Log(hitColliders.Length);
                 foreach (Collider hitCollider in hitColliders)
                 {
 

@@ -10,6 +10,8 @@ public class Local : MonoBehaviour
 
     private static Local instance;
 
+
+
     private void Awake()
     {
         MakeSingleton();
@@ -84,22 +86,22 @@ public class Local : MonoBehaviour
 
     public int FireTowerUpdateCost(int level)
     {
-        return BaseUpdateCost + (level * BaseUpdateCost)/2;
+        return (int)(BaseUpdateCost +  Mathf.Pow(level,1.2f) * BaseUpdateCost);
     }
 
     public int WaterTowerUpdateCost(int level)
     {
-        return BaseUpdateCost + (level * BaseUpdateCost) / 2;
+        return (int)(BaseUpdateCost + Mathf.Pow(level, 1.2f) * BaseUpdateCost);
     }
 
     public int EarthTowerUpdateCost(int level)
     {
-        return BaseUpdateCost + (level * BaseUpdateCost) / 2;
+        return (int)(BaseUpdateCost + Mathf.Pow(level, 1.2f) * BaseUpdateCost);
     }
 
     public int AirTowerUpdateCost(int level)
     {
-        return BaseUpdateCost + (level * BaseUpdateCost) / 2;
+        return (int)(BaseUpdateCost + Mathf.Pow(level, 1.2f) * BaseUpdateCost);
     }
 
 
@@ -225,21 +227,21 @@ public class Local : MonoBehaviour
 
     
 
-    private const float FireEffectIncrease = 2f;
+    private const float FireEffectIncrease = 12f;
     private const float WaterEffectIncrease = 1f;
     private const float EarthEffectIncrease = 0.5f;
     private const float AirEffectIncrease = 1f;
 
 
-    private const float FireEffectBase = 10f;
+    private const float FireEffectBase = 5f;
     private const float WaterEffectBase = 2f;
-    private const float EarthEffectBase = 2f;
-    private const float AirEffectBase = 8f;
+    private const float EarthEffectBase = 1f;
+    private const float AirEffectBase = 6f;
 
 
-    public const float AirEffectRange = 100f;
+    public const float AirEffectRange = 50f;
 
-    private const int EssenceIncreaseForElements = 10;
+    private const int EssenceIncreaseForElements = 3;
     public int ElementCost(int level)
     {
         return level * EssenceIncreaseForElements;
@@ -298,7 +300,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return (FireEffectBase + FireLevel * FireEffectIncrease) / 100f;
+            return (100f + FireEffectBase + FireLevel * FireEffectIncrease) / 100f;
         }
     }
 
@@ -334,8 +336,8 @@ public class Local : MonoBehaviour
 
     #region Research
 
-    public const float DamageIncrease = 10;
-    public const float AttackSpeedIncrease = 1;
+    public const float DamageIncrease = 7;
+    public const float AttackSpeedIncrease = 1f;
     public const float CriticalHitChangeIncrease = 0.5f;
     public const float CriticalHitDamageIncrease = 1;
     public const float RangeIncrease = 0.5f;
@@ -516,7 +518,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return BaseGoldDrop + GoldDropLevel * GoldDropIncrease;
+            return BaseGoldDrop + (GoldDropLevel-1) * GoldDropIncrease;
         }
     }
 

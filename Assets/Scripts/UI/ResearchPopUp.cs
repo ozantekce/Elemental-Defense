@@ -78,11 +78,11 @@ public class ResearchPopUp : PopUp
 
         // Update Info
 
-        _damageInfoText.text = "Increased towers damage by <color=red>"+Local.Instance.Damage+"</color>";
-        _attackSpeedInfoText.text = "Increased towers attack speed by <color=red>" + Local.Instance.AttackSpeed+"</color>";
-        _criticalHitChanceInfoText.text = "Increased towers critical hit chance by <color=red>" + Local.Instance.CriticalHitChange+"</color>";
-        _criticalHitDamageInfoText.text = "Increased towers critical hit damage by <color=red>" + Local.Instance.CriticalHitDamage+"</color>";
-        _rangeInfoText.text = "Increased towers range by <color=red>" + Local.Instance.Range+"</color>";
+        _damageInfoText.text = "Increased towers damage by <color=red>"+Local.Instance.Damage*100+"%</color>";
+        _attackSpeedInfoText.text = "Increased towers attack speed by <color=red>" + Local.Instance.AttackSpeed*100+"%</color>";
+        _criticalHitChanceInfoText.text = "Increased towers critical hit chance by <color=red>" + Local.Instance.CriticalHitChange*100+"%</color>";
+        _criticalHitDamageInfoText.text = "Increased towers critical hit damage by <color=red>" + Local.Instance.CriticalHitDamage*100+"<%/color>";
+        _rangeInfoText.text = "Increased towers range by <color=red>" + Local.Instance.Range*100+"%</color>";
 
 
         //end

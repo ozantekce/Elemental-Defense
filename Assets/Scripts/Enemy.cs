@@ -88,6 +88,9 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
+
+    private bool _rotate;
+
     private void Move()
     {
 
@@ -115,17 +118,25 @@ public class Enemy : MonoBehaviour
 
             transform.Translate(_directionDic[_direction] * Time.deltaTime * movSpeed);
         }
-            
 
+        if (_rotate)
+        {
+            _visual.transform.forward = Vector3.Lerp(_visual.transform.forward
+                , _directionDic[_direction], 3f * Time.deltaTime);
+            if(0.3f>Vector3.SqrMagnitude(_visual.transform.forward - _directionDic[_direction]))
+            {
+                _visual.transform.forward = _directionDic[_direction];
+                _rotate = false;
+            }
+        }
 
-
-        _visual.transform.forward = Vector3.Lerp(_visual.transform.forward
-            , _directionDic[_direction], 3f*Time.deltaTime);
 
     }
 
     public void TakeDamage(float amount)
     {
+        if (_currentHP <= 0)
+            return;
         _currentHP -= amount;
         if (_currentHP <= 0)
         {
@@ -149,7 +160,6 @@ public class Enemy : MonoBehaviour
     {
 
         Local.Instance.Gold += Local.Instance.GoldDrop;
-
         int r = Random.Range(0, 101);
         if (r < Local.Instance.EssenceChange)
         {
@@ -179,6 +189,7 @@ public class Enemy : MonoBehaviour
 
     private void ChangeDirection(Collider other)
     {
+        _rotate = true;
         if (other.CompareTag("ChangeDirection/Up"))
         {
             _direction = Direction.up;

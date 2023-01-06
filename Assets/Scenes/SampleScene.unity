@@ -1718,7 +1718,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 132120280}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1409928485}
+        m_TargetAssemblyTypeName: ElementsPopUp, Assembly-CSharp
+        m_MethodName: OnClickFireButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &132120280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5657,7 +5669,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 570866382}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1409928485}
+        m_TargetAssemblyTypeName: ElementsPopUp, Assembly-CSharp
+        m_MethodName: OnClickEarthButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &570866382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8205,7 +8229,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 737775589}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1409928485}
+        m_TargetAssemblyTypeName: ElementsPopUp, Assembly-CSharp
+        m_MethodName: OnClickWaterButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &737775589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10314,7 +10350,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 941498337}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1409928485}
+        m_TargetAssemblyTypeName: ElementsPopUp, Assembly-CSharp
+        m_MethodName: OnClickAirButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &941498337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15238,6 +15286,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46ea9dbacc20334693c5ece10a52747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fireInfoTitleText: {fileID: 1850527367}
+  _waterInfoTitleText: {fileID: 365880692}
+  _earthInfoTitleText: {fileID: 874479045}
+  _airInfoTitleText: {fileID: 1915179950}
+  _fireInfoText: {fileID: 1708682795}
+  _waterInfoText: {fileID: 1690771005}
+  _earthInfoText: {fileID: 1786001174}
+  _airInfoText: {fileID: 1299076019}
+  _fireButtonText: {fileID: 776278048}
+  _waterButtonText: {fileID: 1751062163}
+  _earthButtonText: {fileID: 96697828}
+  _airButtonText: {fileID: 451310847}
 --- !u!1001 &1417511232
 PrefabInstance:
   m_ObjectHideFlags: 0
