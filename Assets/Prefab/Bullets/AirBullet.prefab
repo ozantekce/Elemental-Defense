@@ -9522,6 +9522,7 @@ MonoBehaviour:
   _destination: {fileID: 0}
   _speed: 200
   _attackPower: 0
+  _poolableKey: AirBullet
 --- !u!54 &-1793136662321970582
 Rigidbody:
   m_ObjectHideFlags: 0

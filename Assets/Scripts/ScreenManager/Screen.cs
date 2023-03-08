@@ -23,4 +23,14 @@ public class Screen : MonoBehaviour, IScreenElement
     {
 
     }
+
+
+    public string soundName;
+    [ContextMenu("PlaySound")]
+    public void PlaySound()
+    {
+        SoundManager.Instance.PlaySoundClip(soundName);
+
+    }
+
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, Poolable
 {
     [SerializeField]
     private Tower _source;
@@ -13,25 +13,39 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float _attackPower;
 
-    
+    [SerializeField]
+    private string _poolableKey;
+
 
     public Enemy Destination { get => _destination; set => _destination = value; }
     public Tower Source { get => _source; set => _source = value; }
     public float Speed { get => _speed; set => _speed = value; }
     public float AttackPower { get => _attackPower; set => _attackPower = value; }
-    
-    private bool _selfDestroying = false;
+    public string Key { get => _poolableKey; set => _poolableKey = value; }
+    public MonoBehaviour MonoBehaviour { get => this; }
+    public bool Pooled { get => _pooled; set => _pooled = value; }
+
+    //private bool _selfDestroying = false;
+
+    private bool _pooled;
+
+    private Poolable _poolable;
+
+    private void Awake()
+    {
+        _poolable = this;
+    }
+
     void Update()
     {
+        if (_pooled)
+        {
+            return;
+        }
+
         if(_destination == null)
         {
-            if (!_selfDestroying)
-            {
-                gameObject.SetActive(false);
-                Destroy(gameObject,1f);
-                _selfDestroying = true;
-            }
-
+            _poolable.SendToPool();
         }
 
         MoveToDestination();
@@ -65,10 +79,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(_selfDestroying || _destination == null)
-        {
-            return;
-        }
 
         if (other.gameObject == _destination.gameObject)
         {
@@ -102,10 +112,9 @@ public class Bullet : MonoBehaviour
                 
 
             }
-
-            Destroy(gameObject, 0.5f);
-            _selfDestroying = true;
+            _poolable.SendToPool();
         }
     }
+
 
 }

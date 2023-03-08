@@ -9522,6 +9522,7 @@ MonoBehaviour:
   _destination: {fileID: 0}
   _speed: 200
   _attackPower: 0
+  _poolableKey: WaterBullet
 --- !u!54 &6936213387551132164
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -116,6 +116,7 @@ MonoBehaviour:
   _destination: {fileID: 0}
   _speed: 200
   _attackPower: 0
+  _poolableKey: FireBullet
 --- !u!54 &8555412384169033034
 Rigidbody:
   m_ObjectHideFlags: 0

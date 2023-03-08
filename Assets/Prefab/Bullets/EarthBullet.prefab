@@ -9620,6 +9620,7 @@ MonoBehaviour:
   _destination: {fileID: 0}
   _speed: 200
   _attackPower: 0
+  _poolableKey: EarthBullet
 --- !u!54 &-2645345796243433303
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -138,13 +138,13 @@ public class Tower : MonoBehaviour
             damage *= (1+_criticalDamage);
         }
 
-
-        Bullet bullet = Instantiate(_bulletPrefab);
+        Poolable poolable = ObjectPoolManager.Instance.GetFromPool(_bulletPrefab);
+        Bullet bullet = (Bullet)poolable;
         bullet.transform.position = _bulletSpawnPoint.position;
         bullet.AttackPower = damage;
         bullet.Source = this;
         bullet.Destination = target;
-
+        
     }
 
     /// <summary>

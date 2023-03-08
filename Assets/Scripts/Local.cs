@@ -24,9 +24,21 @@ public class Local : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
+    [ContextMenu("Add Gold")]
+    public void AddGold()
+    {
+        Gold += 1000;
+    }
+    [ContextMenu("Add Essence")]
+    public void AddEssence()
+    {
+        Essence += 1000;
+    }
+
+
 
     private const int BaseGoldDrop = 1;
-    private const int BaseEssenceChange = 3;
+    private const int BaseEssenceChange = 5;
     private const float BaseEnemyHP = 10;
 
 
