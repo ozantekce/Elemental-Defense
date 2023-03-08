@@ -17,8 +17,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject _rangeArea;
 
+    [SerializeField]
+    private Transform[] _enemyFollowPath;
+
+
     private void Awake()
     {
+        Time.timeScale = 1;
         _instance = this;
     }
 
@@ -51,4 +56,5 @@ public class GameManager : MonoBehaviour
     public List<Enemy> EnemyList { get => _enemyList; set => _enemyList = value; }
     public Portal Portal { get => _portal; set => _portal = value; }
     public GameObject RangeArea { get => _rangeArea; set => _rangeArea = value; }
+    public Transform[] EnemyFollowPath { get => _enemyFollowPath; set => _enemyFollowPath = value; }
 }

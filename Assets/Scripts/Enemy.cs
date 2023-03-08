@@ -9,71 +9,33 @@ public class Enemy : MonoBehaviour
     private string _name;
     [SerializeField]
     private float _movementSpeed;
+    private float _currentMovSpeed;
 
     private float _maxHP,_currentHP;
 
     [SerializeField]
-    private Direction _direction;
-
-    [SerializeField]
     private EnemyStatus _status;
-
-    private Dictionary<Direction, Vector3> _directionDic = new Dictionary<Direction, Vector3>()
-    {
-        { Direction.up, new Vector3(-1,0,0)},
-        { Direction.down, new Vector3(1,0,0)},
-        { Direction.left, new Vector3(0,0,-1)},
-        { Direction.right, new Vector3(0,0,1)},
-    };
-
-    public Direction Direction { get => _direction; set => _direction = value; }
-    public EnemyStatus Status { 
-        
-        get => _status;
-
-        set { 
-            
-
-            if(_status==EnemyStatus.stunned && value == EnemyStatus.slowed)
-            {
-                return;
-            }
-            if (value == EnemyStatus.stunned)
-            {
-                _stunCD.ResetTimer();
-            }
-            if (value == EnemyStatus.slowed)
-            {
-                _slowCD.ResetTimer();
-            }
-            _status = value;
-        }
-    
-    
-    }
-    public CooldownManualReset SlowCD { get => _slowCD; set => _slowCD = value; }
-
-    private ChangeDirectionController _changeDirectionController;
-
-
-    private CooldownManualReset _slowCD;
-    private CooldownManualReset _stunCD;
 
     [SerializeField]
     private GameObject _visual;
-
+    private EnemyPathFollower _pathFollower;
 
     [SerializeField]
     private Image _hpBarFill;
+    private CooldownManualReset _slowCD;
+    private CooldownManualReset _stunCD;
+
+
+
 
     private void Start()
     {
-        GameObject changeDirectionGO = new GameObject("ChangeDirection");
-        changeDirectionGO.transform.SetParent(transform);
-        changeDirectionGO.transform.localPosition = Vector3.zero;
-        _changeDirectionController = changeDirectionGO.AddComponent<ChangeDirectionController>();
-        _changeDirectionController.Parent = this;
-
+        GameObject pathFollowerGO = new GameObject("PathFollower");
+        pathFollowerGO.transform.SetParent(transform);
+        pathFollowerGO.transform.localPosition = Vector3.zero;
+        _pathFollower = pathFollowerGO.AddComponent<EnemyPathFollower>();
+        _pathFollower.Parent = this;
+        _pathFollower.Path = GameManager.Instance.EnemyFollowPath;
         _maxHP = Local.Instance.EnemyHP;
         _currentHP = _maxHP;
 
@@ -82,18 +44,13 @@ public class Enemy : MonoBehaviour
 
     }
 
-
     private void Update()
     {
-        Move();
+        CalculateCurrentSpeed();
     }
 
-
-    private bool _rotate;
-
-    private void Move()
+    private void CalculateCurrentSpeed()
     {
-
         if (_status == EnemyStatus.slowed &&  _slowCD.TimeOver())
         {
             _status = EnemyStatus.none;
@@ -103,33 +60,20 @@ public class Enemy : MonoBehaviour
             _status = EnemyStatus.none;
         }
 
+        CurrentMovSpeed = _movementSpeed;
+
         if(_status == EnemyStatus.stunned)
         {
+            CurrentMovSpeed = 0;
             return;
         }
 
-        if (_direction != Direction.none)
+        float movSpeed = _movementSpeed;
+        if (Status == EnemyStatus.slowed)
         {
-            float movSpeed = _movementSpeed;
-            if(Status == EnemyStatus.slowed)
-            {
-                movSpeed *= (1f-Local.Instance.WaterEffect);
-            }
-
-            transform.Translate(_directionDic[_direction] * Time.deltaTime * movSpeed);
+            movSpeed *= (1f - Local.Instance.WaterEffect);
+            CurrentMovSpeed = movSpeed;
         }
-
-        if (_rotate)
-        {
-            _visual.transform.forward = Vector3.Lerp(_visual.transform.forward
-                , _directionDic[_direction], 3f * Time.deltaTime);
-            if(0.3f>Vector3.SqrMagnitude(_visual.transform.forward - _directionDic[_direction]))
-            {
-                _visual.transform.forward = _directionDic[_direction];
-                _rotate = false;
-            }
-        }
-
 
     }
 
@@ -148,7 +92,6 @@ public class Enemy : MonoBehaviour
             _hpBarFill.fillAmount = _currentHP / _maxHP;
         }
             
-
     }
 
     private void OnDestroy()
@@ -158,7 +101,6 @@ public class Enemy : MonoBehaviour
 
     private void DestroyedByTower()
     {
-
         Local.Instance.Gold += Local.Instance.GoldDrop;
         int r = Random.Range(0, 101);
         if (r < Local.Instance.EssenceChange)
@@ -187,60 +129,127 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void ChangeDirection(Collider other)
-    {
-        _rotate = true;
-        if (other.CompareTag("ChangeDirection/Up"))
-        {
-            _direction = Direction.up;
-        }
-        else if (other.CompareTag("ChangeDirection/Down"))
-        {
-            _direction = Direction.down;
-        }
-        else if (other.CompareTag("ChangeDirection/Left"))
-        {
-            _direction = Direction.left;
-        }
-        else if (other.CompareTag("ChangeDirection/Right"))
-        {
-            _direction = Direction.right;
-        }
-    }
-
 
 
     private void OnTriggerEnter(Collider other)
     {
-
-
         //ChangeDirection(other);
         ReachedToBase(other);
-
-
     }
 
 
+    #region GetterSetter
+    public float CurrentMovSpeed { get => _currentMovSpeed; set => _currentMovSpeed = value; }
 
-    private class ChangeDirectionController : MonoBehaviour
+    public EnemyStatus Status
+    {
+        get => _status;
+
+        set
+        {
+
+
+            if (_status == EnemyStatus.stunned && value == EnemyStatus.slowed)
+            {
+                return;
+            }
+            if (value == EnemyStatus.stunned)
+            {
+                _stunCD.ResetTimer();
+            }
+            if (value == EnemyStatus.slowed)
+            {
+                _slowCD.ResetTimer();
+            }
+            _status = value;
+        }
+
+
+    }
+    public CooldownManualReset SlowCD { get => _slowCD; set => _slowCD = value; }
+    #endregion
+
+
+    private class EnemyPathFollower : MonoBehaviour
     {
 
         private Enemy _parent;
-        private SphereCollider _collider;
 
         public Enemy Parent { get => _parent; set => _parent = value; }
+        public Transform[] Path { get => _path; set => _path = value; }
+
+        private Transform _target;
+
+        private Transform[] _path;
+        private int _pathIndex;
+
+        private bool _pathOver;
+
+        private Vector3 _dir;
 
         private void Start()
         {
-            _collider = gameObject.AddComponent<SphereCollider>();
-            _collider.radius = 0.3f;
-            _collider.isTrigger = true;
+            _target = _path[0];
+            _dir = (_target.position - transform.position).normalized;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void Update()
         {
-            _parent.ChangeDirection(other);
+            if (_pathOver) return;
+
+            if (ControlReachToTarget())
+            {
+                ReachedToTarget();
+                if (_pathOver) return;
+            }
+
+            Move();
+            Rotate();
+
         }
+
+        private void Move()
+        {
+            _dir = (_target.position - Parent.transform.position).normalized;
+            // Move
+            Parent.transform.Translate(_dir * Time.deltaTime * Parent.CurrentMovSpeed);
+        }
+
+        private void Rotate()
+        {
+            Vector3 forward = Parent._visual.transform.forward;
+            Parent._visual.transform.forward
+                = Vector3.Lerp(forward
+                , _dir, 3f * Time.deltaTime);
+
+            if (0.3f > Vector3.SqrMagnitude(forward - _dir))
+            {
+                Parent._visual.transform.forward = _dir;
+            }
+        }
+
+        private void ReachedToTarget()
+        {
+            _pathIndex++;
+            if(_pathIndex >= _path.Length)
+            {
+                _pathOver = true;
+                return;
+            }
+            _target = _path[_pathIndex];
+            
+        }
+
+        private bool ControlReachToTarget()
+        {
+            float distance 
+                = Vector3.SqrMagnitude(_target.position - Parent.transform.position);
+
+            if (distance < 1f) return true;
+
+            return false;
+        }
+
 
     }
 

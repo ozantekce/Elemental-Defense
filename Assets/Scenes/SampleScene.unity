@@ -22771,6 +22771,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _portal: {fileID: 1693696607}
   _rangeArea: {fileID: 1915899426}
+  _enemyFollowPath:
+  - {fileID: 1441657881}
+  - {fileID: 447651816}
+  - {fileID: 1775112331}
+  - {fileID: 283947623}
+  - {fileID: 1620640192}
+  - {fileID: 597570434}
+  - {fileID: 2019731914}
+  - {fileID: 1729643433}
+  - {fileID: 116922107}
 --- !u!1 &1971800465
 GameObject:
   m_ObjectHideFlags: 0
