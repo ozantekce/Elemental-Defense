@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     private string _name;
     [SerializeField]
     private float _movementSpeed;
+    [SerializeField]
     private float _currentMovSpeed;
 
     private float _maxHP,_currentHP;
@@ -133,7 +134,6 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //ChangeDirection(other);
         ReachedToBase(other);
     }
 
@@ -147,8 +147,6 @@ public class Enemy : MonoBehaviour
 
         set
         {
-
-
             if (_status == EnemyStatus.stunned && value == EnemyStatus.slowed)
             {
                 return;

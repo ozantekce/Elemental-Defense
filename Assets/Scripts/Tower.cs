@@ -34,7 +34,6 @@ public class Tower : MonoBehaviour
     private float increaseCriticalDamage = 0.01f;
     #endregion
 
-
     #region CurrentValues
     [SerializeField]
     private float _range;
@@ -62,8 +61,6 @@ public class Tower : MonoBehaviour
 
 
     private Enemy currentEnemy;
-
-
     private void Update()
     {
 
@@ -97,20 +94,8 @@ public class Tower : MonoBehaviour
     }
 
 
-    private const int UpdateRate = 20;
-    private int _currentUpdate = 21;
-
     private void UpdateValues()
     {
-        _currentUpdate++;
-        if(_currentUpdate >= UpdateRate)
-        {
-            _currentUpdate = 0;
-        }
-        else
-        {
-            return;
-        }
 
         _range = (baseRange + increaseRange * _currentLevel) * Local.Instance.Range;
         _attackPower = (baseAttackPower + increaseAttackPower * _currentLevel ) * Local.Instance.Damage;
@@ -140,17 +125,11 @@ public class Tower : MonoBehaviour
 
         Poolable poolable = ObjectPoolManager.Instance.GetFromPool(_bulletPrefab);
         Bullet bullet = (Bullet)poolable;
-        bullet.transform.position = _bulletSpawnPoint.position;
-        bullet.AttackPower = damage;
-        bullet.Source = this;
-        bullet.Destination = target;
+        bullet.InitBullet(_bulletSpawnPoint.position,damage,this,target);
         
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
+
     private Enemy FindEnemy()
     {
         float minDistance = float.MaxValue;
@@ -169,13 +148,9 @@ public class Tower : MonoBehaviour
     }
 
 
-
-
     public void UpdateTower()
     {
-        _currentLevel++;
-
-        _currentUpdate = 21;
+        CurrentLevel++;
         UpdateValues();
 
     }

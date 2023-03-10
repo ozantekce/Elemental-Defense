@@ -7,14 +7,7 @@ using UnityEngine.EventSystems;
 public class Slot : MonoBehaviour
 {
 
-
-    private bool _isEmpty
-    {
-        get { return _tower == null; }   
-    }
-
     private Tower _tower;
-
 
     public SlotEmptyPopUp slotEmptyPopUp;
     public SlotFullPopUp slotFullPopUp;
@@ -97,7 +90,6 @@ public class Slot : MonoBehaviour
     }
 
 
-
     private void OnMouseDown()
     {
         if (CursorOnUI)
@@ -132,7 +124,6 @@ public class Slot : MonoBehaviour
         }
     }
 
-
     public bool CursorOnUI
     {
         get
@@ -155,7 +146,7 @@ public class Slot : MonoBehaviour
 
     }
 
-    public Tower Tower { get => _tower; set => _tower = value; }
+    
 
     public void UpdateTower(int cost)
     {
@@ -209,6 +200,13 @@ public class Slot : MonoBehaviour
         StartCoroutine(SaveTowerData());
 
     }
+
+
+    #region GetterSetter
+    private bool _isEmpty{get { return _tower == null; }}
+    public Tower Tower { get => _tower; set => _tower = value; }
+
+    #endregion
 
 
 }
