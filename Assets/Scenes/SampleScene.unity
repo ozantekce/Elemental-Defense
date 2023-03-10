@@ -2682,8 +2682,8 @@ GameObject:
   - component: {fileID: 283947620}
   - component: {fileID: 283947624}
   m_Layer: 0
-  m_Name: ChangeDirectionRight
-  m_TagString: ChangeDirection/Right
+  m_Name: Target3
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4205,8 +4205,8 @@ GameObject:
   - component: {fileID: 447651813}
   - component: {fileID: 447651817}
   m_Layer: 0
-  m_Name: ChangeDirectionLeft
-  m_TagString: ChangeDirection/Left
+  m_Name: Target1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5992,8 +5992,8 @@ GameObject:
   - component: {fileID: 597570436}
   - component: {fileID: 597570435}
   m_Layer: 0
-  m_Name: ChangeDirectionLeft (1)
-  m_TagString: ChangeDirection/Left
+  m_Name: Target5
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12295,7 +12295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1118115687}
   m_Layer: 0
-  m_Name: ChangeDirections
+  m_Name: Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15780,8 +15780,8 @@ GameObject:
   - component: {fileID: 1441657878}
   - component: {fileID: 1441657882}
   m_Layer: 0
-  m_Name: ChangeDirectionDown
-  m_TagString: ChangeDirection/Down
+  m_Name: Target0
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18549,8 +18549,8 @@ GameObject:
   - component: {fileID: 1620640194}
   - component: {fileID: 1620640193}
   m_Layer: 0
-  m_Name: ChangeDirectionDown (1)
-  m_TagString: ChangeDirection/Down
+  m_Name: Target4
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19945,8 +19945,8 @@ GameObject:
   - component: {fileID: 1729643435}
   - component: {fileID: 1729643434}
   m_Layer: 0
-  m_Name: ChangeDirectionRight
-  m_TagString: ChangeDirection/Right
+  m_Name: Target7
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20981,8 +20981,8 @@ GameObject:
   - component: {fileID: 1775112328}
   - component: {fileID: 1775112332}
   m_Layer: 0
-  m_Name: ChangeDirectionDown
-  m_TagString: ChangeDirection/Down
+  m_Name: Target2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23751,8 +23751,8 @@ GameObject:
   - component: {fileID: 2019731916}
   - component: {fileID: 2019731915}
   m_Layer: 0
-  m_Name: ChangeDirectionDown
-  m_TagString: ChangeDirection/Down
+  m_Name: Target6
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

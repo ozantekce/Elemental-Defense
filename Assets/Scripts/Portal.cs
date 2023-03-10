@@ -11,10 +11,7 @@ public class Portal : MonoBehaviour
 
     private Cooldown spawnCooldown;
     private CooldownManualReset firstSpawnCooldown;
-
-    public Direction enemyStartDirection;
     
-
     private GameObject enemiesGO;
 
     [SerializeField]

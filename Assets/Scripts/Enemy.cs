@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+// It can be poolable but not implemented yet
+public class Enemy : MonoBehaviour, Poolable
 {
     [SerializeField]
     private string _name;
@@ -27,26 +28,44 @@ public class Enemy : MonoBehaviour
     private CooldownManualReset _stunCD;
 
 
-
+    private Poolable _poolable;
+    private bool _pooled;
+    public string _poolableKey;
 
     private void Start()
     {
-        GameObject pathFollowerGO = new GameObject("PathFollower");
-        pathFollowerGO.transform.SetParent(transform);
-        pathFollowerGO.transform.localPosition = Vector3.zero;
-        _pathFollower = pathFollowerGO.AddComponent<EnemyPathFollower>();
+        _pathFollower = gameObject.AddComponent<EnemyPathFollower>();
         _pathFollower.Parent = this;
-        _pathFollower.Path = GameManager.Instance.EnemyFollowPath;
+        _pathFollower.Init();
         _maxHP = Local.Instance.EnemyHP;
         _currentHP = _maxHP;
 
         _slowCD = new CooldownManualReset(1000f);
         _stunCD = new CooldownManualReset(300f);
 
+        _poolable = this;
     }
+
+
+    public void InitEnemy()
+    {
+        _pathFollower.Init();
+        _maxHP = Local.Instance.EnemyHP;
+        _currentHP = _maxHP;
+
+        _slowCD.ResetTimer();
+        _stunCD.ResetTimer();
+
+        _visual.transform.SetParent(transform,false);
+        if (animator == null) animator = _visual.GetComponent<Animator>();
+        animator.updateMode = AnimatorUpdateMode.Normal;
+        animator.SetTrigger("Run");
+    }
+
 
     private void Update()
     {
+        if (Pooled) return;
         CalculateCurrentSpeed();
     }
 
@@ -80,18 +99,14 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (_currentHP <= 0)
-            return;
+        if (_currentHP <= 0) return;
         _currentHP -= amount;
         if (_currentHP <= 0)
         {
             DestroyedByTower();
             _hpBarFill.fillAmount = 0;
         }
-        else
-        {
-            _hpBarFill.fillAmount = _currentHP / _maxHP;
-        }
+        else{_hpBarFill.fillAmount = _currentHP / _maxHP;}
             
     }
 
@@ -100,6 +115,7 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.RemoveEnemy(this);
     }
 
+    private Animator animator;
     private void DestroyedByTower()
     {
         Local.Instance.Gold += Local.Instance.GoldDrop;
@@ -111,13 +127,14 @@ public class Enemy : MonoBehaviour
         }
 
         _visual.transform.SetParent(null);
-        Animator animator = _visual.GetComponent<Animator>();
-        animator.animatePhysics = true;
+        if(animator == null) animator = _visual.GetComponent<Animator>();
+        animator.updateMode = AnimatorUpdateMode.AnimatePhysics;
         animator.SetTrigger("Die");
         Destroy(_visual.gameObject, 2f);
 
         Destroy(gameObject, 0.1f);
     }
+
 
     private void ReachedToBase(Collider other)
     {
@@ -129,7 +146,6 @@ public class Enemy : MonoBehaviour
             //Destroy(gameObject,0.1f);
         }
     }
-
 
 
     private void OnTriggerEnter(Collider other)
@@ -165,6 +181,11 @@ public class Enemy : MonoBehaviour
 
     }
     public CooldownManualReset SlowCD { get => _slowCD; set => _slowCD = value; }
+    public string Key { get => _poolableKey; set => _poolableKey = value; }
+
+    public MonoBehaviour MonoBehaviour => this;
+
+    public bool Pooled { get => _pooled; set => _pooled= value; }
     #endregion
 
 
@@ -185,19 +206,21 @@ public class Enemy : MonoBehaviour
 
         private Vector3 _dir;
 
-        private void Start()
+        public void Init()
         {
+            Path = GameManager.Instance.EnemyFollowPath;
             _target = _path[0];
             _dir = (_target.position - transform.position).normalized;
         }
 
+
         private void Update()
         {
-            if (_pathOver) return;
+            if (_pathOver || Parent.Pooled) return;
 
             if (ControlReachToTarget())
             {
-                ReachedToTarget();
+                OnReachedToTarget();
                 if (_pathOver) return;
             }
 
@@ -226,7 +249,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        private void ReachedToTarget()
+        private void OnReachedToTarget()
         {
             _pathIndex++;
             if(_pathIndex >= _path.Length)
