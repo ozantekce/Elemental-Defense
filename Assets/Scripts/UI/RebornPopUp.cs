@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using ScreenManagerNameSpace;
 public class RebornPopUp : PopUp
 {
     // Start is called before the first frame update

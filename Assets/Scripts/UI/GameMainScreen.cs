@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using ScreenManagerNameSpace;
+using Screen = ScreenManagerNameSpace.Screen;
 
 public class GameMainScreen : Screen
 {

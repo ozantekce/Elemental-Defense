@@ -4,61 +4,65 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Clossable : MonoBehaviour
+namespace ScreenManagerNameSpace
 {
-
-
-    private GameObject _upFrame;
-
-    [SerializeField]
-    private int _size = 6;
-
-    [SerializeField]
-    private Sprite _closeSprite;
-    
-    private RectTransform _rectTransform;
-
-    void Start()
+    public class Clossable : MonoBehaviour
     {
 
-        _rectTransform = GetComponent<RectTransform>();
 
-        GameObject upFrame = new GameObject("UpFrame");
+        private GameObject _upFrame;
 
-        upFrame.transform.SetParent(transform);
-        RectTransform rectTransform = upFrame.AddComponent<RectTransform>();
+        [SerializeField]
+        private int _size = 6;
 
-        rectTransform.anchorMin = new Vector2(0, 1);
-        rectTransform.anchorMax = new Vector2(1, 1);
+        [SerializeField]
+        private Sprite _closeSprite;
 
-        rectTransform.sizeDelta = new Vector2(0, _size * 2);
-        rectTransform.anchoredPosition = new Vector2(0, -_size);
+        private RectTransform _rectTransform;
 
-        upFrame.AddComponent<Image>();
+        void Start()
+        {
 
-        GameObject closeSymbol = new GameObject("CloseSymbol");
-        Image image = closeSymbol.AddComponent<Image>();
-        image.transform.SetParent(upFrame.transform);
-        image.rectTransform.anchorMin = new Vector2(1, 0.5f);
-        image.rectTransform.anchorMax = new Vector2(1, 0.5f);
-        image.rectTransform.anchoredPosition = new Vector2(-_size, 0);
-        image.rectTransform.sizeDelta = new Vector2(_size * 2, _size * 2);
-        image.sprite = _closeSprite;
+            _rectTransform = GetComponent<RectTransform>();
 
-        EventTrigger eventTriggerClose = image.gameObject.AddComponent<EventTrigger>();
+            GameObject upFrame = new GameObject("UpFrame");
 
-        EventTrigger.Entry pointerDownClose = new EventTrigger.Entry();
-        pointerDownClose.eventID = EventTriggerType.PointerDown;
-        pointerDownClose.callback.AddListener(delegate {
+            upFrame.transform.SetParent(transform);
+            RectTransform rectTransform = upFrame.AddComponent<RectTransform>();
 
-            ScreenManager.Instance.ClosePopUp(gameObject.name);
+            rectTransform.anchorMin = new Vector2(0, 1);
+            rectTransform.anchorMax = new Vector2(1, 1);
 
-        });
-        eventTriggerClose.triggers.Add(pointerDownClose);
+            rectTransform.sizeDelta = new Vector2(0, _size * 2);
+            rectTransform.anchoredPosition = new Vector2(0, -_size);
 
-        closeSymbol.transform.localScale = Vector3.one;
+            upFrame.AddComponent<Image>();
+
+            GameObject closeSymbol = new GameObject("CloseSymbol");
+            Image image = closeSymbol.AddComponent<Image>();
+            image.transform.SetParent(upFrame.transform);
+            image.rectTransform.anchorMin = new Vector2(1, 0.5f);
+            image.rectTransform.anchorMax = new Vector2(1, 0.5f);
+            image.rectTransform.anchoredPosition = new Vector2(-_size, 0);
+            image.rectTransform.sizeDelta = new Vector2(_size * 2, _size * 2);
+            image.sprite = _closeSprite;
+
+            EventTrigger eventTriggerClose = image.gameObject.AddComponent<EventTrigger>();
+
+            EventTrigger.Entry pointerDownClose = new EventTrigger.Entry();
+            pointerDownClose.eventID = EventTriggerType.PointerDown;
+            pointerDownClose.callback.AddListener(delegate {
+
+                ScreenManager.Instance.ClosePopUp(gameObject.name);
+
+            });
+            eventTriggerClose.triggers.Add(pointerDownClose);
+
+            closeSymbol.transform.localScale = Vector3.one;
+        }
+
+
+
     }
-
-
 
 }
