@@ -37,7 +37,7 @@ public class SlotFullPopUp : PopUp
 
         _infoText.text = _openerSlot.Tower.GetTowerInfo();
 
-        _title.text = _openerSlot.Tower.Name + "(" + _openerSlot.Tower.CurrentLevel + ")";
+        _title.text = _openerSlot.Tower.Name.ToUpperInvariant() + "(" + _openerSlot.Tower.CurrentLevel + ")";
 
         // Update Update Button
         if (_openerSlot.Tower.TowerType == TowerType.fire)

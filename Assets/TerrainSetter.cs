@@ -8,4 +8,5 @@ public class TerrainSetter : MonoBehaviour
     {
         Terrain.activeTerrain.detailObjectDistance = 750;
     }
+
 }

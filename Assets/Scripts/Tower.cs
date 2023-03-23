@@ -191,8 +191,8 @@ public class Tower : MonoBehaviour
 
         info += "Attack Power:" + AttackPower;
         info += "\n" + "Attack Speed:" + AttackPerSecond;
-        info += "\n" + "Critical Hit Change:" + CriticalChange+"%";
-        info += "\n" + "Critical Hit Damage:" + 100*CriticalDamage+"%";
+        info += "\n" + "Cri. Hit Change:" + CriticalChange+"%";
+        info += "\n" + "Cri. Hit Damage:" + 100*CriticalDamage+"%";
         info += "\n" + "Range:" + Range;
 
         return info;
