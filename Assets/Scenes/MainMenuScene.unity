@@ -3055,7 +3055,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -267}
-  m_SizeDelta: {x: 300, y: 111.46109}
+  m_SizeDelta: {x: 350, y: 111.46109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851788597
 MonoBehaviour:
@@ -3077,7 +3077,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ELEMETAL
+  m_text: 'ELEMENTAL
 
     DEFENSE'
   m_isRightToLeft: 0
