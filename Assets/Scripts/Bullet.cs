@@ -12,15 +12,16 @@ public class Bullet : MonoBehaviour, Poolable
     private float _speed;
     [SerializeField]
     private float _attackPower;
+    [SerializeField]
+    private HitEffect _hitEffect;
 
     [SerializeField]
     private string _poolableKey;
-
     private bool _pooled;
-
     private Poolable _poolable;
-
     private Queue<IBulletCommand> _commandQueue;
+
+
 
     private void Awake()
     {
@@ -121,9 +122,21 @@ public class Bullet : MonoBehaviour, Poolable
         {
             while(_commandQueue.Count > 0) _commandQueue.Dequeue().Execute();
             _poolable.SendToPool();
+            HitEffect(other.transform);
         }
     }
 
+
+    private void HitEffect(Transform target)
+    {
+        if (_hitEffect == null)
+        {
+            return;
+        }
+        HitEffect hitEffect = (HitEffect)ObjectPoolManager.Instance.GetFromPool(_hitEffect);
+        hitEffect.InitHitEffect(target);
+
+    }
 
 
     #region GetterSetter

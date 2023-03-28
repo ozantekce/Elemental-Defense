@@ -231,7 +231,9 @@ public class Enemy : MonoBehaviour, Poolable
 
         private void Move()
         {
-            _dir = (_target.position - Parent.transform.position).normalized;
+            _dir = (_target.position - Parent.transform.position);
+            _dir.y = 0;
+            _dir.Normalize();
             // Move
             Parent.transform.Translate(_dir * Time.deltaTime * Parent.CurrentMovSpeed);
         }
@@ -263,8 +265,10 @@ public class Enemy : MonoBehaviour, Poolable
 
         private bool ControlReachToTarget()
         {
+            Vector2 pos = new Vector2(Parent.transform.position.x, Parent.transform.position.z);
+            Vector2 targetPos = new Vector2(_target.position.x, _target.position.z);
             float distance 
-                = Vector3.SqrMagnitude(_target.position - Parent.transform.position);
+                = Vector3.SqrMagnitude(pos - targetPos);
 
             if (distance < 1f) return true;
 
