@@ -18,6 +18,9 @@ public class Tower : MonoBehaviour
     private TowerType _towerType;
 
 
+    private static List<Tower> _towers = new List<Tower>();
+
+
     #region BaseValues
     public float baseRange = 150f;
     public float baseAttackPower = 3;
@@ -53,6 +56,16 @@ public class Tower : MonoBehaviour
 
     private CooldownDynamic _attackCD;
 
+    private void Awake()
+    {
+        _towers.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        _towers.Remove(this);
+    }
+
     private void Start()
     {
         _attackCD = new CooldownDynamic();
@@ -64,10 +77,10 @@ public class Tower : MonoBehaviour
     private void Update()
     {
 
-        UpdateValues();
+        //UpdateValues();
         
         if(currentEnemy == null
-            || DistanceWithEnemy ()>= _range)
+            || DistanceSqrWithEnemy ()>= _range*_range)
             currentEnemy = FindEnemy();
 
         if(_attackCD.Ready(1000 / _attackPerSecond) && currentEnemy != null)
@@ -77,7 +90,7 @@ public class Tower : MonoBehaviour
 
     }
 
-    private float DistanceWithEnemy()
+    private float DistanceSqrWithEnemy()
     {
 
         Vector2 enemyVector;
@@ -88,7 +101,7 @@ public class Tower : MonoBehaviour
         towerVector.x = transform.position.x;
         towerVector.y = transform.position.z;
 
-        return Vector2.Distance(towerVector, enemyVector);
+        return Vector2.SqrMagnitude(towerVector - enemyVector);
 
 
     }
@@ -110,6 +123,13 @@ public class Tower : MonoBehaviour
 
     }
 
+    public static void UpdateTowerValues()
+    {
+        for (int i = 0; i < _towers.Count; i++)
+        {
+            _towers[i].UpdateValues();
+        }
+    }
 
 
     private void SendBullet(Enemy target)

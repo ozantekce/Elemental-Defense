@@ -24,6 +24,10 @@ public class Enemy : MonoBehaviour, Poolable
 
     [SerializeField]
     private Image _hpBarFill;
+
+    [SerializeField]
+    private Transform hpBarFill;
+
     private CooldownManualReset _slowCD;
     private CooldownManualReset _stunCD;
 
@@ -97,17 +101,25 @@ public class Enemy : MonoBehaviour, Poolable
 
     }
 
+
+    private Vector3 hpBarCache;
+    private Quaternion hpBarRotation = new Quaternion(0, 0, 0, 1);//Quaternion(0,0,0,1)
     public void TakeDamage(float amount)
     {
+        hpBarCache = hpBarFill.transform.localScale;
         if (_currentHP <= 0) return;
         _currentHP -= amount;
         if (_currentHP <= 0)
         {
             DestroyedByTower();
-            _hpBarFill.fillAmount = 0;
+            hpBarCache.z = 0;
+            hpBarFill.transform.localScale = hpBarCache;
         }
-        else{_hpBarFill.fillAmount = _currentHP / _maxHP;}
-            
+        else{
+            hpBarCache.z = _currentHP / _maxHP;
+            hpBarFill.transform.localScale = hpBarCache;
+        }
+        hpBarFill.rotation = hpBarRotation;
     }
 
     private void OnDestroy()
@@ -218,6 +230,9 @@ public class Enemy : MonoBehaviour, Poolable
         {
             if (_pathOver || Parent.Pooled) return;
 
+
+            FindDirection();
+
             if (ControlReachToTarget())
             {
                 OnReachedToTarget();
@@ -229,11 +244,15 @@ public class Enemy : MonoBehaviour, Poolable
 
         }
 
-        private void Move()
+        private void FindDirection()
         {
             _dir = (_target.position - Parent.transform.position);
             _dir.y = 0;
             _dir.Normalize();
+        }
+
+        private void Move()
+        {
             // Move
             Parent.transform.Translate(_dir * Time.deltaTime * Parent.CurrentMovSpeed);
         }
@@ -241,14 +260,16 @@ public class Enemy : MonoBehaviour, Poolable
         private void Rotate()
         {
             Vector3 forward = Parent._visual.transform.forward;
+            if (0.3f > Vector3.SqrMagnitude(forward - _dir))
+            {
+                Parent._visual.transform.forward = _dir;
+                return;
+            }
+            
             Parent._visual.transform.forward
                 = Vector3.Lerp(forward
                 , _dir, 3f * Time.deltaTime);
 
-            if (0.3f > Vector3.SqrMagnitude(forward - _dir))
-            {
-                Parent._visual.transform.forward = _dir;
-            }
         }
 
         private void OnReachedToTarget()
@@ -263,14 +284,21 @@ public class Enemy : MonoBehaviour, Poolable
             
         }
 
+
+        private Vector2 _posXYCache;
+        private Vector2 _targetXYCache;
         private bool ControlReachToTarget()
         {
-            Vector2 pos = new Vector2(Parent.transform.position.x, Parent.transform.position.z);
-            Vector2 targetPos = new Vector2(_target.position.x, _target.position.z);
-            float distance 
-                = Vector3.SqrMagnitude(pos - targetPos);
+            _posXYCache.x = Parent.transform.position.x;
+            _posXYCache.y = Parent.transform.position.z;
 
-            if (distance < 1f) return true;
+            _targetXYCache.x = _target.position.x;
+            _targetXYCache.y = _target.position.z;
+            
+            float distance 
+                = Vector3.SqrMagnitude(_posXYCache - _targetXYCache);
+
+            if (distance < 4f) return true;
 
             return false;
         }

@@ -64,7 +64,7 @@ public class Bullet : MonoBehaviour, Poolable
 
         if(_destination == null)
         {
-            StartCoroutine(SendToPoolRoutine());
+            _poolable.SendToPool();
             return;
         }
 
@@ -73,21 +73,6 @@ public class Bullet : MonoBehaviour, Poolable
         
     }
 
-    private WaitForEndOfFrame _wait = new WaitForEndOfFrame();
-    private IEnumerator SendToPoolRoutine()
-    {
-        _poolable.Pooled = true;
-        float elapsedTime = 0;
-        while (elapsedTime < 0.5f)
-        {
-            MoveToDestination();
-            yield return _wait;
-            elapsedTime+=Time.deltaTime;
-        }
-
-        _poolable.SendToPool();
-
-    }
 
 
     private Vector3 _destinationLastPos;
@@ -106,7 +91,7 @@ public class Bullet : MonoBehaviour, Poolable
         }
         
         directionVector = directionVector.normalized;
-        transform.Translate(directionVector * Time.deltaTime * _speed);
+        transform.Translate(directionVector * Time.deltaTime * _speed,Space.World);
 
     }
 

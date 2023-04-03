@@ -144,6 +144,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("numOfFireTowers", value);
         }
         get
@@ -156,6 +157,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("numOfWaterTowers", value);
         }
         get
@@ -168,6 +170,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("numOfEarthTowers", value);
         }
         get
@@ -180,6 +183,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("numOfAirTowers", value);
         }
         get
@@ -263,6 +267,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("fireLvl", value);
         }
         get
@@ -275,6 +280,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("waterLvl", value);
         }
         get
@@ -287,6 +293,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("earthLvl", value);
         }
         get
@@ -299,6 +306,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("airLvl", value);
         }
         get
@@ -365,6 +373,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("damageLvl", value);
         }
         get
@@ -377,6 +386,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("attackSpeedLvl", value);
         }
         get
@@ -389,6 +399,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("criticalHitChangeLvl", value);
         }
         get
@@ -401,6 +412,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("criticalHitDamageLvl", value);
         }
         get
@@ -413,6 +425,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("rangeLvl", value);
         }
         get
@@ -483,6 +496,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("essenceChangeLvl", value);
         }
         get
@@ -496,6 +510,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("enemyHPLvl", value);
         }
         get
@@ -509,6 +524,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("goldDropLvl", value);
         }
         get
@@ -559,6 +575,7 @@ public class Local : MonoBehaviour
     {
         set
         {
+            Tower.UpdateTowerValues();
             PlayerPrefs.SetInt("wave", value);
         }
         get

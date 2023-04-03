@@ -8,24 +8,29 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PT_Rocks_mat
-  m_Shader: {fileID: 4800000, guid: cd18bd550ff6630468660d0150eed511, type: 3}
-  m_ValidKeywords:
-  - _GRADIENTONOFF_ON
-  m_InvalidKeywords:
-  - _ANIMATEEMISSIONONOFF_ON
-  - _DETAILTEXTUREONOFF1_ON
-  - _SNOWNOISEONOFF_ON
+  m_Shader: {fileID: 4800000, guid: 8d2bb70cbf9db8d4da26e15b26e74248, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseTexture:
         m_Texture: {fileID: 2800000, guid: a195a893970f3ab4990bd06e18a0b308, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DecalsTexture:
@@ -34,6 +39,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _DetailTexture:
         m_Texture: {fileID: 2800000, guid: e0b09c625cee17a48b22b2cf949cd320, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TopProjectionTexture:
@@ -64,14 +81,21 @@ Material:
     m_Floats:
     - _ANIMATEDECALEMISSIONONOFF: 0
     - _ANIMATEOREEMISSIONONOFF: 0
+    - _AlphaClip: 0
     - _AlphaCutoff: 0.5
+    - _Blend: 0
+    - _BumpScale: 1
+    - _Cull: 2
+    - _Cutoff: 0.5
     - _DECALEMISSIONONOFF: 0
     - _DECALSONOFF: 0
     - _DETAILTEXTUREONOFF: 0
     - _DecalEmissionIntensity: 4
     - _DetailTextureTiling: 0.5
+    - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GRADIENTONOFF: 1
+    - _GlossinessSource: 0
     - _Gradient: 0.654
     - _GradientPower: 10
     - _OREEMISSIONONOFF: 0
@@ -80,24 +104,46 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SNOWONOFF: 0
+    - _Shininess: 0
     - _Smoothness: 0.2
+    - _SmoothnessSource: 0
     - _SnowAmount: 1
     - _SnowCoverage: 0.46
     - _SnowFade: 0.32
     - _SnowNoiseContrast: 0.002
     - _SnowNoiseOnOff: 1
     - _SnowNoiseScale: 87.23351
+    - _SpecSource: 0
     - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Surface: 0
     - _TOPPROJECTIONONOFF: 0
     - _TopProjectionTextureCoverage: 1
     - _TopProjectionTextureTiling: 0.5
     - _WorldObjectGradient: 0
+    - _ZWrite: 1
     m_Colors:
+    - _BaseColor: {r: 0.2623576, g: 0.2735849, b: 0.24364543, a: 1}
+    - _Color: {r: 0.26235756, g: 0.27358484, b: 0.2436454, a: 1}
     - _DecakEmissionColor: {r: 1, g: 0.9248579, b: 0, a: 0}
     - _DecalsColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _GroundColor: {r: 0.08490568, g: 0.05234205, b: 0.04846032, a: 1}
     - _OreColor: {r: 1, g: 0.9248579, b: 0, a: 0}
     - _OreEmissionColor: {r: 1, g: 0.9248579, b: 0, a: 0}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _TopColor: {r: 0.4811321, g: 0.4036026, b: 0.2382966, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &3964272154535071221
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
