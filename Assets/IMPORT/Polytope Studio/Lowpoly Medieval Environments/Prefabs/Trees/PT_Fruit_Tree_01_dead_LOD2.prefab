@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 311933257785858048}
   - component: {fileID: 3371612143621606954}
   - component: {fileID: 6814709587334240805}
+  - component: {fileID: 1125432515836966533}
   m_Layer: 0
   m_Name: PT_Fruit_Tree_01_dead_LOD2
   m_TagString: Untagged
@@ -40,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136973610600701954}
-  m_Mesh: {fileID: 3023671693195099197, guid: 3ebf65d3a6489594ca09a35d85d43b0a, type: 3}
+  m_Mesh: {fileID: 4300000, guid: cdcc30b6e496a9d4697eafd53f6a3bbb, type: 2}
 --- !u!23 &6814709587334240805
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1125432515836966533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136973610600701954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a747a5afba99a1041b67082fc5df0243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quality: 0.75

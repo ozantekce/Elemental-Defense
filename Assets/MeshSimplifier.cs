@@ -7,11 +7,10 @@ public class MeshSimplifier : MonoBehaviour
     [SerializeField, Range(0f, 1f), Tooltip("The desired quality of the simplified mesh.")]
     private float quality = 0.5f;
 
-    private void Start()
-    {
-        Simplify();
-    }
 
+
+
+    [ContextMenu("Simplify")]
     private void Simplify()
     {
         var meshFilters = GetComponentsInChildren<MeshFilter>();
@@ -37,4 +36,6 @@ public class MeshSimplifier : MonoBehaviour
         // Create our final mesh and apply it back to our mesh filter
         meshFilter.sharedMesh = meshSimplifier.ToMesh();
     }
+
+
 }
