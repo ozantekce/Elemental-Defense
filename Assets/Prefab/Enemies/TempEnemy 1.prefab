@@ -1009,13 +1009,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Enemy1
-  _movementSpeed: 30
+  _movementSpeed: 50
   _currentMovSpeed: 0
   _status: 0
   _visual: {fileID: 8738008209908364725}
   _hpBarFill: {fileID: 0}
   hpBarFill: {fileID: 6793490051007208327}
-  _poolableKey: Enemy1
 --- !u!1 &8738008209908364725
 GameObject:
   m_ObjectHideFlags: 0

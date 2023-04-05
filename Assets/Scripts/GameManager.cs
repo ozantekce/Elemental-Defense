@@ -55,15 +55,19 @@ public class GameManager : MonoBehaviour
 
     public void GameSpeed1X()
     {
-        Local.Instance.GameSpeedLevel = 1;
+        Time.timeScale = 1;
     }
     public void GameSpeed2X()
     {
-        Local.Instance.GameSpeedLevel = 2;
+        Time.timeScale = 2;
     }
     public void GameSpeed4X()
     {
-        Local.Instance.GameSpeedLevel = 6;
+        Time.timeScale = 4;
+    }
+    public void GameSpeed8X()
+    {
+        Time.timeScale = 8;
     }
 
 

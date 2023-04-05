@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class ElementsPopUp : PopUp
 {
 
-
+    [Header("Title")]
     [SerializeField]
     private TextMeshProUGUI _fireInfoTitleText;
     [SerializeField]
@@ -19,7 +19,7 @@ public class ElementsPopUp : PopUp
     [SerializeField]
     private TextMeshProUGUI _airInfoTitleText;
 
-
+    [Header("Info")]
     [SerializeField]
     private TextMeshProUGUI _fireInfoText;
     [SerializeField]
@@ -29,7 +29,7 @@ public class ElementsPopUp : PopUp
     [SerializeField]
     private TextMeshProUGUI _airInfoText;
 
-
+    [Header("ButtonText")]
     [SerializeField]
     private TextMeshProUGUI _fireButtonText;
     [SerializeField]
@@ -39,6 +39,7 @@ public class ElementsPopUp : PopUp
     [SerializeField]
     private TextMeshProUGUI _airButtonText;
 
+    [Header("Button")]
     [SerializeField]
     private Button _fireButton;
     [SerializeField]

@@ -86,29 +86,29 @@ public class Local : MonoBehaviour
         range: 0.7f,
         attackPower: 0.5f,
         attackPerSecond: 0.01f,
-        criticalChange: 0.1f,
-        criticalDamage: 0.01f
+        criticalChange: 0f,
+        criticalDamage: 0f
         );
     private TowerFeatureData _increaseWaterTowerFeatureData = new TowerFeatureData(
         range: 0.7f,
         attackPower: 0.5f,
         attackPerSecond: 0.01f,
-        criticalChange: 0.1f,
-        criticalDamage: 0.01f
+        criticalChange: 0f,
+        criticalDamage: 0f
         );
     private TowerFeatureData _increaseEarthTowerFeatureData = new TowerFeatureData(
         range: 0.7f,
         attackPower: 0.5f,
         attackPerSecond: 0.01f,
-        criticalChange: 0.1f,
-        criticalDamage: 0.01f
+        criticalChange: 0f,
+        criticalDamage: 0f
         );
     private TowerFeatureData _increaseAirTowerFeatureData = new TowerFeatureData(
         range: 0.7f,
         attackPower: 0.5f,
         attackPerSecond: 0.01f,
-        criticalChange: 0.1f,
-        criticalDamage: 0.01f
+        criticalChange: 0f,
+        criticalDamage: 0f
         );
 
     public TowerFeatureData GetIncreaseFeatureData(Tower tower)
@@ -136,8 +136,9 @@ public class Local : MonoBehaviour
     public int FireTowerCost
     {
         get { return (int)(BaseTowerCost 
-                + TowerCostIncrease * NumberOfFireTowers * 1.67f
-                + TowerCostIncrease/4 * (NumberOfAllTowers-NumberOfFireTowers))
+                + TowerCostIncrease * Mathf.Pow(NumberOfFireTowers,2f) 
+                + 2f * TowerCostIncrease * Mathf.Pow(NumberOfFireTowers,(NumberOfFireTowers/4f))
+                + TowerCostIncrease/4 * (NumberOfAllTowers-NumberOfFireTowers));
                 ; 
 
         }
@@ -148,7 +149,8 @@ public class Local : MonoBehaviour
         get
         {
             return (int)(BaseTowerCost
-              + TowerCostIncrease * NumberOfWaterTowers * 1.67f
+                + TowerCostIncrease * Mathf.Pow(NumberOfWaterTowers, 2f)
+                + 2f * TowerCostIncrease * Mathf.Pow(NumberOfWaterTowers, (NumberOfWaterTowers / 4f))
               + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfWaterTowers))
               ;
 
@@ -160,7 +162,8 @@ public class Local : MonoBehaviour
         get
         {
             return (int)(BaseTowerCost
-              + (TowerCostIncrease * NumberOfEarthTowers * 1.67f)
+                + TowerCostIncrease * Mathf.Pow(NumberOfEarthTowers, 2f)
+                + 2f * TowerCostIncrease * Mathf.Pow(NumberOfEarthTowers, (NumberOfEarthTowers / 4f))
               + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfEarthTowers))
               ;
 
@@ -172,7 +175,8 @@ public class Local : MonoBehaviour
         get
         {
             return (int)(BaseTowerCost
-              + TowerCostIncrease * NumberOfAirTowers * 1.67f
+                + TowerCostIncrease * Mathf.Pow(NumberOfAirTowers, 2f)
+                + 2f * TowerCostIncrease * Mathf.Pow(NumberOfAirTowers, (NumberOfAirTowers / 4f))
               + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfAirTowers))
               ;
 
@@ -338,7 +342,7 @@ public class Local : MonoBehaviour
 
     private const float FireEffectBase = 0.10f;
     private const float WaterEffectBase = 0.25f;
-    private const float EarthEffectBase = 0.15f;
+    private const float EarthEffectBase = 0.10f;
     private const float AirEffectBase = 0.25f;
 
 
@@ -574,21 +578,23 @@ public class Local : MonoBehaviour
 
     #region Reborn
 
+    public const int MinWavetoReborn = 50;
+
     public const int MaxEssenceChangeLevel = 50;
     public const int MaxGameSpeedLevel = 10;
     public const int MaxEnemyHpDecreaseLvl = 50;
 
     private const int GoldDropIncrease = 1;
     private const float EssenceChangeIncrease = 0.0125f;
-    private const float GameSpeedIncrease = 0.5f;
+    private const float GameSpeedIncrease = 0.333333333f;
     
     private const float EnemyHpDecrease = 0.015f;
 
 
-    private const int RebornPointIncrease = 1;
+    private const float RebornPointIncrease = 1.2f;
     public int RebornPointCost(int level)
     {
-        return level * RebornPointIncrease;
+        return (int)(Mathf.Pow(level,1.5f) * RebornPointIncrease);
     }
 
     public int EssenceChangeLevel
@@ -649,10 +655,14 @@ public class Local : MonoBehaviour
 
     public float EnemyHPDecreasePercent
     {
-        
         get { return (1-(EnemyHpDecrease * (EnemyHPDecreaseLevel - 1))); }
     }
 
+
+    public int CanEarnRP
+    {
+        get { return (int)((Wave / 25f) + ( Mathf.Pow(Wave, 0.65f) * ((Wave - 45) / 100f))); }
+    }
 
     #endregion
 
@@ -680,7 +690,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return (BaseEnemyHP + Wave/20f) * EnemyHPMultiplier
+            return (BaseEnemyHP + Wave/5f) * EnemyHPMultiplier
                 * EnemyHPDecreasePercent;
         }
     }

@@ -120,6 +120,13 @@ public class Tower : MonoBehaviour
         }
     }
 
+    public static void DestroyAllTowers()
+    {
+        for (int i = 0; i < _towers.Count; i++)
+        {
+            Destroy(_towers[i].gameObject);
+        }
+    }
 
     private TowerFeatureData _nextLevelFeatureData;
     private TowerFeatureData NextLevelFeatureData()

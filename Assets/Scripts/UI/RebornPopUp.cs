@@ -9,6 +9,13 @@ using UnityEngine.UI;
 public class RebornPopUp : PopUp
 {
 
+    [Header("Contract")]
+    [SerializeField]
+    private TextMeshProUGUI _contractInfo;
+    [SerializeField]
+    private Button _contractButton;
+
+    [Header("Title")]
     [SerializeField]
     private TextMeshProUGUI _essenceChangeInfoTitleText;
     [SerializeField]
@@ -19,7 +26,7 @@ public class RebornPopUp : PopUp
     private TextMeshProUGUI _gameSpeedInfoTitleText;
 
 
-
+    [Header("Info")]
     [SerializeField]
     private TextMeshProUGUI _essenceChangeInfoText;
     [SerializeField]
@@ -30,7 +37,7 @@ public class RebornPopUp : PopUp
     private TextMeshProUGUI _gameSpeedInfoText;
 
 
-
+    [Header("ButtonText")]
     [SerializeField]
     private TextMeshProUGUI _essenceChangeButtonText;
     [SerializeField]
@@ -41,7 +48,7 @@ public class RebornPopUp : PopUp
     private TextMeshProUGUI _gameSpeedButtonText;
 
 
-
+    [Header("Button")]
     [SerializeField]
     private Button _essenceChangeButton;
     [SerializeField]
@@ -58,12 +65,31 @@ public class RebornPopUp : PopUp
         _enemyHPButton.onClick.AddListener(OnClickEnemyHPButton);
         _gameSpeedButton.onClick.AddListener(OnClickGameSpeedButton);
 
+        _contractButton.onClick.AddListener(OnClickContractButton);
+
         UpdateTexts();
     }
 
 
     private void UpdateTexts()
     {
+        // Update Contract
+
+        if (Local.Instance.Wave < Local.MinWavetoReborn)
+        {
+            _contractInfo.text = "You must be at least wave "+Local.MinWavetoReborn;
+            _contractButton.enabled = false;
+        }
+        else
+        {
+            _contractInfo.text = "This will reset your wave" +
+                ", gold and towers but you gain <color=red>"
+                + (Local.Instance.CanEarnRP) + "</color> Reborn Point";
+            _contractButton.enabled = true;
+        }
+
+
+        //end
 
         // Update Buttons
         _essenceChangeButtonText.text = "RP(" + Local.Instance.RebornPointCost(Local.Instance.EssenceChangeLevel) + ")";
@@ -146,7 +172,58 @@ public class RebornPopUp : PopUp
     }
 
 
+    public void OnClickContractButton()
+    {
 
+        int currentEssence = Local.Instance.Essence;
+        int currentRP = Local.Instance.RebornPoint + Local.Instance.CanEarnRP;
+        
+        int currentFireLevel = Local.Instance.FireLevel;
+        int currentWaterLevel = Local.Instance.WaterLevel;
+        int currentEarthLevel = Local.Instance.EarthLevel;
+        int currentAirLevel = Local.Instance.AirLevel;
+
+        int currentDamageLevel = Local.Instance.DamageLevel;
+        int currentAttackSpeedLevel = Local.Instance.AttackSpeedLevel;
+        int currentCriticalHitChangeLevel = Local.Instance.CriticalHitChangeLevel;
+        int currentCriticalHitDamageLevel = Local.Instance.CriticalHitDamageLevel;
+        int currentRangeLevel = Local.Instance.RangeLevel;
+
+        int currentEssenceChangeLevel = Local.Instance.EssenceChangeLevel;
+        int currentGoldDropLevel = Local.Instance.GoldDropLevel;
+        int currentEnemyHPDecreaseLevel = Local.Instance.EnemyHPDecreaseLevel;
+        int currentGameSpeedLevel = Local.Instance.GameSpeedLevel;
+
+
+        Local.Instance.ResetPlayerPrefs();
+
+        Tower.DestroyAllTowers();
+
+        GameManager.Instance.ResetWave();
+
+
+        Local.Instance.Essence = currentEssence;
+        Local.Instance.RebornPoint = currentRP;
+
+        Local.Instance.FireLevel = currentFireLevel;
+        Local.Instance.WaterLevel = currentWaterLevel;
+        Local.Instance.EarthLevel = currentEarthLevel;
+        Local.Instance.AirLevel = currentAirLevel;
+
+        Local.Instance.DamageLevel = currentDamageLevel;
+        Local.Instance.AttackSpeedLevel = currentAttackSpeedLevel;
+        Local.Instance.CriticalHitChangeLevel = currentCriticalHitChangeLevel;
+        Local.Instance.CriticalHitDamageLevel = currentCriticalHitDamageLevel;
+        Local.Instance.RangeLevel = currentRangeLevel;
+
+        Local.Instance.EssenceChangeLevel = currentEssenceChangeLevel;
+        Local.Instance.GoldDropLevel = currentGoldDropLevel;
+        Local.Instance.EnemyHPDecreaseLevel = currentEnemyHPDecreaseLevel;
+        Local.Instance.GameSpeedLevel = currentGameSpeedLevel;
+
+        ScreenManager.Instance.ClosePopUp(this.name);
+        UpdateTexts();
+    }
 
     public override void Configurations()
     {
