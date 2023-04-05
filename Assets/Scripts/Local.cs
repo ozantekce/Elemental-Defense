@@ -14,6 +14,7 @@ public class Local : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 300;
         MakeSingleton();
     }
 
@@ -35,6 +36,85 @@ public class Local : MonoBehaviour
         Essence += 1000;
     }
 
+    #region TowerFeatureData
+    private TowerFeatureData _baseFireTowerFeatureData = new TowerFeatureData(
+        range:100f,
+        attackPower:5f,
+        attackPerSecond:1f,
+        criticalChange:10f,
+        criticalDamage:1f
+        );
+    private TowerFeatureData _baseWaterTowerFeatureData = new TowerFeatureData(
+        range: 100f,
+        attackPower: 5f,
+        attackPerSecond: 1f,
+        criticalChange: 10f,
+        criticalDamage: 1f
+        );
+    private TowerFeatureData _baseEarthTowerFeatureData = new TowerFeatureData(
+        range: 100f,
+        attackPower: 5f,
+        attackPerSecond: 1f,
+        criticalChange: 10f,
+        criticalDamage: 1f
+        );
+    private TowerFeatureData _baseAirTowerFeatureData = new TowerFeatureData(
+        range: 100f,
+        attackPower: 5f,
+        attackPerSecond: 1f,
+        criticalChange: 10f,
+        criticalDamage: 1f
+        );
+
+    public TowerFeatureData GetBaseFeatureData(Tower tower)
+    {
+        if(tower.TowerType==TowerType.fire)return _baseFireTowerFeatureData;
+        else if(tower.TowerType==TowerType.water)return _baseWaterTowerFeatureData;
+        else if(tower.TowerType==TowerType.earth)return _baseEarthTowerFeatureData;
+        else if(tower.TowerType==TowerType.air)return _baseAirTowerFeatureData;
+        else return null;
+    }
+
+
+    private TowerFeatureData _increaseFireTowerFeatureData = new TowerFeatureData(
+        range: 0.7f,
+        attackPower: 0.5f,
+        attackPerSecond: 0.01f,
+        criticalChange: 0.1f,
+        criticalDamage: 0.01f
+        );
+    private TowerFeatureData _increaseWaterTowerFeatureData = new TowerFeatureData(
+        range: 0.7f,
+        attackPower: 0.5f,
+        attackPerSecond: 0.01f,
+        criticalChange: 0.1f,
+        criticalDamage: 0.01f
+        );
+    private TowerFeatureData _increaseEarthTowerFeatureData = new TowerFeatureData(
+        range: 0.7f,
+        attackPower: 0.5f,
+        attackPerSecond: 0.01f,
+        criticalChange: 0.1f,
+        criticalDamage: 0.01f
+        );
+    private TowerFeatureData _increaseAirTowerFeatureData = new TowerFeatureData(
+        range: 0.7f,
+        attackPower: 0.5f,
+        attackPerSecond: 0.01f,
+        criticalChange: 0.1f,
+        criticalDamage: 0.01f
+        );
+
+    public TowerFeatureData GetIncreaseFeatureData(Tower tower)
+    {
+        if (tower.TowerType == TowerType.fire) return _increaseFireTowerFeatureData;
+        else if (tower.TowerType == TowerType.water) return _increaseWaterTowerFeatureData;
+        else if (tower.TowerType == TowerType.earth) return _increaseEarthTowerFeatureData;
+        else if (tower.TowerType == TowerType.air) return _increaseAirTowerFeatureData;
+        else return null;
+    }
+
+    #endregion
 
 
     private const int BaseGoldDrop = 1;
@@ -48,9 +128,9 @@ public class Local : MonoBehaviour
 
     public int FireTowerCost
     {
-        get { return BaseTowerCost 
-                + TowerCostIncrease * NumberOfFireTowers
-                + TowerCostIncrease/4 * (NumberOfAllTowers-NumberOfFireTowers)
+        get { return (int)(BaseTowerCost 
+                + TowerCostIncrease * NumberOfFireTowers * 1.67f
+                + TowerCostIncrease/4 * (NumberOfAllTowers-NumberOfFireTowers))
                 ; 
 
         }
@@ -60,9 +140,9 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return BaseTowerCost
-              + TowerCostIncrease * NumberOfWaterTowers
-              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfWaterTowers)
+            return (int)(BaseTowerCost
+              + TowerCostIncrease * NumberOfWaterTowers * 1.67f
+              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfWaterTowers))
               ;
 
         }
@@ -72,9 +152,9 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return BaseTowerCost
-              + TowerCostIncrease * NumberOfEarthTowers
-              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfEarthTowers)
+            return (int)(BaseTowerCost
+              + (TowerCostIncrease * NumberOfEarthTowers * 1.67f)
+              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfEarthTowers))
               ;
 
         }
@@ -84,9 +164,9 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return BaseTowerCost
-              + TowerCostIncrease * NumberOfAirTowers
-              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfAirTowers)
+            return (int)(BaseTowerCost
+              + TowerCostIncrease * NumberOfAirTowers * 1.67f
+              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfAirTowers))
               ;
 
         }
@@ -250,9 +330,9 @@ public class Local : MonoBehaviour
 
 
     private const float FireEffectBase = 5f;
-    private const float WaterEffectBase = 2f;
-    private const float EarthEffectBase = 1f;
-    private const float AirEffectBase = 6f;
+    private const float WaterEffectBase = 25f;
+    private const float EarthEffectBase = 10f;
+    private const float AirEffectBase = 10f;
 
 
     public const float AirEffectRange = 50f;

@@ -52,6 +52,21 @@ public class GameManager : MonoBehaviour
         _enemyList.Remove(enemy);
     }
 
+
+    public void GameSpeed1X()
+    {
+        Time.timeScale = 1;
+    }
+    public void GameSpeed2X()
+    {
+        Time.timeScale = 2;
+    }
+    public void GameSpeed4X()
+    {
+        Time.timeScale = 4;
+    }
+
+
     public static GameManager Instance { get => _instance; set => _instance = value; }
     public List<Enemy> EnemyList { get => _enemyList; set => _enemyList = value; }
     public Portal Portal { get => _portal; set => _portal = value; }

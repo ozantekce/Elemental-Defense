@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // It can be poolable but not implemented yet
-public class Enemy : MonoBehaviour, Poolable
+public class Enemy : MonoBehaviour/*, Poolable*/
 {
     [SerializeField]
     private string _name;
@@ -31,26 +31,24 @@ public class Enemy : MonoBehaviour, Poolable
     private CooldownManualReset _slowCD;
     private CooldownManualReset _stunCD;
 
-
+    /*
     private Poolable _poolable;
     private bool _pooled;
     public string _poolableKey;
-
+    */
     private void Start()
     {
-        _pathFollower = gameObject.AddComponent<EnemyPathFollower>();
-        _pathFollower.Parent = this;
-        _pathFollower.Init();
+        _pathFollower = new EnemyPathFollower(this);
         _maxHP = Local.Instance.EnemyHP;
         _currentHP = _maxHP;
 
         _slowCD = new CooldownManualReset(1000f);
         _stunCD = new CooldownManualReset(300f);
 
-        _poolable = this;
+        //_poolable = this;
     }
 
-
+    /*
     public void InitEnemy()
     {
         _pathFollower.Init();
@@ -65,12 +63,13 @@ public class Enemy : MonoBehaviour, Poolable
         animator.updateMode = AnimatorUpdateMode.Normal;
         animator.SetTrigger("Run");
     }
-
+    */
 
     private void Update()
     {
-        if (Pooled) return;
+        //if (Pooled) return;
         CalculateCurrentSpeed();
+        _pathFollower.Tick();
     }
 
     private void CalculateCurrentSpeed()
@@ -193,15 +192,15 @@ public class Enemy : MonoBehaviour, Poolable
 
     }
     public CooldownManualReset SlowCD { get => _slowCD; set => _slowCD = value; }
-    public string Key { get => _poolableKey; set => _poolableKey = value; }
+    //public string Key { get => _poolableKey; set => _poolableKey = value; }
 
-    public MonoBehaviour MonoBehaviour => this;
+    //public MonoBehaviour MonoBehaviour => this;
 
-    public bool Pooled { get => _pooled; set => _pooled= value; }
+    //public bool Pooled { get => _pooled; set => _pooled= value; }
     #endregion
 
 
-    private class EnemyPathFollower : MonoBehaviour
+    private class EnemyPathFollower
     {
 
         private Enemy _parent;
@@ -218,17 +217,18 @@ public class Enemy : MonoBehaviour, Poolable
 
         private Vector3 _dir;
 
-        public void Init()
+
+        public EnemyPathFollower(Enemy parent)
         {
+            Parent = parent;
             Path = GameManager.Instance.EnemyFollowPath;
             _target = _path[0];
-            _dir = (_target.position - transform.position).normalized;
+            _dir = (_target.position - Parent.transform.position).normalized;
         }
 
-
-        private void Update()
+        public void Tick()
         {
-            if (_pathOver || Parent.Pooled) return;
+            if (_pathOver /*|| Parent.Pooled*/) return;
 
 
             FindDirection();
@@ -254,7 +254,21 @@ public class Enemy : MonoBehaviour, Poolable
         private void Move()
         {
             // Move
-            Parent.transform.Translate(_dir * Time.deltaTime * Parent.CurrentMovSpeed);
+            float distance
+                = Vector3.SqrMagnitude(_posXYCache - _targetXYCache);
+
+            float moveMag = Time.deltaTime * Parent.CurrentMovSpeed;
+
+            if(moveMag*moveMag < distance)
+            {
+                Parent.transform.Translate(_dir * Time.deltaTime * Parent.CurrentMovSpeed);
+            }
+            else
+            {
+                Parent.transform.Translate(_dir * Mathf.Sqrt(distance));
+            }
+
+            
         }
 
         private void Rotate()

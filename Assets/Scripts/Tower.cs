@@ -22,32 +22,17 @@ public class Tower : MonoBehaviour
 
 
     #region BaseValues
-    public float baseRange = 150f;
-    public float baseAttackPower = 3;
-    public float baseAttackPerSecond = 1.5f;
-    public float baseCriticalChange = 10f;
-    public float baseCriticalDamage = 1;
+    private TowerFeatureData _towerBaseFeatureData;
     #endregion
 
     #region UpdateIncreaseValues
-    private float increaseRange = 0.7f;
-    private float increaseAttackPower = 0.5f;
-    private float increaseAttackPerSecond = 0.01f;
-    private float increaseCriticalChange = 0.1f;
-    private float increaseCriticalDamage = 0.01f;
+    private TowerFeatureData _towerIncreaseFeatureData;
     #endregion
 
     #region CurrentValues
     [SerializeField]
-    private float _range;
-    [SerializeField]
-    private float _attackPower;
-    [SerializeField]
-    private float _attackPerSecond;
-    [SerializeField]
-    private float _criticalChange;
-    [SerializeField]
-    private float _criticalDamage;
+    private TowerFeatureData _towerCurrentFeatureData;
+
     #endregion
 
 
@@ -58,6 +43,10 @@ public class Tower : MonoBehaviour
 
     private void Awake()
     {
+        _towerBaseFeatureData = Local.Instance.GetBaseFeatureData(this);
+        _towerIncreaseFeatureData = Local.Instance.GetIncreaseFeatureData(this);
+        _towerCurrentFeatureData = new TowerFeatureData();
+        _nextLevelFeatureData = new TowerFeatureData();
         _towers.Add(this);
     }
 
@@ -80,10 +69,10 @@ public class Tower : MonoBehaviour
         //UpdateValues();
         
         if(currentEnemy == null
-            || DistanceSqrWithEnemy ()>= _range*_range)
+            || DistanceSqrWithEnemy ()>= Range*Range)
             currentEnemy = FindEnemy();
 
-        if(_attackCD.Ready(1000 / _attackPerSecond) && currentEnemy != null)
+        if(_attackCD.Ready(1000 / AttackPerSecond) && currentEnemy != null)
         {
             SendBullet(currentEnemy);
         }
@@ -110,18 +99,19 @@ public class Tower : MonoBehaviour
     private void UpdateValues()
     {
 
-        _range = (baseRange + increaseRange * _currentLevel) * Local.Instance.Range;
-        _attackPower = (baseAttackPower + increaseAttackPower * _currentLevel ) * Local.Instance.Damage;
+        Range = (BaseRange + IncreaseRange * _currentLevel) * Local.Instance.Range;
+        AttackPower = (BaseAttackPower + IncreaseAttackPower * _currentLevel ) * Local.Instance.Damage;
         if (TowerType == TowerType.fire)
         {
-            _attackPower *= (1f + Local.Instance.FireEffect);
+            AttackPower *= (1f + Local.Instance.FireEffect);
         }
 
-        _attackPerSecond = (baseAttackPerSecond + increaseAttackPerSecond * _currentLevel) * Local.Instance.AttackSpeed;
-        _criticalChange = (baseCriticalChange + increaseCriticalChange * _currentLevel) * Local.Instance.CriticalHitChange;
-        _criticalDamage = (baseCriticalDamage + increaseCriticalDamage * _currentLevel) * Local.Instance.CriticalHitDamage;
+        AttackPerSecond = (BaseAttackPerSecond + IncreaseAttackPerSecond * _currentLevel) * Local.Instance.AttackSpeed;
+        CriticalChange = (BaseCriticalChange + IncreaseCriticalChange * _currentLevel) * Local.Instance.CriticalHitChange;
+        CriticalDamage = (BaseCriticalDamage + IncreaseCriticalDamage * _currentLevel) * Local.Instance.CriticalHitDamage;
 
     }
+
 
     public static void UpdateTowerValues()
     {
@@ -132,15 +122,35 @@ public class Tower : MonoBehaviour
     }
 
 
+    private TowerFeatureData _nextLevelFeatureData;
+    private TowerFeatureData NextLevelFeatureData()
+    {
+
+        _nextLevelFeatureData.range 
+            = (BaseRange + IncreaseRange * (_currentLevel+1) ) * Local.Instance.Range;
+        _nextLevelFeatureData.attackPower = (BaseAttackPower + IncreaseAttackPower * (_currentLevel + 1)) * Local.Instance.Damage;
+        if (TowerType == TowerType.fire)
+        {
+            _nextLevelFeatureData.attackPower *= (1f + Local.Instance.FireEffect);
+        }
+
+        _nextLevelFeatureData.attackPerSecond = (BaseAttackPerSecond + IncreaseAttackPerSecond * (_currentLevel + 1)) * Local.Instance.AttackSpeed;
+        _nextLevelFeatureData.criticalChange = (BaseCriticalChange + IncreaseCriticalChange * (_currentLevel + 1)) * Local.Instance.CriticalHitChange;
+        _nextLevelFeatureData.criticalDamage = (BaseCriticalDamage + IncreaseCriticalDamage * (_currentLevel + 1)) * Local.Instance.CriticalHitDamage;
+
+        return _nextLevelFeatureData;
+    }
+
+
     private void SendBullet(Enemy target)
     {
 
-        float damage = _attackPower;
+        float damage = AttackPower;
         int r = Random.Range(0, 101);
         if (r < CriticalChange)
         {
             // Critical Attack
-            damage *= (1+_criticalDamage);
+            damage *= (1 + CriticalDamage);
         }
 
         Poolable poolable = ObjectPoolManager.Instance.GetFromPool(_bulletPrefab);
@@ -157,7 +167,7 @@ public class Tower : MonoBehaviour
         foreach (Enemy enemy in GameManager.Instance.EnemyList)
         {
             float dist = Vector3.Distance(transform.position, enemy.transform.position);
-            if(dist<=_range &&dist < minDistance)
+            if(dist<=Range &&dist < minDistance)
             {
                 minDistance = dist;
                 target = enemy;
@@ -208,12 +218,21 @@ public class Tower : MonoBehaviour
     public string GetTowerInfo()
     {
         string info = "";
-
-        info += "Attack Power:" + AttackPower;
+        TowerFeatureData nextLevel = NextLevelFeatureData();
+        info += "\t\tCurrent\n";
+        info += "Attack Power:" + AttackPower ;
         info += "\n" + "Attack Speed:" + AttackPerSecond;
         info += "\n" + "Cri. Hit Change:" + CriticalChange+"%";
         info += "\n" + "Cri. Hit Damage:" + 100*CriticalDamage+"%";
         info += "\n" + "Range:" + Range;
+
+        info += "\n\t\tNext Level\n";
+        info += "Attack Power:" + nextLevel.attackPower;
+        info += "\n" + "Attack Speed:" + nextLevel.attackPerSecond;
+        info += "\n" + "Cri. Hit Change:" + nextLevel.criticalChange + "%";
+        info += "\n" + "Cri. Hit Damage:" + 100 * nextLevel.criticalDamage + "%";
+        info += "\n" + "Range:" + nextLevel.range;
+
 
         return info;
     }
@@ -222,15 +241,28 @@ public class Tower : MonoBehaviour
 
     #region GetterSetter
 
-    public float AttackPower { get => _attackPower; set => _attackPower = value; }
-    public float Range { get => _range; set => _range = value; }
-    public float AttackPerSecond { get => _attackPerSecond; set => _attackPerSecond = value; }
-    public float CriticalChange { get => _criticalChange; set => _criticalChange = value; }
-    public float CriticalDamage { get => _criticalDamage; set => _criticalDamage = value; }
+    public float AttackPower { get => _towerCurrentFeatureData.attackPower; set => _towerCurrentFeatureData.attackPower = value; }
+    public float Range { get => _towerCurrentFeatureData.range; set => _towerCurrentFeatureData.range = value; }
+    public float AttackPerSecond { get => _towerCurrentFeatureData.attackPerSecond; set => _towerCurrentFeatureData.attackPerSecond = value; }
+    public float CriticalChange { get => _towerCurrentFeatureData.criticalChange; set => _towerCurrentFeatureData.criticalChange = value; }
+    public float CriticalDamage { get => _towerCurrentFeatureData.criticalDamage; set => _towerCurrentFeatureData.criticalDamage = value; }
     public TowerType TowerType { get => _towerType; set => _towerType = value; }
     public int CurrentLevel { get => _currentLevel; set => _currentLevel = value; }
     public string Name { get => _name; set => _name = value; }
 
+
+    public float BaseRange { get => _towerBaseFeatureData.range; }
+    public float BaseAttackPower { get => _towerBaseFeatureData.attackPower; }
+    public float BaseAttackPerSecond { get => _towerBaseFeatureData.attackPerSecond; }
+    public float BaseCriticalChange { get => _towerBaseFeatureData.criticalChange; }
+    public float BaseCriticalDamage { get => _towerBaseFeatureData.criticalDamage; }
+
+
+    public float IncreaseRange { get => _towerIncreaseFeatureData.range; }
+    public float IncreaseAttackPower { get => _towerIncreaseFeatureData.attackPower; }
+    public float IncreaseAttackPerSecond { get => _towerIncreaseFeatureData.attackPerSecond; }
+    public float IncreaseCriticalChange { get => _towerIncreaseFeatureData.criticalChange; }
+    public float IncreaseCriticalDamage { get => _towerIncreaseFeatureData.criticalDamage; }
 
     #endregion
 
