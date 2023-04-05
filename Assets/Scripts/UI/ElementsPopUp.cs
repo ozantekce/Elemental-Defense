@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using ScreenManagerNameSpace;
+using UnityEngine.UI;
 
 public class ElementsPopUp : PopUp
 {
@@ -38,6 +39,15 @@ public class ElementsPopUp : PopUp
     [SerializeField]
     private TextMeshProUGUI _airButtonText;
 
+    [SerializeField]
+    private Button _fireButton;
+    [SerializeField]
+    private Button _waterButton;
+    [SerializeField]
+    private Button _earthButton;
+    [SerializeField]
+    private Button _airButton; 
+
 
 
 
@@ -52,13 +62,35 @@ public class ElementsPopUp : PopUp
     private void UpdateTexts()
     {
 
+
         // Update Buttons
         _fireButtonText.text = "Essence(" + Local.Instance.ElementCost(Local.Instance.FireLevel) + ")";
         _waterButtonText.text = "Essence(" + Local.Instance.ElementCost(Local.Instance.WaterLevel) + ")";
         _earthButtonText.text = "Essence(" + Local.Instance.ElementCost(Local.Instance.EarthLevel) + ")";
         _airButtonText.text = "Essence(" + Local.Instance.ElementCost(Local.Instance.AirLevel) + ")";
-        //end
+        
 
+        if (Local.Instance.FireLevel >= Local.MaxElemetsLevel)
+        {
+            _fireButtonText.text = "MAX";
+            _fireButton.enabled = false;
+        }
+        if (Local.Instance.WaterLevel >= Local.MaxElemetsLevel)
+        {
+            _waterButtonText.text = "MAX";
+            _waterButton.enabled = false;
+        }
+        if (Local.Instance.EarthLevel >= Local.MaxElemetsLevel)
+        {
+            _earthButtonText.text = "MAX";
+            _earthButton.enabled = false;
+        }
+        if (Local.Instance.AirLevel >= Local.MaxElemetsLevel)
+        {
+            _airButtonText.text = "MAX";
+            _airButton.enabled = false;
+        }
+        //end
 
         // Update titles
         _fireInfoTitleText.text = "Fire(Lv." + Local.Instance.FireLevel + ")";

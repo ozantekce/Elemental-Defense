@@ -55,17 +55,22 @@ public class GameManager : MonoBehaviour
 
     public void GameSpeed1X()
     {
-        Time.timeScale = 1;
+        Local.Instance.GameSpeedLevel = 1;
     }
     public void GameSpeed2X()
     {
-        Time.timeScale = 2;
+        Local.Instance.GameSpeedLevel = 2;
     }
     public void GameSpeed4X()
     {
-        Time.timeScale = 4;
+        Local.Instance.GameSpeedLevel = 6;
     }
 
+
+    public static float DeltaTime()
+    {
+        return Time.deltaTime*Local.Instance.GameSpeed;
+    }
 
     public static GameManager Instance { get => _instance; set => _instance = value; }
     public List<Enemy> EnemyList { get => _enemyList; set => _enemyList = value; }

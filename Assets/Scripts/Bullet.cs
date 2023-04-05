@@ -91,7 +91,7 @@ public class Bullet : MonoBehaviour, Poolable
         }
         
         directionVector = directionVector.normalized;
-        transform.Translate(directionVector * Time.deltaTime * _speed,Space.World);
+        transform.Translate(directionVector * GameManager.DeltaTime() * _speed,Space.World);
 
     }
 

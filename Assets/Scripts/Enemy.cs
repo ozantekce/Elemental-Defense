@@ -130,7 +130,7 @@ public class Enemy : MonoBehaviour/*, Poolable*/
     private void DestroyedByTower()
     {
         Local.Instance.Gold += Local.Instance.GoldDrop;
-        int r = Random.Range(0, 101);
+        float r = Random.Range(0, 1f);
         if (r < Local.Instance.EssenceChange)
         {
             // Essence 
@@ -257,11 +257,11 @@ public class Enemy : MonoBehaviour/*, Poolable*/
             float distance
                 = Vector3.SqrMagnitude(_posXYCache - _targetXYCache);
 
-            float moveMag = Time.deltaTime * Parent.CurrentMovSpeed;
+            float moveMag = GameManager.DeltaTime() * Parent.CurrentMovSpeed;
 
             if(moveMag*moveMag < distance)
             {
-                Parent.transform.Translate(_dir * Time.deltaTime * Parent.CurrentMovSpeed);
+                Parent.transform.Translate(_dir * GameManager.DeltaTime() * Parent.CurrentMovSpeed);
             }
             else
             {
@@ -282,7 +282,7 @@ public class Enemy : MonoBehaviour/*, Poolable*/
             
             Parent._visual.transform.forward
                 = Vector3.Lerp(forward
-                , _dir, 3f * Time.deltaTime);
+                , _dir, 3f * GameManager.DeltaTime());
 
         }
 

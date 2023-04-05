@@ -36,6 +36,12 @@ public class Local : MonoBehaviour
         Essence += 1000;
     }
 
+    [ContextMenu("Add RP")]
+    public void AddRP()
+    {
+        RebornPoint += 1000;
+    }
+
     #region TowerFeatureData
     private TowerFeatureData _baseFireTowerFeatureData = new TowerFeatureData(
         range:100f,
@@ -118,8 +124,9 @@ public class Local : MonoBehaviour
 
 
     private const int BaseGoldDrop = 1;
-    private const int BaseEssenceChange = 5;
+    private const float BaseEssenceChange = 0.05f;
     private const float BaseEnemyHP = 10;
+    private const float BaseGameSpeed = 1f;
 
 
     private const int BaseTowerCost = 10;
@@ -224,7 +231,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("numOfFireTowers", value);
         }
         get
@@ -237,7 +244,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("numOfWaterTowers", value);
         }
         get
@@ -250,7 +257,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("numOfEarthTowers", value);
         }
         get
@@ -263,7 +270,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("numOfAirTowers", value);
         }
         get
@@ -321,21 +328,24 @@ public class Local : MonoBehaviour
 
     #region Elements
 
-    
+    public const int MaxElemetsLevel = 50;
 
-    private const float FireEffectIncrease = 12f;
-    private const float WaterEffectIncrease = 1f;
-    private const float EarthEffectIncrease = 0.5f;
-    private const float AirEffectIncrease = 1f;
+    private const float FireEffectIncrease = 0.0425f;
+    private const float WaterEffectIncrease = 0.011f;
+    private const float EarthEffectIncrease = 0.010f;
+    private const float AirEffectIncrease = 0.035f;
 
 
-    private const float FireEffectBase = 5f;
-    private const float WaterEffectBase = 25f;
-    private const float EarthEffectBase = 10f;
-    private const float AirEffectBase = 10f;
+    private const float FireEffectBase = 0.10f;
+    private const float WaterEffectBase = 0.25f;
+    private const float EarthEffectBase = 0.15f;
+    private const float AirEffectBase = 0.25f;
 
 
     public const float AirEffectRange = 50f;
+
+    public const float WaterEffectTime = 1f;
+    public const float EarthEffectTime = 1f;
 
     private const int EssenceIncreaseForElements = 3;
     public int ElementCost(int level)
@@ -347,7 +357,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("fireLvl", value);
         }
         get
@@ -360,7 +370,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("waterLvl", value);
         }
         get
@@ -373,7 +383,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("earthLvl", value);
         }
         get
@@ -386,7 +396,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("airLvl", value);
         }
         get
@@ -400,7 +410,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return (100f + FireEffectBase + FireLevel * FireEffectIncrease) / 100f;
+            return (1f + FireEffectBase + (FireLevel * FireEffectIncrease));
         }
     }
 
@@ -408,7 +418,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return (WaterEffectBase + WaterLevel * WaterEffectIncrease) / 100f;
+            return (WaterEffectBase + (WaterLevel * WaterEffectIncrease));
         }
     }
 
@@ -416,7 +426,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return (EarthEffectBase + EarthLevel * EarthEffectIncrease) / 100f;
+            return (EarthEffectBase + (EarthLevel * EarthEffectIncrease));
         }
     }
 
@@ -425,7 +435,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return (AirEffectBase + AirLevel * AirEffectIncrease)/100f;
+            return (AirEffectBase + (AirLevel * AirEffectIncrease));
         }
     }
 
@@ -435,6 +445,8 @@ public class Local : MonoBehaviour
 
 
     #region Research
+
+
 
     public const float DamageIncrease = 7;
     public const float AttackSpeedIncrease = 1f;
@@ -453,7 +465,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("damageLvl", value);
         }
         get
@@ -466,7 +478,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("attackSpeedLvl", value);
         }
         get
@@ -479,7 +491,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("criticalHitChangeLvl", value);
         }
         get
@@ -492,7 +504,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("criticalHitDamageLvl", value);
         }
         get
@@ -505,7 +517,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("rangeLvl", value);
         }
         get
@@ -562,11 +574,18 @@ public class Local : MonoBehaviour
 
     #region Reborn
 
-    private const int GoldDropIncrease = 1;
-    private const int EssenceChangeIncrease = 1;
-    private const float EnemyHpDecrease = 1;
+    public const int MaxEssenceChangeLevel = 50;
+    public const int MaxGameSpeedLevel = 10;
+    public const int MaxEnemyHpDecreaseLvl = 50;
 
-    private const int RebornPointIncrease= 1;
+    private const int GoldDropIncrease = 1;
+    private const float EssenceChangeIncrease = 0.0125f;
+    private const float GameSpeedIncrease = 0.5f;
+    
+    private const float EnemyHpDecrease = 0.015f;
+
+
+    private const int RebornPointIncrease = 1;
     public int RebornPointCost(int level)
     {
         return level * RebornPointIncrease;
@@ -576,7 +595,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("essenceChangeLvl", value);
         }
         get
@@ -586,16 +605,16 @@ public class Local : MonoBehaviour
 
     }
 
-    public int EnemyHPLevel
+    public int EnemyHPDecreaseLevel
     {
         set
         {
-            Tower.UpdateTowerValues();
-            PlayerPrefs.SetInt("enemyHPLvl", value);
+            Tower.UpdateAllTowersFeatureData();
+            PlayerPrefs.SetInt("enemyHPDecreaseLvl", value);
         }
         get
         {
-            return PlayerPrefs.GetInt("enemyHPLvl", 1);
+            return PlayerPrefs.GetInt("enemyHPDecreaseLvl", 1);
         }
 
     }
@@ -604,7 +623,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("goldDropLvl", value);
         }
         get
@@ -614,8 +633,25 @@ public class Local : MonoBehaviour
 
     }
 
+    public int GameSpeedLevel
+    {
+        set
+        {
+            Tower.UpdateAllTowersFeatureData();
+            PlayerPrefs.SetInt("gameSpeedLvl", value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("gameSpeedLvl", 1);
+        }
+    }
 
 
+    public float EnemyHPDecreasePercent
+    {
+        
+        get { return (1-(EnemyHpDecrease * (EnemyHPDecreaseLevel - 1))); }
+    }
 
 
     #endregion
@@ -631,11 +667,11 @@ public class Local : MonoBehaviour
     }
 
 
-    public int EssenceChange
+    public float EssenceChange
     {
         get
         {
-            return BaseEssenceChange + EssenceChangeLevel * EssenceChangeIncrease;
+            return BaseEssenceChange + (EssenceChangeLevel-1) * EssenceChangeIncrease;
         }
     }
 
@@ -644,7 +680,16 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return (BaseEnemyHP + Wave/20f) * EnemyHPMultiplier / (EnemyHPLevel*EnemyHpDecrease);
+            return (BaseEnemyHP + Wave/20f) * EnemyHPMultiplier
+                * EnemyHPDecreasePercent;
+        }
+    }
+
+    public float GameSpeed
+    {
+        get
+        {
+            return (BaseGameSpeed + (GameSpeedLevel-1) * GameSpeedIncrease);
         }
     }
 
@@ -655,7 +700,7 @@ public class Local : MonoBehaviour
     {
         set
         {
-            Tower.UpdateTowerValues();
+            Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("wave", value);
         }
         get

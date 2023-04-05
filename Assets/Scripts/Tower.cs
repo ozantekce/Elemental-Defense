@@ -21,18 +21,17 @@ public class Tower : MonoBehaviour
     private static List<Tower> _towers = new List<Tower>();
 
 
-    #region BaseValues
+    #region BaseFeatureData
     private TowerFeatureData _towerBaseFeatureData;
     #endregion
 
-    #region UpdateIncreaseValues
+    #region UpdateIncreaseFeatureData
     private TowerFeatureData _towerIncreaseFeatureData;
     #endregion
 
-    #region CurrentValues
+    #region CurrentFeatureData
     [SerializeField]
     private TowerFeatureData _towerCurrentFeatureData;
-
     #endregion
 
 
@@ -58,23 +57,23 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         _attackCD = new CooldownDynamic();
-        UpdateValues();
+        UpdateFeatureData();
     }
 
 
-    private Enemy currentEnemy;
+    private Enemy _currentEnemy;
     private void Update()
     {
 
         //UpdateValues();
         
-        if(currentEnemy == null
+        if(_currentEnemy == null
             || DistanceSqrWithEnemy ()>= Range*Range)
-            currentEnemy = FindEnemy();
+            _currentEnemy = FindEnemy();
 
-        if(_attackCD.Ready(1000 / AttackPerSecond) && currentEnemy != null)
+        if(_attackCD.Ready( (1000 / AttackPerSecond)/Local.Instance.GameSpeed) && _currentEnemy != null)
         {
-            SendBullet(currentEnemy);
+            SendBullet(_currentEnemy);
         }
 
     }
@@ -83,8 +82,8 @@ public class Tower : MonoBehaviour
     {
 
         Vector2 enemyVector;
-        enemyVector.x = currentEnemy.transform.position.x;
-        enemyVector.y = currentEnemy.transform.position.z;
+        enemyVector.x = _currentEnemy.transform.position.x;
+        enemyVector.y = _currentEnemy.transform.position.z;
 
         Vector2 towerVector;
         towerVector.x = transform.position.x;
@@ -96,7 +95,7 @@ public class Tower : MonoBehaviour
     }
 
 
-    private void UpdateValues()
+    private void UpdateFeatureData()
     {
 
         Range = (BaseRange + IncreaseRange * _currentLevel) * Local.Instance.Range;
@@ -113,11 +112,11 @@ public class Tower : MonoBehaviour
     }
 
 
-    public static void UpdateTowerValues()
+    public static void UpdateAllTowersFeatureData()
     {
         for (int i = 0; i < _towers.Count; i++)
         {
-            _towers[i].UpdateValues();
+            _towers[i].UpdateFeatureData();
         }
     }
 
@@ -181,7 +180,7 @@ public class Tower : MonoBehaviour
     public void UpdateTower()
     {
         CurrentLevel++;
-        UpdateValues();
+        UpdateFeatureData();
 
     }
 

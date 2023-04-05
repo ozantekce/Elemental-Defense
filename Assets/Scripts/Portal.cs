@@ -9,7 +9,8 @@ public class Portal : MonoBehaviour
     [SerializeField]
     private float spawnCD = 1000, waitForFirstSpawn = 5000;
 
-    private Cooldown spawnCooldown;
+
+    private CooldownDynamic spawnCooldown;
     private CooldownManualReset firstSpawnCooldown;
     
     private GameObject enemiesGO;
@@ -23,7 +24,7 @@ public class Portal : MonoBehaviour
 
         enemiesGO = new GameObject("Enemies");
 
-        spawnCooldown = new Cooldown(spawnCD);
+        spawnCooldown = new CooldownDynamic();
         firstSpawnCooldown = new CooldownManualReset(waitForFirstSpawn);
 
     }
@@ -44,7 +45,7 @@ public class Portal : MonoBehaviour
         }
 
 
-        if (_enemyCount>0 && spawnCooldown.Ready())
+        if (_enemyCount>0 && spawnCooldown.Ready(spawnCD/Local.Instance.GameSpeed))
         {
             SpawnEnemy();
         }
