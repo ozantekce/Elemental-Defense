@@ -134,12 +134,13 @@ GameObject:
   - component: {fileID: 8342180}
   - component: {fileID: 8342182}
   - component: {fileID: 8342181}
+  - component: {fileID: 8342183}
   m_Layer: 5
-  m_Name: UpdateButtonText
+  m_Name: RangeButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &8342180
 RectTransform:
@@ -258,6 +259,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8342179}
   m_CullTransparentMesh: 1
+--- !u!114 &8342183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 8342181}
+  text: {fileID: 0}
 --- !u!1 &15990908
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +293,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &15990909
 RectTransform:
@@ -351,7 +370,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &28398320
 RectTransform:
@@ -428,7 +447,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &29924499
 RectTransform:
@@ -563,7 +582,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &36406464
 RectTransform:
@@ -640,7 +659,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &61976980
 RectTransform:
@@ -775,7 +794,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &74254774
 RectTransform:
@@ -854,7 +873,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &78441696
 RectTransform:
@@ -989,7 +1008,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &91231307
 RectTransform:
@@ -1152,7 +1171,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &95785164
 RectTransform:
@@ -1224,12 +1243,13 @@ GameObject:
   - component: {fileID: 96697827}
   - component: {fileID: 96697829}
   - component: {fileID: 96697828}
+  - component: {fileID: 96697830}
   m_Layer: 5
-  m_Name: UpdateButtonText
+  m_Name: EarthButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &96697827
 RectTransform:
@@ -1348,6 +1368,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96697826}
   m_CullTransparentMesh: 1
+--- !u!114 &96697830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96697826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 96697828}
+  text: {fileID: 0}
 --- !u!1 &98819943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,7 +1403,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &98819944
 RectTransform:
@@ -1463,7 +1501,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &107098610
 RectTransform:
@@ -1602,7 +1640,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &126477114
 RectTransform:
@@ -1719,12 +1757,13 @@ GameObject:
   - component: {fileID: 132120281}
   - component: {fileID: 132120280}
   - component: {fileID: 132120279}
+  - component: {fileID: 132120282}
   m_Layer: 5
   m_Name: UpdateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &132120278
 RectTransform:
@@ -1790,19 +1829,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 132120280}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1409928485}
-        m_TargetAssemblyTypeName: ElementsPopUp, Assembly-CSharp
-        m_MethodName: OnClickFireButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &132120280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1841,6 +1868,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132120277}
   m_CullTransparentMesh: 1
+--- !u!114 &132120282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132120277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: FireButtonText
+    waitToExecute: 0.5
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: FireTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1971688738}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UpdateFireLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: FireInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &133614951 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3190468617819029586, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
@@ -1863,7 +1945,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &141727301
 RectTransform:
@@ -1996,7 +2078,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &145256062
 RectTransform:
@@ -2068,12 +2150,13 @@ GameObject:
   - component: {fileID: 145918448}
   - component: {fileID: 145918450}
   - component: {fileID: 145918449}
+  - component: {fileID: 145918451}
   m_Layer: 5
-  m_Name: EnemyHPText
+  m_Name: EnemyHPInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &145918448
 RectTransform:
@@ -2192,6 +2275,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145918447}
   m_CullTransparentMesh: 1
+--- !u!114 &145918451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145918447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 3
+  updateFrame: 10
+  updateTime: 0.35
+  textType: 1
+  textMeshPro: {fileID: 145918449}
+  text: {fileID: 0}
 --- !u!1 &165521669
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,7 +2358,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &201757328
 RectTransform:
@@ -2329,12 +2430,13 @@ GameObject:
   - component: {fileID: 207758375}
   - component: {fileID: 207758377}
   - component: {fileID: 207758376}
+  - component: {fileID: 207758378}
   m_Layer: 5
-  m_Name: InfoText
+  m_Name: CriticalHitChanceInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &207758375
 RectTransform:
@@ -2453,6 +2555,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207758374}
   m_CullTransparentMesh: 1
+--- !u!114 &207758378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207758374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 207758376}
+  text: {fileID: 0}
 --- !u!1 &215592173
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,7 +2589,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &215592174
 RectTransform:
@@ -2541,12 +2661,13 @@ GameObject:
   - component: {fileID: 215651072}
   - component: {fileID: 215651074}
   - component: {fileID: 215651073}
+  - component: {fileID: 215651075}
   m_Layer: 5
-  m_Name: WaveText
+  m_Name: WaveInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &215651072
 RectTransform:
@@ -2665,6 +2786,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215651071}
   m_CullTransparentMesh: 1
+--- !u!114 &215651075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215651071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 3
+  updateFrame: 10
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 215651073}
+  text: {fileID: 0}
 --- !u!1 &237681081
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,7 +2820,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &237681082
 RectTransform:
@@ -2860,7 +2999,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &298884845
 RectTransform:
@@ -3028,7 +3167,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &325898840
 RectTransform:
@@ -3158,12 +3297,13 @@ GameObject:
   - component: {fileID: 329178811}
   - component: {fileID: 329178813}
   - component: {fileID: 329178812}
+  - component: {fileID: 329178814}
   m_Layer: 5
-  m_Name: UpdateButtonText
+  m_Name: DamageButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &329178811
 RectTransform:
@@ -3282,6 +3422,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329178810}
   m_CullTransparentMesh: 1
+--- !u!114 &329178814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329178810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 329178812}
+  text: {fileID: 0}
 --- !u!1001 &358124658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3379,12 +3537,13 @@ GameObject:
   - component: {fileID: 359864591}
   - component: {fileID: 359864593}
   - component: {fileID: 359864592}
+  - component: {fileID: 359864594}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: EssenceInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &359864591
 RectTransform:
@@ -3503,6 +3662,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359864590}
   m_CullTransparentMesh: 1
+--- !u!114 &359864594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359864590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 3
+  updateFrame: 10
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 359864592}
+  text: {fileID: 0}
 --- !u!1 &365880690
 GameObject:
   m_ObjectHideFlags: 0
@@ -3514,12 +3691,13 @@ GameObject:
   - component: {fileID: 365880691}
   - component: {fileID: 365880693}
   - component: {fileID: 365880692}
+  - component: {fileID: 365880694}
   m_Layer: 5
-  m_Name: TitleText
+  m_Name: WaterTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &365880691
 RectTransform:
@@ -3638,6 +3816,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365880690}
   m_CullTransparentMesh: 1
+--- !u!114 &365880694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365880690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 365880692}
+  text: {fileID: 0}
 --- !u!1 &370439415
 GameObject:
   m_ObjectHideFlags: 0
@@ -3654,7 +3850,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &370439416
 RectTransform:
@@ -3789,7 +3985,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &377860065
 RectTransform:
@@ -3868,7 +4064,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &379436240
 RectTransform:
@@ -4112,7 +4308,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &382989953
 RectTransform:
@@ -4370,12 +4566,13 @@ GameObject:
   - component: {fileID: 422082587}
   - component: {fileID: 422082589}
   - component: {fileID: 422082588}
+  - component: {fileID: 422082590}
   m_Layer: 5
-  m_Name: InfoText
+  m_Name: RangeInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &422082587
 RectTransform:
@@ -4494,6 +4691,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422082586}
   m_CullTransparentMesh: 1
+--- !u!114 &422082590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422082586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 422082588}
+  text: {fileID: 0}
 --- !u!1 &428905698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4505,12 +4720,13 @@ GameObject:
   - component: {fileID: 428905699}
   - component: {fileID: 428905701}
   - component: {fileID: 428905700}
+  - component: {fileID: 428905702}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: GoldInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &428905699
 RectTransform:
@@ -4629,6 +4845,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428905698}
   m_CullTransparentMesh: 1
+--- !u!114 &428905702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428905698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 3
+  updateFrame: 10
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 428905700}
+  text: {fileID: 0}
 --- !u!1 &445885611
 GameObject:
   m_ObjectHideFlags: 0
@@ -4645,7 +4879,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &445885612
 RectTransform:
@@ -4842,7 +5076,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &450237173
 RectTransform:
@@ -4972,12 +5206,13 @@ GameObject:
   - component: {fileID: 451310846}
   - component: {fileID: 451310848}
   - component: {fileID: 451310847}
+  - component: {fileID: 451310849}
   m_Layer: 5
-  m_Name: UpdateButtonText
+  m_Name: AirButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &451310846
 RectTransform:
@@ -5096,6 +5331,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451310845}
   m_CullTransparentMesh: 1
+--- !u!114 &451310849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451310845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 451310847}
+  text: {fileID: 0}
 --- !u!1 &455647376
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,7 +5365,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &455647377
 RectTransform:
@@ -5192,7 +5445,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &462374564
 RectTransform:
@@ -5325,7 +5578,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &475487935
 RectTransform:
@@ -5458,7 +5711,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &476785979
 RectTransform:
@@ -5499,12 +5752,13 @@ GameObject:
   - component: {fileID: 486108915}
   - component: {fileID: 486108917}
   - component: {fileID: 486108916}
+  - component: {fileID: 486108918}
   m_Layer: 5
-  m_Name: TitleText
+  m_Name: CriticalHitDamageTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &486108915
 RectTransform:
@@ -5623,6 +5877,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486108914}
   m_CullTransparentMesh: 1
+--- !u!114 &486108918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486108914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 486108916}
+  text: {fileID: 0}
 --- !u!1 &501295899
 GameObject:
   m_ObjectHideFlags: 0
@@ -5640,7 +5912,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &501295900
 RectTransform:
@@ -5773,7 +6045,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &502085537
 RectTransform:
@@ -5849,7 +6121,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &529267751
 RectTransform:
@@ -5888,7 +6160,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &534969332
 RectTransform:
@@ -6024,7 +6296,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &558652280
 RectTransform:
@@ -6121,7 +6393,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &565692015
 RectTransform:
@@ -6256,7 +6528,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &570600697
 RectTransform:
@@ -6331,12 +6603,13 @@ GameObject:
   - component: {fileID: 570866383}
   - component: {fileID: 570866382}
   - component: {fileID: 570866381}
+  - component: {fileID: 570866384}
   m_Layer: 5
   m_Name: UpdateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &570866380
 RectTransform:
@@ -6402,19 +6675,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 570866382}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1409928485}
-        m_TargetAssemblyTypeName: ElementsPopUp, Assembly-CSharp
-        m_MethodName: OnClickEarthButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &570866382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6453,6 +6714,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570866379}
   m_CullTransparentMesh: 1
+--- !u!114 &570866384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570866379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: EarthButtonText
+    waitToExecute: 0.5
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: EarthTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1971688738}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UpdateEarthLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: EarthInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &573242958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6536,7 +6852,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &577544411
 RectTransform:
@@ -6731,7 +7047,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &601377130
 RectTransform:
@@ -6810,7 +7126,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &647316760
 RectTransform:
@@ -6888,7 +7204,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &658091342
 RectTransform:
@@ -6984,7 +7300,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &659220678
 RectTransform:
@@ -7022,13 +7338,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b214a64e3729fe4c8d6225920fcbbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundName: 
-  waveText: {fileID: 215651073}
-  enemyCountText: {fileID: 687664774}
-  enemyHpText: {fileID: 145918449}
-  goldText: {fileID: 428905700}
-  essenceText: {fileID: 359864592}
-  rebornPointText: {fileID: 725800058}
+  _beforeOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _beforeClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _openAnimation: {fileID: 0}
+  _closeAnimation: {fileID: 0}
 --- !u!1 &662896933
 GameObject:
   m_ObjectHideFlags: 0
@@ -7045,7 +7368,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &662896934
 RectTransform:
@@ -7181,7 +7504,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &672393641
 RectTransform:
@@ -7309,12 +7632,13 @@ GameObject:
   - component: {fileID: 687664773}
   - component: {fileID: 687664775}
   - component: {fileID: 687664774}
+  - component: {fileID: 687664776}
   m_Layer: 5
-  m_Name: EnemyCountText
+  m_Name: EnemyCountInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &687664773
 RectTransform:
@@ -7433,6 +7757,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 687664772}
   m_CullTransparentMesh: 1
+--- !u!114 &687664776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687664772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 3
+  updateFrame: 10
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 687664774}
+  text: {fileID: 0}
 --- !u!1 &697197066
 GameObject:
   m_ObjectHideFlags: 0
@@ -7449,7 +7791,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &697197067
 RectTransform:
@@ -7527,7 +7869,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &699376905
 RectTransform:
@@ -7625,7 +7967,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &699404656
 RectTransform:
@@ -7857,12 +8199,13 @@ GameObject:
   - component: {fileID: 705997294}
   - component: {fileID: 705997293}
   - component: {fileID: 705997292}
+  - component: {fileID: 705997295}
   m_Layer: 5
-  m_Name: UpdateButton
+  m_Name: RangeUpdateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &705997291
 RectTransform:
@@ -7928,19 +8271,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 705997293}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 812589263}
-        m_TargetAssemblyTypeName: ResearchPopUp, Assembly-CSharp
-        m_MethodName: OnClickRangeButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &705997293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7979,6 +8310,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705997290}
   m_CullTransparentMesh: 1
+--- !u!114 &705997295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705997290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: RangeButtonText
+    waitToExecute: 0.5
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: RangeInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1971688738}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UpdateRangeLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: RangeTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &707045957
 GameObject:
   m_ObjectHideFlags: 0
@@ -7996,7 +8382,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &707045958
 RectTransform:
@@ -8101,7 +8487,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &707606794
 RectTransform:
@@ -8342,7 +8728,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &715620949
 RectTransform:
@@ -8416,12 +8802,13 @@ GameObject:
   - component: {fileID: 725800057}
   - component: {fileID: 725800059}
   - component: {fileID: 725800058}
+  - component: {fileID: 725800060}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RebornInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &725800057
 RectTransform:
@@ -8540,6 +8927,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725800056}
   m_CullTransparentMesh: 1
+--- !u!114 &725800060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725800056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 3
+  updateFrame: 10
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 725800058}
+  text: {fileID: 0}
 --- !u!1 &731298550
 GameObject:
   m_ObjectHideFlags: 0
@@ -8556,7 +8961,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &731298551
 RectTransform:
@@ -8633,7 +9038,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &734737909
 RectTransform:
@@ -8769,7 +9174,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &737179055
 RectTransform:
@@ -8873,12 +9278,13 @@ GameObject:
   - component: {fileID: 737775590}
   - component: {fileID: 737775589}
   - component: {fileID: 737775588}
+  - component: {fileID: 737775591}
   m_Layer: 5
   m_Name: UpdateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &737775587
 RectTransform:
@@ -8944,19 +9350,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 737775589}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1409928485}
-        m_TargetAssemblyTypeName: ElementsPopUp, Assembly-CSharp
-        m_MethodName: OnClickWaterButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &737775589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8995,6 +9389,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737775586}
   m_CullTransparentMesh: 1
+--- !u!114 &737775591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737775586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: WaterButtonText
+    waitToExecute: 0.5
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: WaterTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1971688738}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UpdateWaterLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: WaterInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &765271872
 GameObject:
   m_ObjectHideFlags: 0
@@ -9006,12 +9455,13 @@ GameObject:
   - component: {fileID: 765271873}
   - component: {fileID: 765271875}
   - component: {fileID: 765271874}
+  - component: {fileID: 765271876}
   m_Layer: 5
-  m_Name: UpdateButtonText
+  m_Name: CriticalHitDamageButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &765271873
 RectTransform:
@@ -9130,6 +9580,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765271872}
   m_CullTransparentMesh: 1
+--- !u!114 &765271876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765271872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 765271874}
+  text: {fileID: 0}
 --- !u!1001 &766536011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9232,7 +9700,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &770589923
 RectTransform:
@@ -9304,12 +9772,13 @@ GameObject:
   - component: {fileID: 776278047}
   - component: {fileID: 776278049}
   - component: {fileID: 776278048}
+  - component: {fileID: 776278050}
   m_Layer: 5
-  m_Name: UpdateButtonText
+  m_Name: FireButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &776278047
 RectTransform:
@@ -9428,6 +9897,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776278046}
   m_CullTransparentMesh: 1
+--- !u!114 &776278050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776278046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 776278048}
+  text: {fileID: 0}
 --- !u!4 &777927602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1bbb91c8d96cb2446a07151ce95d1f0f, type: 3}
@@ -9450,7 +9937,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &789149642
 RectTransform:
@@ -9722,7 +10209,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &806494484
 RectTransform:
@@ -9856,7 +10343,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 0
 --- !u!224 &812589262
 RectTransform:
@@ -9888,24 +10375,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 812589261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad539435a3d18484abff49e505de81c2, type: 3}
+  m_Script: {fileID: 11500000, guid: d427eb060529d0b4081d09d1a8449d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageInfoTitleText: {fileID: 1762195133}
-  _attackSpeedInfoTitleText: {fileID: 1401633496}
-  _criticalHitChanceInfoTitleText: {fileID: 1357297388}
-  _criticalHitDamageInfoTitleText: {fileID: 486108916}
-  _rangeInfoTitleText: {fileID: 2021391373}
-  _damageInfoText: {fileID: 1608249199}
-  _attackSpeedInfoText: {fileID: 1020423649}
-  _criticalHitChanceInfoText: {fileID: 207758376}
-  _criticalHitDamageInfoText: {fileID: 1425103336}
-  _rangeInfoText: {fileID: 422082588}
-  _damageButtonText: {fileID: 329178812}
-  _attackSpeedButtonText: {fileID: 1282934668}
-  _criticalHitChanceButtonText: {fileID: 1510825657}
-  _criticalHitDamageButtonText: {fileID: 765271874}
-  _rangeButtonText: {fileID: 8342181}
+  _closeWhenScreenChange: 0
+  _beforeOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _beforeClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _openAnimation: {fileID: 11400000, guid: 1fa01d6ac0fe51041af8a77d743d713f, type: 2}
+  _closeAnimation: {fileID: 11400000, guid: 52c3d33b2417d8c4b8254f481008a873, type: 2}
 --- !u!1 &817288311
 GameObject:
   m_ObjectHideFlags: 0
@@ -9922,7 +10409,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &817288312
 RectTransform:
@@ -10057,7 +10544,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &830894500
 RectTransform:
@@ -10200,7 +10687,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &848023055
 RectTransform:
@@ -15088,12 +15575,13 @@ GameObject:
   - component: {fileID: 864306390}
   - component: {fileID: 864306389}
   - component: {fileID: 864306388}
+  - component: {fileID: 864306391}
   m_Layer: 5
   m_Name: ResearchButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &864306387
 RectTransform:
@@ -15159,31 +15647,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 864306389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1039497297}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
-        m_MethodName: CloseAllPopUpWithout
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ResearchPopUp
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1039497297}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
-        m_MethodName: OpenPopUp
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ResearchPopUp
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &864306389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15222,6 +15686,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864306386}
   m_CullTransparentMesh: 1
+--- !u!114 &864306391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864306386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 1
+    screenName: 
+    popUpName: ResearchPopUp
+    textName: 
+    waitToExecute: 0
+    closeOtherPopUps: 1
+    waitToReuse: 0.5
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &874479043
 GameObject:
   m_ObjectHideFlags: 0
@@ -15233,12 +15720,13 @@ GameObject:
   - component: {fileID: 874479044}
   - component: {fileID: 874479046}
   - component: {fileID: 874479045}
+  - component: {fileID: 874479047}
   m_Layer: 5
-  m_Name: TitleText
+  m_Name: EarthTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &874479044
 RectTransform:
@@ -15357,6 +15845,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874479043}
   m_CullTransparentMesh: 1
+--- !u!114 &874479047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874479043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 874479045}
+  text: {fileID: 0}
 --- !u!1 &877080886
 GameObject:
   m_ObjectHideFlags: 0
@@ -15373,7 +15879,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &877080887
 RectTransform:
@@ -15604,7 +16110,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &918904924
 RectTransform:
@@ -15702,7 +16208,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &932217850
 RectTransform:
@@ -15835,7 +16341,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &937216934
 RectTransform:
@@ -15966,12 +16472,13 @@ GameObject:
   - component: {fileID: 941498338}
   - component: {fileID: 941498337}
   - component: {fileID: 941498336}
+  - component: {fileID: 941498339}
   m_Layer: 5
   m_Name: UpdateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &941498335
 RectTransform:
@@ -16037,19 +16544,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 941498337}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1409928485}
-        m_TargetAssemblyTypeName: ElementsPopUp, Assembly-CSharp
-        m_MethodName: OnClickAirButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &941498337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16088,6 +16583,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941498334}
   m_CullTransparentMesh: 1
+--- !u!114 &941498339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941498334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: AirButtonText
+    waitToExecute: 0.5
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: AirTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1971688738}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UpdateAirLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: AirInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &945491917
 GameObject:
   m_ObjectHideFlags: 0
@@ -16105,7 +16655,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &945491918
 MonoBehaviour:
@@ -16206,7 +16756,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &957018539
 RectTransform:
@@ -16545,7 +17095,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &979252687
 RectTransform:
@@ -16680,7 +17230,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &982467290
 RectTransform:
@@ -16759,7 +17309,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1007542386
 RectTransform:
@@ -16833,12 +17383,13 @@ GameObject:
   - component: {fileID: 1020423648}
   - component: {fileID: 1020423650}
   - component: {fileID: 1020423649}
+  - component: {fileID: 1020423651}
   m_Layer: 5
-  m_Name: InfoText
+  m_Name: AttackSpeedInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1020423648
 RectTransform:
@@ -16957,6 +17508,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020423647}
   m_CullTransparentMesh: 1
+--- !u!114 &1020423651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020423647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1020423649}
+  text: {fileID: 0}
 --- !u!1 &1023495241
 GameObject:
   m_ObjectHideFlags: 0
@@ -17088,7 +17657,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1032907763
 RectTransform:
@@ -17236,14 +17805,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5d0460dc1ad8f4cbb2f044189ccf0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _screens:
+  screens:
   - {fileID: 659220679}
-  _popUps:
-  - {fileID: 1409928485}
+  popUps:
   - {fileID: 812589263}
-  - {fileID: 2077595738}
   - {fileID: 1359099230}
+  - {fileID: 1409928485}
   - {fileID: 1732593537}
+  - {fileID: 2077595738}
+  extendedTexts:
+  - {fileID: 8342183}
+  - {fileID: 96697830}
+  - {fileID: 145918451}
+  - {fileID: 207758378}
+  - {fileID: 215651075}
+  - {fileID: 329178814}
+  - {fileID: 359864594}
+  - {fileID: 365880694}
+  - {fileID: 422082590}
+  - {fileID: 428905702}
+  - {fileID: 451310849}
+  - {fileID: 486108918}
+  - {fileID: 687664776}
+  - {fileID: 725800060}
+  - {fileID: 765271876}
+  - {fileID: 776278050}
+  - {fileID: 874479047}
+  - {fileID: 1020423651}
+  - {fileID: 1282934670}
+  - {fileID: 1299076021}
+  - {fileID: 1357297390}
+  - {fileID: 1401633498}
+  - {fileID: 1425103338}
+  - {fileID: 1510825659}
+  - {fileID: 1608249201}
+  - {fileID: 1690771007}
+  - {fileID: 1708682797}
+  - {fileID: 1751062165}
+  - {fileID: 1762195135}
+  - {fileID: 1786001176}
+  - {fileID: 1850527369}
+  - {fileID: 1915179952}
+  - {fileID: 2021391375}
   initialScreen: {fileID: 659220679}
 --- !u!4 &1039497298
 Transform:
@@ -17276,7 +17879,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1045279118
 RectTransform:
@@ -17411,7 +18014,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 0
 --- !u!224 &1061266287
 RectTransform:
@@ -17547,7 +18150,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1087604447
 RectTransform:
@@ -17684,7 +18287,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1145046705
 RectTransform:
@@ -17805,7 +18408,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1150622577
 RectTransform:
@@ -17883,7 +18486,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1159845231
 RectTransform:
@@ -18057,7 +18660,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1178719367
 RectTransform:
@@ -18192,7 +18795,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1191203540
 RectTransform:
@@ -18271,7 +18874,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1205816328
 RectTransform:
@@ -18406,7 +19009,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1210467778
 RectTransform:
@@ -18485,7 +19088,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1247750037
 RectTransform:
@@ -18621,7 +19224,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1262293252
 RectTransform:
@@ -18725,12 +19328,13 @@ GameObject:
   - component: {fileID: 1282934667}
   - component: {fileID: 1282934669}
   - component: {fileID: 1282934668}
+  - component: {fileID: 1282934670}
   m_Layer: 5
-  m_Name: UpdateButtonText
+  m_Name: AttackSpeedButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1282934667
 RectTransform:
@@ -18849,6 +19453,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282934666}
   m_CullTransparentMesh: 1
+--- !u!114 &1282934670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282934666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1282934668}
+  text: {fileID: 0}
 --- !u!4 &1293814803 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6e604c269b8519d4486bbbc982b9afa9, type: 3}
@@ -18865,12 +19487,13 @@ GameObject:
   - component: {fileID: 1299076018}
   - component: {fileID: 1299076020}
   - component: {fileID: 1299076019}
+  - component: {fileID: 1299076021}
   m_Layer: 5
-  m_Name: InfoText
+  m_Name: AirInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1299076018
 RectTransform:
@@ -18989,6 +19612,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299076017}
   m_CullTransparentMesh: 1
+--- !u!114 &1299076021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299076017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1299076019}
+  text: {fileID: 0}
 --- !u!1 &1307182844
 GameObject:
   m_ObjectHideFlags: 0
@@ -19006,7 +19647,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1307182845
 RectTransform:
@@ -19139,7 +19780,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1313463885
 RectTransform:
@@ -19216,7 +19857,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1319055544
 RectTransform:
@@ -19352,7 +19993,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1321928071
 RectTransform:
@@ -19457,7 +20098,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1343424127
 RectTransform:
@@ -19592,7 +20233,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1345889455
 RectTransform:
@@ -19670,7 +20311,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1350174161
 RectTransform:
@@ -19935,12 +20576,13 @@ GameObject:
   - component: {fileID: 1357297387}
   - component: {fileID: 1357297389}
   - component: {fileID: 1357297388}
+  - component: {fileID: 1357297390}
   m_Layer: 5
-  m_Name: TitleText
+  m_Name: CriticalHitChanceTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1357297387
 RectTransform:
@@ -20059,6 +20701,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357297386}
   m_CullTransparentMesh: 1
+--- !u!114 &1357297390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357297386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1357297388}
+  text: {fileID: 0}
 --- !u!1 &1359099228
 GameObject:
   m_ObjectHideFlags: 0
@@ -20074,7 +20734,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 0
 --- !u!224 &1359099229
 RectTransform:
@@ -20109,6 +20769,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a67a44ce49779488ef3b69c9051dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _closeWhenScreenChange: 0
+  _beforeOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _beforeClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _openAnimation: {fileID: 11400000, guid: 4140f868637290f498808b2ba3a02a3d, type: 2}
+  _closeAnimation: {fileID: 0}
   fireTower: {fileID: 910766235597683071, guid: b42cf60d750cfd84bb029b6140db692e, type: 3}
   waterTower: {fileID: 1862409463211683208, guid: 017dfd25291293848b0230158b66acc9, type: 3}
   airTower: {fileID: 3997915982083620474, guid: 771ae099c0d04ab44abdbccccdcabf6f, type: 3}
@@ -20133,7 +20808,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1369856653
 RectTransform:
@@ -20212,7 +20887,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1370885545
 RectTransform:
@@ -20506,12 +21181,13 @@ GameObject:
   - component: {fileID: 1401633495}
   - component: {fileID: 1401633497}
   - component: {fileID: 1401633496}
+  - component: {fileID: 1401633498}
   m_Layer: 5
-  m_Name: TitleText
+  m_Name: AttackSpeedTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1401633495
 RectTransform:
@@ -20630,6 +21306,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401633494}
   m_CullTransparentMesh: 1
+--- !u!114 &1401633498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401633494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1401633496}
+  text: {fileID: 0}
 --- !u!1 &1405882066
 GameObject:
   m_ObjectHideFlags: 0
@@ -20646,7 +21340,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1405882067
 RectTransform:
@@ -20724,7 +21418,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1406361237
 RectTransform:
@@ -20856,7 +21550,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 0
 --- !u!224 &1409928484
 RectTransform:
@@ -20888,25 +21582,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1409928483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f46ea9dbacc20334693c5ece10a52747, type: 3}
+  m_Script: {fileID: 11500000, guid: d427eb060529d0b4081d09d1a8449d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireInfoTitleText: {fileID: 1850527367}
-  _waterInfoTitleText: {fileID: 365880692}
-  _earthInfoTitleText: {fileID: 874479045}
-  _airInfoTitleText: {fileID: 1915179950}
-  _fireInfoText: {fileID: 1708682795}
-  _waterInfoText: {fileID: 1690771005}
-  _earthInfoText: {fileID: 1786001174}
-  _airInfoText: {fileID: 1299076019}
-  _fireButtonText: {fileID: 776278048}
-  _waterButtonText: {fileID: 1751062163}
-  _earthButtonText: {fileID: 96697828}
-  _airButtonText: {fileID: 451310847}
-  _fireButton: {fileID: 132120279}
-  _waterButton: {fileID: 737775588}
-  _earthButton: {fileID: 570866381}
-  _airButton: {fileID: 941498336}
+  _closeWhenScreenChange: 0
+  _beforeOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _beforeClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _openAnimation: {fileID: 11400000, guid: 1fa01d6ac0fe51041af8a77d743d713f, type: 2}
+  _closeAnimation: {fileID: 11400000, guid: 52c3d33b2417d8c4b8254f481008a873, type: 2}
 --- !u!1001 &1415799648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21408,12 +22101,13 @@ GameObject:
   - component: {fileID: 1425103335}
   - component: {fileID: 1425103337}
   - component: {fileID: 1425103336}
+  - component: {fileID: 1425103338}
   m_Layer: 5
-  m_Name: InfoText
+  m_Name: CriticalHitDamageInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1425103335
 RectTransform:
@@ -21532,6 +22226,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425103334}
   m_CullTransparentMesh: 1
+--- !u!114 &1425103338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425103334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1425103336}
+  text: {fileID: 0}
 --- !u!1 &1426862736
 GameObject:
   m_ObjectHideFlags: 0
@@ -21544,12 +22256,13 @@ GameObject:
   - component: {fileID: 1426862740}
   - component: {fileID: 1426862739}
   - component: {fileID: 1426862738}
+  - component: {fileID: 1426862741}
   m_Layer: 5
-  m_Name: UpdateButton
+  m_Name: DamageUpdateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1426862737
 RectTransform:
@@ -21615,19 +22328,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1426862739}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 812589263}
-        m_TargetAssemblyTypeName: ResearchPopUp, Assembly-CSharp
-        m_MethodName: OnClickDamageButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1426862739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21666,6 +22367,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426862736}
   m_CullTransparentMesh: 1
+--- !u!114 &1426862741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426862736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: DamageButtonText
+    waitToExecute: 0.5
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: DamageInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1971688738}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UpdateDamageLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: DamageTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1441657877
 GameObject:
   m_ObjectHideFlags: 0
@@ -21745,7 +22501,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1442159141
 RectTransform:
@@ -21843,7 +22599,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1449564447
 RectTransform:
@@ -21976,7 +22732,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1450034172
 RectTransform:
@@ -22054,7 +22810,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1463271177
 RectTransform:
@@ -22362,7 +23118,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1480718169
 RectTransform:
@@ -22495,7 +23251,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1497161635
 RectTransform:
@@ -22630,7 +23386,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1499139463
 RectTransform:
@@ -22703,12 +23459,13 @@ GameObject:
   - component: {fileID: 1499910659}
   - component: {fileID: 1499910658}
   - component: {fileID: 1499910657}
+  - component: {fileID: 1499910660}
   m_Layer: 5
-  m_Name: UpdateButton
+  m_Name: AttackSpeedUpdateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1499910656
 RectTransform:
@@ -22774,19 +23531,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1499910658}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 812589263}
-        m_TargetAssemblyTypeName: ResearchPopUp, Assembly-CSharp
-        m_MethodName: OnClickAttackSpeedButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1499910658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22825,6 +23570,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499910655}
   m_CullTransparentMesh: 1
+--- !u!114 &1499910660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499910655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: AttackSpeedButtonText
+    waitToExecute: 0.5
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: AttackSpeedInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1971688738}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UpdateAttackSpeedLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: AttackSpeedTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1508997047
 GameObject:
   m_ObjectHideFlags: 0
@@ -22841,7 +23641,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1508997048
 RectTransform:
@@ -22915,12 +23715,13 @@ GameObject:
   - component: {fileID: 1510825656}
   - component: {fileID: 1510825658}
   - component: {fileID: 1510825657}
+  - component: {fileID: 1510825659}
   m_Layer: 5
-  m_Name: UpdateButtonText
+  m_Name: CriticalHitChanceButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1510825656
 RectTransform:
@@ -23039,6 +23840,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510825655}
   m_CullTransparentMesh: 1
+--- !u!114 &1510825659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510825655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1510825657}
+  text: {fileID: 0}
 --- !u!1 &1523734508
 GameObject:
   m_ObjectHideFlags: 0
@@ -23134,12 +23953,13 @@ GameObject:
   - component: {fileID: 1530617681}
   - component: {fileID: 1530617680}
   - component: {fileID: 1530617679}
+  - component: {fileID: 1530617682}
   m_Layer: 5
-  m_Name: UpdateButton
+  m_Name: CriticalHitChanceUpdateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1530617678
 RectTransform:
@@ -23205,19 +24025,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1530617680}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 812589263}
-        m_TargetAssemblyTypeName: ResearchPopUp, Assembly-CSharp
-        m_MethodName: OnClickCriticalHitChanceButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1530617680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23256,6 +24064,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530617677}
   m_CullTransparentMesh: 1
+--- !u!114 &1530617682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530617677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: CriticalHitChanceButtonText
+    waitToExecute: 0.5
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: CriticalHitChanceInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1971688738}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UpdateCriticalHitChanceLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: CriticalHitChanceTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1540326836
 GameObject:
   m_ObjectHideFlags: 0
@@ -23272,7 +24135,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1540326837
 RectTransform:
@@ -23349,7 +24212,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1560608231
 RectTransform:
@@ -23484,7 +24347,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1561057599
 RectTransform:
@@ -23619,7 +24482,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1571082681
 RectTransform:
@@ -23698,7 +24561,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1572444873
 RectTransform:
@@ -23911,7 +24774,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1583157050
 RectTransform:
@@ -24046,7 +24909,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1600263571
 RectTransform:
@@ -24181,7 +25044,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1606628084
 RectTransform:
@@ -24253,12 +25116,13 @@ GameObject:
   - component: {fileID: 1608249198}
   - component: {fileID: 1608249200}
   - component: {fileID: 1608249199}
+  - component: {fileID: 1608249201}
   m_Layer: 5
-  m_Name: InfoText
+  m_Name: DamageInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1608249198
 RectTransform:
@@ -24377,6 +25241,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608249197}
   m_CullTransparentMesh: 1
+--- !u!114 &1608249201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608249197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1608249199}
+  text: {fileID: 0}
 --- !u!1 &1613673662
 GameObject:
   m_ObjectHideFlags: 0
@@ -24393,7 +25275,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1613673663
 RectTransform:
@@ -24470,7 +25352,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1617857696
 RectTransform:
@@ -24605,7 +25487,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1619299667
 RectTransform:
@@ -24846,7 +25728,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1634120116
 RectTransform:
@@ -24981,7 +25863,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1639992074
 RectTransform:
@@ -25116,7 +25998,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1642375995
 RectTransform:
@@ -25252,7 +26134,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1686702717
 RectTransform:
@@ -25380,12 +26262,13 @@ GameObject:
   - component: {fileID: 1690771004}
   - component: {fileID: 1690771006}
   - component: {fileID: 1690771005}
+  - component: {fileID: 1690771007}
   m_Layer: 5
-  m_Name: InfoText
+  m_Name: WaterInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1690771004
 RectTransform:
@@ -25504,6 +26387,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690771003}
   m_CullTransparentMesh: 1
+--- !u!114 &1690771007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690771003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1690771005}
+  text: {fileID: 0}
 --- !u!114 &1693696607 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8138865375606815946, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
@@ -25527,12 +26428,13 @@ GameObject:
   - component: {fileID: 1694838303}
   - component: {fileID: 1694838302}
   - component: {fileID: 1694838301}
+  - component: {fileID: 1694838304}
   m_Layer: 5
   m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1694838300
 RectTransform:
@@ -25598,19 +26500,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1694838302}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1039497297}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
-        m_MethodName: ClosePopUp
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ElementsPopUp
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1694838302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25649,6 +26539,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694838299}
   m_CullTransparentMesh: 1
+--- !u!114 &1694838304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694838299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 2
+    screenName: 
+    popUpName: ElementsPopUp
+    textName: 
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0.5
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1705938467
 GameObject:
   m_ObjectHideFlags: 0
@@ -25666,7 +26579,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1705938468
 RectTransform:
@@ -25758,12 +26671,13 @@ GameObject:
   - component: {fileID: 1708682794}
   - component: {fileID: 1708682796}
   - component: {fileID: 1708682795}
+  - component: {fileID: 1708682797}
   m_Layer: 5
-  m_Name: InfoText
+  m_Name: FireInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1708682794
 RectTransform:
@@ -25882,6 +26796,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708682793}
   m_CullTransparentMesh: 1
+--- !u!114 &1708682797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708682793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1708682795}
+  text: {fileID: 0}
 --- !u!1 &1729643432
 GameObject:
   m_ObjectHideFlags: 0
@@ -26076,7 +27008,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1731322633
 RectTransform:
@@ -26196,7 +27128,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 0
 --- !u!224 &1732593536
 RectTransform:
@@ -26231,6 +27163,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ff3b5c23d051c4483f53db8260f5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _closeWhenScreenChange: 0
+  _beforeOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _beforeClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _openAnimation: {fileID: 11400000, guid: 4140f868637290f498808b2ba3a02a3d, type: 2}
+  _closeAnimation: {fileID: 0}
   _title: {fileID: 1561057600}
   _updateButtonText: {fileID: 1639992075}
   _sellButtonText: {fileID: 1319055545}
@@ -26251,7 +27198,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1745876603
 RectTransform:
@@ -26328,7 +27275,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1749782888
 RectTransform:
@@ -26402,12 +27349,13 @@ GameObject:
   - component: {fileID: 1751062162}
   - component: {fileID: 1751062164}
   - component: {fileID: 1751062163}
+  - component: {fileID: 1751062165}
   m_Layer: 5
-  m_Name: UpdateButtonText
+  m_Name: WaterButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1751062162
 RectTransform:
@@ -26526,6 +27474,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751062161}
   m_CullTransparentMesh: 1
+--- !u!114 &1751062165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751062161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1751062163}
+  text: {fileID: 0}
 --- !u!1001 &1755781112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26629,7 +27595,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1757411557
 RectTransform:
@@ -26745,12 +27711,13 @@ GameObject:
   - component: {fileID: 1762195132}
   - component: {fileID: 1762195134}
   - component: {fileID: 1762195133}
+  - component: {fileID: 1762195135}
   m_Layer: 5
-  m_Name: TitleText
+  m_Name: DamageTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1762195132
 RectTransform:
@@ -26869,6 +27836,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762195131}
   m_CullTransparentMesh: 1
+--- !u!114 &1762195135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762195131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1762195133}
+  text: {fileID: 0}
 --- !u!1 &1775112327
 GameObject:
   m_ObjectHideFlags: 0
@@ -26942,12 +27927,13 @@ GameObject:
   - component: {fileID: 1786001173}
   - component: {fileID: 1786001175}
   - component: {fileID: 1786001174}
+  - component: {fileID: 1786001176}
   m_Layer: 5
-  m_Name: InfoText
+  m_Name: EarthInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1786001173
 RectTransform:
@@ -27066,6 +28052,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786001172}
   m_CullTransparentMesh: 1
+--- !u!114 &1786001176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786001172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1786001174}
+  text: {fileID: 0}
 --- !u!1 &1818445888
 GameObject:
   m_ObjectHideFlags: 0
@@ -27082,7 +28086,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1818445889
 RectTransform:
@@ -27218,7 +28222,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1847742678
 RectTransform:
@@ -27348,12 +28352,13 @@ GameObject:
   - component: {fileID: 1850527366}
   - component: {fileID: 1850527368}
   - component: {fileID: 1850527367}
+  - component: {fileID: 1850527369}
   m_Layer: 5
-  m_Name: TitleText
+  m_Name: FireTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1850527366
 RectTransform:
@@ -27472,6 +28477,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850527365}
   m_CullTransparentMesh: 1
+--- !u!114 &1850527369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850527365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1850527367}
+  text: {fileID: 0}
 --- !u!1 &1855543523
 GameObject:
   m_ObjectHideFlags: 0
@@ -27489,7 +28512,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1855543524
 RectTransform:
@@ -27582,12 +28605,13 @@ GameObject:
   - component: {fileID: 1862538849}
   - component: {fileID: 1862538848}
   - component: {fileID: 1862538847}
+  - component: {fileID: 1862538850}
   m_Layer: 5
   m_Name: ElementsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1862538846
 RectTransform:
@@ -27653,31 +28677,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1862538848}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1039497297}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
-        m_MethodName: CloseAllPopUpWithout
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ElementsPopUp
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1039497297}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
-        m_MethodName: OpenPopUp
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ElementsPopUp
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1862538848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27716,6 +28716,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862538845}
   m_CullTransparentMesh: 1
+--- !u!114 &1862538850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862538845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 1
+    screenName: 
+    popUpName: ElementsPopUp
+    textName: 
+    waitToExecute: 0
+    closeOtherPopUps: 1
+    waitToReuse: 0.5
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1885112936
 GameObject:
   m_ObjectHideFlags: 0
@@ -27775,7 +28798,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1910257856
 RectTransform:
@@ -27905,12 +28928,13 @@ GameObject:
   - component: {fileID: 1915179949}
   - component: {fileID: 1915179951}
   - component: {fileID: 1915179950}
+  - component: {fileID: 1915179952}
   m_Layer: 5
-  m_Name: TitleText
+  m_Name: AirTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1915179949
 RectTransform:
@@ -28029,6 +29053,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915179948}
   m_CullTransparentMesh: 1
+--- !u!114 &1915179952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915179948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 1915179950}
+  text: {fileID: 0}
 --- !u!1 &1915899426 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7565637907526890544, guid: 2343ee92bea1d514f9998bcec31756f9, type: 3}
@@ -28050,7 +29092,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1924132535
 RectTransform:
@@ -28130,7 +29172,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1924859770
 RectTransform:
@@ -28276,12 +29318,13 @@ GameObject:
   - component: {fileID: 1942841396}
   - component: {fileID: 1942841395}
   - component: {fileID: 1942841394}
+  - component: {fileID: 1942841397}
   m_Layer: 5
-  m_Name: UpdateButton
+  m_Name: CriticalHitDamageUpdateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1942841393
 RectTransform:
@@ -28347,19 +29390,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1942841395}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 812589263}
-        m_TargetAssemblyTypeName: ResearchPopUp, Assembly-CSharp
-        m_MethodName: OnClickCriticalHitDamageButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1942841395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28398,6 +29429,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942841392}
   m_CullTransparentMesh: 1
+--- !u!114 &1942841397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942841392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: CriticalHitDamageButtonText
+    waitToExecute: 0.5
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: CriticalHitDamageInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1971688738}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: UpdateCriticalHitDamageLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: CriticalHitDamageTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1951855643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28498,7 +29584,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1966236681
 RectTransform:
@@ -28597,7 +29683,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1971800466
 RectTransform:
@@ -28733,7 +29819,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1983517562
 RectTransform:
@@ -28866,7 +29952,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1986051541
 RectTransform:
@@ -29135,7 +30221,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &1999589656
 RectTransform:
@@ -29214,7 +30300,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2004643926
 RectTransform:
@@ -29345,12 +30431,13 @@ GameObject:
   - component: {fileID: 2014350778}
   - component: {fileID: 2014350777}
   - component: {fileID: 2014350776}
+  - component: {fileID: 2014350779}
   m_Layer: 5
   m_Name: RebornButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2014350775
 RectTransform:
@@ -29416,31 +30503,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2014350777}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1039497297}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
-        m_MethodName: CloseAllPopUpWithout
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: RebornPopUp
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1039497297}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
-        m_MethodName: OpenPopUp
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: RebornPopUp
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2014350777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29479,6 +30542,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014350774}
   m_CullTransparentMesh: 1
+--- !u!114 &2014350779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014350774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3aac19ada08eb4c8287b82340f56ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClicks:
+  - type: 1
+    screenName: 
+    popUpName: RebornPopUp
+    textName: 
+    waitToExecute: 0
+    closeOtherPopUps: 1
+    waitToReuse: 0.5
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &2019731913
 GameObject:
   m_ObjectHideFlags: 0
@@ -29552,12 +30638,13 @@ GameObject:
   - component: {fileID: 2021391372}
   - component: {fileID: 2021391374}
   - component: {fileID: 2021391373}
+  - component: {fileID: 2021391375}
   m_Layer: 5
-  m_Name: TitleText
+  m_Name: RangeTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2021391372
 RectTransform:
@@ -29676,6 +30763,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021391371}
   m_CullTransparentMesh: 1
+--- !u!114 &2021391375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021391371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b2544c69b0afa488204d2ff99337a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 2
+  updateFrame: 1
+  updateTime: 1
+  textType: 1
+  textMeshPro: {fileID: 2021391373}
+  text: {fileID: 0}
 --- !u!43 &2030575022
 Mesh:
   m_ObjectHideFlags: 0
@@ -29942,7 +31047,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2074690497
 RectTransform:
@@ -30076,7 +31181,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 0
 --- !u!224 &2077595737
 RectTransform:
@@ -30111,6 +31216,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f638151094002494ea82ac218294e8f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _closeWhenScreenChange: 0
+  _beforeOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  _beforeClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _afterClose:
+    m_PersistentCalls:
+      m_Calls: []
+  _openAnimation: {fileID: 11400000, guid: 1fa01d6ac0fe51041af8a77d743d713f, type: 2}
+  _closeAnimation: {fileID: 11400000, guid: 52c3d33b2417d8c4b8254f481008a873, type: 2}
   _contractInfo: {fileID: 1818445890}
   _contractButton: {fileID: 699404657}
   _essenceChangeInfoTitleText: {fileID: 61976981}
@@ -30145,7 +31265,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2103818326
 RectTransform:
@@ -30281,7 +31401,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2104697035
 RectTransform:
@@ -30414,7 +31534,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2125835760
 RectTransform:
@@ -30549,7 +31669,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2127953055
 RectTransform:
@@ -30628,7 +31748,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2133081792
 RectTransform:
@@ -30764,7 +31884,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2137688545
 RectTransform:
@@ -30861,7 +31981,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2142874334
 RectTransform:
@@ -31361,34 +32481,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal
       objectReference: {fileID: 0}
-    - target: {fileID: 3190468617819029587, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 3190468617819029597, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4635032747777448756, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607309103561429204, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8220686212800740473, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 8734699199874280070, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 707871728}
-    m_RemovedComponents:
-    - {fileID: 3190468617819029596, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
-    - {fileID: 3190468617819029599, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
-    - {fileID: 3190468617819029597, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
 --- !u!4 &3791033025234932203
 Transform:
@@ -40938,14 +42035,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1169265547}
     m_Modifications:
-    - target: {fileID: 8507256538290952692, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8507256538290952693, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8507256538290952694, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -40994,26 +42083,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBase
       objectReference: {fileID: 0}
-    - target: {fileID: 8507256538290952698, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8507256540057729428, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8507256540057729430, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8507256540057729434, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8507256538290952692, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
-    - {fileID: 8507256538290952695, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
-    - {fileID: 8507256538290952693, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffff415044e159442ae87c5a8b4c87c7, type: 3}
 --- !u!33 &8571571282538249175
 MeshFilter:

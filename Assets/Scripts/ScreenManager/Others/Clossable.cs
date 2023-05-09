@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace ScreenManagerNameSpace
+
+namespace ScreenManagerNS
 {
     public class Clossable : MonoBehaviour
     {
@@ -52,7 +53,7 @@ namespace ScreenManagerNameSpace
             EventTrigger.Entry pointerDownClose = new EventTrigger.Entry();
             pointerDownClose.eventID = EventTriggerType.PointerDown;
             pointerDownClose.callback.AddListener(delegate {
-
+                Debug.Log("Closeable");
                 ScreenManager.Instance.ClosePopUp(gameObject.name);
 
             });

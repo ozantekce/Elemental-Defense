@@ -1,52 +1,72 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-namespace ScreenManagerNameSpace
+namespace ScreenManagerNS
 {
+    [ExecuteInEditMode]
     public class ScreenManager : MonoBehaviour
     {
 
         private static ScreenManager instance;
 
+        public Screen[] screens;
+        // using for dropdown menu
+        public static Screen[] Screens;
 
-        [SerializeField]
-        private Screen[] _screens;
-        [SerializeField]
-        private PopUp[] _popUps;
+        public PopUp[] popUps;
+        // using for dropdown menu
+        public static PopUp[] PopUps;
 
-        private Dictionary<string, Screen> _screenDictionary;
-        private Dictionary<string, PopUp> _popUpDictionary;
+        public ExtendedText[] extendedTexts;
+        // using for dropdown menu
+        public static ExtendedText[] ExtendedTexts;
+
+
+        private Dictionary<string, Screen> _screenDictionary
+            = new Dictionary<string, Screen>();
+        private Dictionary<string, PopUp> _popUpDictionary
+            = new Dictionary<string, PopUp>();
+        private Dictionary<string, ExtendedText> _extendedTextDictionary
+            = new Dictionary<string, ExtendedText>();
 
         public Screen initialScreen;
+
         private Screen _currentScreen;
-
-
-
         private ISet<PopUp> _openedPopUps;
 
+        private List<string> _forceCloseList;
 
-        private List<Command> _commands = new List<Command>();
+
+
+        private Heap<Command> _commands;
+
         private void Awake()
         {
+            if (!Application.isPlaying) return;
 
+            FindExtendedTexts();
+            FindScreens();
+            FindPopUps();
+
+            _commands = new Heap<Command>();
             _openedPopUps = new HashSet<PopUp>();
 
-            _screenDictionary = new Dictionary<string, Screen>();
-            foreach (Screen s in _screens)
+            //_screenDictionary = new Dictionary<string, Screen>();
+            foreach (Screen s in screens)
             {
                 s.Configurations();
-                _screenDictionary.Add(s.name, s);
+                //_screenDictionary.Add(s.name, s);
                 _screenDictionary[s.name].gameObject.SetActive(false);
             }
 
-            _popUpDictionary = new Dictionary<string, PopUp>();
-            foreach (PopUp s in _popUps)
+            //_popUpDictionary = new Dictionary<string, PopUp>();
+            foreach (PopUp s in popUps)
             {
                 s.Configurations();
-                _popUpDictionary.Add(s.name, s);
+                //_popUpDictionary.Add(s.name, s);
                 _popUpDictionary[s.name].gameObject.SetActive(false);
             }
             MakeSingleton();
@@ -57,24 +77,86 @@ namespace ScreenManagerNameSpace
 
         private void Start()
         {
+            if (!Application.isPlaying) return;
             LoadScreen(initialScreen.name);
         }
 
 
+        //Optional
+        private const bool ExecuteOneCommandPerFrame = false;
 
-        private Command _currentCommand;
         private void Update()
         {
 
-            if (_commands.Count <= 0)
+            if (!Application.isPlaying)
+            {
+                FindExtendedTexts();
+                extendedTexts = ExtendedTexts;
+                FindScreens();
+                screens = Screens;
+                FindPopUps();
+                popUps = PopUps;
                 return;
-            if (_currentCommand != null && !_currentCommand.Terminated())
+            }
+
+        ExecuteNextCommand:
+            if (_commands.IsEmpty() || !_commands.Peek().IsReady)
                 return;
 
-            _currentCommand = _commands[0];
-            _currentCommand.Execute();
-            _commands.RemoveAt(0);
+            Command command = _commands.Remove();
 
+            if (command.IsReady)
+            {
+                command.Execute();
+                if (!ExecuteOneCommandPerFrame)
+                {
+                    goto ExecuteNextCommand;
+                }
+            }
+
+        }
+
+
+        private void FindExtendedTexts()
+        {
+            ExtendedText[] extendedTextComponents
+                = Resources.FindObjectsOfTypeAll<ExtendedText>();
+            foreach (ExtendedText component in extendedTextComponents)
+            {
+                if (component.gameObject.scene == gameObject.scene)
+                {
+                    _extendedTextDictionary[component.name] = component;
+                }
+            }
+            ExtendedTexts = extendedTextComponents;
+        }
+
+        private void FindScreens()
+        {
+            Screen[] screens
+                = Resources.FindObjectsOfTypeAll<Screen>();
+            foreach (Screen component in screens)
+            {
+                if (component.gameObject.scene == gameObject.scene)
+                {
+                    _screenDictionary[component.name] = component;
+                }
+            }
+            Screens = screens;
+        }
+
+        private void FindPopUps()
+        {
+            PopUp[] popUps
+                = Resources.FindObjectsOfTypeAll<PopUp>();
+            foreach (PopUp component in popUps)
+            {
+                if (component.gameObject.scene == gameObject.scene)
+                {
+                    _popUpDictionary[component.name] = component;
+                }
+            }
+            PopUps = popUps;
         }
 
 
@@ -83,156 +165,383 @@ namespace ScreenManagerNameSpace
             SceneManager.LoadScene(sceneName);
         }
 
-        public void LoadScreen(string screenName)
+        public void LoadScreen(string screenName) { LoadScreen(screenName, 0); }
+
+        public void LoadScreen(string screenName, float delay)
         {
-            if (_currentScreen != null)
-                _commands.Add(new CloseCommand(_currentScreen));
-            _currentScreen = _screenDictionary[screenName];
-            _commands.Add(new OpenCommand(_currentScreen));
+            Screen nextScreen = _screenDictionary[screenName];
+            // nextScreen must be different screen
+            if (nextScreen == _currentScreen) return;
+            // nextScreen must be Closed
+            if (nextScreen.Status != IScreenElement.IScreenStatus.Closed) return;
+            // add command
+            AddCommand(new LoadScreenCommand(nextScreen, delay));
+
         }
 
 
-        public void OpenPopUp(string popUpName)
+        public void OpenPopUp(string popUpName) { OpenPopUp(popUpName, 0); }
+        public void OpenPopUp(string popUpName, float delay, bool closeOtherPopUps = false)
         {
-            /*
-            if (_currentPopUp != null)
-                _commands.Add(new CloseCommand(_currentPopUp));
-            _currentPopUp = _popUpDictionary[popUpName];
-            */
+            AddCommand(new OpenPopUpCommand(_popUpDictionary[popUpName]
+                , delay, closeOtherPopUps));
+        }
 
+        public void ClosePopUp(string popUpName) { ClosePopUp(popUpName, 0f); }
+        public void ClosePopUp(string popUpName, float delay) { AddCommand(new ClosePopUpCommand(_popUpDictionary[popUpName], delay)); }
+
+
+        public void ForceOpenPopUp(string popUpName)
+        {
             PopUp openPopUp = _popUpDictionary[popUpName];
 
-            if (_openedPopUps.Contains(openPopUp))
-                return;
-
-            _commands.Add(new OpenCommand(openPopUp));
-
+            openPopUp.Status = IScreenElement.IScreenStatus.Opened;
+            openPopUp.MonoBehaviour.gameObject.SetActive(true);
             _openedPopUps.Add(openPopUp);
-
         }
 
-        public void ClosePopUp(string popUpName)
+        public void ForceClosePopUp(string popUpName)
         {
-            /*
-            if(_currentPopUp!=null)
-                _commands.Add(new CloseCommand(_currentPopUp));
-            */
             PopUp closePopUp = _popUpDictionary[popUpName];
-            _commands.Add(new CloseCommand(closePopUp));
 
+            closePopUp.Status = IScreenElement.IScreenStatus.Closed;
+            closePopUp.MonoBehaviour.gameObject.SetActive(false);
             _openedPopUps.Remove(closePopUp);
-
         }
 
-        public void CloseAllPopUps()
-        {
-            foreach (PopUp popUp in _openedPopUps)
-            {
-                _commands.Add(new CloseCommand(popUp));
+        public void CloseAllPopUps(float delay = 0) { AddCommand(new CloseAllPopUpsCommand(delay)); }
 
-                _openedPopUps.Remove(popUp);
-            }
-        }
-
-        private List<PopUp> closeList = new List<PopUp>();
         public void CloseAllPopUpWithout(string popUpName)
         {
-            closeList.Clear();
-            foreach (PopUp popUp in _openedPopUps)
-            {
-                if (popUp.name == popUpName)
-                {
-                    continue;
-                }
-                _commands.Add(new CloseCommand(popUp));
-                closeList.Add(popUp);
-
-            }
-
-            foreach (PopUp popUp in closeList)
-            {
-                _openedPopUps.Remove(popUp);
-            }
-
-
+            AddCommand(new CloseAllPopUpsWithoutCommand(_popUpDictionary[popUpName]));
+        }
+        public void CloseAllPopUpWithout(string popUpName, float delay)
+        {
+            AddCommand(new CloseAllPopUpsWithoutCommand(_popUpDictionary[popUpName], delay));
         }
 
-        public void QuitApplication()
+        private void AddCommand(Command command, params Command[] subs)
+        {
+            command.AddSubCommands(subs);
+            _commands.Insert(command);
+        }
+
+
+        public void QuitApplication(float delay)
         {
             Application.Quit();
-        }
-
-
-        private void MakeSingleton()
-        {
-            instance = this;
         }
 
         #region GetterSetter
 
         public static ScreenManager Instance { get => instance; }
         public Screen CurrentScreen { get => _currentScreen; }
+        public static Dictionary<string, ExtendedText> ExtendedTextDictionary
+        { get => Instance._extendedTextDictionary; set => Instance._extendedTextDictionary = value; }
 
 
         #endregion
 
+        private void MakeSingleton() { instance = this; }
 
-
-
-        private abstract class Command
+        private abstract class Command : IComparable<Command>
         {
-            protected IScreenElement element;
 
-            public Command(IScreenElement element)
+            protected IScreenElement _element;
+            private float _delay;
+            private bool _waitUntilTerminated;
+
+            private bool _isTerminated;
+            private float _createTime;
+            private List<Command> _subCommands = new List<Command>();
+            public Command(IScreenElement element, float delay = 0)
             {
-                this.element = element;
+                this._element = element;
+                this._createTime = Time.time;
+                this._delay = delay;
             }
 
-            public abstract void Execute();
+            public Command(float delay = 0)
+            {
+                _createTime = Time.time;
+                this._delay = delay;
+            }
 
-            public abstract bool Terminated();
+            public void AddSubCommands(params Command[] subs) { _subCommands.AddRange(subs); }
+
+            public void Execute()
+            {
+                for (int i = 0; i < _subCommands.Count; i++) _subCommands[i].Execute();
+                Execute_();
+            }
+            protected abstract void Execute_();
+            #region GetterSetter
+            public float RemaniderTime { get { return Delay - (Time.time - _createTime); } }
+            public float Delay { get => _delay; set => _delay = value; }
+            public bool IsReady { get { return Time.time - (_createTime) >= Delay; } }
+            public virtual bool IsTerminated { get => _isTerminated; protected set => _isTerminated = value; }
+            public bool WaitUntilTerminated { get => _waitUntilTerminated; set => _waitUntilTerminated = value; }
+            #endregion
+            public int CompareTo(Command other)
+            {
+                if (this.RemaniderTime > other.RemaniderTime) return +1;
+                else if (this.RemaniderTime < other.RemaniderTime) return -1;
+                else return 0;
+            }
+
         }
 
 
-        private class OpenCommand : Command
+        private class LoadScreenCommand : Command
         {
-            public OpenCommand(IScreenElement element) : base(element)
-            {
-            }
+            private Screen _screen;
+            public LoadScreenCommand(Screen screen, float delay = 0) : base(screen, delay) { this._screen = screen; }
 
-            public override void Execute()
+            protected override void Execute_()
             {
-                element.Open();
-            }
+                if (_element == null || _element.Status != IScreenElement.IScreenStatus.Closed)
+                {
+                    IsTerminated = true;
+                    return;
+                }
 
-            public override bool Terminated()
+                //unload current screen
+                IScreenElement currentScreen = ScreenManager.Instance.CurrentScreen;
+                currentScreen?.Close();
+                // some popups must close when screen change
+                ClosePopUpsWhenScreenChangeCommand.ExecuteImmediately();
+
+                _element.Open();
+                ScreenManager.Instance._currentScreen = _screen;
+            }
+            public override bool IsTerminated
             {
-                return element.Opened;
+                get
+                {
+                    return IsTerminated
+                        || _element.Status == IScreenElement.IScreenStatus.Opened;
+                }
             }
-        }
-
-        private class CloseCommand : Command
-        {
-            public CloseCommand(IScreenElement element) : base(element)
-            {
-            }
-
-            public override void Execute()
-            {
-                element.Close();
-            }
-
-            public override bool Terminated()
-            {
-                return !element.Opened;
-            }
-
 
         }
 
+        private class OpenPopUpCommand : Command
+        {
+
+            private PopUp _popUp;
+            private bool _closeOtherPopUps;
+
+            public OpenPopUpCommand(PopUp popUp, float delay, bool closeOtherPopUps = false) : base(popUp, delay)
+            {
+                this._popUp = popUp;
+                this._closeOtherPopUps = closeOtherPopUps;
+            }
+
+            protected override void Execute_()
+            {
+                if (_element == null || _element.Status != IScreenElement.IScreenStatus.Closed)
+                {
+                    IsTerminated = true;
+                    return;
+                }
+                if (_closeOtherPopUps) CloseAllPopUpsWithoutCommand.ExecuteImmediately(_popUp);
+
+                ScreenManager.instance._openedPopUps.Add(_popUp);
+                _element.Open();
+            }
+
+            public override bool IsTerminated
+            {
+                get
+                {
+                    return IsTerminated
+                        || _element.Status == IScreenElement.IScreenStatus.Opened;
+                }
+            }
+        }
+
+        private class ClosePopUpCommand : Command
+        {
+            private PopUp popUp;
+            public ClosePopUpCommand(PopUp popUp, float delay = 0) : base(popUp, delay)
+            {
+                this.popUp = popUp;
+            }
+
+            protected override void Execute_()
+            {
+                if (_element == null || _element.Status != IScreenElement.IScreenStatus.Opened)
+                {
+                    IsTerminated = true;
+                    return;
+                }
+                ScreenManager.instance._openedPopUps.Remove(popUp);
+                _element.Close();
+            }
+
+            public override bool IsTerminated
+            {
+                get
+                {
+                    return IsTerminated
+                        || _element.Status == IScreenElement.IScreenStatus.Closed;
+                }
+            }
+
+        }
+
+        private class CloseAllPopUpsCommand : Command
+        {
+            public CloseAllPopUpsCommand(float delay = 0) : base(delay) { }
+
+            protected override void Execute_()
+            {
+                IsTerminated = true;
+                List<string> forceCloseList = ScreenManager.instance._forceCloseList;
+                ISet<PopUp> openedPopUps = ScreenManager.instance._openedPopUps;
+
+                if (forceCloseList == null) forceCloseList = new List<string>();
+                else forceCloseList.Clear();
+
+                foreach (PopUp popUp in openedPopUps)
+                {
+                    if (popUp.Status == IScreenElement.IScreenStatus.Opened)
+                        ScreenManager.instance.AddCommand(new ClosePopUpCommand(popUp, 0f));
+                    else
+                        forceCloseList.Add(popUp.name);
+                }
+
+                foreach (string popUp in forceCloseList)
+                    ScreenManager.instance.ForceClosePopUp(popUp);
+            }
+
+            protected static void ExecuteImmediately()
+            {
+                List<string> forceCloseList = ScreenManager.instance._forceCloseList;
+                ISet<PopUp> openedPopUps = ScreenManager.instance._openedPopUps;
+
+                if (forceCloseList == null) forceCloseList = new List<string>();
+                else forceCloseList.Clear();
+
+                foreach (PopUp popUp in openedPopUps)
+                {
+                    if (popUp.Status == IScreenElement.IScreenStatus.Opened)
+                        ScreenManager.instance.AddCommand(new ClosePopUpCommand(popUp, 0f));
+                    else
+                        forceCloseList.Add(popUp.name);
+                }
+
+                foreach (string popUp in forceCloseList)
+                    ScreenManager.instance.ForceClosePopUp(popUp);
+            }
+
+        }
+
+        private class ClosePopUpsWhenScreenChangeCommand : Command
+        {
+            public ClosePopUpsWhenScreenChangeCommand(float delay = 0) : base(delay) { }
+
+            protected override void Execute_()
+            {
+                IsTerminated = true;
+                List<string> forceCloseList = ScreenManager.instance._forceCloseList;
+                ISet<PopUp> openedPopUps = ScreenManager.instance._openedPopUps;
+
+                // some popups must close when screen change
+                if (forceCloseList == null) forceCloseList = new List<string>();
+                else forceCloseList.Clear();
+
+                foreach (PopUp popUp in openedPopUps)
+                    if (popUp.CloseWhenScreenChange) forceCloseList.Add(popUp
+                        .MonoBehaviour.gameObject.name);
+
+                foreach (string name in forceCloseList)
+                    ScreenManager.instance.ForceClosePopUp(name);
+                //
+            }
+
+            public static void ExecuteImmediately()
+            {
+                List<string> forceCloseList = ScreenManager.instance._forceCloseList;
+                ISet<PopUp> openedPopUps = ScreenManager.instance._openedPopUps;
+
+                // some popups must close when screen change
+                if (forceCloseList == null) forceCloseList = new List<string>();
+                else forceCloseList.Clear();
+
+                foreach (PopUp popUp in openedPopUps)
+                    if (popUp.CloseWhenScreenChange) forceCloseList.Add(popUp
+                        .MonoBehaviour.gameObject.name);
+
+                foreach (string name in forceCloseList)
+                    ScreenManager.instance.ForceClosePopUp(name);
+                //
+            }
+
+        }
+
+        private class CloseAllPopUpsWithoutCommand : Command
+        {
+            public CloseAllPopUpsWithoutCommand(IScreenElement element, float delay = 0)
+                : base(element, delay)
+            {
+
+            }
+
+            protected override void Execute_()
+            {
+                IsTerminated = true;
+                List<string> forceCloseList = ScreenManager.instance._forceCloseList;
+                ISet<PopUp> openedPopUps = ScreenManager.instance._openedPopUps;
+
+                if (forceCloseList == null) forceCloseList = new List<string>();
+                else forceCloseList.Clear();
+
+                foreach (PopUp popUp in openedPopUps)
+                {
+                    if (popUp.Equals(_element)) continue;
+                    if (popUp.Status == IScreenElement.IScreenStatus.Opened)
+                        ScreenManager.instance.AddCommand(new ClosePopUpCommand(popUp, 0f));
+                    else
+                        forceCloseList.Add(popUp.name);
+                }
+
+                foreach (string popUp in forceCloseList)
+                    ScreenManager.instance.ForceClosePopUp(popUp);
+
+            }
+
+            public static void ExecuteImmediately(PopUp notCloseThis)
+            {
+                List<string> forceCloseList = ScreenManager.instance._forceCloseList;
+                ISet<PopUp> openedPopUps = ScreenManager.instance._openedPopUps;
+
+                if (forceCloseList == null) forceCloseList = new List<string>();
+                else forceCloseList.Clear();
+
+                foreach (PopUp popUp in openedPopUps)
+                {
+                    if (popUp.Equals(notCloseThis)) continue;
+                    if (popUp.Status == IScreenElement.IScreenStatus.Opened)
+                        ScreenManager.instance.AddCommand(new ClosePopUpCommand(popUp, 0f));
+                    else
+                        forceCloseList.Add(popUp.name);
+                }
+
+                foreach (string popUp in forceCloseList)
+                    ScreenManager.instance.ForceClosePopUp(popUp);
+            }
+
+        }
+
+
+        // quit app command
+
+        // load scene command
 
     }
 
-}
 
+
+}
 

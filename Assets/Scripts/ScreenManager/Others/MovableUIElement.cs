@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-namespace ScreenManagerNameSpace
+namespace ScreenManagerNS
 {
     public class MovableUIElement : MonoBehaviour
     {

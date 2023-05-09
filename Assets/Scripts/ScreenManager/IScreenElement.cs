@@ -1,23 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-
-namespace ScreenManagerNameSpace
+namespace ScreenManagerNS
 {
     public interface IScreenElement
     {
 
-        public bool Opened { get; set; }
+        public IScreenStatus Status { get; set; }
         public MonoBehaviour MonoBehaviour { get; set; }
 
-        public delegate IEnumerator Method();
+        #region Events
+        public UnityEvent BeforeOpen { get; set; }
+        public UnityEvent AfterOpen { get; set; }
 
-        public Method BeforeOpen { get; set; }
-        public Method AfterOpen { get; set; }
+        public UnityEvent BeforeClose { get; set; }
+        public UnityEvent AfterClose { get; set; }
+        #endregion
 
-        public Method BeforeClose { get; set; }
-        public Method AfterClose { get; set; }
+        public ScreenManagerAnimation OpenAnimation { get; set; }
+        public ScreenManagerAnimation CloseAnimation { get; set; }
+
 
 
         public void Configurations();
@@ -25,27 +29,30 @@ namespace ScreenManagerNameSpace
 
         public void Open()
         {
-
             ScreenManager.Instance.StartCoroutine(OpenRoutine());
-
         }
 
         private IEnumerator OpenRoutine()
         {
-            if (BeforeOpen != null)
-                yield return BeforeOpen();
-            yield return OpenNow();
-            if (AfterOpen != null)
-                yield return AfterOpen();
+            // must be closed
+            if (Status != IScreenStatus.Closed) yield break;
+
+            Status = IScreenStatus.Opening;
+            if (BeforeOpen != null) BeforeOpen.Invoke();
+            if (OpenAnimation != null) yield return OpenAnimation.Enumerator(this);
+
+            if (Status != IScreenStatus.Opening) yield break;
+            OpenNow();
+
+            if (AfterOpen != null) AfterOpen.Invoke();
         }
 
-        private IEnumerator OpenNow()
+        private void OpenNow()
         {
             //Debug.Log("OPEN");
-            Opened = true;
+            Status = IScreenStatus.Opened;
             MonoBehaviour.gameObject.SetActive(true);
             MonoBehaviour.transform.SetAsLastSibling();
-            yield return null;
         }
 
         public void Close()
@@ -55,22 +62,28 @@ namespace ScreenManagerNameSpace
 
         private IEnumerator CloseRoutine()
         {
-            if (BeforeClose != null)
-                yield return BeforeClose();
-            yield return CloseNow();
-            if (AfterClose != null)
-                yield return AfterClose();
+            // must be opened
+            if (Status != IScreenStatus.Opened) yield break;
+
+            Status = IScreenStatus.Closing;
+            if (BeforeClose != null) BeforeClose.Invoke();
+            if (CloseAnimation != null) yield return CloseAnimation.Enumerator(this);
+
+            if (Status != IScreenStatus.Closing) yield break;
+            CloseNow();
+
+            if (AfterClose != null) AfterClose.Invoke();
         }
 
-        private IEnumerator CloseNow()
+        private void CloseNow()
         {
             //Debug.Log("CLOSE");
-            Opened = false;
+            Status = IScreenStatus.Closed;
             MonoBehaviour.gameObject.SetActive(false);
-            yield return null;
         }
+
+        public enum IScreenStatus { Closed, Closing, Opened, Opening }
 
     }
 
 }
-

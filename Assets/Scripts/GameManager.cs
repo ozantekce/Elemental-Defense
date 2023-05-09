@@ -71,6 +71,90 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void UpdateFireLevel()
+    {
+        if (Local.Instance.Essence >= Local.Instance.ElementCost(Local.Instance.FireLevel))
+        {
+            Local.Instance.Essence -= Local.Instance.ElementCost(Local.Instance.FireLevel);
+            Local.Instance.FireLevel++;
+        }
+    }
+
+    public void UpdateWaterLevel()
+    {
+        if (Local.Instance.Essence >= Local.Instance.ElementCost(Local.Instance.WaterLevel))
+        {
+            Local.Instance.Essence -= Local.Instance.ElementCost(Local.Instance.WaterLevel);
+            Local.Instance.WaterLevel++;
+        }
+    }
+
+    public void UpdateEarthLevel()
+    {
+        if (Local.Instance.Essence >= Local.Instance.ElementCost(Local.Instance.EarthLevel))
+        {
+            Local.Instance.Essence -= Local.Instance.ElementCost(Local.Instance.EarthLevel);
+            Local.Instance.EarthLevel++;
+        }
+    }
+
+    public void UpdateAirLevel()
+    {
+        if (Local.Instance.Essence >= Local.Instance.ElementCost(Local.Instance.AirLevel))
+        {
+            Local.Instance.Essence -= Local.Instance.ElementCost(Local.Instance.AirLevel);
+            Local.Instance.AirLevel++;
+        }
+    }
+
+
+    public void UpdateDamageLevel()
+    {
+        if (Local.Instance.Essence >= Local.Instance.ResearchCost(Local.Instance.DamageLevel))
+        {
+            Local.Instance.Essence -= Local.Instance.ResearchCost(Local.Instance.DamageLevel);
+            Local.Instance.DamageLevel++;
+        }
+    }
+
+    public void UpdateAttackSpeedLevel()
+    {
+        if (Local.Instance.Essence >= Local.Instance.ResearchCost(Local.Instance.AttackSpeedLevel))
+        {
+            Local.Instance.Essence -= Local.Instance.ResearchCost(Local.Instance.AttackSpeedLevel);
+            Local.Instance.AttackSpeedLevel++;
+        }
+    }
+
+    public void UpdateCriticalHitChanceLevel()
+    {
+        if (Local.Instance.Essence >= Local.Instance.ResearchCost(Local.Instance.CriticalHitChangeLevel))
+        {
+            Local.Instance.Essence -= Local.Instance.ResearchCost(Local.Instance.CriticalHitChangeLevel);
+            Local.Instance.CriticalHitChangeLevel++;
+        }
+    }
+
+    public void UpdateCriticalHitDamageLevel()
+    {
+        if (Local.Instance.Essence >= Local.Instance.ResearchCost(Local.Instance.CriticalHitDamageLevel))
+        {
+            Local.Instance.Essence -= Local.Instance.ResearchCost(Local.Instance.CriticalHitDamageLevel);
+            Local.Instance.CriticalHitDamageLevel++;
+        }
+    }
+
+
+    public void UpdateRangeLevel()
+    {
+        if (Local.Instance.Essence >= Local.Instance.ResearchCost(Local.Instance.RangeLevel))
+        {
+            Local.Instance.Essence -= Local.Instance.ResearchCost(Local.Instance.RangeLevel);
+            Local.Instance.RangeLevel++;
+        }
+    }
+
+
     public static float DeltaTime()
     {
         return Time.deltaTime*Local.Instance.GameSpeed;
