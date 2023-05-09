@@ -43,7 +43,7 @@ public class HitEffect : MonoBehaviour, Poolable
 
     private void SendToPool()
     {
-        _poolable.SendToPool();
+        _poolable.AddToPool();
     }
 
 

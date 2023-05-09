@@ -64,7 +64,7 @@ public class Bullet : MonoBehaviour, Poolable
 
         if(_destination == null)
         {
-            _poolable.SendToPool();
+            _poolable.AddToPool();
             return;
         }
 
@@ -106,7 +106,7 @@ public class Bullet : MonoBehaviour, Poolable
         if (other.gameObject == _destination.gameObject)
         {
             while(_commandQueue.Count > 0) _commandQueue.Dequeue().Execute();
-            _poolable.SendToPool();
+            _poolable.AddToPool();
             HitEffect(other.transform);
         }
     }
@@ -118,7 +118,7 @@ public class Bullet : MonoBehaviour, Poolable
         {
             return;
         }
-        HitEffect hitEffect = (HitEffect)ObjectPoolManager.Instance.GetFromPool(_hitEffect);
+        HitEffect hitEffect = Poolable.GetFromPool(_hitEffect);
         hitEffect.InitHitEffect(target);
 
     }

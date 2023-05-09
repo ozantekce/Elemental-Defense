@@ -159,7 +159,7 @@ public class Tower : MonoBehaviour
             damage *= (1 + CriticalDamage);
         }
 
-        Poolable poolable = ObjectPoolManager.Instance.GetFromPool(_bulletPrefab);
+        Poolable poolable = Poolable.GetFromPool(_bulletPrefab);
         Bullet bullet = (Bullet)poolable;
         bullet.InitBullet(_bulletSpawnPoint.position,damage,this,target);
         
