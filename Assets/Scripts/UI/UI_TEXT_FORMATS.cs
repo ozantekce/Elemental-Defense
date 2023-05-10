@@ -13,9 +13,11 @@ public class UI_TEXT_FORMATS
         { "EnemyCount" , new Format("Enemy:") },
         { "EnemyHP" , new Format("EnemyHP:") },
         { "Gold" , new Format("G:") },
+        { "Gold2" , new Format("Gold(",")") },
         { "Essence" , new Format("E:") },
         { "Essence2" , new Format("Essence(",")") },
         { "RebornPoint" , new Format("RP:") },
+        { "RebornPoint2" , new Format("RP(",")") },
         { "FireLevel" , new Format("Fire(Lv." , ")") },
         { "WaterLevel" , new Format("Water(Lv." , ")") },
         { "EarthLevel" , new Format("Earth(Lv." , ")") },
@@ -39,6 +41,14 @@ public class UI_TEXT_FORMATS
         { "RangeInfo" , new Format("Increased towers range by <color=red>" , "%</color>") },
 
 
+        { "GoldLevel" , new Format("Gold(Lv." , ")") },
+        { "EssenceLevel" , new Format("Essence(Lv." , ")") },
+        { "RPLevel" , new Format("RP(Lv." , ")") },
+
+        { "GoldIncome" , new Format("<color=red>" , "</color> Gold by hour") },
+        { "EssenceIncome" , new Format("<color=red>" , "</color> Essence by hour") },
+        { "RPIncome" , new Format("<color=red>" , "</color> RP by hour") },
+
 
     };
 
@@ -51,12 +61,48 @@ public class UI_TEXT_FORMATS
 
     public static string Execute(string formatName, float val)
     {
-        return NameFormatPair[formatName].ExecuteFormat(val+"");
+        return NameFormatPair[formatName].ExecuteFormat(NumberFormat(val));
     }
 
     public static string Execute(string formatName, int val)
     {
-        return NameFormatPair[formatName].ExecuteFormat(val + "");
+        return NameFormatPair[formatName].ExecuteFormat(NumberFormat(val));
+    }
+
+    public static string NumberFormat(float number)
+    {
+        if (number >= 1e18)
+            return (number / 1e18).ToString("F2") + "E";
+        else if (number >= 1e15)
+            return (number / 1e15).ToString("F2") + "P";
+        else if (number >= 1e12)
+            return (number / 1e12).ToString("F2") + "T";
+        else if (number >= 1e9)
+            return (number / 1e9).ToString("F2") + "G";
+        else if (number >= 1e6)
+            return (number / 1e6).ToString("F2") + "M";
+        else if (number >= 1e3)
+            return (number / 1e3).ToString("F2") + "K";
+        else
+            return number.ToString("F2");
+    }
+
+    public static string NumberFormat(int number)
+    {
+        if (number >= 1e18)
+            return (number / 1e18).ToString("F2") + "E";
+        else if (number >= 1e15)
+            return (number / 1e15).ToString("F2") + "P";
+        else if (number >= 1e12)
+            return (number / 1e12).ToString("F2") + "T";
+        else if (number >= 1e9)
+            return (number / 1e9).ToString("F2") + "G";
+        else if (number >= 1e6)
+            return (number / 1e6).ToString("F2") + "M";
+        else if (number >= 1e3)
+            return (number / 1e3).ToString("F2") + "K";
+        else
+            return number.ToString();
     }
 
 
@@ -71,12 +117,13 @@ public class UI_TEXT_FORMATS
             this.front = front;
             this.end = end;
         }
-
-        public string ExecuteFormat(string text)
+        
+        public virtual string ExecuteFormat(string text)
         {
             return front+text+end;
         }
 
     }
+
 
 }

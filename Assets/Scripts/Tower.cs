@@ -98,16 +98,16 @@ public class Tower : MonoBehaviour
     private void UpdateFeatureData()
     {
 
-        Range = (BaseRange + IncreaseRange * _currentLevel) * Local.Instance.Range;
-        AttackPower = (BaseAttackPower + IncreaseAttackPower * _currentLevel ) * Local.Instance.Damage;
-        if (TowerType == TowerType.fire)
+        Range = (BaseRange + IncreaseRange * _currentLevel) * Local.Instance.ResearchEffect(Research.Range);
+        AttackPower = (BaseAttackPower + IncreaseAttackPower * _currentLevel ) * Local.Instance.ResearchEffect(Research.Damage);
+        if (TowerType == TowerType.Fire)
         {
-            AttackPower *= (1f + Local.Instance.FireEffect);
+            AttackPower *= (1f + Local.Instance.ElementEffect(Element.Fire));
         }
 
-        AttackPerSecond = (BaseAttackPerSecond + IncreaseAttackPerSecond * _currentLevel) * Local.Instance.AttackSpeed;
-        CriticalChange = (BaseCriticalChange + IncreaseCriticalChange * _currentLevel) * Local.Instance.CriticalHitChange;
-        CriticalDamage = (BaseCriticalDamage + IncreaseCriticalDamage * _currentLevel) * Local.Instance.CriticalHitDamage;
+        AttackPerSecond = (BaseAttackPerSecond + IncreaseAttackPerSecond * _currentLevel) * Local.Instance.ResearchEffect(Research.AttackSpeed);
+        CriticalChange = (BaseCriticalChange + IncreaseCriticalChange * _currentLevel) * Local.Instance.ResearchEffect(Research.CriticalHitChange);
+        CriticalDamage = (BaseCriticalDamage + IncreaseCriticalDamage * _currentLevel) * Local.Instance.ResearchEffect(Research.CriticalHitDamage);
 
     }
 
@@ -133,16 +133,16 @@ public class Tower : MonoBehaviour
     {
 
         _nextLevelFeatureData.range 
-            = (BaseRange + IncreaseRange * (_currentLevel+1) ) * Local.Instance.Range;
-        _nextLevelFeatureData.attackPower = (BaseAttackPower + IncreaseAttackPower * (_currentLevel + 1)) * Local.Instance.Damage;
-        if (TowerType == TowerType.fire)
+            = (BaseRange + IncreaseRange * (_currentLevel+1) ) * Local.Instance.ResearchEffect(Research.Range);
+        _nextLevelFeatureData.attackPower = (BaseAttackPower + IncreaseAttackPower * (_currentLevel + 1)) * Local.Instance.ResearchEffect(Research.Damage);
+        if (TowerType == TowerType.Fire)
         {
-            _nextLevelFeatureData.attackPower *= (1f + Local.Instance.FireEffect);
+            _nextLevelFeatureData.attackPower *= (1f + Local.Instance.ElementEffect(Element.Fire));
         }
 
-        _nextLevelFeatureData.attackPerSecond = (BaseAttackPerSecond + IncreaseAttackPerSecond * (_currentLevel + 1)) * Local.Instance.AttackSpeed;
-        _nextLevelFeatureData.criticalChange = (BaseCriticalChange + IncreaseCriticalChange * (_currentLevel + 1)) * Local.Instance.CriticalHitChange;
-        _nextLevelFeatureData.criticalDamage = (BaseCriticalDamage + IncreaseCriticalDamage * (_currentLevel + 1)) * Local.Instance.CriticalHitDamage;
+        _nextLevelFeatureData.attackPerSecond = (BaseAttackPerSecond + IncreaseAttackPerSecond * (_currentLevel + 1)) * Local.Instance.ResearchEffect(Research.AttackSpeed);
+        _nextLevelFeatureData.criticalChange = (BaseCriticalChange + IncreaseCriticalChange * (_currentLevel + 1)) * Local.Instance.ResearchEffect(Research.CriticalHitChange);
+        _nextLevelFeatureData.criticalDamage = (BaseCriticalDamage + IncreaseCriticalDamage * (_currentLevel + 1)) * Local.Instance.ResearchEffect(Research.CriticalHitDamage);
 
         return _nextLevelFeatureData;
     }

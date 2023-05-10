@@ -67,14 +67,35 @@ public class RebornPopUp : PopUp
 
         _contractButton.onClick.AddListener(OnClickContractButton);
 
+        ExtendedText.SetTextMethod("ContractInfoText", () =>
+        {
+            string text;
+            if (Local.Instance.Wave < Local.MinWavetoReborn)
+            {
+                text = "You must be at least wave " + Local.MinWavetoReborn;
+                _contractButton.enabled = false;
+            }
+            else
+            {
+                text = "This will reset your wave" +
+                    ", gold and towers but you gain <color=red>"
+                    + (Local.Instance.CanEarnRP) + "</color> Reborn Point";
+                _contractButton.enabled = true;
+            }
+            return text;
+        }
+        );
+
+
         UpdateTexts();
     }
+
 
 
     private void UpdateTexts()
     {
         // Update Contract
-
+        /*
         if (Local.Instance.Wave < Local.MinWavetoReborn)
         {
             _contractInfo.text = "You must be at least wave "+Local.MinWavetoReborn;
@@ -86,7 +107,7 @@ public class RebornPopUp : PopUp
                 ", gold and towers but you gain <color=red>"
                 + (Local.Instance.CanEarnRP) + "</color> Reborn Point";
             _contractButton.enabled = true;
-        }
+        }*/
 
 
         //end
@@ -178,16 +199,16 @@ public class RebornPopUp : PopUp
         int currentEssence = Local.Instance.Essence;
         int currentRP = Local.Instance.RebornPoint + Local.Instance.CanEarnRP;
         
-        int currentFireLevel = Local.Instance.FireLevel;
-        int currentWaterLevel = Local.Instance.WaterLevel;
-        int currentEarthLevel = Local.Instance.EarthLevel;
-        int currentAirLevel = Local.Instance.AirLevel;
+        int currentFireLevel = Local.Instance.ElementLevel(Element.Fire);
+        int currentWaterLevel = Local.Instance.ElementLevel(Element.Water);
+        int currentEarthLevel = Local.Instance.ElementLevel(Element.Earth);
+        int currentAirLevel = Local.Instance.ElementLevel(Element.Air);
 
-        int currentDamageLevel = Local.Instance.DamageLevel;
-        int currentAttackSpeedLevel = Local.Instance.AttackSpeedLevel;
-        int currentCriticalHitChangeLevel = Local.Instance.CriticalHitChangeLevel;
-        int currentCriticalHitDamageLevel = Local.Instance.CriticalHitDamageLevel;
-        int currentRangeLevel = Local.Instance.RangeLevel;
+        int currentDamageLevel = Local.Instance.ResearchLevel(Research.Damage);
+        int currentAttackSpeedLevel = Local.Instance.ResearchLevel(Research.AttackSpeed);
+        int currentCriticalHitChangeLevel = Local.Instance.ResearchLevel(Research.CriticalHitChange);
+        int currentCriticalHitDamageLevel = Local.Instance.ResearchLevel(Research.CriticalHitDamage);
+        int currentRangeLevel = Local.Instance.ResearchLevel(Research.Range);
 
         int currentEssenceChangeLevel = Local.Instance.EssenceChangeLevel;
         int currentGoldDropLevel = Local.Instance.GoldDropLevel;
@@ -205,16 +226,14 @@ public class RebornPopUp : PopUp
         Local.Instance.Essence = currentEssence;
         Local.Instance.RebornPoint = currentRP;
 
-        Local.Instance.FireLevel = currentFireLevel;
-        Local.Instance.WaterLevel = currentWaterLevel;
-        Local.Instance.EarthLevel = currentEarthLevel;
-        Local.Instance.AirLevel = currentAirLevel;
+        Local.Instance.SetElementsLevels(
+          new Element[] { Element.Fire,Element.Water,Element.Earth,Element.Air }
+        , new int[] {currentFireLevel,currentWaterLevel,currentEarthLevel,currentAirLevel });
 
-        Local.Instance.DamageLevel = currentDamageLevel;
-        Local.Instance.AttackSpeedLevel = currentAttackSpeedLevel;
-        Local.Instance.CriticalHitChangeLevel = currentCriticalHitChangeLevel;
-        Local.Instance.CriticalHitDamageLevel = currentCriticalHitDamageLevel;
-        Local.Instance.RangeLevel = currentRangeLevel;
+
+        Local.Instance.SetResearchsLevels(
+          new Research[] { Research.Damage, Research.AttackSpeed, Research.CriticalHitChange, Research.CriticalHitDamage, Research.Range }
+        , new int[] { currentDamageLevel, currentAttackSpeedLevel, currentCriticalHitChangeLevel, currentCriticalHitDamageLevel, currentRangeLevel });
 
         Local.Instance.EssenceChangeLevel = currentEssenceChangeLevel;
         Local.Instance.GoldDropLevel = currentGoldDropLevel;

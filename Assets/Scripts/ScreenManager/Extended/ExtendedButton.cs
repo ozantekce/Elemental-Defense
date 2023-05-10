@@ -119,7 +119,7 @@ namespace ScreenManagerNS
 
             private static void UpdateText(OnClickData data)
             {
-                ExtendedText.UpdateText(data.textName);
+                ExtendedText.UpdateTextWithMethod(data.textName);
             }
 
 

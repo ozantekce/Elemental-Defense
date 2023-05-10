@@ -39,15 +39,15 @@ public class Bullet : MonoBehaviour, Poolable
 
         _commandQueue.Clear();
         _commandQueue.Enqueue(new BulletDamageCommand(_destination, _attackPower));
-        if (Source.TowerType == TowerType.water)
+        if (Source.TowerType == TowerType.Water)
         {
             _commandQueue.Enqueue(new BulletSlowCommand(_destination));
         }
-        else if (Source.TowerType == TowerType.earth)
+        else if (Source.TowerType == TowerType.Earth)
         {
             _commandQueue.Enqueue(new BulletStunCommand(_destination));
         }
-        else if (Source.TowerType == TowerType.air)
+        else if (Source.TowerType == TowerType.Air)
         {
             _commandQueue.Enqueue(new BulletMessyAttackCommand(_destination, _attackPower));
         }
@@ -155,7 +155,7 @@ public class BulletSlowCommand : IBulletCommand
 
     public void Execute()
     {
-        _enemy.Status = EnemyStatus.slowed;
+        _enemy.Status = EnemyStatus.Slowed;
     }
 
 }
@@ -173,9 +173,9 @@ public class BulletStunCommand : IBulletCommand
     public void Execute()
     {
         int r = Random.Range(0, 101);
-        if (r <= 100f * Local.Instance.EarthEffect)
+        if (r <= 100f * Local.Instance.ElementEffect(Element.Earth))
         {
-            _enemy.Status = EnemyStatus.stunned;
+            _enemy.Status = EnemyStatus.Stunned;
         }
     }
 
@@ -201,7 +201,7 @@ public class BulletMessyAttackCommand : IBulletCommand
         //Debug.Log(hitColliders.Length);
         foreach (Collider hitCollider in hitColliders)
         {
-            hitCollider.GetComponent<Enemy>().TakeDamage(_damage * Local.Instance.AirEffect);
+            hitCollider.GetComponent<Enemy>().TakeDamage(_damage * Local.Instance.ElementEffect(Element.Air));
         }
     }
 }

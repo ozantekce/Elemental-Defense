@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +25,45 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         _instance = this;
+        string @string = PlayerPrefs.GetString("lastIncomeTime");
+        if (@string != string.Empty)
+        {
+            _lastIncomeTime = DateTime.Parse(@string);
+        }
+        else
+        {
+            _lastIncomeTime = DateTime.Now;
+            PlayerPrefs.SetString("lastIncomeTime", _lastIncomeTime.ToString());
+        }
+
+        _incomeCooldown = new Cooldown(1000 * 60 * 60);
+        Income();
+    }
+
+
+    private void Update()
+    {
+        if (_incomeCooldown.Ready())
+        {
+            Income();
+        }
+    }
+
+    private DateTime _lastIncomeTime; 
+    private Cooldown _incomeCooldown;
+    private void Income()
+    {
+        DateTime now = DateTime.Now;
+        int elapsedTime = (now - _lastIncomeTime).Minutes;
+        if (elapsedTime < 60)
+        {
+            return;
+        }
+        Local.Instance.Gold += (int)(elapsedTime / 60f * Local.Instance.PassiveIncomeAmount(PassiveIncome.Gold));
+        Local.Instance.Essence += (int)(elapsedTime / 60f * Local.Instance.PassiveIncomeAmount(PassiveIncome.Essence));
+        Local.Instance.RebornPoint += (int)(elapsedTime / 60f * Local.Instance.PassiveIncomeAmount(PassiveIncome.RP));
+        _lastIncomeTime = now;
+        PlayerPrefs.SetString("lastIncomeTime", _lastIncomeTime.ToString());
     }
 
 
@@ -71,87 +110,61 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void UpdateFireLevel()
+
+    public void IncreaseElementLevel(Element element)
     {
-        if (Local.Instance.Essence >= Local.Instance.ElementCost(Local.Instance.FireLevel))
+        int elementLevel = Local.Instance.ElementLevel(element);
+        int price = Local.Instance.ElementCost(elementLevel);
+        if(Local.Instance.Essence >= price)
         {
-            Local.Instance.Essence -= Local.Instance.ElementCost(Local.Instance.FireLevel);
-            Local.Instance.FireLevel++;
+            Local.Instance.Essence -= price;
+            Local.Instance.IncreaseElementLevel(element);
         }
     }
 
-    public void UpdateWaterLevel()
+    public void IncreaseElementLevel(string elementName)
     {
-        if (Local.Instance.Essence >= Local.Instance.ElementCost(Local.Instance.WaterLevel))
-        {
-            Local.Instance.Essence -= Local.Instance.ElementCost(Local.Instance.WaterLevel);
-            Local.Instance.WaterLevel++;
-        }
+        Element element = EnumHelper.StringToEnum<Element>(elementName);
+        IncreaseElementLevel(element);
     }
 
-    public void UpdateEarthLevel()
+    public void IncreaseResearchLevel(Research research)
     {
-        if (Local.Instance.Essence >= Local.Instance.ElementCost(Local.Instance.EarthLevel))
+
+        int researchLevel = Local.Instance.ResearchLevel(research);
+        int price = Local.Instance.ResearchCost(researchLevel);
+
+        if(Local.Instance.Essence >= price)
         {
-            Local.Instance.Essence -= Local.Instance.ElementCost(Local.Instance.EarthLevel);
-            Local.Instance.EarthLevel++;
+            Local.Instance.Essence -= price;
+            Local.Instance.IncreaseResearchLevel(research);
         }
+
     }
 
-    public void UpdateAirLevel()
+    public void IncreaseResearchLevel(string researchName)
     {
-        if (Local.Instance.Essence >= Local.Instance.ElementCost(Local.Instance.AirLevel))
-        {
-            Local.Instance.Essence -= Local.Instance.ElementCost(Local.Instance.AirLevel);
-            Local.Instance.AirLevel++;
-        }
-    }
-
-
-    public void UpdateDamageLevel()
-    {
-        if (Local.Instance.Essence >= Local.Instance.ResearchCost(Local.Instance.DamageLevel))
-        {
-            Local.Instance.Essence -= Local.Instance.ResearchCost(Local.Instance.DamageLevel);
-            Local.Instance.DamageLevel++;
-        }
-    }
-
-    public void UpdateAttackSpeedLevel()
-    {
-        if (Local.Instance.Essence >= Local.Instance.ResearchCost(Local.Instance.AttackSpeedLevel))
-        {
-            Local.Instance.Essence -= Local.Instance.ResearchCost(Local.Instance.AttackSpeedLevel);
-            Local.Instance.AttackSpeedLevel++;
-        }
-    }
-
-    public void UpdateCriticalHitChanceLevel()
-    {
-        if (Local.Instance.Essence >= Local.Instance.ResearchCost(Local.Instance.CriticalHitChangeLevel))
-        {
-            Local.Instance.Essence -= Local.Instance.ResearchCost(Local.Instance.CriticalHitChangeLevel);
-            Local.Instance.CriticalHitChangeLevel++;
-        }
-    }
-
-    public void UpdateCriticalHitDamageLevel()
-    {
-        if (Local.Instance.Essence >= Local.Instance.ResearchCost(Local.Instance.CriticalHitDamageLevel))
-        {
-            Local.Instance.Essence -= Local.Instance.ResearchCost(Local.Instance.CriticalHitDamageLevel);
-            Local.Instance.CriticalHitDamageLevel++;
-        }
+        Research research = EnumHelper.StringToEnum<Research>(researchName);
+        IncreaseResearchLevel(research);
     }
 
 
-    public void UpdateRangeLevel()
+    public void IncreaseIncomeLevel(PassiveIncome income)
     {
-        if (Local.Instance.Essence >= Local.Instance.ResearchCost(Local.Instance.RangeLevel))
+        int price = Local.Instance.PassiveIncomeUpdateCost(income);
+
+        if (Local.Instance.Essence >= price)
         {
-            Local.Instance.Essence -= Local.Instance.ResearchCost(Local.Instance.RangeLevel);
-            Local.Instance.RangeLevel++;
+            Local.Instance.Essence -= price;
+            Local.Instance.IncreaseIncomeLevel(income);
         }
+
+    }
+
+    public void IncreaseIncomeLevel(string incomeName)
+    {
+        PassiveIncome research = EnumHelper.StringToEnum<PassiveIncome>(incomeName);
+        IncreaseIncomeLevel(research);
     }
 
 

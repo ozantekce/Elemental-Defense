@@ -14,18 +14,18 @@ public class GameMainScreen : Screen
 
         // Screen Texts
         ExtendedText
-            .SetText("WaveInfo", ()=>UI_TEXT_FORMATS.Execute("Wave",Local.Instance.Wave));
+            .SetTextMethod("WaveInfo", "Wave",()=>Local.Instance.Wave);
         ExtendedText
-            .SetText("EnemyCountInfo", ()=>UI_TEXT_FORMATS.Execute("EnemyCount", Local.Instance.EnemyCount));
+            .SetTextMethod("EnemyCountInfo", "EnemyCount", ()=>Local.Instance.EnemyCount);
         ExtendedText
-            .SetText("EnemyHPInfo", ()=>UI_TEXT_FORMATS.Execute("EnemyHP", ((int)Local.Instance.EnemyHP)));
+            .SetTextMethod("EnemyHPInfo", "EnemyHP", () => ((int)Local.Instance.EnemyHP));
 
         ExtendedText
-            .SetText("GoldInfo", () => UI_TEXT_FORMATS.Execute("Gold", Local.Instance.Gold));
+            .SetTextMethod("GoldInfo", "Gold", () => Local.Instance.Gold);
         ExtendedText
-            .SetText("EssenceInfo", () => UI_TEXT_FORMATS.Execute("Essence", Local.Instance.Essence));
+            .SetTextMethod("EssenceInfo", "Essence", () => Local.Instance.Essence);
         ExtendedText
-            .SetText("RebornInfo", () => UI_TEXT_FORMATS.Execute("RebornPoint", Local.Instance.RebornPoint));
+            .SetTextMethod("RebornInfo", "RebornPoint", () => Local.Instance.RebornPoint);
         // End
 
 
@@ -33,36 +33,36 @@ public class GameMainScreen : Screen
 
         //Titles
         ExtendedText
-            .SetText("FireTitleText", () => UI_TEXT_FORMATS.Execute("FireLevel", Local.Instance.FireLevel));
+            .SetTextMethod("FireTitleText","FireLevel", () => Local.Instance.ElementLevel(Element.Fire));
         ExtendedText
-            .SetText("WaterTitleText", () => UI_TEXT_FORMATS.Execute("WaterLevel", Local.Instance.WaterLevel));
+            .SetTextMethod("WaterTitleText", "WaterLevel", () => Local.Instance.ElementLevel(Element.Water));
         ExtendedText
-            .SetText("EarthTitleText", () => UI_TEXT_FORMATS.Execute("EarthLevel", Local.Instance.EarthLevel));
+            .SetTextMethod("EarthTitleText", "EarthLevel", () => Local.Instance.ElementLevel(Element.Earth));
         ExtendedText
-            .SetText("AirTitleText", () => UI_TEXT_FORMATS.Execute("AirLevel", Local.Instance.AirLevel));
+            .SetTextMethod("AirTitleText", "AirLevel", () => Local.Instance.ElementLevel(Element.Air));
         //
 
 
         // Element Info
         ExtendedText
-            .SetText("FireInfoText", () => UI_TEXT_FORMATS.Execute("FireInfo", Local.Instance.FireEffect * 100));
+            .SetTextMethod("FireInfoText", "FireInfo", () => Local.Instance.ElementEffect(Element.Fire) * 100);
         ExtendedText
-            .SetText("WaterInfoText", () => UI_TEXT_FORMATS.Execute("WaterInfo", Local.Instance.WaterEffect*100));
+            .SetTextMethod("WaterInfoText", "WaterInfo", () => Local.Instance.ElementEffect(Element.Water) * 100);
         ExtendedText
-            .SetText("EarthInfoText", () => UI_TEXT_FORMATS.Execute("EarthInfo", Local.Instance.EarthEffect*100));
+            .SetTextMethod("EarthInfoText", "EarthInfo", () => Local.Instance.ElementEffect(Element.Earth) * 100);
         ExtendedText
-            .SetText("AirInfoText", () => UI_TEXT_FORMATS.Execute("AirInfo", Local.Instance.AirEffect*100));
+            .SetTextMethod("AirInfoText", "AirInfo", () => Local.Instance.ElementEffect(Element.Air) * 100);
         //
 
         // Buttons
         ExtendedText
-            .SetText("FireButtonText", () => UI_TEXT_FORMATS.Execute("Essence2", Local.Instance.ElementCost(Local.Instance.FireLevel)));
+            .SetTextMethod("FireButtonText", "Essence2", () => Local.Instance.ElementCost(Local.Instance.ElementLevel(Element.Fire)));
         ExtendedText
-            .SetText("WaterButtonText", () => UI_TEXT_FORMATS.Execute("Essence2", Local.Instance.ElementCost(Local.Instance.WaterLevel)));
+            .SetTextMethod("WaterButtonText", "Essence2", () => Local.Instance.ElementCost(Local.Instance.ElementLevel(Element.Water)));
         ExtendedText
-            .SetText("EarthButtonText", () => UI_TEXT_FORMATS.Execute("Essence2", Local.Instance.ElementCost(Local.Instance.FireLevel)));
+            .SetTextMethod("EarthButtonText", "Essence2", () => Local.Instance.ElementCost(Local.Instance.ElementLevel(Element.Earth)));
         ExtendedText
-            .SetText("AirButtonText", () => UI_TEXT_FORMATS.Execute("Essence2", Local.Instance.ElementCost(Local.Instance.AirLevel)));
+            .SetTextMethod("AirButtonText", "Essence2", () => Local.Instance.ElementCost(Local.Instance.ElementLevel(Element.Air)));
         //
 
         // End
@@ -72,45 +72,84 @@ public class GameMainScreen : Screen
 
         // Titles
         ExtendedText
-            .SetText("DamageTitleText", () => UI_TEXT_FORMATS.Execute("DamageLevel", Local.Instance.DamageLevel));
+            .SetTextMethod("DamageTitleText", "DamageLevel", () => Local.Instance.ResearchLevel(Research.Damage));
         ExtendedText
-            .SetText("AttackSpeedTitleText", () => UI_TEXT_FORMATS.Execute("AttackSpeedLevel", Local.Instance.AttackSpeedLevel));
+            .SetTextMethod("AttackSpeedTitleText", "AttackSpeedLevel", () => Local.Instance.ResearchLevel(Research.AttackSpeed));
         ExtendedText
-            .SetText("CriticalHitChanceTitleText", () => UI_TEXT_FORMATS.Execute("CriticalHitChanceLevel", Local.Instance.CriticalHitChangeLevel));
+            .SetTextMethod("CriticalHitChanceTitleText", "CriticalHitChanceLevel", () => Local.Instance.ResearchLevel(Research.CriticalHitChange));
         ExtendedText
-            .SetText("CriticalHitDamageTitleText", () => UI_TEXT_FORMATS.Execute("CriticalHitDamageLevel", Local.Instance.CriticalHitDamageLevel));
+            .SetTextMethod("CriticalHitDamageTitleText", "CriticalHitDamageLevel", () => Local.Instance.ResearchLevel(Research.CriticalHitDamage));
         ExtendedText
-            .SetText("RangeTitleText", () => UI_TEXT_FORMATS.Execute("RangeLevel", Local.Instance.RangeLevel));
+            .SetTextMethod("RangeTitleText", "RangeLevel", () => Local.Instance.ResearchLevel(Research.Range));
         //
 
         // Info
         ExtendedText
-            .SetText("DamageInfoText", () => UI_TEXT_FORMATS.Execute("DamageInfo", Local.Instance.Damage * 100));
+            .SetTextMethod("DamageInfoText", "DamageInfo", () => Local.Instance.ResearchEffect(Research.Damage) * 100);
         ExtendedText
-            .SetText("AttackSpeedInfoText", () => UI_TEXT_FORMATS.Execute("AttackSpeedInfo", Local.Instance.AttackSpeed * 100));
+            .SetTextMethod("AttackSpeedInfoText", "AttackSpeedInfo", () => Local.Instance.ResearchEffect(Research.AttackSpeed) * 100);
         ExtendedText
-            .SetText("CriticalHitChanceInfoText", () => UI_TEXT_FORMATS.Execute("CriticalHitChanceInfo", Local.Instance.CriticalHitChange * 100));
+            .SetTextMethod("CriticalHitChanceInfoText", "CriticalHitChanceInfo", () => Local.Instance.ResearchEffect(Research.CriticalHitChange) * 100);
         ExtendedText
-            .SetText("CriticalHitDamageInfoText", () => UI_TEXT_FORMATS.Execute("CriticalHitDamageInfo", Local.Instance.CriticalHitDamage * 100));
+            .SetTextMethod("CriticalHitDamageInfoText", "CriticalHitDamageInfo", () => Local.Instance.ResearchEffect(Research.CriticalHitDamage) * 100);
         ExtendedText
-            .SetText("RangeInfoText", () => UI_TEXT_FORMATS.Execute("RangeInfo", Local.Instance.Range * 100));
+            .SetTextMethod("RangeInfoText", "RangeInfo", () => Local.Instance.ResearchEffect(Research.Range) * 100);
         //
 
 
         // Button
         ExtendedText
-            .SetText("DamageButtonText", () => UI_TEXT_FORMATS.Execute("Essence2", Local.Instance.ElementCost(Local.Instance.DamageLevel)));
+            .SetTextMethod("DamageButtonText", "Essence2", () => Local.Instance.ResearchCost(Research.Damage));
         ExtendedText
-            .SetText("AttackSpeedButtonText", () => UI_TEXT_FORMATS.Execute("Essence2", Local.Instance.ElementCost(Local.Instance.AttackSpeedLevel)));
+            .SetTextMethod("AttackSpeedButtonText", "Essence2", () => Local.Instance.ResearchCost(Research.AttackSpeed));
         ExtendedText
-            .SetText("CriticalHitChanceButtonText", () => UI_TEXT_FORMATS.Execute("Essence2", Local.Instance.ElementCost(Local.Instance.CriticalHitChangeLevel)));
+            .SetTextMethod("CriticalHitChanceButtonText", "Essence2", () => Local.Instance.ResearchCost(Research.CriticalHitChange));
         ExtendedText
-            .SetText("CriticalHitDamageButtonText", () => UI_TEXT_FORMATS.Execute("Essence2", Local.Instance.ElementCost(Local.Instance.CriticalHitDamageLevel)));
+            .SetTextMethod("CriticalHitDamageButtonText", "Essence2", () => Local.Instance.ResearchCost(Research.CriticalHitDamage));
         ExtendedText
-            .SetText("RangeButtonText", () => UI_TEXT_FORMATS.Execute("Essence2", Local.Instance.ElementCost(Local.Instance.RangeLevel)));
+            .SetTextMethod("RangeButtonText", "Essence2", () => Local.Instance.ResearchCost(Research.Range));
         //
 
         // End
+
+
+
+        // Base
+
+        // Titles
+        
+        ExtendedText
+            .SetTextMethod("PassiveGoldTitleText", "GoldLevel" ,() => Local.Instance.PassiveIncomeLevel(PassiveIncome.Gold));
+        ExtendedText
+            .SetTextMethod("PassiveEssenceTitleText", "EssenceLevel", () => Local.Instance.PassiveIncomeLevel(PassiveIncome.Essence));
+        ExtendedText
+            .SetTextMethod("PassiveRPTitleText", "RPLevel", () => Local.Instance.PassiveIncomeLevel(PassiveIncome.RP));
+
+        //
+
+        // Info
+
+        ExtendedText
+            .SetTextMethod("PassiveGoldInfoText", "GoldIncome", () => Local.Instance.PassiveIncomeAmount(PassiveIncome.Gold));
+        ExtendedText
+            .SetTextMethod("PassiveEssenceInfoText", "EssenceIncome", () => Local.Instance.PassiveIncomeAmount(PassiveIncome.Essence));
+        ExtendedText
+            .SetTextMethod("PassiveRPInfoText", "RPIncome", () => Local.Instance.PassiveIncomeAmount(PassiveIncome.RP));
+
+        //
+
+        // Button
+
+        ExtendedText
+            .SetTextMethod("PassiveGoldButtonText", "Essence2", () => Local.Instance.PassiveIncomeUpdateCost(PassiveIncome.Gold));
+        ExtendedText
+            .SetTextMethod("PassiveEssenceButtonText", "Essence2", () => Local.Instance.PassiveIncomeUpdateCost(PassiveIncome.Essence));
+        ExtendedText
+            .SetTextMethod("PassiveRPButtonText", "Essence2", () => Local.Instance.PassiveIncomeUpdateCost(PassiveIncome.RP));
+
+        //
+
+        //End
 
 
     }

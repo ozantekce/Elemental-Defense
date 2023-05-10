@@ -21,26 +21,23 @@ namespace ScreenManagerNS
         [ShowInEnum("textType", "UnityText")]
         public Text text;
 
-        private UpdateTextMethod _updateText;
-        /*
-        private void Awake()
-        {
-            ScreenManager.ExtendedTexts.Add(this.name, this);
-        }*/
+        private UpdateTextMethod _updateTextMethod;
+
+        private string _usingFormat;
 
         private void Start()
         {
-            if (_updateText != null && _updateType == UpdateType.UpdateOnVisible)
+            if (_updateTextMethod != null && _updateType == UpdateType.UpdateOnVisible)
             {
-                Text = _updateText();
+                Text = _updateTextMethod();
             }
         }
 
         private void OnEnable()
         {
-            if (_updateText != null && _updateType == UpdateType.UpdateOnVisible)
+            if (_updateTextMethod != null && _updateType == UpdateType.UpdateOnVisible)
             {
-                Text = _updateText();
+                Text = _updateTextMethod();
             }
         }
 
@@ -51,25 +48,25 @@ namespace ScreenManagerNS
             if (_updateType == UpdateType.UpdateInFrame_)
             {
                 _frameCounter++;
-                if (_updateText != null && _frameCounter >= updateFrame)
+                if (_updateTextMethod != null && _frameCounter >= updateFrame)
                 {
-                    Text = _updateText();
+                    Text = _updateTextMethod();
                     _frameCounter = 0;
                 }
             }
             else if (_updateType == UpdateType.UpdatePerFrame)
             {
-                if (_updateText != null)
+                if (_updateTextMethod != null)
                 {
-                    Text = _updateText();
+                    Text = _updateTextMethod();
                 }
             }
             else if (_updateType == UpdateType.UpdateTime_)
             {
                 _timeCounter += Time.deltaTime;
-                if (_updateText != null && _timeCounter >= updateTime)
+                if (_updateTextMethod != null && _timeCounter >= updateTime)
                 {
-                    Text = _updateText();
+                    Text = _updateTextMethod();
                     _timeCounter = 0;
                 }
             }
@@ -77,14 +74,14 @@ namespace ScreenManagerNS
         }
 
 
-        public static void UpdateText(string textName)
+        public static void UpdateTextWithMethod(string textName)
         {
             if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
 
             ExtendedText extendedText = ScreenManager.ExtendedTextDictionary[textName];
-            if (extendedText._updateText != null)
+            if (extendedText._updateTextMethod != null)
             {
-                extendedText.Text = extendedText._updateText();
+                extendedText.Text = extendedText._updateTextMethod();
             }
         }
 
@@ -101,14 +98,36 @@ namespace ScreenManagerNS
         }
 
 
-        public static void SetText(string textName, UpdateTextMethod update)
+        public static void SetTextMethod(string textName, UpdateTextMethod update)
         {
             if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
-            ScreenManager.ExtendedTextDictionary[textName]._updateText = update;
+            ScreenManager.ExtendedTextDictionary[textName]._updateTextMethod = update;
+        }
+
+        public static void SetTextMethod(string textName,string format, UpdateTextMethodFloat update)
+        {
+            if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
+            UpdateTextMethod updateTextMethod = () =>
+            {
+                return UI_TEXT_FORMATS.Execute(format,update());
+            };
+            ScreenManager.ExtendedTextDictionary[textName]._updateTextMethod = updateTextMethod;
+        }
+
+        public static void SetTextMethod(string textName, string format, UpdateTextMethodInt update)
+        {
+            if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
+            UpdateTextMethod updateTextMethod = () =>
+            {
+                return UI_TEXT_FORMATS.Execute(format, update());
+            };
+            ScreenManager.ExtendedTextDictionary[textName]._updateTextMethod = updateTextMethod;
         }
 
 
         public delegate string UpdateTextMethod();
+        public delegate int UpdateTextMethodInt();
+        public delegate float UpdateTextMethodFloat();
 
         public enum TextType { UnityText, TextMeshPro }
 

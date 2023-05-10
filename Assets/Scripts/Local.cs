@@ -8,9 +8,8 @@ using UnityEngine;
 public class Local : MonoBehaviour
 {
 
+
     private static Local instance;
-
-
 
     private void Awake()
     {
@@ -74,10 +73,10 @@ public class Local : MonoBehaviour
 
     public TowerFeatureData GetBaseFeatureData(Tower tower)
     {
-        if(tower.TowerType==TowerType.fire)return _baseFireTowerFeatureData;
-        else if(tower.TowerType==TowerType.water)return _baseWaterTowerFeatureData;
-        else if(tower.TowerType==TowerType.earth)return _baseEarthTowerFeatureData;
-        else if(tower.TowerType==TowerType.air)return _baseAirTowerFeatureData;
+        if(tower.TowerType==TowerType.Fire)return _baseFireTowerFeatureData;
+        else if(tower.TowerType==TowerType.Water)return _baseWaterTowerFeatureData;
+        else if(tower.TowerType==TowerType.Earth)return _baseEarthTowerFeatureData;
+        else if(tower.TowerType==TowerType.Air)return _baseAirTowerFeatureData;
         else return null;
     }
 
@@ -113,125 +112,74 @@ public class Local : MonoBehaviour
 
     public TowerFeatureData GetIncreaseFeatureData(Tower tower)
     {
-        if (tower.TowerType == TowerType.fire) return _increaseFireTowerFeatureData;
-        else if (tower.TowerType == TowerType.water) return _increaseWaterTowerFeatureData;
-        else if (tower.TowerType == TowerType.earth) return _increaseEarthTowerFeatureData;
-        else if (tower.TowerType == TowerType.air) return _increaseAirTowerFeatureData;
+        if (tower.TowerType == TowerType.Fire) return _increaseFireTowerFeatureData;
+        else if (tower.TowerType == TowerType.Water) return _increaseWaterTowerFeatureData;
+        else if (tower.TowerType == TowerType.Earth) return _increaseEarthTowerFeatureData;
+        else if (tower.TowerType == TowerType.Air) return _increaseAirTowerFeatureData;
         else return null;
     }
 
     #endregion
 
 
-    private const int BaseGoldDrop = 1;
-    private const float BaseEssenceChange = 0.05f;
-    private const float BaseEnemyHP = 10;
-    private const float BaseGameSpeed = 1f;
+    private const int Base_GoldDrop = 1;
+    private const float Base_EssenceChange = 0.05f;
+    private const float Base_EnemyHP = 10;
+    private const float Base_GameSpeed = 1f;
+
+    private const int Base_TowerUpdateCost = 2;
+    private const int Base_TowerCost = 10;
+    private const int Increase_TowerCost = 10;
+    private const int Max_Towers = 12;
 
 
-    private const int BaseTowerCost = 10;
-    private const int TowerCostIncrease = 10;
 
-
-    public int FireTowerCost
+    public int NewTowerCost(TowerType type)
     {
-        get { return (int)(BaseTowerCost 
-                + TowerCostIncrease * Mathf.Pow(NumberOfFireTowers,2f) 
-                + 2f * TowerCostIncrease * Mathf.Pow(NumberOfFireTowers,(NumberOfFireTowers/4f))
-                + TowerCostIncrease/4 * (NumberOfAllTowers-NumberOfFireTowers));
-                ; 
-
-        }
+        return (int)(
+              Increase_TowerCost * Mathf.Pow(NumberOfTowerType(type), 2f)
+            + 2f * Increase_TowerCost * Mathf.Pow(NumberOfFireTowers, (NumberOfTowerType(type) / 4f))
+            + Base_TowerCost)
+            ;
     }
 
-    public int WaterTowerCost
+    public int TowerUpdateCost(int level)
     {
-        get
-        {
-            return (int)(BaseTowerCost
-                + TowerCostIncrease * Mathf.Pow(NumberOfWaterTowers, 2f)
-                + 2f * TowerCostIncrease * Mathf.Pow(NumberOfWaterTowers, (NumberOfWaterTowers / 4f))
-              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfWaterTowers))
-              ;
-
-        }
+        return (int)(Base_TowerUpdateCost + Mathf.Pow(level, 1.2f) * Base_TowerUpdateCost);
     }
 
-    public int EarthTowerCost
+    public int TowerSellPrice(int level)
     {
-        get
-        {
-            return (int)(BaseTowerCost
-                + TowerCostIncrease * Mathf.Pow(NumberOfEarthTowers, 2f)
-                + 2f * TowerCostIncrease * Mathf.Pow(NumberOfEarthTowers, (NumberOfEarthTowers / 4f))
-              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfEarthTowers))
-              ;
-
-        }
+        return 1 + (level * (level + 1)) / 10 * Base_TowerUpdateCost;
     }
 
-    public int AirTowerCost
+    public int NumberOfTowerType(TowerType type)
     {
-        get
-        {
-            return (int)(BaseTowerCost
-                + TowerCostIncrease * Mathf.Pow(NumberOfAirTowers, 2f)
-                + 2f * TowerCostIncrease * Mathf.Pow(NumberOfAirTowers, (NumberOfAirTowers / 4f))
-              + TowerCostIncrease / 4 * (NumberOfAllTowers - NumberOfAirTowers))
-              ;
-
-        }
+        if (type == TowerType.Fire) return NumberOfFireTowers;
+        if (type == TowerType.Water) return NumberOfWaterTowers;
+        if (type == TowerType.Earth) return NumberOfEarthTowers;
+        if (type == TowerType.Air) return NumberOfAirTowers;
+        Debug.Log("HATA  : " + type);
+        return 0;
     }
 
-
-
-    private const int BaseUpdateCost = 2;
-
-    public int FireTowerUpdateCost(int level)
+    public void IncreaseNumberOfTower(TowerType type)
     {
-        return (int)(BaseUpdateCost +  Mathf.Pow(level,1.2f) * BaseUpdateCost);
+        if(type == TowerType.Fire) NumberOfFireTowers++;
+        if(type == TowerType.Water) NumberOfWaterTowers++;
+        if(type == TowerType.Earth) NumberOfEarthTowers++;
+        if(type == TowerType.Air) NumberOfAirTowers++;
     }
 
-    public int WaterTowerUpdateCost(int level)
+    public void DecreaseNumberOfTower(TowerType type)
     {
-        return (int)(BaseUpdateCost + Mathf.Pow(level, 1.2f) * BaseUpdateCost);
+        if (type == TowerType.Fire) NumberOfFireTowers--;
+        if (type == TowerType.Water) NumberOfWaterTowers--;
+        if (type == TowerType.Earth) NumberOfEarthTowers--;
+        if (type == TowerType.Air) NumberOfAirTowers--;
     }
 
-    public int EarthTowerUpdateCost(int level)
-    {
-        return (int)(BaseUpdateCost + Mathf.Pow(level, 1.2f) * BaseUpdateCost);
-    }
-
-    public int AirTowerUpdateCost(int level)
-    {
-        return (int)(BaseUpdateCost + Mathf.Pow(level, 1.2f) * BaseUpdateCost);
-    }
-
-
-
-    public int FireTowerSellPrice(int level)
-    {
-        return 1+(level * (level+1))/10 * BaseUpdateCost;
-    }
-
-    public int WaterTowerSellPrice(int level)
-    {
-        return 1+(level * (level + 1)) /10 * BaseUpdateCost;
-    }
-
-    public int EarthTowerSellPrice(int level)
-    {
-        return 1+(level * (level + 1)) / 10 * BaseUpdateCost;
-    }
-
-    public int AirTowerSellPrice(int level)
-    {
-        return 1+(level * (level + 1)) / 10 * BaseUpdateCost;
-    }
-
-
-
-    public int NumberOfFireTowers
+    private int NumberOfFireTowers
     {
         set
         {
@@ -244,7 +192,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int NumberOfWaterTowers
+    private int NumberOfWaterTowers
     {
         set
         {
@@ -257,7 +205,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int NumberOfEarthTowers
+    private int NumberOfEarthTowers
     {
         set
         {
@@ -270,11 +218,11 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int NumberOfAirTowers
+    private int NumberOfAirTowers
     {
         set
         {
-            Tower.UpdateAllTowersFeatureData();
+             Tower.UpdateAllTowersFeatureData();
             PlayerPrefs.SetInt("numOfAirTowers", value);
         }
         get
@@ -334,30 +282,69 @@ public class Local : MonoBehaviour
 
     public const int MaxElemetsLevel = 50;
 
-    private const float FireEffectIncrease = 0.0425f;
-    private const float WaterEffectIncrease = 0.011f;
-    private const float EarthEffectIncrease = 0.010f;
-    private const float AirEffectIncrease = 0.035f;
 
+    private readonly Dictionary<Element, float> Increase_ElementEffect = new Dictionary<Element, float>()
+    {
+        { Element.Fire , 0.0425f },
+        { Element.Water , 0.011f },
+        { Element.Earth , 0.010f },
+        { Element.Air , 0.035f },
+    };
 
-    private const float FireEffectBase = 0.10f;
-    private const float WaterEffectBase = 0.25f;
-    private const float EarthEffectBase = 0.10f;
-    private const float AirEffectBase = 0.25f;
-
+    private readonly Dictionary<Element, float> Base_ElementEffect = new Dictionary<Element, float>() 
+    {
+        { Element.Fire , 1.10f },
+        { Element.Water , 0.25f },
+        { Element.Earth , 0.10f },
+        { Element.Air , 0.25f },
+    };
 
     public const float AirEffectRange = 50f;
 
-    public const float WaterEffectTime = 1f;
-    public const float EarthEffectTime = 1f;
+    public const float WaterEffectDuration = 1f;
+    public const float EarthEffectDuration = 1f;
 
-    private const int EssenceIncreaseForElements = 3;
+    private const int Increase_EssenceForElements = 3;
     public int ElementCost(int level)
     {
-        return level * EssenceIncreaseForElements;
+        return (int)(Mathf.Log(level,(MaxElemetsLevel+1)) * Increase_EssenceForElements)+5;
     }
 
-    public int FireLevel
+
+    public int ElementLevel(Element element)
+    {
+        if (element == Element.Fire) return FireLevel;
+        if (element == Element.Water) return WaterLevel;
+        if (element == Element.Earth) return EarthLevel;
+        if (element == Element.Air) return AirLevel;
+        return 0;
+    }
+
+    public void IncreaseElementLevel(Element element)
+    {
+        if (element == Element.Fire) FireLevel++;
+        else if (element == Element.Water)  WaterLevel++;
+        else if (element == Element.Earth)  EarthLevel++;
+        else if (element == Element.Air)  AirLevel++;
+    }
+
+    public void SetElementLevel(Element element, int level)
+    {
+        if (element == Element.Fire) FireLevel=level;
+        else if (element == Element.Water) WaterLevel=level;
+        else if (element == Element.Earth) EarthLevel=level;
+        else if (element == Element.Air) AirLevel=level;
+    }
+    public void SetElementsLevels(Element[] elements
+        ,int[] levels)
+    {
+        for (int i = 0; i < elements.Length; i++)
+        {
+            SetElementLevel(elements[i], levels[i]);
+        }
+    }
+
+    private int FireLevel
     {
         set
         {
@@ -370,7 +357,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int WaterLevel
+    private int WaterLevel
     {
         set
         {
@@ -383,7 +370,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int EarthLevel
+    private int EarthLevel
     {
         set
         {
@@ -396,7 +383,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int AirLevel
+    private int AirLevel
     {
         set
         {
@@ -410,39 +397,10 @@ public class Local : MonoBehaviour
     }
 
 
-    public float FireEffect
+    public float ElementEffect(Element element)
     {
-        get
-        {
-            return (1f + FireEffectBase + (FireLevel * FireEffectIncrease));
-        }
+        return Base_ElementEffect[element] + (ElementLevel(element) * Increase_ElementEffect[element]);
     }
-
-    public float WaterEffect
-    {
-        get
-        {
-            return (WaterEffectBase + (WaterLevel * WaterEffectIncrease));
-        }
-    }
-
-    public float EarthEffect
-    {
-        get
-        {
-            return (EarthEffectBase + (EarthLevel * EarthEffectIncrease));
-        }
-    }
-
-
-    public float AirEffect
-    {
-        get
-        {
-            return (AirEffectBase + (AirLevel * AirEffectIncrease));
-        }
-    }
-
 
 
     #endregion
@@ -450,22 +408,65 @@ public class Local : MonoBehaviour
 
     #region Research
 
+    private readonly Dictionary<Research, float> Increase_ResearchEffect = new Dictionary<Research, float>()
+    {
+        { Research.Damage , 7f },
+        { Research.AttackSpeed , 1f },
+        { Research.CriticalHitChange , 0.5f },
+        { Research.CriticalHitDamage , 1f },
+        { Research.Range , 0.5f }
+    };
 
 
-    public const float DamageIncrease = 7;
-    public const float AttackSpeedIncrease = 1f;
-    public const float CriticalHitChangeIncrease = 0.5f;
-    public const float CriticalHitDamageIncrease = 1;
-    public const float RangeIncrease = 0.5f;
-
-
-    private const int EssenceIncreaseForResearch = 2;
+    private const int Increase_EssenceForResearch = 2;
     public int ResearchCost(int level)
     {
-        return level * EssenceIncreaseForResearch;
+        return (int)(Increase_EssenceForResearch * Mathf.Log(level, (4f / level))) 
+            + Increase_EssenceForResearch;
     }
 
-    public int DamageLevel
+    public int ResearchCost(Research research)
+    {
+        return ResearchCost(ResearchLevel(research));
+    }
+
+    public int ResearchLevel(Research research)
+    {
+        if (research == Research.Damage) return DamageLevel;
+        if (research == Research.AttackSpeed) return AttackSpeedLevel;
+        if (research == Research.CriticalHitChange) return CriticalHitChangeLevel;
+        if (research == Research.CriticalHitDamage) return CriticalHitDamageLevel;
+        if (research == Research.Range) return RangeLevel;
+        return 0;
+    }
+
+    public void IncreaseResearchLevel(Research research)
+    {
+        if (research == Research.Damage) DamageLevel++;
+        else if (research == Research.AttackSpeed) AttackSpeedLevel++;
+        else if (research == Research.CriticalHitChange) CriticalHitChangeLevel++;
+        else if (research == Research.CriticalHitDamage) CriticalHitDamageLevel++;
+        else if (research == Research.Range) RangeLevel++;
+    }
+
+    public void SetResearchLevel(Research research, int level)
+    {
+        if (research == Research.Damage) DamageLevel = level;
+        else if (research == Research.AttackSpeed) AttackSpeedLevel = level;
+        else if (research == Research.CriticalHitChange) CriticalHitChangeLevel = level;
+        else if (research == Research.CriticalHitChange) CriticalHitDamageLevel = level;
+        else if (research == Research.Range) RangeLevel = level;
+    }
+    public void SetResearchsLevels(Research[] researches
+        , int[] levels)
+    {
+        for (int i = 0; i < researches.Length; i++)
+        {
+            SetResearchLevel(researches[i], levels[i]);
+        }
+    }
+
+    private int DamageLevel
     {
         set
         {
@@ -478,7 +479,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int AttackSpeedLevel
+    private int AttackSpeedLevel
     {
         set
         {
@@ -491,7 +492,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int CriticalHitChangeLevel
+    private int CriticalHitChangeLevel
     {
         set
         {
@@ -504,7 +505,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int CriticalHitDamageLevel
+    private int CriticalHitDamageLevel
     {
         set
         {
@@ -517,7 +518,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int RangeLevel
+    private int RangeLevel
     {
         set
         {
@@ -531,46 +532,10 @@ public class Local : MonoBehaviour
     }
 
 
-    public float Damage
+    public float ResearchEffect(Research research)
     {
-        get
-        {
-            return (100f + DamageLevel * DamageIncrease)/100f;
-        }
+        return (100f + ResearchLevel(research) * Increase_ResearchEffect[research]) / 100f;
     }
-
-    public float AttackSpeed
-    {
-        get
-        {
-            return (100f + AttackSpeedLevel * AttackSpeedIncrease) / 100f;
-        }
-    }
-
-    public float CriticalHitChange
-    {
-        get
-        {
-            return (100f + CriticalHitChangeLevel * CriticalHitChangeIncrease) / 100f;
-        }
-    }
-
-    public float CriticalHitDamage
-    {
-        get
-        {
-            return (100f + CriticalHitDamageLevel * CriticalHitDamageIncrease) / 100f;
-        }
-    }
-
-    public float Range
-    {
-        get
-        {
-            return (100f + RangeLevel * RangeIncrease) / 100f;
-        }
-    }
-
 
 
     #endregion
@@ -584,17 +549,17 @@ public class Local : MonoBehaviour
     public const int MaxGameSpeedLevel = 10;
     public const int MaxEnemyHpDecreaseLvl = 50;
 
-    private const int GoldDropIncrease = 1;
-    private const float EssenceChangeIncrease = 0.0125f;
-    private const float GameSpeedIncrease = 0.333333333f;
+    private const int Increase_GoldDrop = 1;
+    private const float Increase_EssenceChange = 0.0125f;
+    private const float Increase_GameSpeed = 0.333333333f;
     
-    private const float EnemyHpDecrease = 0.015f;
+    private const float Decrease_EnemyHp = 0.015f;
 
 
-    private const float RebornPointIncrease = 1.2f;
+    private const float Increase_RebornPoint = 1.2f;
     public int RebornPointCost(int level)
     {
-        return (int)(Mathf.Pow(level,1.5f) * RebornPointIncrease);
+        return (int)(Mathf.Pow(level,1.5f) * Increase_RebornPoint);
     }
 
     public int EssenceChangeLevel
@@ -655,13 +620,13 @@ public class Local : MonoBehaviour
 
     public float EnemyHPDecreasePercent
     {
-        get { return (1-(EnemyHpDecrease * (EnemyHPDecreaseLevel - 1))); }
+        get { return (1-(Decrease_EnemyHp * (EnemyHPDecreaseLevel - 1))); }
     }
 
 
     public int CanEarnRP
     {
-        get { return (int)((Wave / 25f) + ( Mathf.Pow(Wave, 0.65f) * ((Wave - 45) / 100f))); }
+        get { return (int)(Increase_RebornPoint * Mathf.Log(Wave, (5f / Wave) + 1) - 45); }
     }
 
     #endregion
@@ -672,7 +637,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return BaseGoldDrop + (GoldDropLevel-1) * GoldDropIncrease;
+            return Base_GoldDrop + (GoldDropLevel-1) * Increase_GoldDrop;
         }
     }
 
@@ -681,7 +646,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return BaseEssenceChange + (EssenceChangeLevel-1) * EssenceChangeIncrease;
+            return Base_EssenceChange + (EssenceChangeLevel-1) * Increase_EssenceChange;
         }
     }
 
@@ -690,7 +655,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return (BaseEnemyHP + Wave/5f) * EnemyHPMultiplier
+            return Base_EnemyHP + Base_EnemyHP * EnemyHPMultiplier
                 * EnemyHPDecreasePercent;
         }
     }
@@ -699,7 +664,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return (BaseGameSpeed + (GameSpeedLevel-1) * GameSpeedIncrease);
+            return (Base_GameSpeed + (GameSpeedLevel-1) * Increase_GameSpeed);
         }
     }
 
@@ -723,7 +688,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return 5 +(Wave/20)+ ((Wave%20)*1);
+            return (int)(5 + Mathf.Log(Wave, (128f / Wave) + 1));
         }
 
     }
@@ -732,14 +697,122 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return ((1f + Wave * 0.04f) * ( 1f + Wave * 0.005f )) ;
+            return (Mathf.Log(Wave, (32f / Wave) + 1));
         }
     }
 
 
 
+    #region PassiveIncome
+
+    private const int Base_IncomeUpdateCost = 5;
+
+    private const int Base_PassiveGold = 5;
+    private const int Base_PassiveEssence = 1;
+    private const int Base_PassiveRP = 0;
+
+    private const int PassiveGoldByLevel = 20;
+    private const int PassiveEssenceByLevel = 5;
+    private const int PassiveRPByLevel = 1;
 
 
+
+    public int PassiveIncomeLevel(PassiveIncome passiveIncome)
+    {
+        if (passiveIncome == PassiveIncome.Gold) return PassiveGoldLevel;
+        if (passiveIncome == PassiveIncome.Essence) return PassiveEssenceLevel;
+        if (passiveIncome == PassiveIncome.RP) return PassiveRPLevel;
+        return 0;
+    }
+
+    private int PassiveGoldLevel
+    {
+        set
+        {
+            PlayerPrefs.SetInt("passiveGoldLevel", value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("passiveGoldLevel", 1);
+        }
+    }
+
+    public int PassiveEssenceLevel
+    {
+        set
+        {
+            PlayerPrefs.SetInt("passiveEssenceLevel", value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("passiveEssenceLevel", 1);
+        }
+    }
+
+    public int PassiveRPLevel
+    {
+        set
+        {
+            PlayerPrefs.SetInt("passiveRPLevel", value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("passiveRPLevel", 1);
+        }
+    }
+
+
+    public int PassiveIncomeAmount(PassiveIncome passiveIncome)
+    {
+        if(passiveIncome == PassiveIncome.Gold) { return PassiveGoldIncome; }
+        if(passiveIncome == PassiveIncome.Essence) { return PassiveEssenceIncome; }
+        if(passiveIncome == PassiveIncome.RP) { return PassiveRPIncome; }
+        return 0;
+    }
+
+    private int PassiveGoldIncome
+    {
+        get
+        {
+            return Base_PassiveGold + (PassiveGoldLevel-1) * PassiveGoldByLevel;
+        }
+    }
+
+    private int PassiveEssenceIncome
+    {
+        get
+        {
+            return Base_PassiveEssence + (PassiveEssenceLevel - 1) * PassiveEssenceByLevel;
+        }
+    }
+
+    private int PassiveRPIncome
+    {
+        get
+        {
+            return Base_PassiveRP + (PassiveRPLevel - 1) * PassiveRPByLevel;
+        }
+    }
+
+
+    public int PassiveIncomeUpdateCost(int level)
+    {
+        return (int)(Base_IncomeUpdateCost + Mathf.Pow(level, 1.2f) * Base_IncomeUpdateCost);
+    }
+
+    public int PassiveIncomeUpdateCost(PassiveIncome passiveIncome)
+    {
+        return PassiveIncomeUpdateCost(PassiveIncomeLevel(passiveIncome));
+    }
+
+    public void IncreaseIncomeLevel(PassiveIncome passiveIncome)
+    {
+        if (passiveIncome == PassiveIncome.Gold) { PassiveGoldLevel++; }
+        if (passiveIncome == PassiveIncome.Essence) { PassiveEssenceLevel++; }
+        if (passiveIncome == PassiveIncome.RP) { PassiveRPLevel++; }
+    }
+
+    #endregion
 
     public static Local Instance { get => instance; set => instance = value; }
 

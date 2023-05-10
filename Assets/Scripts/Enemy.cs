@@ -74,27 +74,27 @@ public class Enemy : MonoBehaviour/*, Poolable*/
 
     private void CalculateCurrentSpeed()
     {
-        if (_status == EnemyStatus.slowed &&  _slowCD.TimeOver())
+        if (_status == EnemyStatus.Slowed &&  _slowCD.TimeOver())
         {
-            _status = EnemyStatus.none;
+            _status = EnemyStatus.None;
         }
-        if (_status == EnemyStatus.stunned && _stunCD.TimeOver())
+        if (_status == EnemyStatus.Stunned && _stunCD.TimeOver())
         {
-            _status = EnemyStatus.none;
+            _status = EnemyStatus.None;
         }
 
         CurrentMovSpeed = _movementSpeed;
 
-        if(_status == EnemyStatus.stunned)
+        if(_status == EnemyStatus.Stunned)
         {
             CurrentMovSpeed = 0;
             return;
         }
 
         float movSpeed = _movementSpeed;
-        if (Status == EnemyStatus.slowed)
+        if (Status == EnemyStatus.Slowed)
         {
-            movSpeed *= (1f - Local.Instance.WaterEffect);
+            movSpeed *= (1f - Local.Instance.ElementEffect(Element.Water));
             CurrentMovSpeed = movSpeed;
         }
 
@@ -174,15 +174,15 @@ public class Enemy : MonoBehaviour/*, Poolable*/
 
         set
         {
-            if (_status == EnemyStatus.stunned && value == EnemyStatus.slowed)
+            if (_status == EnemyStatus.Stunned && value == EnemyStatus.Slowed)
             {
                 return;
             }
-            if (value == EnemyStatus.stunned)
+            if (value == EnemyStatus.Stunned)
             {
                 _stunCD.ResetTimer();
             }
-            if (value == EnemyStatus.slowed)
+            if (value == EnemyStatus.Slowed)
             {
                 _slowCD.ResetTimer();
             }

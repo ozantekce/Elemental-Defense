@@ -23,8 +23,8 @@ public class SlotFullPopUp : PopUp
     public void Open(Slot slot)
     {
         _openerSlot = slot;
-        ScreenManager.Instance.CloseAllPopUpWithout("SlotFullPopUp");
-        ScreenManager.Instance.OpenPopUp("SlotFullPopUp");
+        //ScreenManager.Instance.CloseAllPopUpWithout("SlotFullPopUp");
+        ScreenManager.Instance.OpenPopUp("SlotFullPopUp",0,true);
 
 
         UpdateTexts();
@@ -39,46 +39,10 @@ public class SlotFullPopUp : PopUp
 
         _title.text = _openerSlot.Tower.Name.ToUpperInvariant() + "(" + _openerSlot.Tower.CurrentLevel + ")";
 
-        // Update Update Button
-        if (_openerSlot.Tower.TowerType == TowerType.fire)
-        {
-            _updateButtonText.text = "Gold(" + Local.Instance.FireTowerUpdateCost(_openerSlot.Tower.CurrentLevel) + ")";
-        }
-        else if(_openerSlot.Tower.TowerType == TowerType.water)
-        {
-            _updateButtonText.text = "Gold(" + Local.Instance.WaterTowerUpdateCost(_openerSlot.Tower.CurrentLevel) + ")";
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.earth)
-        {
-            _updateButtonText.text = "Gold(" + Local.Instance.EarthTowerUpdateCost(_openerSlot.Tower.CurrentLevel) + ")";
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.air)
-        {
-            _updateButtonText.text = "Gold(" + Local.Instance.AirTowerUpdateCost(_openerSlot.Tower.CurrentLevel) + ")";
-        }
-        // end
 
+        _updateButtonText.text = "Gold(" + Local.Instance.TowerUpdateCost(_openerSlot.Tower.CurrentLevel) + ")";
 
-        // Update Sell button
-        if (_openerSlot.Tower.TowerType == TowerType.fire)
-        {
-            _sellButtonText.text = "Gold(" + Local.Instance.FireTowerSellPrice(_openerSlot.Tower.CurrentLevel) + ")";
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.water)
-        {
-            _sellButtonText.text = "Gold(" + Local.Instance.WaterTowerSellPrice(_openerSlot.Tower.CurrentLevel) + ")";
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.earth)
-        {
-            _sellButtonText.text = "Gold(" + Local.Instance.EarthTowerSellPrice(_openerSlot.Tower.CurrentLevel) + ")";
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.air)
-        {
-            _sellButtonText.text = "Gold(" + Local.Instance.AirTowerSellPrice(_openerSlot.Tower.CurrentLevel) + ")";
-        }
-        // end
-
-
+        _sellButtonText.text = "Gold(" + Local.Instance.TowerSellPrice(_openerSlot.Tower.CurrentLevel) + ")";
 
     }
 
@@ -88,22 +52,7 @@ public class SlotFullPopUp : PopUp
     {
         int price = 0;
 
-        if (_openerSlot.Tower.TowerType == TowerType.fire)
-        {
-            price = Local.Instance.FireTowerUpdateCost(_openerSlot.Tower.CurrentLevel);
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.water)
-        {
-            price = Local.Instance.WaterTowerUpdateCost(_openerSlot.Tower.CurrentLevel);
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.earth)
-        {
-            price = Local.Instance.EarthTowerUpdateCost(_openerSlot.Tower.CurrentLevel);
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.air)
-        {
-            price = Local.Instance.AirTowerUpdateCost(_openerSlot.Tower.CurrentLevel);
-        }
+        price = Local.Instance.TowerUpdateCost(_openerSlot.Tower.CurrentLevel);
 
         if (Local.Instance.Gold >= price)
         {
@@ -117,37 +66,16 @@ public class SlotFullPopUp : PopUp
     public void OnClickSellButton()
     {
 
+        int price 
+            = Local.Instance.TowerSellPrice(_openerSlot.Tower.CurrentLevel);
 
-        int price = 0;
-
-        if (_openerSlot.Tower.TowerType == TowerType.fire)
-        {
-            price = Local.Instance.FireTowerSellPrice(_openerSlot.Tower.CurrentLevel);
-            Local.Instance.NumberOfFireTowers--;
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.water)
-        {
-            price = Local.Instance.WaterTowerSellPrice(_openerSlot.Tower.CurrentLevel);
-            Local.Instance.NumberOfWaterTowers--;
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.earth)
-        {
-            price = Local.Instance.EarthTowerSellPrice(_openerSlot.Tower.CurrentLevel);
-            Local.Instance.NumberOfEarthTowers--;
-        }
-        else if (_openerSlot.Tower.TowerType == TowerType.air)
-        {
-            price = Local.Instance.AirTowerSellPrice(_openerSlot.Tower.CurrentLevel);
-            Local.Instance.NumberOfAirTowers--;
-        }
+        Local.Instance.DecreaseNumberOfTower(_openerSlot.Tower.TowerType);
 
         _openerSlot.DestroyTower();
 
         Local.Instance.Gold += price;
 
-
         ScreenManager.Instance.ClosePopUp("SlotFullPopUp");
-
     }
 
 

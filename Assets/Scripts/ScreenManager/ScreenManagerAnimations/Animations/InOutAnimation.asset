@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d9a8b079fded44db08e3a4f6022677, type: 3}
   m_Name: InOutAnimation
   m_EditorClassIdentifier: 
-  startSize: {x: 0, y: 0, z: 0}
+  startSize: {x: 0.3, y: 0.3, z: 0.3}
   duration: 0.3

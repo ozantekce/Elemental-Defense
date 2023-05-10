@@ -181,7 +181,7 @@ namespace ScreenManagerNS
 
 
         public void OpenPopUp(string popUpName) { OpenPopUp(popUpName, 0); }
-        public void OpenPopUp(string popUpName, float delay, bool closeOtherPopUps = false)
+        public void OpenPopUp(string popUpName, float delay=0, bool closeOtherPopUps = false)
         {
             AddCommand(new OpenPopUpCommand(_popUpDictionary[popUpName]
                 , delay, closeOtherPopUps));

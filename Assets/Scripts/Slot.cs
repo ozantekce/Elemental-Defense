@@ -58,19 +58,19 @@ public class Slot : MonoBehaviour
         //Debug.Log("Load Tower");
         Tower tower;
 
-        if (towerData.type == TowerType.fire)
+        if (towerData.type == TowerType.Fire)
         {
             tower = fireTowerPrefab;
         }
-        else if (towerData.type == TowerType.water)
+        else if (towerData.type == TowerType.Water)
         {
              tower = waterTowerPrefab;
         }
-        else if (towerData.type == TowerType.earth)
+        else if (towerData.type == TowerType.Earth)
         {
             tower = earthTowerPrefab;
         }
-        else if (towerData.type == TowerType.air)
+        else if (towerData.type == TowerType.Air)
         {
             tower = airTowerPrefab;
         }
@@ -162,26 +162,8 @@ public class Slot : MonoBehaviour
     {
         Debug.Log("Add Tower");
 
-        if(tower.TowerType == TowerType.fire)
-        {
-            Local.Instance.Gold -= Local.Instance.FireTowerCost;
-            Local.Instance.NumberOfFireTowers++;
-        }
-        else if(tower.TowerType == TowerType.water)
-        {
-            Local.Instance.Gold -= Local.Instance.WaterTowerCost;
-            Local.Instance.NumberOfWaterTowers++;
-        }
-        else if(tower.TowerType == TowerType.earth)
-        {
-            Local.Instance.Gold -= Local.Instance.EarthTowerCost;
-            Local.Instance.NumberOfEarthTowers++;
-        }
-        else if(tower.TowerType == TowerType.air)
-        {
-            Local.Instance.Gold -= Local.Instance.AirTowerCost;
-            Local.Instance.NumberOfAirTowers++;
-        }
+        Local.Instance.Gold -= Local.Instance.NewTowerCost(tower.TowerType);
+        Local.Instance.IncreaseNumberOfTower(tower.TowerType);
 
         _tower = GameObject.Instantiate(tower);
         _tower.transform.SetParent(transform);
