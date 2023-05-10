@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour, Poolable
         _commandQueue = new Queue<IBulletCommand>();
     }
 
-    public void InitBullet(Vector3 spawnPoint, float damage, Tower source, Enemy destination)
+    public void InitBullet(Vector3 spawnPoint, float damage,bool isCritical, Tower source, Enemy destination)
     {
 
         transform.position = spawnPoint;
@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour, Poolable
         Destination = destination;
 
         _commandQueue.Clear();
-        _commandQueue.Enqueue(new BulletDamageCommand(_destination, _attackPower));
+        _commandQueue.Enqueue(new BulletDamageCommand(_destination, _attackPower,isCritical));
         if (Source.TowerType == TowerType.Water)
         {
             _commandQueue.Enqueue(new BulletSlowCommand(_destination));
@@ -49,7 +49,7 @@ public class Bullet : MonoBehaviour, Poolable
         }
         else if (Source.TowerType == TowerType.Air)
         {
-            _commandQueue.Enqueue(new BulletMessyAttackCommand(_destination, _attackPower));
+            _commandQueue.Enqueue(new BulletMessyAttackCommand(_destination, _attackPower, isCritical));
         }
 
     }
@@ -186,11 +186,12 @@ public class BulletMessyAttackCommand : IBulletCommand
 {
     private Enemy _enemy;
     private float _damage;
-
-    public BulletMessyAttackCommand(Enemy enemy,float damage)
+    private bool _isCritical;
+    public BulletMessyAttackCommand(Enemy enemy,float damage, bool isCritical)
     {
         this._enemy = enemy;
-        this._damage = damage;
+        this._damage = damage * Local.Instance.ElementEffect(Element.Air);
+        _isCritical = isCritical;
     }
 
     public void Execute()
@@ -198,10 +199,14 @@ public class BulletMessyAttackCommand : IBulletCommand
         int layerMask = 1 << LayerMask.NameToLayer("Enemy");
         Collider[] hitColliders
             = Physics.OverlapSphere(_enemy.transform.position, Local.AirEffectRange, layerMask);
-        //Debug.Log(hitColliders.Length);
+        string text = _damage.ToString("F0");
+        if (_isCritical) { text = "<color=red>" + text + "</color>"; }
         foreach (Collider hitCollider in hitColliders)
         {
-            hitCollider.GetComponent<Enemy>().TakeDamage(_damage * Local.Instance.ElementEffect(Element.Air));
+            Enemy e = hitCollider.GetComponent<Enemy>();
+            if (e == _enemy) continue;
+            e.TakeDamage(_damage );
+            DamageTextManager.Instance.CreateText(text, hitCollider.transform.position + Vector3.up * 2f);
         }
     }
 }
@@ -211,15 +216,19 @@ public class BulletDamageCommand : IBulletCommand
 {
     private Enemy _enemy;
     private float _damage;
-
-    public BulletDamageCommand(Enemy enemy, float damage)
+    private bool _isCritical;
+    public BulletDamageCommand(Enemy enemy, float damage,bool isCritical)
     {
         this._enemy = enemy;
         this._damage = damage;
+        this._isCritical = isCritical;
     }
 
     public void Execute()
     {
         _enemy.TakeDamage(_damage);
+        string text = _damage.ToString("F0");
+        if(_isCritical) { text = "<color=red>" + text + "</color>"; }
+        DamageTextManager.Instance.CreateText(text, _enemy.transform.position+Vector3.up*2f);
     }
 }

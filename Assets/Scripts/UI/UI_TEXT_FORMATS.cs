@@ -45,9 +45,9 @@ public class UI_TEXT_FORMATS
         { "EssenceLevel" , new Format("Essence(Lv." , ")") },
         { "RPLevel" , new Format("RP(Lv." , ")") },
 
-        { "GoldIncome" , new Format("<color=red>" , "</color> Gold by hour") },
-        { "EssenceIncome" , new Format("<color=red>" , "</color> Essence by hour") },
-        { "RPIncome" , new Format("<color=red>" , "</color> RP by hour") },
+        { "GoldIncome" , new Format("<color=red>" , "</color> Gold per "+Local.IncomeTime+" minute") },
+        { "EssenceIncome" , new Format("<color=red>" , "</color> Essence per "+Local.IncomeTime+" minute")},
+        { "RPIncome" , new Format("<color=red>" , "</color> RP per "+Local.IncomeTime+" minute") },
 
 
     };
@@ -61,11 +61,13 @@ public class UI_TEXT_FORMATS
 
     public static string Execute(string formatName, float val)
     {
+        if (val < 0) return "MAX";
         return NameFormatPair[formatName].ExecuteFormat(NumberFormat(val));
     }
 
     public static string Execute(string formatName, int val)
     {
+        if (val < 0) return "MAX";
         return NameFormatPair[formatName].ExecuteFormat(NumberFormat(val));
     }
 

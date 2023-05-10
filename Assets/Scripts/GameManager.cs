@@ -25,18 +25,19 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         _instance = this;
+        GetLastIncome:
         string @string = PlayerPrefs.GetString("lastIncomeTime");
-        if (@string != string.Empty)
+        if (!string.IsNullOrEmpty(@string))
         {
             _lastIncomeTime = DateTime.Parse(@string);
         }
         else
         {
-            _lastIncomeTime = DateTime.Now;
-            PlayerPrefs.SetString("lastIncomeTime", _lastIncomeTime.ToString());
+            PlayerPrefs.SetString("lastIncomeTime",DateTime.Now.ToString());
+            goto GetLastIncome;
         }
 
-        _incomeCooldown = new Cooldown(1000 * 60 * 60);
+        _incomeCooldown = new Cooldown(1000 * 60 * Local.IncomeTime);
         Income();
     }
 
@@ -54,14 +55,16 @@ public class GameManager : MonoBehaviour
     private void Income()
     {
         DateTime now = DateTime.Now;
-        int elapsedTime = (now - _lastIncomeTime).Minutes;
-        if (elapsedTime < 60)
+        float elapsedTime = (float)(now - _lastIncomeTime).TotalMinutes;
+        Debug.Log(elapsedTime);
+        if (elapsedTime < Local.IncomeTime)
         {
             return;
         }
-        Local.Instance.Gold += (int)(elapsedTime / 60f * Local.Instance.PassiveIncomeAmount(PassiveIncome.Gold));
-        Local.Instance.Essence += (int)(elapsedTime / 60f * Local.Instance.PassiveIncomeAmount(PassiveIncome.Essence));
-        Local.Instance.RebornPoint += (int)(elapsedTime / 60f * Local.Instance.PassiveIncomeAmount(PassiveIncome.RP));
+        
+        Local.Instance.Gold += (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.Gold));
+        Local.Instance.Essence += (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.Essence));
+        Local.Instance.RebornPoint += (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.RP));
         _lastIncomeTime = now;
         PlayerPrefs.SetString("lastIncomeTime", _lastIncomeTime.ToString());
     }
@@ -114,12 +117,14 @@ public class GameManager : MonoBehaviour
     public void IncreaseElementLevel(Element element)
     {
         int elementLevel = Local.Instance.ElementLevel(element);
+        if (elementLevel >= Local.MaxElemetsLevel) return;
         int price = Local.Instance.ElementCost(elementLevel);
         if(Local.Instance.Essence >= price)
         {
             Local.Instance.Essence -= price;
             Local.Instance.IncreaseElementLevel(element);
         }
+
     }
 
     public void IncreaseElementLevel(string elementName)

@@ -196,8 +196,8 @@ public class RebornPopUp : PopUp
     public void OnClickContractButton()
     {
 
-        int currentEssence = Local.Instance.Essence;
-        int currentRP = Local.Instance.RebornPoint + Local.Instance.CanEarnRP;
+        float currentEssence = Local.Instance.Essence;
+        float currentRP = Local.Instance.RebornPoint + Local.Instance.CanEarnRP;
         
         int currentFireLevel = Local.Instance.ElementLevel(Element.Fire);
         int currentWaterLevel = Local.Instance.ElementLevel(Element.Water);
@@ -215,6 +215,9 @@ public class RebornPopUp : PopUp
         int currentEnemyHPDecreaseLevel = Local.Instance.EnemyHPDecreaseLevel;
         int currentGameSpeedLevel = Local.Instance.GameSpeedLevel;
 
+        int currentIncomeGoldLevel = Local.Instance.PassiveIncomeLevel(PassiveIncome.Gold);
+        int currentIncomeEssenceLevel = Local.Instance.PassiveIncomeLevel(PassiveIncome.Essence);
+        int currentIncomeRPLevel = Local.Instance.PassiveIncomeLevel(PassiveIncome.RP);
 
         Local.Instance.ResetPlayerPrefs();
 
@@ -239,6 +242,11 @@ public class RebornPopUp : PopUp
         Local.Instance.GoldDropLevel = currentGoldDropLevel;
         Local.Instance.EnemyHPDecreaseLevel = currentEnemyHPDecreaseLevel;
         Local.Instance.GameSpeedLevel = currentGameSpeedLevel;
+
+        Local.Instance.SetIncomesLevels(
+            new PassiveIncome[] {PassiveIncome.Gold,PassiveIncome.Essence,PassiveIncome.RP },
+            new int[] { currentIncomeGoldLevel , currentIncomeEssenceLevel , currentIncomeRPLevel }
+        );
 
         ScreenManager.Instance.ClosePopUp(this.name);
         UpdateTexts();

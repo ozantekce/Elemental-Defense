@@ -106,7 +106,7 @@ public class Tower : MonoBehaviour
         }
 
         AttackPerSecond = (BaseAttackPerSecond + IncreaseAttackPerSecond * _currentLevel) * Local.Instance.ResearchEffect(Research.AttackSpeed);
-        CriticalChange = (BaseCriticalChange + IncreaseCriticalChange * _currentLevel) * Local.Instance.ResearchEffect(Research.CriticalHitChange);
+        CriticalChange = (BaseCriticalChange + IncreaseCriticalChange * _currentLevel) + Local.Instance.ResearchEffect(Research.CriticalHitChange);
         CriticalDamage = (BaseCriticalDamage + IncreaseCriticalDamage * _currentLevel) * Local.Instance.ResearchEffect(Research.CriticalHitDamage);
 
     }
@@ -141,7 +141,7 @@ public class Tower : MonoBehaviour
         }
 
         _nextLevelFeatureData.attackPerSecond = (BaseAttackPerSecond + IncreaseAttackPerSecond * (_currentLevel + 1)) * Local.Instance.ResearchEffect(Research.AttackSpeed);
-        _nextLevelFeatureData.criticalChange = (BaseCriticalChange + IncreaseCriticalChange * (_currentLevel + 1)) * Local.Instance.ResearchEffect(Research.CriticalHitChange);
+        _nextLevelFeatureData.criticalChange = (BaseCriticalChange + IncreaseCriticalChange * (_currentLevel + 1)) + Local.Instance.ResearchEffect(Research.CriticalHitChange);
         _nextLevelFeatureData.criticalDamage = (BaseCriticalDamage + IncreaseCriticalDamage * (_currentLevel + 1)) * Local.Instance.ResearchEffect(Research.CriticalHitDamage);
 
         return _nextLevelFeatureData;
@@ -153,15 +153,17 @@ public class Tower : MonoBehaviour
 
         float damage = AttackPower;
         int r = Random.Range(0, 101);
+        bool crit = false;
         if (r < CriticalChange)
         {
             // Critical Attack
             damage *= (1 + CriticalDamage);
+            crit = true;
         }
 
         Poolable poolable = Poolable.GetFromPool(_bulletPrefab);
         Bullet bullet = (Bullet)poolable;
-        bullet.InitBullet(_bulletSpawnPoint.position,damage,this,target);
+        bullet.InitBullet(_bulletSpawnPoint.position,damage,crit,this,target);
         
     }
 

@@ -12,6 +12,7 @@ public class GameMainScreen : Screen
     private void Start()
     {
 
+
         // Screen Texts
         ExtendedText
             .SetTextMethod("WaveInfo", "Wave",()=>Local.Instance.Wave);
@@ -21,11 +22,11 @@ public class GameMainScreen : Screen
             .SetTextMethod("EnemyHPInfo", "EnemyHP", () => ((int)Local.Instance.EnemyHP));
 
         ExtendedText
-            .SetTextMethod("GoldInfo", "Gold", () => Local.Instance.Gold);
+            .SetTextMethod("GoldInfo", "Gold", () => (int)Local.Instance.Gold);
         ExtendedText
-            .SetTextMethod("EssenceInfo", "Essence", () => Local.Instance.Essence);
+            .SetTextMethod("EssenceInfo", "Essence", () => (int)Local.Instance.Essence);
         ExtendedText
-            .SetTextMethod("RebornInfo", "RebornPoint", () => Local.Instance.RebornPoint);
+            .SetTextMethod("RebornInfo", "RebornPoint", () => (int)Local.Instance.RebornPoint);
         // End
 
 
@@ -89,7 +90,7 @@ public class GameMainScreen : Screen
         ExtendedText
             .SetTextMethod("AttackSpeedInfoText", "AttackSpeedInfo", () => Local.Instance.ResearchEffect(Research.AttackSpeed) * 100);
         ExtendedText
-            .SetTextMethod("CriticalHitChanceInfoText", "CriticalHitChanceInfo", () => Local.Instance.ResearchEffect(Research.CriticalHitChange) * 100);
+            .SetTextMethod("CriticalHitChanceInfoText", "CriticalHitChanceInfo", () => Local.Instance.ResearchEffect(Research.CriticalHitChange));
         ExtendedText
             .SetTextMethod("CriticalHitDamageInfoText", "CriticalHitDamageInfo", () => Local.Instance.ResearchEffect(Research.CriticalHitDamage) * 100);
         ExtendedText
@@ -151,7 +152,16 @@ public class GameMainScreen : Screen
 
         //End
 
-
+        // Slot Empty
+        ExtendedText.SetTextMethod("NewFireTowerButtonText", "Gold2",
+            () => Local.Instance.NewTowerCost(TowerType.Fire));
+        ExtendedText.SetTextMethod("NewWaterTowerButtonText", "Gold2",
+            () => Local.Instance.NewTowerCost(TowerType.Water));
+        ExtendedText.SetTextMethod("NewEarthTowerButtonText", "Gold2",
+            () => Local.Instance.NewTowerCost(TowerType.Earth));
+        ExtendedText.SetTextMethod("NewAirTowerButtonText", "Gold2",
+            () => Local.Instance.NewTowerCost(TowerType.Air));
+        //End
     }
 
 

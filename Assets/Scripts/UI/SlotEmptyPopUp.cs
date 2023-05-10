@@ -29,14 +29,7 @@ public class SlotEmptyPopUp :PopUp
         _towerTypeToTower[TowerType.Air] = airTower;
         _towerTypeToTower[TowerType.Earth] = earthTower;
 
-        ExtendedText.SetTextMethod("NewFireTowerButtonText", "Gold2", 
-            () => Local.Instance.NewTowerCost(TowerType.Fire));
-        ExtendedText.SetTextMethod("NewWaterTowerButtonText", "Gold2",
-            () => Local.Instance.NewTowerCost(TowerType.Water));
-        ExtendedText.SetTextMethod("NewEarthTowerButtonText", "Gold2",
-            () => Local.Instance.NewTowerCost(TowerType.Earth));
-        ExtendedText.SetTextMethod("NewAirTowerButtonText", "Gold2",
-            () => Local.Instance.NewTowerCost(TowerType.Air));
+
 
     }
 

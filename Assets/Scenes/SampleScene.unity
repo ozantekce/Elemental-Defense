@@ -1146,6 +1146,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74254773}
   m_CullTransparentMesh: 1
+--- !u!1 &77103652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 77103654}
+  - component: {fileID: 77103653}
+  m_Layer: 0
+  m_Name: DamageTextManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &77103653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77103652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ba14ae56a957040bbdfdd43beefb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &77103654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77103652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &78441695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,17 +2218,7 @@ MonoBehaviour:
     screenName: 
     popUpName: 
     textName: FireButtonText
-    waitToExecute: 0.5
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: FireTitleText
-    waitToExecute: 0
+    waitToExecute: 1
     closeOtherPopUps: 0
     waitToReuse: 0
     onClickEvent:
@@ -2205,8 +2239,18 @@ MonoBehaviour:
   - type: 5
     screenName: 
     popUpName: 
+    textName: FireTitleText
+    waitToExecute: 1
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - type: 5
+    screenName: 
+    popUpName: 
     textName: FireInfoText
-    waitToExecute: 0
+    waitToExecute: 1
     closeOtherPopUps: 0
     waitToReuse: 0
     onClickEvent:
@@ -3799,16 +3843,6 @@ MonoBehaviour:
     waitToReuse: 0
     onClickEvent:
       m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: PassiveRPTitleText
-    waitToExecute: 0
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1971688738}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
@@ -3822,6 +3856,16 @@ MonoBehaviour:
             m_StringArgument: RP
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: PassiveRPTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 
@@ -7924,16 +7968,6 @@ MonoBehaviour:
     screenName: 
     popUpName: 
     textName: EarthButtonText
-    waitToExecute: 0.5
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: EarthTitleText
     waitToExecute: 0
     closeOtherPopUps: 0
     waitToReuse: 0
@@ -7952,6 +7986,16 @@ MonoBehaviour:
             m_StringArgument: Earth
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: EarthTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 
@@ -9604,16 +9648,6 @@ MonoBehaviour:
     waitToReuse: 0
     onClickEvent:
       m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: RangeInfoText
-    waitToExecute: 0
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1971688738}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
@@ -9627,6 +9661,16 @@ MonoBehaviour:
             m_StringArgument: Range
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: RangeInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 
@@ -10743,16 +10787,6 @@ MonoBehaviour:
     screenName: 
     popUpName: 
     textName: WaterButtonText
-    waitToExecute: 0.5
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: WaterTitleText
     waitToExecute: 0
     closeOtherPopUps: 0
     waitToReuse: 0
@@ -10771,6 +10805,16 @@ MonoBehaviour:
             m_StringArgument: Water
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: WaterTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 
@@ -18168,16 +18212,6 @@ MonoBehaviour:
     screenName: 
     popUpName: 
     textName: AirButtonText
-    waitToExecute: 0.5
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: AirTitleText
     waitToExecute: 0
     closeOtherPopUps: 0
     waitToReuse: 0
@@ -18196,6 +18230,16 @@ MonoBehaviour:
             m_StringArgument: Air
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: AirTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 
@@ -19635,11 +19679,6 @@ MonoBehaviour:
   - {fileID: 1732593537}
   - {fileID: 2077595738}
   extendedTexts:
-  - {fileID: 1343424130}
-  - {fileID: 1045279121}
-  - {fileID: 1600263574}
-  - {fileID: 957018542}
-  - {fileID: 1818445892}
   - {fileID: 8342183}
   - {fileID: 11051887}
   - {fileID: 96697830}
@@ -19662,22 +19701,27 @@ MonoBehaviour:
   - {fileID: 776278050}
   - {fileID: 794521295}
   - {fileID: 874479047}
+  - {fileID: 957018542}
   - {fileID: 1020423651}
   - {fileID: 1022925246}
+  - {fileID: 1045279121}
   - {fileID: 1048218699}
   - {fileID: 1282934670}
   - {fileID: 1299076021}
+  - {fileID: 1343424130}
   - {fileID: 1357297390}
   - {fileID: 1401633498}
   - {fileID: 1425103338}
   - {fileID: 1489945140}
   - {fileID: 1510825659}
+  - {fileID: 1600263574}
   - {fileID: 1608249201}
   - {fileID: 1690771007}
   - {fileID: 1708682797}
   - {fileID: 1751062165}
   - {fileID: 1762195135}
   - {fileID: 1786001176}
+  - {fileID: 1818445892}
   - {fileID: 1850527369}
   - {fileID: 1915179952}
   - {fileID: 1942714633}
@@ -20813,16 +20857,6 @@ MonoBehaviour:
     waitToReuse: 0
     onClickEvent:
       m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: PassiveGoldTitleText
-    waitToExecute: 0
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1971688738}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
@@ -20836,6 +20870,16 @@ MonoBehaviour:
             m_StringArgument: Gold
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: PassiveGoldTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 
@@ -24769,16 +24813,6 @@ MonoBehaviour:
     waitToReuse: 0
     onClickEvent:
       m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: DamageInfoText
-    waitToExecute: 0
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1971688738}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
@@ -24792,6 +24826,16 @@ MonoBehaviour:
             m_StringArgument: Damage
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: DamageInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 
@@ -26126,16 +26170,6 @@ MonoBehaviour:
     waitToReuse: 0
     onClickEvent:
       m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: AttackSpeedInfoText
-    waitToExecute: 0
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1971688738}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
@@ -26149,6 +26183,16 @@ MonoBehaviour:
             m_StringArgument: AttackSpeed
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: AttackSpeedInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 
@@ -26620,16 +26664,6 @@ MonoBehaviour:
     waitToReuse: 0
     onClickEvent:
       m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: CriticalHitChanceInfoText
-    waitToExecute: 0
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1971688738}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
@@ -26643,6 +26677,16 @@ MonoBehaviour:
             m_StringArgument: CriticalHitChange
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: CriticalHitChanceInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 
@@ -30919,16 +30963,6 @@ MonoBehaviour:
     waitToReuse: 0
     onClickEvent:
       m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: PassiveEssenceTitleText
-    waitToExecute: 0
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1971688738}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
@@ -30942,6 +30976,16 @@ MonoBehaviour:
             m_StringArgument: Essence
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: PassiveEssenceTitleText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 
@@ -32544,16 +32588,6 @@ MonoBehaviour:
     waitToReuse: 0
     onClickEvent:
       m_PersistentCalls:
-        m_Calls: []
-  - type: 5
-    screenName: 
-    popUpName: 
-    textName: CriticalHitDamageInfoText
-    waitToExecute: 0
-    closeOtherPopUps: 0
-    waitToReuse: 0
-    onClickEvent:
-      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1971688738}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
@@ -32567,6 +32601,16 @@ MonoBehaviour:
             m_StringArgument: CriticalHitDamage
             m_BoolArgument: 0
           m_CallState: 2
+  - type: 5
+    screenName: 
+    popUpName: 
+    textName: CriticalHitDamageInfoText
+    waitToExecute: 0
+    closeOtherPopUps: 0
+    waitToReuse: 0
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - type: 5
     screenName: 
     popUpName: 

@@ -44,7 +44,7 @@ namespace ScreenManagerNS
             public string popUpName;
             [ShowInEnum("type", "UpdateText"), DropdownMenuText]
             public string textName;
-
+            [ShowInEnum("type","LoadScreen", "OpenPopUp", "ClosePopUp"), DropdownMenuPopUp]
             public float waitToExecute;
             [ShowInEnum("type", "OpenPopUp")]
             public bool closeOtherPopUps;
@@ -52,7 +52,7 @@ namespace ScreenManagerNS
 
             public UnityEvent onClickEvent;
 
-            private float _nextClickTime = 0f;
+            private float _nextClickTime = -1f;
 
             public string ElementName
             {
@@ -85,9 +85,10 @@ namespace ScreenManagerNS
             public static void Execute(OnClickData data)
             {
                 if (data.NextClickTime > Time.time) return;
+                data.onClickEvent?.Invoke();
                 data.NextClickTime = Time.time + data.waitToReuse;
                 _typeMethodPairs[data.type](data);
-                data.onClickEvent?.Invoke();
+                
             }
 
             private static void LoadScreen(OnClickData data)

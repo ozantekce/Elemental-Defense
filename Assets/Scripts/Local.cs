@@ -27,18 +27,18 @@ public class Local : MonoBehaviour
     [ContextMenu("Add Gold")]
     public void AddGold()
     {
-        Gold += 1000;
+        Gold += 10000;
     }
     [ContextMenu("Add Essence")]
     public void AddEssence()
     {
-        Essence += 1000;
+        Essence += 10000;
     }
 
     [ContextMenu("Add RP")]
     public void AddRP()
     {
-        RebornPoint += 1000;
+        RebornPoint += 10000;
     }
 
     #region TowerFeatureData
@@ -137,8 +137,8 @@ public class Local : MonoBehaviour
     public int NewTowerCost(TowerType type)
     {
         return (int)(
-              Increase_TowerCost * Mathf.Pow(NumberOfTowerType(type), 2f)
-            + 2f * Increase_TowerCost * Mathf.Pow(NumberOfFireTowers, (NumberOfTowerType(type) / 4f))
+              Increase_TowerCost * Mathf.Pow(NumberOfTowerType(type), 3.6f)
+            + Increase_TowerCost * NumberOfAllTowers
             + Base_TowerCost)
             ;
     }
@@ -231,7 +231,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    public int NumberOfAllTowers
+    private int NumberOfAllTowers
     {
         get { return NumberOfFireTowers + NumberOfWaterTowers + NumberOfEarthTowers + NumberOfAirTowers; }
     }
@@ -239,39 +239,39 @@ public class Local : MonoBehaviour
 
     #region Resources
 
-    public int Gold
+    public float Gold
     {
         set
         {
-            PlayerPrefs.SetInt("gold", value);
+            PlayerPrefs.SetFloat("gold", value);
         }
         get
         {
-            return PlayerPrefs.GetInt("gold", 100);
+            return PlayerPrefs.GetFloat("gold", 100f);
         }
     }
 
-    public int Essence
+    public float Essence
     {
         set
         {
-            PlayerPrefs.SetInt("essence", value);
+            PlayerPrefs.SetFloat("essence", value);
         }
         get
         {
-            return PlayerPrefs.GetInt("essence", 10);
+            return PlayerPrefs.GetFloat("essence", 10);
         }
     }
 
-    public int RebornPoint
+    public float RebornPoint
     {
         set
         {
-            PlayerPrefs.SetInt("rebornPoint", value);
+            PlayerPrefs.SetFloat("rebornPoint", value);
         }
         get
         {
-            return PlayerPrefs.GetInt("rebornPoint", 0);
+            return PlayerPrefs.GetFloat("rebornPoint", 0);
         }
     }
 
@@ -299,15 +299,19 @@ public class Local : MonoBehaviour
         { Element.Air , 0.25f },
     };
 
-    public const float AirEffectRange = 50f;
+    public const float AirEffectRange = 35f;
 
     public const float WaterEffectDuration = 1f;
     public const float EarthEffectDuration = 1f;
 
-    private const int Increase_EssenceForElements = 3;
+
     public int ElementCost(int level)
     {
-        return (int)(Mathf.Log(level,(MaxElemetsLevel+1)) * Increase_EssenceForElements)+5;
+        if (level >= MaxElemetsLevel) return -1;
+        return (int)(
+                Mathf.Log(level, (5f / level) + 1) * 15 + 5 + Mathf.Pow(1.175f, level)
+            )
+            ;
     }
 
 
@@ -322,6 +326,7 @@ public class Local : MonoBehaviour
 
     public void IncreaseElementLevel(Element element)
     {
+        if (ElementLevel(element) >= MaxElemetsLevel) return;
         if (element == Element.Fire) FireLevel++;
         else if (element == Element.Water)  WaterLevel++;
         else if (element == Element.Earth)  EarthLevel++;
@@ -410,19 +415,19 @@ public class Local : MonoBehaviour
 
     private readonly Dictionary<Research, float> Increase_ResearchEffect = new Dictionary<Research, float>()
     {
-        { Research.Damage , 7f },
-        { Research.AttackSpeed , 1f },
-        { Research.CriticalHitChange , 0.5f },
-        { Research.CriticalHitDamage , 1f },
-        { Research.Range , 0.5f }
+        { Research.Damage , 3f },
+        { Research.AttackSpeed , 0.5f },
+        { Research.CriticalHitChange , 60f },
+        { Research.CriticalHitDamage , 0.5f },
+        { Research.Range , 0.25f }
     };
 
 
-    private const int Increase_EssenceForResearch = 2;
     public int ResearchCost(int level)
     {
-        return (int)(Increase_EssenceForResearch * Mathf.Log(level, (4f / level))) 
-            + Increase_EssenceForResearch;
+        return (int)(
+                Mathf.Log(level, (50f / level) + 1) * 5 + 4 + Mathf.Pow(1.05f, level)
+            );
     }
 
     public int ResearchCost(Research research)
@@ -626,7 +631,7 @@ public class Local : MonoBehaviour
 
     public int CanEarnRP
     {
-        get { return (int)(Increase_RebornPoint * Mathf.Log(Wave, (5f / Wave) + 1) - 45); }
+        get { return (int)(Mathf.Log(Wave, (6f / Wave) + 1) - 30); }
     }
 
     #endregion
@@ -705,15 +710,17 @@ public class Local : MonoBehaviour
 
     #region PassiveIncome
 
+    public const float IncomeTime = 5f;
+
     private const int Base_IncomeUpdateCost = 5;
 
-    private const int Base_PassiveGold = 5;
-    private const int Base_PassiveEssence = 1;
-    private const int Base_PassiveRP = 0;
+    private const float Base_PassiveGold = 1f;
+    private const float Base_PassiveEssence = 1f;
+    private const float Base_PassiveRP = 0f;
 
-    private const int PassiveGoldByLevel = 20;
-    private const int PassiveEssenceByLevel = 5;
-    private const int PassiveRPByLevel = 1;
+    private const float PassiveGoldByLevel = 1.6666f;
+    private const float PassiveEssenceByLevel = 0.25f;
+    private const float PassiveRPByLevel = 1f/12;
 
 
 
@@ -762,7 +769,23 @@ public class Local : MonoBehaviour
     }
 
 
-    public int PassiveIncomeAmount(PassiveIncome passiveIncome)
+    public void SetIncomeLevel(PassiveIncome income, int level)
+    {
+        if (income == PassiveIncome.Gold) PassiveGoldLevel = level;
+        else if (income == PassiveIncome.Essence) PassiveEssenceLevel = level;
+        else if (income == PassiveIncome.RP) PassiveRPLevel = level;
+    }
+    public void SetIncomesLevels(PassiveIncome[] incomes
+        , int[] levels)
+    {
+        for (int i = 0; i < incomes.Length; i++)
+        {
+            SetIncomeLevel(incomes[i], levels[i]);
+        }
+    }
+
+
+    public float PassiveIncomeAmount(PassiveIncome passiveIncome)
     {
         if(passiveIncome == PassiveIncome.Gold) { return PassiveGoldIncome; }
         if(passiveIncome == PassiveIncome.Essence) { return PassiveEssenceIncome; }
@@ -770,7 +793,7 @@ public class Local : MonoBehaviour
         return 0;
     }
 
-    private int PassiveGoldIncome
+    private float PassiveGoldIncome
     {
         get
         {
@@ -778,7 +801,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    private int PassiveEssenceIncome
+    private float PassiveEssenceIncome
     {
         get
         {
@@ -786,7 +809,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    private int PassiveRPIncome
+    private float PassiveRPIncome
     {
         get
         {
@@ -797,7 +820,7 @@ public class Local : MonoBehaviour
 
     public int PassiveIncomeUpdateCost(int level)
     {
-        return (int)(Base_IncomeUpdateCost + Mathf.Pow(level, 1.2f) * Base_IncomeUpdateCost);
+        return (int)(Mathf.Pow(level, 1.2f) * Base_IncomeUpdateCost) -2;
     }
 
     public int PassiveIncomeUpdateCost(PassiveIncome passiveIncome)
