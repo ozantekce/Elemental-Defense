@@ -91,21 +91,21 @@ public class Local : MonoBehaviour
     private TowerFeatureData _increaseWaterTowerFeatureData = new TowerFeatureData(
         range: 0.7f,
         attackPower: 0.5f,
-        attackPerSecond: 0.01f,
+        attackPerSecond: 0.0135f,
         criticalChange: 0f,
         criticalDamage: 0f
         );
     private TowerFeatureData _increaseEarthTowerFeatureData = new TowerFeatureData(
         range: 0.7f,
         attackPower: 0.5f,
-        attackPerSecond: 0.01f,
+        attackPerSecond: 0.0135f,
         criticalChange: 0f,
         criticalDamage: 0f
         );
     private TowerFeatureData _increaseAirTowerFeatureData = new TowerFeatureData(
         range: 0.7f,
         attackPower: 0.5f,
-        attackPerSecond: 0.01f,
+        attackPerSecond: 0.0135f,
         criticalChange: 0f,
         criticalDamage: 0f
         );
@@ -313,6 +313,11 @@ public class Local : MonoBehaviour
             ;
     }
 
+    public int ElementCost(Element element)
+    {
+        return ElementCost(ElementLevel(element));
+    }
+
 
     public int ElementLevel(Element element)
     {
@@ -339,12 +344,12 @@ public class Local : MonoBehaviour
         else if (element == Element.Earth) EarthLevel=level;
         else if (element == Element.Air) AirLevel=level;
     }
-    public void SetElementsLevels(Element[] elements
-        ,int[] levels)
+    public void SetElementsLevels(params EnumIntPair[] enumIntPairs)
     {
-        for (int i = 0; i < elements.Length; i++)
+        for (int i = 0; i < enumIntPairs.Length; i++)
         {
-            SetElementLevel(elements[i], levels[i]);
+            SetElementLevel(enumIntPairs[i].enumName.StringToEnum<Element>()
+                , enumIntPairs[i].val);
         }
     }
 
@@ -461,12 +466,12 @@ public class Local : MonoBehaviour
         else if (research == Research.CriticalHitChange) CriticalHitDamageLevel = level;
         else if (research == Research.Range) RangeLevel = level;
     }
-    public void SetResearchsLevels(Research[] researches
-        , int[] levels)
+    public void SetResearchsLevels(params EnumIntPair[] enumIntPairs)
     {
-        for (int i = 0; i < researches.Length; i++)
+        for (int i = 0; i < enumIntPairs.Length; i++)
         {
-            SetResearchLevel(researches[i], levels[i]);
+            SetResearchLevel(enumIntPairs[i].enumName.StringToEnum<Research>()
+                , enumIntPairs[i].val);
         }
     }
 
@@ -774,12 +779,12 @@ public class Local : MonoBehaviour
         else if (income == PassiveIncome.Essence) PassiveEssenceLevel = level;
         else if (income == PassiveIncome.RP) PassiveRPLevel = level;
     }
-    public void SetIncomesLevels(PassiveIncome[] incomes
-        , int[] levels)
+    public void SetIncomesLevels(params EnumIntPair[] enumValPairs)
     {
-        for (int i = 0; i < incomes.Length; i++)
+        for (int i = 0; i < enumValPairs.Length; i++)
         {
-            SetIncomeLevel(incomes[i], levels[i]);
+            SetIncomeLevel(enumValPairs[i].enumName.StringToEnum<PassiveIncome>()
+                , enumValPairs[i].val);
         }
     }
 

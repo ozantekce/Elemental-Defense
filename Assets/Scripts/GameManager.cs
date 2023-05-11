@@ -70,9 +70,9 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        float gold = (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.Gold));
-        float essence = (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.Essence));
-        float rp = (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.RP));
+        float gold = (elapsedTime / Local.IncomeTime * PassiveIncome.Gold.PassiveIncomeAmount());
+        float essence = (elapsedTime / Local.IncomeTime * PassiveIncome.Essence.PassiveIncomeAmount());
+        float rp = (elapsedTime / Local.IncomeTime * PassiveIncome.RP.PassiveIncomeAmount());
 
         Local.Instance.Gold += gold;
         Local.Instance.Essence += essence;
@@ -135,9 +135,9 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseElementLevel(Element element)
     {
-        int elementLevel = Local.Instance.ElementLevel(element);
+        int elementLevel = element.ElementLevel();
         if (elementLevel >= Local.MaxElemetsLevel) return;
-        int price = Local.Instance.ElementCost(elementLevel);
+        int price = element.ElementCost();
         if(Local.Instance.Essence >= price)
         {
             Local.Instance.Essence -= price;
@@ -155,8 +155,8 @@ public class GameManager : MonoBehaviour
     public void IncreaseResearchLevel(Research research)
     {
 
-        int researchLevel = Local.Instance.ResearchLevel(research);
-        int price = Local.Instance.ResearchCost(researchLevel);
+        int researchLevel = research.ResearchLevel();
+        int price = research.ResearchCost();
 
         if(Local.Instance.Essence >= price)
         {
@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseIncomeLevel(PassiveIncome income)
     {
-        int price = Local.Instance.PassiveIncomeUpdateCost(income);
+        int price = income.PassiveIncomeUpdateCost();
 
         if (Local.Instance.Essence >= price)
         {

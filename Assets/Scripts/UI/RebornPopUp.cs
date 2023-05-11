@@ -229,14 +229,21 @@ public class RebornPopUp : PopUp
         Local.Instance.Essence = currentEssence;
         Local.Instance.RebornPoint = currentRP;
 
-        Local.Instance.SetElementsLevels(
-          new Element[] { Element.Fire,Element.Water,Element.Earth,Element.Air }
-        , new int[] {currentFireLevel,currentWaterLevel,currentEarthLevel,currentAirLevel });
 
+        Local.Instance.SetElementsLevels(
+            new EnumIntPair("Fire",currentFireLevel),
+            new EnumIntPair("Water", currentWaterLevel),
+            new EnumIntPair("Earth", currentEarthLevel),
+            new EnumIntPair("Air", currentAirLevel)
+            );
 
         Local.Instance.SetResearchsLevels(
-          new Research[] { Research.Damage, Research.AttackSpeed, Research.CriticalHitChange, Research.CriticalHitDamage, Research.Range }
-        , new int[] { currentDamageLevel, currentAttackSpeedLevel, currentCriticalHitChangeLevel, currentCriticalHitDamageLevel, currentRangeLevel });
+            new EnumIntPair("Damage", currentDamageLevel),
+            new EnumIntPair("AttackSpeed", currentAttackSpeedLevel),
+            new EnumIntPair("CriticalHitChange", currentCriticalHitChangeLevel),
+            new EnumIntPair("CriticalHitDamage", currentCriticalHitDamageLevel),
+            new EnumIntPair("Range", currentRangeLevel)
+            );
 
         Local.Instance.EssenceChangeLevel = currentEssenceChangeLevel;
         Local.Instance.GoldDropLevel = currentGoldDropLevel;
@@ -244,8 +251,9 @@ public class RebornPopUp : PopUp
         Local.Instance.GameSpeedLevel = currentGameSpeedLevel;
 
         Local.Instance.SetIncomesLevels(
-            new PassiveIncome[] {PassiveIncome.Gold,PassiveIncome.Essence,PassiveIncome.RP },
-            new int[] { currentIncomeGoldLevel , currentIncomeEssenceLevel , currentIncomeRPLevel }
+            new EnumIntPair("Gold",currentIncomeGoldLevel),
+            new EnumIntPair("Essence", currentIncomeEssenceLevel),
+            new EnumIntPair("RP", currentIncomeRPLevel)
         );
 
         this.name.ClosePopUp();

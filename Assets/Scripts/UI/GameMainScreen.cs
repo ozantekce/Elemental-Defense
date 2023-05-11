@@ -27,25 +27,25 @@ public class GameMainScreen : Screen
         // ElementsPopUp Texts
 
         //Titles
-        "FireTitleText".SetTextMethod("FireLevel", () => Local.Instance.ElementLevel(Element.Fire));
-        "WaterTitleText".SetTextMethod("WaterLevel", () => Local.Instance.ElementLevel(Element.Water));
-        "EarthTitleText".SetTextMethod("EarthLevel", () => Local.Instance.ElementLevel(Element.Earth));
-        "AirTitleText".SetTextMethod("AirLevel", () => Local.Instance.ElementLevel(Element.Air));
+        "FireTitleText".SetTextMethod("FireLevel", () => Element.Fire.ElementLevel());
+        "WaterTitleText".SetTextMethod("WaterLevel", () => Element.Water.ElementLevel());
+        "EarthTitleText".SetTextMethod("EarthLevel", () => Element.Earth.ElementLevel());
+        "AirTitleText".SetTextMethod("AirLevel", () => Element.Air.ElementLevel());
         //
 
 
         // Element Info
-        "FireInfoText".SetTextMethod("FireInfo", () => Local.Instance.ElementEffect(Element.Fire) * 100);
-        "WaterInfoText".SetTextMethod("WaterInfo", () => Local.Instance.ElementEffect(Element.Water) * 100);
-        "EarthInfoText".SetTextMethod("EarthInfo", () => Local.Instance.ElementEffect(Element.Earth) * 100);
-        "AirInfoText".SetTextMethod("AirInfo", () => Local.Instance.ElementEffect(Element.Air) * 100);
+        "FireInfoText".SetTextMethod("FireInfo", () => Element.Fire.ElementEffect()* 100);
+        "WaterInfoText".SetTextMethod("WaterInfo", () => Element.Water.ElementEffect()* 100);
+        "EarthInfoText".SetTextMethod("EarthInfo", () => Element.Earth.ElementEffect()* 100);
+        "AirInfoText".SetTextMethod("AirInfo", () => Element.Air.ElementEffect() * 100);
         //
 
         // Buttons
-        "FireButtonText".SetTextMethod("Essence2", () => Local.Instance.ElementCost(Local.Instance.ElementLevel(Element.Fire)));
-        "WaterButtonText".SetTextMethod("Essence2", () => Local.Instance.ElementCost(Local.Instance.ElementLevel(Element.Water)));
-        "EarthButtonText".SetTextMethod("Essence2", () => Local.Instance.ElementCost(Local.Instance.ElementLevel(Element.Earth)));
-        "AirButtonText".SetTextMethod("Essence2", () => Local.Instance.ElementCost(Local.Instance.ElementLevel(Element.Air)));
+        "FireButtonText".SetTextMethod("Essence2", () => Element.Fire.ElementCost());
+        "WaterButtonText".SetTextMethod("Essence2", () => Element.Water.ElementCost());
+        "EarthButtonText".SetTextMethod("Essence2", () => Element.Earth.ElementCost());
+        "AirButtonText".SetTextMethod("Essence2", () => Element.Air.ElementCost());
         //
 
         // End
@@ -54,28 +54,28 @@ public class GameMainScreen : Screen
         // ResearchPopUp
 
         // Titles
-        "DamageTitleText".SetTextMethod("DamageLevel", () => Local.Instance.ResearchLevel(Research.Damage));
-        "AttackSpeedTitleText".SetTextMethod("AttackSpeedLevel", () => Local.Instance.ResearchLevel(Research.AttackSpeed));
-        "CriticalHitChanceTitleText".SetTextMethod("CriticalHitChanceLevel", () => Local.Instance.ResearchLevel(Research.CriticalHitChange));
-        "CriticalHitDamageTitleText".SetTextMethod("CriticalHitDamageLevel", () => Local.Instance.ResearchLevel(Research.CriticalHitDamage));
-        "RangeTitleText".SetTextMethod("RangeLevel", () => Local.Instance.ResearchLevel(Research.Range));
+        "DamageTitleText".SetTextMethod("DamageLevel", () => Research.Damage.ResearchLevel());
+        "AttackSpeedTitleText".SetTextMethod("AttackSpeedLevel", () => Research.AttackSpeed.ResearchLevel());
+        "CriticalHitChanceTitleText".SetTextMethod("CriticalHitChanceLevel", () => Research.CriticalHitChange.ResearchLevel());
+        "CriticalHitDamageTitleText".SetTextMethod("CriticalHitDamageLevel", () => Research.CriticalHitDamage.ResearchLevel());
+        "RangeTitleText".SetTextMethod("RangeLevel", () => Research.Range.ResearchLevel());
         //
 
         // Info
-        "DamageInfoText".SetTextMethod("DamageInfo", () => Local.Instance.ResearchEffect(Research.Damage) * 100);
-        "AttackSpeedInfoText".SetTextMethod("AttackSpeedInfo", () => Local.Instance.ResearchEffect(Research.AttackSpeed) * 100);
-        "CriticalHitChanceInfoText".SetTextMethod("CriticalHitChanceInfo", () => Local.Instance.ResearchEffect(Research.CriticalHitChange));
-        "CriticalHitDamageInfoText".SetTextMethod("CriticalHitDamageInfo", () => Local.Instance.ResearchEffect(Research.CriticalHitDamage) * 100);
-        "RangeInfoText".SetTextMethod("RangeInfo", () => Local.Instance.ResearchEffect(Research.Range) * 100);
+        "DamageInfoText".SetTextMethod("DamageInfo", () => Research.Damage.ResearchEffect() * 100);
+        "AttackSpeedInfoText".SetTextMethod("AttackSpeedInfo", () => Research.AttackSpeed.ResearchEffect() * 100);
+        "CriticalHitChanceInfoText".SetTextMethod("CriticalHitChanceInfo", () => Research.CriticalHitChange.ResearchEffect());
+        "CriticalHitDamageInfoText".SetTextMethod("CriticalHitDamageInfo", () => Research.CriticalHitDamage.ResearchEffect() * 100);
+        "RangeInfoText".SetTextMethod("RangeInfo", () => Research.Range.ResearchEffect() * 100);
         //
 
 
         // Button
-        "DamageButtonText".SetTextMethod("Essence2", () => Local.Instance.ResearchCost(Research.Damage));
-        "AttackSpeedButtonText".SetTextMethod("Essence2", () => Local.Instance.ResearchCost(Research.AttackSpeed));
-        "CriticalHitChanceButtonText".SetTextMethod("Essence2", () => Local.Instance.ResearchCost(Research.CriticalHitChange));
-        "CriticalHitDamageButtonText".SetTextMethod("Essence2", () => Local.Instance.ResearchCost(Research.CriticalHitDamage));
-        "RangeButtonText".SetTextMethod("Essence2", () => Local.Instance.ResearchCost(Research.Range));
+        "DamageButtonText".SetTextMethod("Essence2", () => Research.Damage.ResearchCost());
+        "AttackSpeedButtonText".SetTextMethod("Essence2", () => Research.AttackSpeed.ResearchCost());
+        "CriticalHitChanceButtonText".SetTextMethod("Essence2", () => Research.CriticalHitChange.ResearchCost());
+        "CriticalHitDamageButtonText".SetTextMethod("Essence2", () => Research.CriticalHitDamage.ResearchCost());
+        "RangeButtonText".SetTextMethod("Essence2", () => Research.Range.ResearchCost());
         //
 
         // End
@@ -86,25 +86,25 @@ public class GameMainScreen : Screen
 
         // Titles
         
-        "PassiveGoldTitleText".SetTextMethod("GoldLevel", () => Local.Instance.PassiveIncomeLevel(PassiveIncome.Gold));
-        "PassiveEssenceTitleText".SetTextMethod("EssenceLevel", () => Local.Instance.PassiveIncomeLevel(PassiveIncome.Essence));
-        "PassiveRPTitleText".SetTextMethod("RPLevel", () => Local.Instance.PassiveIncomeLevel(PassiveIncome.RP));
+        "PassiveGoldTitleText".SetTextMethod("GoldLevel", () => PassiveIncome.Gold.PassiveIncomeLevel());
+        "PassiveEssenceTitleText".SetTextMethod("EssenceLevel", () => PassiveIncome.Essence.PassiveIncomeLevel());
+        "PassiveRPTitleText".SetTextMethod("RPLevel", () => PassiveIncome.RP.PassiveIncomeLevel());
 
         //
 
         // Info
 
-        "PassiveGoldInfoText".SetTextMethod("GoldIncome", () => Local.Instance.PassiveIncomeAmount(PassiveIncome.Gold));
-        "PassiveEssenceInfoText".SetTextMethod("EssenceIncome", () => Local.Instance.PassiveIncomeAmount(PassiveIncome.Essence));
-        "PassiveRPInfoText".SetTextMethod("RPIncome", () => Local.Instance.PassiveIncomeAmount(PassiveIncome.RP));
+        "PassiveGoldInfoText".SetTextMethod("GoldIncome", () => PassiveIncome.Gold.PassiveIncomeAmount());
+        "PassiveEssenceInfoText".SetTextMethod("EssenceIncome", () => PassiveIncome.Essence.PassiveIncomeAmount());
+        "PassiveRPInfoText".SetTextMethod("RPIncome", () => PassiveIncome.RP.PassiveIncomeAmount());
 
         //
 
         // Button
 
-        "PassiveGoldButtonText".SetTextMethod("Essence2", () => Local.Instance.PassiveIncomeUpdateCost(PassiveIncome.Gold));
-        "PassiveEssenceButtonText".SetTextMethod("Essence2", () => Local.Instance.PassiveIncomeUpdateCost(PassiveIncome.Essence));
-        "PassiveRPButtonText".SetTextMethod("Essence2", () => Local.Instance.PassiveIncomeUpdateCost(PassiveIncome.RP));
+        "PassiveGoldButtonText".SetTextMethod("Essence2", () => PassiveIncome.Gold.PassiveIncomeUpdateCost());
+        "PassiveEssenceButtonText".SetTextMethod("Essence2", () => PassiveIncome.Essence.PassiveIncomeUpdateCost());
+        "PassiveRPButtonText".SetTextMethod("Essence2", () => PassiveIncome.RP.PassiveIncomeUpdateCost());
 
         //
 
@@ -113,10 +113,10 @@ public class GameMainScreen : Screen
 
 
         // Slot Empty
-        "NewFireTowerButtonText".SetTextMethod("Gold2", () => Local.Instance.NewTowerCost(TowerType.Fire));
-        "NewWaterTowerButtonText".SetTextMethod("Gold2", () => Local.Instance.NewTowerCost(TowerType.Water));
-        "NewEarthTowerButtonText".SetTextMethod("Gold2", () => Local.Instance.NewTowerCost(TowerType.Earth));
-        "NewAirTowerButtonText".SetTextMethod("Gold2", () => Local.Instance.NewTowerCost(TowerType.Air));
+        "NewFireTowerButtonText".SetTextMethod("Gold2", () => TowerType.Fire.NewTowerCost());
+        "NewWaterTowerButtonText".SetTextMethod("Gold2", () => TowerType.Water.NewTowerCost());
+        "NewEarthTowerButtonText".SetTextMethod("Gold2", () => TowerType.Earth.NewTowerCost());
+        "NewAirTowerButtonText".SetTextMethod("Gold2", () => TowerType.Air.NewTowerCost());
         //End
 
     }
