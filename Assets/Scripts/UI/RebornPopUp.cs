@@ -67,7 +67,7 @@ public class RebornPopUp : PopUp
 
         _contractButton.onClick.AddListener(OnClickContractButton);
 
-        ExtendedText.SetTextMethod("ContractInfoText", () =>
+        "ContractInfoText".SetTextMethod(() =>
         {
             string text;
             if (Local.Instance.Wave < Local.MinWavetoReborn)
@@ -79,7 +79,7 @@ public class RebornPopUp : PopUp
             {
                 text = "This will reset your wave" +
                     ", gold and towers but you gain <color=red>"
-                    + (Local.Instance.CanEarnRP) + "</color> Reborn Point";
+                    + (Local.Instance.CanEarnRP).ToString("F0") + "</color> Reborn Point";
                 _contractButton.enabled = true;
             }
             return text;
@@ -113,10 +113,10 @@ public class RebornPopUp : PopUp
         //end
 
         // Update Buttons
-        _essenceChangeButtonText.text = "RP(" + Local.Instance.RebornPointCost(Local.Instance.EssenceChangeLevel) + ")";
-        _goldDropButtonText.text = "RP(" + Local.Instance.RebornPointCost(Local.Instance.GoldDropLevel) + ")";
-        _enemyHPButtonText.text = "RP(" + Local.Instance.RebornPointCost(Local.Instance.EnemyHPDecreaseLevel) + ")";
-        _gameSpeedButtonText.text = "RP(" + Local.Instance.RebornPointCost(Local.Instance.GameSpeedLevel) + ")";
+        _essenceChangeButtonText.text = "RebornPoint2".ExecuteFormat(Local.Instance.RebornPointCost(Local.Instance.EssenceChangeLevel));
+        _goldDropButtonText.text = "RebornPoint2".ExecuteFormat(Local.Instance.RebornPointCost(Local.Instance.GoldDropLevel));
+        _enemyHPButtonText.text = "RebornPoint2".ExecuteFormat(Local.Instance.RebornPointCost(Local.Instance.EnemyHPDecreaseLevel));
+        _gameSpeedButtonText.text = "RebornPoint2".ExecuteFormat(Local.Instance.RebornPointCost(Local.Instance.GameSpeedLevel));
         
         if (Local.Instance.EssenceChangeLevel >= Local.MaxEssenceChangeLevel)
         {
@@ -136,18 +136,18 @@ public class RebornPopUp : PopUp
         //end
 
         // Update titles
-        _essenceChangeInfoTitleText.text = "Essence Change(Lv." + Local.Instance.EssenceChangeLevel + ")";
-        _goldDropInfoTitleText.text = "Gold Drop(Lv." + Local.Instance.GoldDropLevel + ")";
-        _enemyHPInfoTitleText.text = "Enemy HP(Lv." + Local.Instance.EnemyHPDecreaseLevel + ")";
-        _gameSpeedInfoTitleText.text = "Game Speed(Lv." + Local.Instance.GameSpeedLevel + ")";
+        _essenceChangeInfoTitleText.text = "Essence Change(Lv." + Local.Instance.EssenceChangeLevel.ToString("F2") + ")";
+        _goldDropInfoTitleText.text = "Gold Drop(Lv." + Local.Instance.GoldDropLevel.ToString("F2") + ")";
+        _enemyHPInfoTitleText.text = "Enemy HP(Lv." + Local.Instance.EnemyHPDecreaseLevel.ToString("F2") + ")";
+        _gameSpeedInfoTitleText.text = "Game Speed(Lv." + Local.Instance.GameSpeedLevel.ToString("F2") + ")";
         // end
 
 
         // Update Info
-        _essenceChangeInfoText.text = "Current essence change <color=red>" + Local.Instance.EssenceChange * 100 + "%</color>";
-        _goldDropInfoText.text = "Current gold drop <color=red>" + Local.Instance.GoldDrop + "</color>";
-        _enemyHPInfoText.text = "Decreased enemy hp by <color=red>" + (100f - Local.Instance.EnemyHPDecreasePercent * 100f) + "%</color>";
-        _gameSpeedInfoText.text = "Current game speed  <color=red>" + Local.Instance.GameSpeed + "X </color>";
+        _essenceChangeInfoText.text = "Current essence change <color=red>" + (Local.Instance.EssenceChange * 100).ToString("F2") + "%</color>";
+        _goldDropInfoText.text = "Current gold drop <color=red>" + Local.Instance.GoldDrop.ToString("F2") + "</color>";
+        _enemyHPInfoText.text = "Decreased enemy hp by <color=red>" + (100f - Local.Instance.EnemyHPDecreasePercent * 100f).ToString("F2") + "%</color>";
+        _gameSpeedInfoText.text = "Current game speed  <color=red>" + Local.Instance.GameSpeed.ToString("F2") + "X </color>";
         //end
 
     }
@@ -248,7 +248,7 @@ public class RebornPopUp : PopUp
             new int[] { currentIncomeGoldLevel , currentIncomeEssenceLevel , currentIncomeRPLevel }
         );
 
-        ScreenManager.Instance.ClosePopUp(this.name);
+        this.name.ClosePopUp();
         UpdateTexts();
     }
 

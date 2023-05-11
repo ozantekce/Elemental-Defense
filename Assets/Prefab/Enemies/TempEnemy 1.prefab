@@ -1015,6 +1015,9 @@ MonoBehaviour:
   _visual: {fileID: 8738008209908364725}
   _hpBarFill: {fileID: 0}
   hpBarFill: {fileID: 6793490051007208327}
+  _normalMaterial: {fileID: 2100000, guid: cad6fa3a83060754d98d2fb182f98fd5, type: 2}
+  _slowedMaterial: {fileID: 2100000, guid: 38737de4489810845a6c89b3844d8f9b, type: 2}
+  _stunedMaterail: {fileID: 2100000, guid: acd5bdc28980e204f82919de5a36a387, type: 2}
 --- !u!1 &8738008209908364725
 GameObject:
   m_ObjectHideFlags: 0

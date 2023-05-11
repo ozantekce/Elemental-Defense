@@ -63,6 +63,7 @@ public class Portal : MonoBehaviour
 
     private void WaveStart()
     {
+        if (Local.Instance.NumberOfAllTowers <= 0) return;
         _waveRunnnig = true;
         _enemyCount = Local.Instance.EnemyCount;
 

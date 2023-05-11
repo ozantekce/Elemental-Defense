@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Portal _portal;
 
+    [SerializeField]
+    private PlayerBase _base;
+
 
     [SerializeField]
     private GameObject _rangeArea;
@@ -25,7 +28,12 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         _instance = this;
-        GetLastIncome:
+
+    }
+
+    private void Start()
+    {
+    GetLastIncome:
         string @string = PlayerPrefs.GetString("lastIncomeTime");
         if (!string.IsNullOrEmpty(@string))
         {
@@ -33,12 +41,13 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetString("lastIncomeTime",DateTime.Now.ToString());
+            PlayerPrefs.SetString("lastIncomeTime", DateTime.Now.ToString());
             goto GetLastIncome;
         }
 
         _incomeCooldown = new Cooldown(1000 * 60 * Local.IncomeTime);
         Income();
+
     }
 
 
@@ -61,10 +70,20 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        
-        Local.Instance.Gold += (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.Gold));
-        Local.Instance.Essence += (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.Essence));
-        Local.Instance.RebornPoint += (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.RP));
+        float gold = (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.Gold));
+        float essence = (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.Essence));
+        float rp = (elapsedTime / Local.IncomeTime * Local.Instance.PassiveIncomeAmount(PassiveIncome.RP));
+
+        Local.Instance.Gold += gold;
+        Local.Instance.Essence += essence;
+        Local.Instance.RebornPoint += rp;
+
+        string tx = "<color=yellow>";
+        tx += "+" + "Gold".ExecuteFormat(gold) +"\n";
+        tx += "+" + "Essence".ExecuteFormat(essence) +"\n";
+        tx += "+" + "RebornPoint".ExecuteFormat(rp) + "</color>";
+
+        InfoTextManager.Instance.CreateText(tx,_base.transform.position+Vector3.up*30f,3f);
         _lastIncomeTime = now;
         PlayerPrefs.SetString("lastIncomeTime", _lastIncomeTime.ToString());
     }
@@ -129,7 +148,7 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseElementLevel(string elementName)
     {
-        Element element = EnumHelper.StringToEnum<Element>(elementName);
+        Element element = elementName.StringToEnum<Element>();
         IncreaseElementLevel(element);
     }
 
@@ -149,7 +168,7 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseResearchLevel(string researchName)
     {
-        Research research = EnumHelper.StringToEnum<Research>(researchName);
+        Research research = researchName.StringToEnum<Research>();
         IncreaseResearchLevel(research);
     }
 
@@ -168,14 +187,14 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseIncomeLevel(string incomeName)
     {
-        PassiveIncome research = EnumHelper.StringToEnum<PassiveIncome>(incomeName);
+        PassiveIncome research = incomeName.StringToEnum<PassiveIncome>();
         IncreaseIncomeLevel(research);
     }
 
 
     public static float DeltaTime()
     {
-        return Time.deltaTime*Local.Instance.GameSpeed;
+        return Time.deltaTime*Local.Instance.GameSpeed*1.15f;
     }
 
     public static GameManager Instance { get => _instance; set => _instance = value; }

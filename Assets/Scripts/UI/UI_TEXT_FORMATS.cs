@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_TEXT_FORMATS
+public static class UI_TEXT_FORMATS
 {
 
 
@@ -54,24 +54,24 @@ public class UI_TEXT_FORMATS
 
 
 
-    public static string Execute(string formatName, string text)
+    public static string ExecuteFormat(this string formatName, string text)
     {
         return NameFormatPair[formatName].ExecuteFormat(text);
     }
 
-    public static string Execute(string formatName, float val)
+    public static string ExecuteFormat(this string formatName, float val)
     {
         if (val < 0) return "MAX";
         return NameFormatPair[formatName].ExecuteFormat(NumberFormat(val));
     }
 
-    public static string Execute(string formatName, int val)
+    public static string ExecuteFormat(this string formatName, int val)
     {
         if (val < 0) return "MAX";
         return NameFormatPair[formatName].ExecuteFormat(NumberFormat(val));
     }
 
-    public static string NumberFormat(float number)
+    public static string NumberFormat(this float number)
     {
         if (number >= 1e18)
             return (number / 1e18).ToString("F2") + "E";
@@ -89,7 +89,7 @@ public class UI_TEXT_FORMATS
             return number.ToString("F2");
     }
 
-    public static string NumberFormat(int number)
+    public static string NumberFormat(this int number)
     {
         if (number >= 1e18)
             return (number / 1e18).ToString("F2") + "E";

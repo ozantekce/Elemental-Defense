@@ -24,7 +24,7 @@ public class SlotFullPopUp : PopUp
     {
         _openerSlot = slot;
         //ScreenManager.Instance.CloseAllPopUpWithout("SlotFullPopUp");
-        ScreenManager.Instance.OpenPopUp("SlotFullPopUp",0,true);
+        "SlotFullPopUp".OpenPopUp(0,true);
 
 
         UpdateTexts();
@@ -75,7 +75,7 @@ public class SlotFullPopUp : PopUp
 
         Local.Instance.Gold += price;
 
-        ScreenManager.Instance.ClosePopUp("SlotFullPopUp");
+        "SlotFullPopUp".ClosePopUp();
     }
 
 

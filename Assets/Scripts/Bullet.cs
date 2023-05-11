@@ -200,13 +200,13 @@ public class BulletMessyAttackCommand : IBulletCommand
         Collider[] hitColliders
             = Physics.OverlapSphere(_enemy.transform.position, Local.AirEffectRange, layerMask);
         string text = _damage.ToString("F0");
-        if (_isCritical) { text = "<color=red>" + text + "</color>"; }
+        if (_isCritical) { text = "<color=red>" + text + "!</color>"; }
         foreach (Collider hitCollider in hitColliders)
         {
             Enemy e = hitCollider.GetComponent<Enemy>();
             if (e == _enemy) continue;
             e.TakeDamage(_damage );
-            DamageTextManager.Instance.CreateText(text, hitCollider.transform.position + Vector3.up * 2f);
+            InfoTextManager.Instance.CreateText(text, hitCollider.transform.position + Vector3.up * 2f);
         }
     }
 }
@@ -228,7 +228,7 @@ public class BulletDamageCommand : IBulletCommand
     {
         _enemy.TakeDamage(_damage);
         string text = _damage.ToString("F0");
-        if(_isCritical) { text = "<color=red>" + text + "</color>"; }
-        DamageTextManager.Instance.CreateText(text, _enemy.transform.position+Vector3.up*2f);
+        if(_isCritical) { text = "<color=red>" + text + "!</color>"; }
+        InfoTextManager.Instance.CreateText(text, _enemy.transform.position+Vector3.up*2f);
     }
 }

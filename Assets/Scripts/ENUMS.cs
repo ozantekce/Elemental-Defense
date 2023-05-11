@@ -39,7 +39,7 @@ public enum PassiveIncome
 
 public static class EnumHelper
 {
-    public static T StringToEnum<T>(string value) where T : struct
+    public static T StringToEnum<T>(this string value) where T : struct
     {
         if (Enum.TryParse(value, true, out T result))
         {

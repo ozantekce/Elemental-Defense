@@ -31,6 +31,15 @@ public class Enemy : MonoBehaviour/*, Poolable*/
     private CooldownManualReset _slowCD;
     private CooldownManualReset _stunCD;
 
+
+    private Renderer _renderer;
+    [SerializeField]
+    private Material _normalMaterial;
+    [SerializeField]
+    private Material _slowedMaterial;
+    [SerializeField]
+    private Material _stunedMaterail;
+
     /*
     private Poolable _poolable;
     private bool _pooled;
@@ -44,6 +53,8 @@ public class Enemy : MonoBehaviour/*, Poolable*/
 
         _slowCD = new CooldownManualReset(1000f);
         _stunCD = new CooldownManualReset(300f);
+
+        _renderer = _visual.GetComponentInChildren<Renderer>();
 
         //_poolable = this;
     }
@@ -74,18 +85,18 @@ public class Enemy : MonoBehaviour/*, Poolable*/
 
     private void CalculateCurrentSpeed()
     {
-        if (_status == EnemyStatus.Slowed &&  _slowCD.TimeOver())
+        if (Status == EnemyStatus.Slowed &&  _slowCD.TimeOver())
         {
-            _status = EnemyStatus.None;
+            Status = EnemyStatus.None;
         }
-        if (_status == EnemyStatus.Stunned && _stunCD.TimeOver())
+        if (Status == EnemyStatus.Stunned && _stunCD.TimeOver())
         {
-            _status = EnemyStatus.None;
+            Status = EnemyStatus.None;
         }
 
         CurrentMovSpeed = _movementSpeed;
 
-        if(_status == EnemyStatus.Stunned)
+        if(Status == EnemyStatus.Stunned)
         {
             CurrentMovSpeed = 0;
             return;
@@ -180,11 +191,17 @@ public class Enemy : MonoBehaviour/*, Poolable*/
             }
             if (value == EnemyStatus.Stunned)
             {
+                _renderer.material = _stunedMaterail;
                 _stunCD.ResetTimer();
             }
             if (value == EnemyStatus.Slowed)
             {
+                _renderer.material = _slowedMaterial;
                 _slowCD.ResetTimer();
+            }
+            if(value==EnemyStatus.None && _status != EnemyStatus.None)
+            {
+                _renderer.material = _normalMaterial;
             }
             _status = value;
         }

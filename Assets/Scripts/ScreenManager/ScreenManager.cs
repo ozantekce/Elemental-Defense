@@ -78,7 +78,7 @@ namespace ScreenManagerNS
         private void Start()
         {
             if (!Application.isPlaying) return;
-            LoadScreen(initialScreen.name);
+            initialScreen.name.LoadScreen();
         }
 
 
@@ -541,6 +541,31 @@ namespace ScreenManagerNS
 
     }
 
+
+    public static class ScreenManagerExtensions
+    {
+
+        public static void OpenPopUp(this string popUpName,float delay = 0,bool closeOtherPopUps = false)
+        {
+            ScreenManager.Instance.OpenPopUp(popUpName,delay,closeOtherPopUps);
+        }
+
+        public static void LoadScreen(this string screenName,float delay = 0) { 
+            ScreenManager.Instance.LoadScreen(screenName,delay);
+        }
+
+        public static void ClosePopUp(this string screenName,float delay = 0)
+        {
+            ScreenManager.Instance.ClosePopUp(screenName,delay);
+        }
+
+        public static void CloseAllPopUpWithout(this string popUpName,float delay = 0)
+        {
+            ScreenManager.Instance.CloseAllPopUpWithout(popUpName, delay);
+        }
+
+
+    }
 
 
 }

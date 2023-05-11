@@ -43,28 +43,28 @@ public class Local : MonoBehaviour
 
     #region TowerFeatureData
     private TowerFeatureData _baseFireTowerFeatureData = new TowerFeatureData(
-        range:100f,
+        range:90f,
         attackPower:5f,
         attackPerSecond:1f,
         criticalChange:10f,
         criticalDamage:1f
         );
     private TowerFeatureData _baseWaterTowerFeatureData = new TowerFeatureData(
-        range: 100f,
+        range: 105f,
         attackPower: 5f,
         attackPerSecond: 1f,
         criticalChange: 10f,
         criticalDamage: 1f
         );
     private TowerFeatureData _baseEarthTowerFeatureData = new TowerFeatureData(
-        range: 100f,
+        range: 105f,
         attackPower: 5f,
         attackPerSecond: 1f,
         criticalChange: 10f,
         criticalDamage: 1f
         );
     private TowerFeatureData _baseAirTowerFeatureData = new TowerFeatureData(
-        range: 100f,
+        range: 105f,
         attackPower: 5f,
         attackPerSecond: 1f,
         criticalChange: 10f,
@@ -82,7 +82,7 @@ public class Local : MonoBehaviour
 
 
     private TowerFeatureData _increaseFireTowerFeatureData = new TowerFeatureData(
-        range: 0.7f,
+        range: 0.45f,
         attackPower: 0.5f,
         attackPerSecond: 0.01f,
         criticalChange: 0f,
@@ -138,7 +138,6 @@ public class Local : MonoBehaviour
     {
         return (int)(
               Increase_TowerCost * Mathf.Pow(NumberOfTowerType(type), 3.6f)
-            + Increase_TowerCost * NumberOfAllTowers
             + Base_TowerCost)
             ;
     }
@@ -231,7 +230,7 @@ public class Local : MonoBehaviour
         }
     }
 
-    private int NumberOfAllTowers
+    public int NumberOfAllTowers
     {
         get { return NumberOfFireTowers + NumberOfWaterTowers + NumberOfEarthTowers + NumberOfAirTowers; }
     }
@@ -710,17 +709,17 @@ public class Local : MonoBehaviour
 
     #region PassiveIncome
 
-    public const float IncomeTime = 5f;
+    public const float IncomeTime = 1f;
 
     private const int Base_IncomeUpdateCost = 5;
 
-    private const float Base_PassiveGold = 1f;
-    private const float Base_PassiveEssence = 1f;
+    private const float Base_PassiveGold = 5f/5;
+    private const float Base_PassiveEssence = 1f/5;
     private const float Base_PassiveRP = 0f;
 
-    private const float PassiveGoldByLevel = 1.6666f;
-    private const float PassiveEssenceByLevel = 0.25f;
-    private const float PassiveRPByLevel = 1f/12;
+    private const float PassiveGoldByLevel = 1.85f / 5;
+    private const float PassiveEssenceByLevel = 0.5f / 5;
+    private const float PassiveRPByLevel = 1f/(6*5);
 
 
 

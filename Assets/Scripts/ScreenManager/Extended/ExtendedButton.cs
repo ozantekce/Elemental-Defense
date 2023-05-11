@@ -93,20 +93,16 @@ namespace ScreenManagerNS
 
             private static void LoadScreen(OnClickData data)
             {
-                ScreenManager.Instance.LoadScreen(data.ElementName
-                    , data.waitToExecute);
+                data.ElementName.LoadScreen(data.waitToExecute);
             }
             private static void OpenPopUp(OnClickData data)
             {
-                ScreenManager.Instance.OpenPopUp(data.ElementName
-                    , data.waitToExecute
-                    , data.closeOtherPopUps);
+                data.ElementName.OpenPopUp(data.waitToExecute, data.closeOtherPopUps);
             }
 
             private static void ClosePopUp(OnClickData data)
             {
-                ScreenManager.Instance.ClosePopUp(data.ElementName
-                    , data.waitToExecute);
+                data.ElementName.ClosePopUp(data.waitToExecute);
             }
             private static void CloseAllPopUps(OnClickData data)
             {

@@ -37,7 +37,7 @@ public class SlotEmptyPopUp :PopUp
     {
         _openerSlot = slot;
         //ScreenManager.Instance.CloseAllPopUpWithout("SlotEmptyPopUp");
-        ScreenManager.Instance.OpenPopUp("SlotEmptyPopUp",0,true);
+        "SlotEmptyPopUp".OpenPopUp(0,true);
 
     }
 
@@ -49,7 +49,7 @@ public class SlotEmptyPopUp :PopUp
         if (Local.Instance.Gold >= price)
         {
             _openerSlot.AddTower(_towerTypeToTower[type]);
-            ScreenManager.Instance.ClosePopUp("SlotEmptyPopUp");
+            "SlotEmptyPopUp".ClosePopUp();
         }
     }
     

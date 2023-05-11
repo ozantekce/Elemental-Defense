@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace ScreenManagerNS
 {
+    public delegate string UpdateTextMethod();
+    public delegate int UpdateTextMethodInt();
+    public delegate float UpdateTextMethodFloat();
     public class ExtendedText : MonoBehaviour
     {
 
@@ -109,7 +112,7 @@ namespace ScreenManagerNS
             if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
             UpdateTextMethod updateTextMethod = () =>
             {
-                return UI_TEXT_FORMATS.Execute(format,update());
+                return format.ExecuteFormat(update());
             };
             ScreenManager.ExtendedTextDictionary[textName]._updateTextMethod = updateTextMethod;
         }
@@ -119,15 +122,13 @@ namespace ScreenManagerNS
             if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
             UpdateTextMethod updateTextMethod = () =>
             {
-                return UI_TEXT_FORMATS.Execute(format, update());
+                return format.ExecuteFormat(update());
             };
             ScreenManager.ExtendedTextDictionary[textName]._updateTextMethod = updateTextMethod;
         }
 
 
-        public delegate string UpdateTextMethod();
-        public delegate int UpdateTextMethodInt();
-        public delegate float UpdateTextMethodFloat();
+
 
         public enum TextType { UnityText, TextMeshPro }
 
@@ -164,9 +165,60 @@ namespace ScreenManagerNS
             }
         }
 
+        public UpdateTextMethod UpdateMethod { get => _updateTextMethod; set => _updateTextMethod = value; }
+    }
+
+    public static class ExtendedTextExtensions
+    {
+        public static void UpdateTextWithMethod(this string textName)
+        {
+            if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
+
+            ExtendedText extendedText = ScreenManager.ExtendedTextDictionary[textName];
+            if (extendedText.UpdateMethod != null)
+            {
+                extendedText.Text = extendedText.UpdateMethod();
+            }
+        }
+
+        public static void SetText(this string textName, string text)
+        {
+            if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
+            ScreenManager.ExtendedTextDictionary[textName].Text = text;
+        }
+
+        public static string GetText(this string textName)
+        {
+            if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return "";
+            return ScreenManager.ExtendedTextDictionary[textName].Text;
+        }
 
 
+        public static void SetTextMethod(this string textName, UpdateTextMethod update)
+        {
+            if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
+            ScreenManager.ExtendedTextDictionary[textName].UpdateMethod = update;
+        }
 
+        public static void SetTextMethod(this string textName, string format, UpdateTextMethodFloat update)
+        {
+            if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
+            UpdateTextMethod updateTextMethod = () =>
+            {
+                return format.ExecuteFormat(update());
+            };
+            ScreenManager.ExtendedTextDictionary[textName].UpdateMethod = updateTextMethod;
+        }
+
+        public static void SetTextMethod(this string textName, string format, UpdateTextMethodInt update)
+        {
+            if (!ScreenManager.ExtendedTextDictionary.ContainsKey(textName)) return;
+            UpdateTextMethod updateTextMethod = () =>
+            {
+                return format.ExecuteFormat(update());
+            };
+            ScreenManager.ExtendedTextDictionary[textName].UpdateMethod = updateTextMethod;
+        }
 
     }
 
