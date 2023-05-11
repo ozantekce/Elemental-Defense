@@ -26,11 +26,10 @@ namespace ScreenManagerNS
 
         private UpdateTextMethod _updateTextMethod;
 
-        private string _usingFormat;
 
         private void Start()
         {
-            if (_updateTextMethod != null && _updateType == UpdateType.UpdateOnVisible)
+            if (_updateTextMethod != null && _updateType != UpdateType.None)
             {
                 Text = _updateTextMethod();
             }
@@ -38,7 +37,7 @@ namespace ScreenManagerNS
 
         private void OnEnable()
         {
-            if (_updateTextMethod != null && _updateType == UpdateType.UpdateOnVisible)
+            if (_updateTextMethod != null && _updateType != UpdateType.None)
             {
                 Text = _updateTextMethod();
             }

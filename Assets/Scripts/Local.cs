@@ -137,7 +137,7 @@ public class Local : MonoBehaviour
     public int NewTowerCost(TowerType type)
     {
         return (int)(
-              Increase_TowerCost * Mathf.Pow(NumberOfTowerType(type), 3.6f)
+              Increase_TowerCost * Mathf.Pow(NumberOfTowerType(type), 3.2f)
             + Base_TowerCost)
             ;
     }

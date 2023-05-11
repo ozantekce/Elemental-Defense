@@ -6,73 +6,78 @@ public static class UI_TEXT_FORMATS
 {
 
 
+    public delegate string IntFormatDelegate(int number);
+    public delegate string FloatFormatDelegate(float number);
+    private delegate TextFormat AlternativeFormat();
 
-    private static Dictionary<string, Format> NameFormatPair = new Dictionary<string, Format>()
+    private static Dictionary<string, TextFormat> NameFormatPairs = new Dictionary<string, TextFormat>()
     {
-        { "Wave" , new Format("Wave:") },
-        { "EnemyCount" , new Format("Enemy:") },
-        { "EnemyHP" , new Format("EnemyHP:") },
-        { "Gold" , new Format("G:") },
-        { "Gold2" , new Format("Gold(",")") },
-        { "Essence" , new Format("E:") },
-        { "Essence2" , new Format("Essence(",")") },
-        { "RebornPoint" , new Format("RP:") },
-        { "RebornPoint2" , new Format("RP(",")") },
-        { "FireLevel" , new Format("Fire(Lv." , ")") },
-        { "WaterLevel" , new Format("Water(Lv." , ")") },
-        { "EarthLevel" , new Format("Earth(Lv." , ")") },
-        { "AirLevel" , new Format("Air(Lv." , ")") },
-        { "FireInfo" , new Format("Increased fire towers damage by <color=red>" , "%</color>") },
-        { "WaterInfo" , new Format("Increased water towers slow by <color=red>" , "%</color>") },
-        { "EarthInfo" , new Format("Increased earth towers stun change by <color=red>" , "%</color>") },
-        { "AirInfo" , new Format("Increased air towers messy attack rate by <color=red>" , "%</color>") },
+        { "Wave" , new TextFormat("Wave:{0}") },
+        { "EnemyCount" , new TextFormat("Enemy:{0}") },
+        { "EnemyHP" , new TextFormat("EnemyHP:{0}") },
+        { "Gold" , new TextFormat("G:{0}") },
+        { "Gold2" , new TextFormat("Gold({0})") },
+        { "Essence" , new TextFormat("E:{0}") },
+        { "Essence2" , new TextFormat("Essence({0})") },
+        { "RebornPoint" , new TextFormat("RP:{0}") },
+        { "RebornPoint2" , new TextFormat("RP({0})") },
+
+        { "FireLevel" , new TextFormat("Fire(Lv.{0})")},
+        { "WaterLevel" , new TextFormat("Water(Lv.{0})") },
+        { "EarthLevel" , new TextFormat("Earth(Lv.{0})") },
+        { "AirLevel" , new TextFormat("Air(Lv.{0})") },
+
+        { "FireInfo" , new TextFormat("Increased fire towers damage by <color=red>{0}%</color>") },
+        { "WaterInfo" , new TextFormat("Increased water towers slow by <color=red>{0}%</color>") },
+        { "EarthInfo" , new TextFormat("Increased earth towers stun change by <color=red>{0}%</color>") },
+        { "AirInfo" , new TextFormat("Increased air towers messy attack rate by <color=red>{0}%</color>") },
 
 
-        { "DamageLevel" , new Format("Damage(Lv." , ")") },
-        { "AttackSpeedLevel" , new Format("Attack Speed(Lv.", ")")},
-        { "CriticalHitChanceLevel" , new Format("Critical Hit Chance(Lv." , ")") },
-        { "CriticalHitDamageLevel" , new Format("Critical Hit Damage(Lv." , ")") },
-        { "RangeLevel" , new Format("Range(Lv." , ")") },
+        { "DamageLevel" , new TextFormat("Damage(Lv.{0})") },
+        { "AttackSpeedLevel" , new TextFormat("Attack Speed(Lv.{0})")},
+        { "CriticalHitChanceLevel" , new TextFormat("Critical Hit Chance(Lv.{0})") },
+        { "CriticalHitDamageLevel" , new TextFormat("Critical Hit Damage(Lv.{0})") },
+        { "RangeLevel" , new TextFormat("Range(Lv.{0})") },
 
-        { "DamageInfo" , new Format("Increased towers damage by <color=red>" , "%</color>") },
-        { "AttackSpeedInfo" , new Format("Increased towers attack speed by <color=red>","%</color>") },
-        { "CriticalHitChanceInfo" , new Format("Increased towers critical hit chance by <color=red>" , "%</color>") },
-        { "CriticalHitDamageInfo" , new Format("Increased towers critical hit damage by <color=red>" , "%</color>") },
-        { "RangeInfo" , new Format("Increased towers range by <color=red>" , "%</color>") },
+        { "DamageInfo" , new TextFormat("Increased towers damage by <color=red>{0}%</color>") },
+        { "AttackSpeedInfo" , new TextFormat("Increased towers attack speed by <color=red>{0}%</color>") },
+        { "CriticalHitChanceInfo" , new TextFormat("Increased towers critical hit chance by <color=red>{0}%</color>") },
+        { "CriticalHitDamageInfo" , new TextFormat("Increased towers critical hit damage by <color=red>{0}%</color>") },
+        { "RangeInfo" , new TextFormat("Increased towers range by <color=red>{0}%</color>") },
 
 
-        { "GoldLevel" , new Format("Gold(Lv." , ")") },
-        { "EssenceLevel" , new Format("Essence(Lv." , ")") },
-        { "RPLevel" , new Format("RP(Lv." , ")") },
+        { "GoldLevel" , new TextFormat("Gold(Lv.{0})") },
+        { "EssenceLevel" , new TextFormat("Essence(Lv.{0})") },
+        { "RPLevel" , new TextFormat("RP(Lv.{0})") },
 
-        { "GoldIncome" , new Format("<color=red>" , "</color> Gold per "+Local.IncomeTime+" minute") },
-        { "EssenceIncome" , new Format("<color=red>" , "</color> Essence per "+Local.IncomeTime+" minute")},
-        { "RPIncome" , new Format("<color=red>" , "</color> RP per "+Local.IncomeTime+" minute") },
+        { "GoldIncome" , new TextFormat("<color=red>{0}</color> Gold per "+Local.IncomeTime+" minute") },
+        { "EssenceIncome" , new TextFormat("<color=red>{0}</color> Essence per "+Local.IncomeTime+" minute")},
+        { "RPIncome" , new TextFormat("<color=red>{0}</color> RP per "+Local.IncomeTime+" minute") },
 
+
+        {"MAX",new TextFormat("MAX") }
 
     };
 
-
-
-    public static string ExecuteFormat(this string formatName, string text)
+    public static string ExecuteFormat(this string formatName,params string[] texts)
     {
-        return NameFormatPair[formatName].ExecuteFormat(text);
+        return NameFormatPairs[formatName].ExecuteFormat(texts);
     }
 
-    public static string ExecuteFormat(this string formatName, float val)
+    public static string ExecuteFormat(this string formatName,params float[] vals)
     {
-        if (val < 0) return "MAX";
-        return NameFormatPair[formatName].ExecuteFormat(NumberFormat(val));
+        return NameFormatPairs[formatName].ExecuteFormat(vals);
     }
 
-    public static string ExecuteFormat(this string formatName, int val)
+    public static string ExecuteFormat(this string formatName,params int[] vals)
     {
-        if (val < 0) return "MAX";
-        return NameFormatPair[formatName].ExecuteFormat(NumberFormat(val));
+        return NameFormatPairs[formatName].ExecuteFormat(vals);
     }
 
-    public static string NumberFormat(this float number)
+    public static string NumberToLetter(this float number)
     {
+        if (number < 0) return "MAX";
+
         if (number >= 1e18)
             return (number / 1e18).ToString("F2") + "E";
         else if (number >= 1e15)
@@ -89,8 +94,10 @@ public static class UI_TEXT_FORMATS
             return number.ToString("F2");
     }
 
-    public static string NumberFormat(this int number)
+    public static string NumberToLetter(this int number)
     {
+        if (number < 0) return "MAX";
+
         if (number >= 1e18)
             return (number / 1e18).ToString("F2") + "E";
         else if (number >= 1e15)
@@ -108,21 +115,84 @@ public static class UI_TEXT_FORMATS
     }
 
 
-    private class Format
+
+
+
+    private class TextFormat
     {
 
-        private string front;
-        private string end;
+        private string _format;
+        private AlternativeFormat _alternativeFormat;
+        private FloatFormatDelegate _floatFormatDelegate = NumberToLetter;
+        private IntFormatDelegate _intFormatDelegate = NumberToLetter;
 
-        public Format(string front="", string end="")
+        public TextFormat(string format)
         {
-            this.front = front;
-            this.end = end;
+            _format = format;
         }
-        
-        public virtual string ExecuteFormat(string text)
+        public TextFormat(string format, AlternativeFormat alternativeFormat) : this(format)
         {
-            return front+text+end;
+            _alternativeFormat = alternativeFormat;
+        }
+
+        public virtual string ExecuteFormat(params string[] texts)
+        {
+            if(_alternativeFormat != null)
+            {
+                TextFormat alt = _alternativeFormat();
+                if (alt!=null)
+                {
+                    return alt.ExecuteFormat(texts);
+                }
+            }
+            if (texts[0].Equals("MAX")) return "MAX";
+            return string.Format(this._format, texts);
+
+        }
+
+        public virtual string ExecuteFormat(IntFormatDelegate format, params int[] texts)
+        {
+            string[] strings = new string[texts.Length];
+            for (int i = 0; i < texts.Length; i++)
+            {
+                strings[i] = format(texts[i]);
+            }
+            return ExecuteFormat(strings);
+        }
+        public virtual string ExecuteFormat(params int[] texts)
+        {
+            string[] strings = new string[texts.Length];
+            for (int i = 0; i < texts.Length; i++)
+            {
+                if (_intFormatDelegate == null)
+                    strings[i] = texts[i].ToString();
+                else
+                    strings[i] = _intFormatDelegate(texts[i]);
+            }
+            return ExecuteFormat(strings);
+        }
+
+        public virtual string ExecuteFormat(FloatFormatDelegate format, params float[] texts)
+        {
+            string[] strings = new string[texts.Length];
+            for (int i = 0; i < texts.Length; i++)
+            {
+                strings[i] = format(texts[i]);
+            }
+            return ExecuteFormat(strings);
+        }
+
+        public virtual string ExecuteFormat(params float[] texts)
+        {
+            string[] strings = new string[texts.Length];
+            for (int i = 0; i < texts.Length; i++)
+            {
+                if (_floatFormatDelegate == null)
+                    strings[i] = texts[i].ToString();
+                else
+                    strings[i] = _floatFormatDelegate(texts[i]);
+            }
+            return ExecuteFormat(strings);
         }
 
     }
