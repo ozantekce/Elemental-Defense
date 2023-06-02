@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -18,7 +19,7 @@ public class Tower : MonoBehaviour
     private TowerType _towerType;
 
 
-    private static List<Tower> _towers = new List<Tower>();
+    private static List<Tower> AllTowers = new List<Tower>();
 
 
     #region BaseFeatureData
@@ -30,12 +31,12 @@ public class Tower : MonoBehaviour
     #endregion
 
     #region CurrentFeatureData
-    [SerializeField]
     private TowerFeatureData _towerCurrentFeatureData;
     #endregion
 
 
-    [SerializeField]
+
+
     private int _currentLevel;
 
     private CooldownDynamic _attackCD;
@@ -46,12 +47,12 @@ public class Tower : MonoBehaviour
         _towerIncreaseFeatureData = Local.Instance.GetIncreaseFeatureData(this);
         _towerCurrentFeatureData = new TowerFeatureData();
         _nextLevelFeatureData = new TowerFeatureData();
-        _towers.Add(this);
+        AllTowers.Add(this);
     }
 
     private void OnDestroy()
     {
-        _towers.Remove(this);
+        AllTowers.Remove(this);
     }
 
     private void Start()
@@ -114,17 +115,17 @@ public class Tower : MonoBehaviour
 
     public static void UpdateAllTowersFeatureData()
     {
-        for (int i = 0; i < _towers.Count; i++)
+        for (int i = 0; i < AllTowers.Count; i++)
         {
-            _towers[i].UpdateFeatureData();
+            AllTowers[i].UpdateFeatureData();
         }
     }
 
     public static void DestroyAllTowers()
     {
-        for (int i = 0; i < _towers.Count; i++)
+        for (int i = 0; i < AllTowers.Count; i++)
         {
-            Destroy(_towers[i].gameObject);
+            Destroy(AllTowers[i].gameObject);
         }
     }
 
@@ -225,24 +226,9 @@ public class Tower : MonoBehaviour
 
     public string GetTowerInfo()
     {
-        string info = "";
         TowerFeatureData nextLevel = NextLevelFeatureData();
-        info += "\t\tCurrent\n";
-        info += "Attack Power:" + AttackPower ;
-        info += "\n" + "Attack Speed:" + AttackPerSecond;
-        info += "\n" + "Cri. Hit Change:" + CriticalChange+"%";
-        info += "\n" + "Cri. Hit Damage:" + 100*CriticalDamage+"%";
-        info += "\n" + "Range:" + Range;
 
-        info += "\n\t\tNext Level\n";
-        info += "Attack Power:" + nextLevel.attackPower;
-        info += "\n" + "Attack Speed:" + nextLevel.attackPerSecond;
-        info += "\n" + "Cri. Hit Change:" + nextLevel.criticalChange + "%";
-        info += "\n" + "Cri. Hit Damage:" + 100 * nextLevel.criticalDamage + "%";
-        info += "\n" + "Range:" + nextLevel.range;
-
-
-        return info;
+        return "TowerInfo".ExecuteFormat(AttackPower, AttackPerSecond, CriticalChange, 100 * CriticalDamage, Range, nextLevel.attackPower, nextLevel.attackPerSecond, nextLevel.criticalChange, 100 * nextLevel.criticalDamage, nextLevel.range);
     }
 
 
@@ -276,3 +262,5 @@ public class Tower : MonoBehaviour
 
 
 }
+
+

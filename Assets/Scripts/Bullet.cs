@@ -19,9 +19,11 @@ public class Bullet : MonoBehaviour, Poolable
     private string _poolableKey;
     private bool _pooled;
     private Poolable _poolable;
+    
     private Queue<IBulletCommand> _commandQueue;
 
 
+    private bool _exploded;
 
     private void Awake()
     {
@@ -31,7 +33,7 @@ public class Bullet : MonoBehaviour, Poolable
 
     public void InitBullet(Vector3 spawnPoint, float damage,bool isCritical, Tower source, Enemy destination)
     {
-
+        _exploded = false;
         transform.position = spawnPoint;
         AttackPower = damage;
         Source = source;
@@ -101,16 +103,30 @@ public class Bullet : MonoBehaviour, Poolable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_poolable.Pooled || _destination==null) return;
+        if (_poolable.Pooled || _destination==null || _exploded) return;
 
         if (other.gameObject == _destination.gameObject)
         {
             while(_commandQueue.Count > 0) _commandQueue.Dequeue().Execute();
-            _poolable.AddToPool();
+            
+            _exploded = true;
+            
+            StartCoroutine(AddToPool());
+
             HitEffect(other.transform);
         }
     }
 
+
+    private WaitForSeconds _wait0_5Sec;
+    private IEnumerator AddToPool()
+    {
+        if (_wait0_5Sec == null) _wait0_5Sec = new WaitForSeconds(0.5f);
+        
+        yield return _wait0_5Sec;
+
+        _poolable.AddToPool();
+    }
 
     private void HitEffect(Transform target)
     {
@@ -119,7 +135,7 @@ public class Bullet : MonoBehaviour, Poolable
             return;
         }
         HitEffect hitEffect = Poolable.GetFromPool(_hitEffect);
-        hitEffect.InitHitEffect(target);
+        hitEffect.InitEffect(new MyEffectData(target.position,1f,target,true));
 
     }
 
@@ -136,6 +152,11 @@ public class Bullet : MonoBehaviour, Poolable
 
 
 }
+
+
+
+
+#region BulletCommands
 
 public interface IBulletCommand
 {
@@ -232,3 +253,8 @@ public class BulletDamageCommand : IBulletCommand
         InfoTextManager.Instance.CreateText(text, _enemy.transform.position+Vector3.up*2f);
     }
 }
+
+
+#endregion
+
+

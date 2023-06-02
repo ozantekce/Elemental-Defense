@@ -51,8 +51,8 @@ public class Enemy : MonoBehaviour/*, Poolable*/
         _maxHP = Local.Instance.EnemyHP;
         _currentHP = _maxHP;
 
-        _slowCD = new CooldownManualReset(1000f);
-        _stunCD = new CooldownManualReset(300f);
+        _slowCD = new CooldownManualReset(Local.WaterEffectDuration*1000f);
+        _stunCD = new CooldownManualReset(Local.EarthEffectDuration*1000f);
 
         _renderer = _visual.GetComponentInChildren<Renderer>();
 
@@ -189,14 +189,36 @@ public class Enemy : MonoBehaviour/*, Poolable*/
             {
                 return;
             }
+            
             if (value == EnemyStatus.Stunned)
             {
                 _renderer.material = _stunedMaterail;
+                if(Status!=EnemyStatus.Stunned)
+                {
+                    StatusEffect statusEffect
+                        = Poolable.GetFromPool<StatusEffect>("StunStatusEffect");
+                    statusEffect.InitEffect(EnemyStatus.Stunned, this, new MyEffectData(
+                        startPosition: transform.position,
+                        target: this.transform,
+                        true
+                        ));
+                }
+
                 _stunCD.ResetTimer();
             }
             if (value == EnemyStatus.Slowed)
             {
                 _renderer.material = _slowedMaterial;
+                if(Status!=EnemyStatus.Slowed )
+                {
+                    StatusEffect statusEffect
+                        = Poolable.GetFromPool<StatusEffect>("SlowStatusEffect");
+                    statusEffect.InitEffect(EnemyStatus.Slowed, this, new MyEffectData(
+                        startPosition: transform.position,
+                        target: this.transform,
+                        true
+                        ));
+                }
                 _slowCD.ResetTimer();
             }
             if(value==EnemyStatus.None && _status != EnemyStatus.None)

@@ -300,8 +300,8 @@ public class Local : MonoBehaviour
 
     public const float AirEffectRange = 35f;
 
-    public const float WaterEffectDuration = 1f;
-    public const float EarthEffectDuration = 1f;
+    public const float WaterEffectDuration = 1.5f;
+    public const float EarthEffectDuration = 0.5f;
 
 
     public int ElementCost(int level)
@@ -664,7 +664,7 @@ public class Local : MonoBehaviour
     {
         get
         {
-            return Base_EnemyHP + Base_EnemyHP * EnemyHPMultiplier
+            return Base_EnemyHP + (Base_EnemyHP + (Wave*0.2f)) * EnemyHPMultiplier
                 * EnemyHPDecreasePercent;
         }
     }

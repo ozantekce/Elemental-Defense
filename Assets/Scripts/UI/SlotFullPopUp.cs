@@ -39,10 +39,10 @@ public class SlotFullPopUp : PopUp
 
         _title.text = _openerSlot.Tower.Name.ToUpperInvariant() + "(" + _openerSlot.Tower.CurrentLevel + ")";
 
+        
+        _updateButtonText.text = "Gold2".ExecuteFormat(Local.Instance.TowerUpdateCost(_openerSlot.Tower.CurrentLevel));
 
-        _updateButtonText.text = "Gold(" + Local.Instance.TowerUpdateCost(_openerSlot.Tower.CurrentLevel) + ")";
-
-        _sellButtonText.text = "Gold(" + Local.Instance.TowerSellPrice(_openerSlot.Tower.CurrentLevel) + ")";
+        _sellButtonText.text = "Gold2".ExecuteFormat(Local.Instance.TowerSellPrice(_openerSlot.Tower.CurrentLevel));
 
     }
 

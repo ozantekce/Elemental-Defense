@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class UI_TEXT_FORMATS
 {
 
-
     public delegate string IntFormatDelegate(int number);
     public delegate string FloatFormatDelegate(float number);
-    private delegate TextFormat AlternativeFormat();
 
     private static Dictionary<string, TextFormat> NameFormatPairs = new Dictionary<string, TextFormat>()
     {
@@ -54,6 +53,10 @@ public static class UI_TEXT_FORMATS
         { "EssenceIncome" , new TextFormat("<color=red>{0}</color> Essence per "+Local.IncomeTime+" minute")},
         { "RPIncome" , new TextFormat("<color=red>{0}</color> RP per "+Local.IncomeTime+" minute") },
 
+
+        { "CurrentLevelTowerInfo" , new TextFormat("\t\tCurrent\nAttack Power: {0}\nAttack Speed: {1}\nCri. Hit Change: {2}%\nCri. Hit Damage: {3}%\nRange: {4}") },
+        { "NextLevelTowerInfo" , new TextFormat("\t\tNext Level\nAttack Power: {0}\nAttack Speed: {1}\nCri. Hit Change: {2}%\nCri. Hit Damage: {3}%\nRange: {4}") },
+        { "TowerInfo" , new TextFormat("\t\tCurrent\nAttack Power: {0}\nAttack Speed: {1}\nCri. Hit Change: {2}%\nCri. Hit Damage: {3}%\nRange: {4}\n\t\tNext Level\nAttack Power: {5}\nAttack Speed: {6}\nCri. Hit Change: {7}%\nCri. Hit Damage: {8}%\nRange: {9}") },
 
         {"MAX",new TextFormat("MAX") }
 
@@ -115,14 +118,9 @@ public static class UI_TEXT_FORMATS
     }
 
 
-
-
-
     private class TextFormat
     {
-
         private string _format;
-        private AlternativeFormat _alternativeFormat;
         private FloatFormatDelegate _floatFormatDelegate = NumberToLetter;
         private IntFormatDelegate _intFormatDelegate = NumberToLetter;
 
@@ -130,71 +128,22 @@ public static class UI_TEXT_FORMATS
         {
             _format = format;
         }
-        public TextFormat(string format, AlternativeFormat alternativeFormat) : this(format)
-        {
-            _alternativeFormat = alternativeFormat;
-        }
 
         public virtual string ExecuteFormat(params string[] texts)
         {
-            if(_alternativeFormat != null)
-            {
-                TextFormat alt = _alternativeFormat();
-                if (alt!=null)
-                {
-                    return alt.ExecuteFormat(texts);
-                }
-            }
             if (texts[0].Equals("MAX")) return "MAX";
             return string.Format(this._format, texts);
-
         }
 
-        public virtual string ExecuteFormat(IntFormatDelegate format, params int[] texts)
+        public virtual string ExecuteFormat(params int[] vals)
         {
-            string[] strings = new string[texts.Length];
-            for (int i = 0; i < texts.Length; i++)
-            {
-                strings[i] = format(texts[i]);
-            }
-            return ExecuteFormat(strings);
-        }
-        public virtual string ExecuteFormat(params int[] texts)
-        {
-            string[] strings = new string[texts.Length];
-            for (int i = 0; i < texts.Length; i++)
-            {
-                if (_intFormatDelegate == null)
-                    strings[i] = texts[i].ToString();
-                else
-                    strings[i] = _intFormatDelegate(texts[i]);
-            }
-            return ExecuteFormat(strings);
+            return ExecuteFormat(vals.Select(v => _intFormatDelegate != null ? _intFormatDelegate(v) : v.ToString()).ToArray());
         }
 
-        public virtual string ExecuteFormat(FloatFormatDelegate format, params float[] texts)
+        public virtual string ExecuteFormat(params float[] vals)
         {
-            string[] strings = new string[texts.Length];
-            for (int i = 0; i < texts.Length; i++)
-            {
-                strings[i] = format(texts[i]);
-            }
-            return ExecuteFormat(strings);
+            return ExecuteFormat(vals.Select(v => _floatFormatDelegate != null ? _floatFormatDelegate(v) : v.ToString()).ToArray());
         }
-
-        public virtual string ExecuteFormat(params float[] texts)
-        {
-            string[] strings = new string[texts.Length];
-            for (int i = 0; i < texts.Length; i++)
-            {
-                if (_floatFormatDelegate == null)
-                    strings[i] = texts[i].ToString();
-                else
-                    strings[i] = _floatFormatDelegate(texts[i]);
-            }
-            return ExecuteFormat(strings);
-        }
-
     }
 
 

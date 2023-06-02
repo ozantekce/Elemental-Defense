@@ -24,10 +24,19 @@ public class GameManager : MonoBehaviour
     private Transform[] _enemyFollowPath;
 
 
+
+    public List<StatusEffect> statusEffectPrefabs = new List<StatusEffect>();
+
+
     private void Awake()
     {
         Time.timeScale = 1;
         _instance = this;
+
+        for (int i = 0; i < statusEffectPrefabs.Count; i++)
+        {
+            Poolable.AddPrefabToPool(statusEffectPrefabs[i]);
+        }
 
     }
 

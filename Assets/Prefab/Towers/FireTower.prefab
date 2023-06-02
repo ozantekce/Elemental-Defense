@@ -304,16 +304,13 @@ MonoBehaviour:
   _bulletSpawnPoint: {fileID: 3138334652929724351}
   _bulletPrefab: {fileID: 3123235004745107303, guid: c73604005248abc4ab8a1b69b7cd9859, type: 3}
   _towerType: 0
-  baseRange: 100
-  baseAttackPower: 5
-  baseAttackPerSecond: 1
-  baseCriticalChange: 10
-  baseCriticalDamage: 1
-  _range: 1000
-  _attackPower: 1
-  _attackPerSecond: 1
-  _criticalChange: 1
-  _criticalDamage: 1
+  _towerBulletData:
+    source: {fileID: 0}
+    destination: {fileID: 0}
+    attackPower: 0
+    speed: 200
+    _visual: {fileID: 0}
+    hitEffect: {fileID: 0}
   _currentLevel: 1
 --- !u!1 &910766234635183854
 GameObject:
