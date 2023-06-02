@@ -301,7 +301,7 @@ public class Local : MonoBehaviour
     public const float AirEffectRange = 35f;
 
     public const float WaterEffectDuration = 1.5f;
-    public const float EarthEffectDuration = 0.5f;
+    public const float EarthEffectDuration = 0.8f;
 
 
     public int ElementCost(int level)

@@ -22,11 +22,9 @@ public class Enemy : MonoBehaviour/*, Poolable*/
     private GameObject _visual;
     private EnemyPathFollower _pathFollower;
 
-    [SerializeField]
-    private Image _hpBarFill;
 
     [SerializeField]
-    private Transform hpBarFill;
+    private HPBar hpBar;
 
     private CooldownManualReset _slowCD;
     private CooldownManualReset _stunCD;
@@ -112,24 +110,22 @@ public class Enemy : MonoBehaviour/*, Poolable*/
     }
 
 
-    private Vector3 hpBarCache;
-    private Quaternion hpBarRotation = new Quaternion(0, 0, 0, 1);//Quaternion(0,0,0,1)
+
     public void TakeDamage(float amount)
     {
-        hpBarCache = hpBarFill.transform.localScale;
+
         if (_currentHP <= 0) return;
         _currentHP -= amount;
         if (_currentHP <= 0)
         {
             DestroyedByTower();
-            hpBarCache.z = 0;
-            hpBarFill.transform.localScale = hpBarCache;
+            hpBar.SetHPPercentage(0);
         }
         else{
-            hpBarCache.z = _currentHP / _maxHP;
-            hpBarFill.transform.localScale = hpBarCache;
+
+            hpBar.SetHPPercentage(_currentHP/_maxHP);
+
         }
-        hpBarFill.rotation = hpBarRotation;
     }
 
     private void OnDestroy()
