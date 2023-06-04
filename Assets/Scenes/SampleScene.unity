@@ -21188,7 +21188,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.6
+  m_fontSize: 16.85
   m_fontSizeBase: 17.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -26029,7 +26029,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.3
+  m_fontSize: 17.65
   m_fontSizeBase: 17.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -33130,6 +33130,8 @@ MonoBehaviour:
   statusEffectPrefabs:
   - {fileID: 900609470773945005, guid: f8691564d6ba22148a25664920e85886, type: 3}
   - {fileID: 4701258387814634645, guid: 1493dc7198b253f4a91f8750ad604f72, type: 3}
+  goldEarnAnimationPrefab: {fileID: 4658943469483005134, guid: 23f70958013324d43a309df54411534c, type: 3}
+  essenceEarnAnimationPrefab: {fileID: 4658943469483005134, guid: 16c82d2d036bbc3468b45af745a1d52e, type: 3}
 --- !u!1 &1971800465
 GameObject:
   m_ObjectHideFlags: 0
@@ -34579,7 +34581,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.6
+  m_fontSize: 18
   m_fontSizeBase: 17.5
   m_fontWeight: 400
   m_enableAutoSizing: 1

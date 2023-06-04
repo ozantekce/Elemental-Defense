@@ -651,6 +651,14 @@ public class Local : MonoBehaviour
     }
 
 
+    public int EssenceDrop
+    {
+        get
+        {
+            return 1;
+        }
+    }
+
     public float EssenceChange
     {
         get

@@ -137,11 +137,21 @@ public class Enemy : MonoBehaviour/*, Poolable*/
     private void DestroyedByTower()
     {
         Local.Instance.Gold += Local.Instance.GoldDrop;
+        ResourceEarnAnimation.CreateResourceEarnAnimation("GoldEarnAnimation"
+            , transform.position
+            , transform.position +Vector3.up *50
+            , 1.6f
+            , Local.Instance.GoldDrop);
         float r = Random.Range(0, 1f);
         if (r < Local.Instance.EssenceChange)
         {
             // Essence 
-            Local.Instance.Essence++;
+            Local.Instance.Essence+=Local.Instance.EssenceDrop;
+            ResourceEarnAnimation.CreateResourceEarnAnimation("EssenceEarnAnimation"
+            , transform.position - Vector3.up * 10
+            , transform.position + Vector3.up * 75
+            , 2.2f
+            , Local.Instance.EssenceDrop);
         }
 
         _visual.transform.SetParent(null);
@@ -151,6 +161,9 @@ public class Enemy : MonoBehaviour/*, Poolable*/
         Destroy(_visual.gameObject, 2f);
 
         Destroy(gameObject, 0.1f);
+
+
+
     }
 
 

@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
 
     public List<StatusEffect> statusEffectPrefabs = new List<StatusEffect>();
 
+    public ResourceEarnAnimation goldEarnAnimationPrefab;
+    public ResourceEarnAnimation essenceEarnAnimationPrefab;
+
 
     private void Awake()
     {
@@ -37,6 +40,9 @@ public class GameManager : MonoBehaviour
         {
             Poolable.AddPrefabToPool(statusEffectPrefabs[i]);
         }
+
+        if(goldEarnAnimationPrefab != null) Poolable.AddPrefabToPool(goldEarnAnimationPrefab);
+        if(essenceEarnAnimationPrefab != null) Poolable.AddPrefabToPool(essenceEarnAnimationPrefab);
 
     }
 
