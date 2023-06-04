@@ -1157,7 +1157,7 @@ GameObject:
   - component: {fileID: 77103654}
   - component: {fileID: 77103653}
   m_Layer: 0
-  m_Name: DamageTextManager
+  m_Name: InfoTextManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1175,6 +1175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ba14ae56a957040bbdfdd43beefb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteAsset: {fileID: 11400000, guid: a342cefa27b824b409cbf2d32ada18a7, type: 2}
 --- !u!4 &77103654
 Transform:
   m_ObjectHideFlags: 0
@@ -4645,7 +4646,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: E:90
+  m_text: <sprite=. name=essence>:0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77bee2a48cda98842ae81e995e9fd9e9, type: 2}
   m_sharedMaterial: {fileID: -2281769057199071589, guid: 77bee2a48cda98842ae81e995e9fd9e9, type: 2}
@@ -4664,9 +4665,9 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: a342cefa27b824b409cbf2d32ada18a7, type: 2}
   m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
+  m_StyleSheet: {fileID: 11400000, guid: f952c082cb03451daed3ee968ac6c63e, type: 2}
   m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
@@ -5936,7 +5937,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: G:99999
+  m_text: <sprite=. name=gold>:0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77bee2a48cda98842ae81e995e9fd9e9, type: 2}
   m_sharedMaterial: {fileID: -2281769057199071589, guid: 77bee2a48cda98842ae81e995e9fd9e9, type: 2}
@@ -5955,9 +5956,9 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: a342cefa27b824b409cbf2d32ada18a7, type: 2}
   m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
+  m_StyleSheet: {fileID: 11400000, guid: f952c082cb03451daed3ee968ac6c63e, type: 2}
   m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
@@ -10316,7 +10317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RP:10
+  m_text: <sprite=. name=rp>:0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77bee2a48cda98842ae81e995e9fd9e9, type: 2}
   m_sharedMaterial: {fileID: -2281769057199071589, guid: 77bee2a48cda98842ae81e995e9fd9e9, type: 2}
@@ -10335,9 +10336,9 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: a342cefa27b824b409cbf2d32ada18a7, type: 2}
   m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
+  m_StyleSheet: {fileID: 11400000, guid: f952c082cb03451daed3ee968ac6c63e, type: 2}
   m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
@@ -21188,7 +21189,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.85
+  m_fontSize: 14.6
   m_fontSizeBase: 17.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -26029,7 +26030,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.65
+  m_fontSize: 15.3
   m_fontSizeBase: 17.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -34581,7 +34582,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 15.6
   m_fontSizeBase: 17.5
   m_fontWeight: 400
   m_enableAutoSizing: 1

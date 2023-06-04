@@ -94,11 +94,11 @@ public class GameManager : MonoBehaviour
         Local.Instance.RebornPoint += rp;
 
         string tx = "<color=yellow>";
-        tx += "+" + "Gold".ExecuteFormat(gold) +"\n";
-        tx += "+" + "Essence".ExecuteFormat(essence) +"\n";
-        tx += "+" + "RebornPoint".ExecuteFormat(rp) + "</color>";
+        tx += "Gold3".ExecuteFormat(gold) +"\n";
+        tx += "Essence3".ExecuteFormat(essence) +"\n";
+        tx += "RebornPoint3".ExecuteFormat(rp) + "</color>";
 
-        InfoTextManager.Instance.CreateText(tx,_base.transform.position+Vector3.up*30f,3f);
+        InfoTextManager.Instance.CreateText(tx,_base.transform.position+Vector3.up*100f,3f);
         _lastIncomeTime = now;
         PlayerPrefs.SetString("lastIncomeTime", _lastIncomeTime.ToString());
     }

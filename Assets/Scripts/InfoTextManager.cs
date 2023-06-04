@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class InfoTextManager : MonoBehaviour
 {
 
+    public TMP_SpriteAsset spriteAsset;
 
     private Text textPrefab;
     private static InfoTextManager _instance;
 
     public static InfoTextManager Instance { get => _instance; set => _instance = value; }
 
+    
 
     private void Awake()
     {
@@ -64,7 +67,8 @@ public class InfoTextManager : MonoBehaviour
             {
                 _textMeshPro = gameObject.AddComponent<TextMeshPro>();
                 _textMeshPro.alignment = TextAlignmentOptions.Center;
-                _textMeshPro.fontStyle = FontStyles.Bold;
+                _textMeshPro.fontStyle = TMPro.FontStyles.Bold;
+                _textMeshPro.spriteAsset = Instance.spriteAsset;
             }
             _textMeshPro.text = text;
             Invoke("SendToPool", lifeTime);

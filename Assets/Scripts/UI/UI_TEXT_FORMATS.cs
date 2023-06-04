@@ -16,10 +16,13 @@ public static class UI_TEXT_FORMATS
         { "EnemyHP" , new TextFormat("EnemyHP:{0}") },
         { "Gold" , new TextFormat("G:{0}") },
         { "Gold2" , new TextFormat("Gold({0})") },
+        { "Gold3" , new TextFormat("<sprite=. name=gold>:{0}") },
         { "Essence" , new TextFormat("E:{0}") },
         { "Essence2" , new TextFormat("Essence({0})") },
+        { "Essence3" , new TextFormat("<sprite=. name=essence>:{0}") },
         { "RebornPoint" , new TextFormat("RP:{0}") },
         { "RebornPoint2" , new TextFormat("RP({0})") },
+        { "RebornPoint3" , new TextFormat("<sprite=. name=rp>:{0}") },
 
         { "FireLevel" , new TextFormat("Fire(Lv.{0})")},
         { "WaterLevel" , new TextFormat("Water(Lv.{0})") },

@@ -18,9 +18,9 @@ public class GameMainScreen : Screen
         "EnemyCountInfo".SetTextMethod("EnemyCount", ()=>Local.Instance.EnemyCount);
         "EnemyHPInfo".SetTextMethod("EnemyHP", () => ((int)Local.Instance.EnemyHP));
 
-        "GoldInfo".SetTextMethod("Gold", () => (int)Local.Instance.Gold);
-        "EssenceInfo".SetTextMethod("Essence", () => (int)Local.Instance.Essence);
-        "RebornInfo".SetTextMethod("RebornPoint", () => (int)Local.Instance.RebornPoint);
+        "GoldInfo".SetTextMethod("Gold3", () => (int)Local.Instance.Gold);
+        "EssenceInfo".SetTextMethod("Essence3", () => (int)Local.Instance.Essence);
+        "RebornInfo".SetTextMethod("RebornPoint3", () => (int)Local.Instance.RebornPoint);
         // End
 
 
