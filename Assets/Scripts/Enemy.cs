@@ -172,7 +172,7 @@ public class Enemy : MonoBehaviour/*, Poolable*/
         if (other.CompareTag("PlayerBase"))
         {
             // reset wave
-            GameManager.Instance.ResetWave();
+            GameManager.Instance.EnemyReachToBase();
 
             //Destroy(gameObject,0.1f);
         }

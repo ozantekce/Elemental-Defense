@@ -162,6 +162,8 @@ public class Tower : MonoBehaviour
             crit = true;
         }
 
+        SoundManager.Instance.PlaySoundClip("TowerShot");
+
         Poolable poolable = Poolable.GetFromPool(_bulletPrefab);
         Bullet bullet = (Bullet)poolable;
         bullet.InitBullet(_bulletSpawnPoint.position,damage,crit,this,target);
@@ -191,6 +193,8 @@ public class Tower : MonoBehaviour
     {
         CurrentLevel++;
         UpdateFeatureData();
+
+        SoundManager.Instance.PlaySoundClip("TowerLevelUp");
 
     }
 

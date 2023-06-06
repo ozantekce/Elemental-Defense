@@ -45,7 +45,7 @@ public class Local : MonoBehaviour
     private TowerFeatureData _baseFireTowerFeatureData = new TowerFeatureData(
         range:90f,
         attackPower:5f,
-        attackPerSecond:1f,
+        attackPerSecond:0.5f,
         criticalChange:10f,
         criticalDamage:1f
         );
@@ -59,14 +59,14 @@ public class Local : MonoBehaviour
     private TowerFeatureData _baseEarthTowerFeatureData = new TowerFeatureData(
         range: 105f,
         attackPower: 5f,
-        attackPerSecond: 1f,
+        attackPerSecond: 0.75f,
         criticalChange: 10f,
         criticalDamage: 1f
         );
     private TowerFeatureData _baseAirTowerFeatureData = new TowerFeatureData(
         range: 105f,
         attackPower: 5f,
-        attackPerSecond: 1f,
+        attackPerSecond: 1.2f,
         criticalChange: 10f,
         criticalDamage: 1f
         );

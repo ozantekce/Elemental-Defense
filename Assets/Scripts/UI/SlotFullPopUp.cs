@@ -76,6 +76,8 @@ public class SlotFullPopUp : PopUp
         Local.Instance.Gold += price;
 
         "SlotFullPopUp".ClosePopUp();
+
+        "TowerSell".PlaySoundClip();
     }
 
 

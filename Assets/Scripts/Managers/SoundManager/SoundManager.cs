@@ -8,6 +8,11 @@ using DG.Tweening;
 public class SoundManager : MonoBehaviour
 {
 
+    private static string SettingsPath = "SoundManagerSettings";
+
+
+    private SoundManagerSettings soundManagerSettings;
+
     private static SoundManager instance;
     private void Awake()
     {
@@ -15,14 +20,33 @@ public class SoundManager : MonoBehaviour
         MakeSingleton();
         GameObject audioSourceEffectGO = new GameObject("AudioSourceEffects");
         audioSourceEffectGO.transform.SetParent(transform);
-        audioSourceEffects = audioSourceEffectGO.AddComponent<AudioSource>();
+        _audioSourceEffects = audioSourceEffectGO.AddComponent<AudioSource>();
 
-        audioClipDictionary = new Dictionary<string, AudioClip>();
-        foreach (NameClipPair item in nameClipPairs)
+        GameObject audioSourceBackgroundGO = new GameObject("AudioSourceBackground");
+        audioSourceBackgroundGO.transform.SetParent(transform);
+        _audioSourceBackgroundMusic = audioSourceBackgroundGO.AddComponent<AudioSource>();
+        _audioSourceBackgroundMusic.loop = true;
+
+        if(_nameClipPairs == null || _nameClipPairs.Length == 0)
         {
-            audioClipDictionary.Add(item.Name,item.AudioClip);
+            soundManagerSettings = Resources.Load<SoundManagerSettings>(SettingsPath);
+            if(soundManagerSettings != null )
+            {
+                _nameClipPairs = soundManagerSettings.NameClipPairs;
+                _backgroundMusicName = soundManagerSettings.BackgroundMusicName;
+            }
         }
 
+        _audioClipDictionary = new Dictionary<string, AudioClip>();
+        foreach (NameClipPair item in _nameClipPairs)
+        {
+            _audioClipDictionary.Add(item.Name, item.AudioClip);
+        }
+
+        if (!string.IsNullOrEmpty(_backgroundMusicName))
+        {
+            PlayBackgroundMusic(_backgroundMusicName);
+        }
 
     }
 
@@ -30,25 +54,20 @@ public class SoundManager : MonoBehaviour
     public float musicMultiplier=0.5f;
 
 
-    private AudioSource audioSourceEffects;
+    private AudioSource _audioSourceEffects;
 
-    public AudioSource audioSourceBackgroundMusic;
+    private AudioSource _audioSourceBackgroundMusic;
 
-    [SerializeField]
-    private Slider musicSlider;
-    [SerializeField]
-    private Slider effectsSlider;
+    private string _backgroundMusicName;
 
-    [SerializeField]
-    private NameClipPair[] nameClipPairs;
-    private Dictionary<string, AudioClip> audioClipDictionary;
+
+    private NameClipPair[] _nameClipPairs;
+    private Dictionary<string, AudioClip> _audioClipDictionary;
 
     private void Start()
     {
 
-        musicSlider?.onValueChanged.AddListener(delegate { ArrangeMusicVolume(); });
-        effectsSlider?.onValueChanged.AddListener(delegate { ArrangeEffectVolume(); });
-        SoundVolume = 0.5f;
+        MusicVolume = 0.5f;
         ArrangeMusicVolume();
 
         EffectsVolume = 0.5f;
@@ -59,42 +78,60 @@ public class SoundManager : MonoBehaviour
 
     public void ArrangeMusicVolume()
     {
-        if(audioSourceBackgroundMusic != null)
-            audioSourceBackgroundMusic.volume = SoundVolume*musicMultiplier;
-
+        _audioSourceBackgroundMusic.volume = MusicVolume * musicMultiplier;
+    }
+    public void ArrangeMusicVolume(float val)
+    {
+        MusicVolume = val;
+        _audioSourceBackgroundMusic.volume = MusicVolume * musicMultiplier;
     }
 
     public void ArrangeEffectVolume()
     {
-        float volume = EffectsVolume;
-        audioSourceEffects.volume = volume;
-
+        _audioSourceEffects.volume = EffectsVolume;
+    }
+    public void ArrangeEffectVolume(float val)
+    {
+        EffectsVolume = val;
+        _audioSourceEffects.volume = EffectsVolume;
     }
 
 
     public void PlaySoundClip(string name)
     {
 
-        audioSourceEffects.PlayOneShot(audioClipDictionary[name]);
+        _audioSourceEffects.PlayOneShot(_audioClipDictionary[name]);
 
     }
 
     public void PlaySoundClip(string name,float vol)
     {
 
-        audioSourceEffects.PlayOneShot(audioClipDictionary[name],vol);
+        _audioSourceEffects.PlayOneShot(_audioClipDictionary[name],vol);
 
     }
 
-    public void PlayMusic()
+    public void PlayBackgroundMusic(string name = null)
     {
-        if (!audioSourceBackgroundMusic.isPlaying)
-            audioSourceBackgroundMusic.Play();
+        if (string.IsNullOrEmpty(name))
+        {
+            if (!_audioSourceBackgroundMusic.isPlaying)
+                _audioSourceBackgroundMusic.Play();
+        }
+        else
+        {
+            AudioClip clip = _audioClipDictionary[name];
+            if (_audioSourceBackgroundMusic.clip != clip)
+            {
+                _audioSourceBackgroundMusic.clip = clip;
+                _audioSourceBackgroundMusic.Play();
+            }
+        }
     }
 
-    public void StopMusic()
+    public void StopBackgroundMusic()
     {
-        audioSourceBackgroundMusic.Stop();
+        _audioSourceBackgroundMusic.Stop();
     }
 
     private void MakeSingleton()
@@ -114,70 +151,53 @@ public class SoundManager : MonoBehaviour
 
     #region GetterSetter
 
-    public static SoundManager Instance { get => instance; set => instance = value; }
-
-    public float SoundVolume
-    {
-        get
-        {
-            if (musicSlider != null)
-                return musicSlider.value;
-            else
-                return 0.5f;
-        }
-        set
-        {
-            if(musicSlider != null)
-                musicSlider.value = value;
-        }
-    }
-
-    public float EffectsVolume
-    {
-        get
-        {
-            if (effectsSlider != null)
-                return effectsSlider.value;
-            else
-                return 0.5f;
-        }
-        set
-        {
-            if(effectsSlider!=null)
-                effectsSlider.value = value;
-        }
-    }
-
-    public Slider MusicSlider {
-        get { 
-            if(musicSlider == null)
+    public static SoundManager Instance { get { 
+            
+            if (instance == null)
             {
-                musicSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();
+                GameObject soundManager = new GameObject("SoundManager");
+                instance = soundManager.AddComponent<SoundManager>();
             }
-            return musicSlider; 
-        }
-        set => musicSlider = value; 
+            
+            return instance;
+        } 
     }
-    public Slider EffectsSlider
-    {
-        get
-        {
-            if (effectsSlider == null)
-            {
-                effectsSlider = GameObject.Find("EffectsSlider").GetComponent<Slider>();
-            }
-            return effectsSlider;
-        }
-        set => effectsSlider = value; }
+
+    public float MusicVolume{ get; set; }
+
+    public float EffectsVolume{ get; set;}
+
 
     #endregion
 
 
-    [Serializable]
-    struct NameClipPair
+
+
+}
+[Serializable]
+public struct NameClipPair
+{
+    public string Name;
+    public AudioClip AudioClip;
+}
+
+
+
+public static class SoundManagerExtensions
+{
+
+    public static void PlaySoundClip(this string name)
     {
-        public string Name;
-        public AudioClip AudioClip;
+        SoundManager.Instance.PlaySoundClip(name);
     }
+    public static void PlaySoundClip(this string name,float volume)
+    {
+        SoundManager.Instance.PlaySoundClip(name,volume);
+    }
+    public static void PlayBackgroundMusic(this string name)
+    {
+        SoundManager.Instance.PlayBackgroundMusic(name);
+    }
+
 
 }

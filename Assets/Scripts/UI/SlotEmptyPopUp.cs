@@ -50,6 +50,9 @@ public class SlotEmptyPopUp :PopUp
         {
             _openerSlot.AddTower(_towerTypeToTower[type]);
             "SlotEmptyPopUp".ClosePopUp();
+
+            "TowerBuild".PlaySoundClip();
+
         }
     }
     

@@ -117,6 +117,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void EnemyReachToBase()
+    {
+        ResetWave();
+        "GameOver".PlaySoundClip();
+    }
 
     public void AddEnemy(Enemy enemy)
     {

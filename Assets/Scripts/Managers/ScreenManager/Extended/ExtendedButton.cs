@@ -44,7 +44,7 @@ namespace ScreenManagerNS
             public string popUpName;
             [ShowInEnum("type", "UpdateText"), DropdownMenuText]
             public string textName;
-            [ShowInEnum("type","LoadScreen", "OpenPopUp", "ClosePopUp"), DropdownMenuPopUp]
+            [ShowInEnum("type","LoadScreen", "OpenPopUp", "ClosePopUp")]
             public float waitToExecute;
             [ShowInEnum("type", "OpenPopUp")]
             public bool closeOtherPopUps;
