@@ -35947,6 +35947,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 8138865375606815946, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
+      propertyPath: _bossPrefab
+      value: 
+      objectReference: {fileID: 8015161501743810205, guid: f76ff641331f6114c8b50add523befef, type: 3}
+    - target: {fileID: 8138865375606815946, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
+      propertyPath: _enemyPrefab
+      value: 
+      objectReference: {fileID: 8015161501743810205, guid: 74442500ffde02c459dac4a3fb3797b7, type: 3}
     - target: {fileID: 8734699199874280070, guid: ca071c273d22fa24e954a4f9931b3105, type: 3}
       propertyPath: m_Mesh
       value: 

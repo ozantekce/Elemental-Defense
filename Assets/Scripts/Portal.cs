@@ -16,8 +16,9 @@ public class Portal : MonoBehaviour
     private GameObject enemiesGO;
 
     [SerializeField]
-    private Enemy _enemyType1;
-
+    private Enemy _enemyPrefab;
+    [SerializeField]
+    private Enemy _bossPrefab;
 
     void Start()
     {
@@ -40,7 +41,6 @@ public class Portal : MonoBehaviour
 
         if (!_waveRunnnig)
         {
-            
             WaveStart();
         }
 
@@ -49,8 +49,12 @@ public class Portal : MonoBehaviour
         {
             SpawnEnemy();
         }
+        if(_bossCount > 0 && _enemyCount ==0 && spawnCooldown.Ready(spawnCD / Local.Instance.GameSpeed) )
+        {
+            SpawnBoss();
+        }
 
-        if(_waveRunnnig&&GameManager.Instance.EnemyList.Count == 0)
+        if(_waveRunnnig && GameManager.Instance.EnemyList.Count == 0 && _enemyCount==0)
         {
             WaveOver();
         }
@@ -59,6 +63,7 @@ public class Portal : MonoBehaviour
 
     
     private int _enemyCount;
+    private int _bossCount;
     private bool _waveRunnnig;
 
     private void WaveStart()
@@ -66,6 +71,8 @@ public class Portal : MonoBehaviour
         if (Local.Instance.NumberOfAllTowers <= 0) return;
         _waveRunnnig = true;
         _enemyCount = Local.Instance.EnemyCount;
+
+        _bossCount = Local.Instance.Wave % Local.BossWave==0 ? 1 : 0;
 
     }
 
@@ -90,7 +97,7 @@ public class Portal : MonoBehaviour
     {
         _enemyCount--;
 
-        Enemy enemy = _enemyType1;
+        Enemy enemy = _enemyPrefab;
 
         enemy = GameObject.Instantiate(enemy);
         enemy.transform.position = transform.position+ new Vector3(0,enemy.transform.lossyScale.y,0);
@@ -100,6 +107,20 @@ public class Portal : MonoBehaviour
 
     }
 
+
+    private void SpawnBoss()
+    {
+
+        _bossCount--;
+
+        Enemy enemy = _bossPrefab;
+
+        enemy = GameObject.Instantiate(enemy);
+        enemy.transform.position = transform.position + new Vector3(0, enemy.transform.lossyScale.y, 0);
+        enemy.transform.SetParent(enemiesGO.transform);
+
+        GameManager.Instance.AddEnemy(enemy);
+    }
 
 
 

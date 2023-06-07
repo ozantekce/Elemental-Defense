@@ -920,6 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ac147cd0a51604db2f4073506c7cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBoss: 0
   _name: Enemy1
   _movementSpeed: 50
   _currentMovSpeed: 0
@@ -973,7 +974,7 @@ Animator:
   m_GameObject: {fileID: 8738008209908364725}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 406486edf02d8d74da3b2ca225e21254, type: 3}
-  m_Controller: {fileID: 9100000, guid: dfe4000752e130b479d59990c9d06339, type: 2}
+  m_Controller: {fileID: 9100000, guid: b819d2441a71c544f90a06ae8a616bea, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

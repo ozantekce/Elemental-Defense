@@ -7,11 +7,16 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour/*, Poolable*/
 {
     [SerializeField]
+    private bool _isBoss;
+    
+    [SerializeField]
     private string _name;
     [SerializeField]
     private float _movementSpeed;
     [SerializeField]
     private float _currentMovSpeed;
+
+
 
     private float _maxHP,_currentHP;
 
@@ -47,6 +52,9 @@ public class Enemy : MonoBehaviour/*, Poolable*/
     {
         _pathFollower = new EnemyPathFollower(this);
         _maxHP = Local.Instance.EnemyHP;
+        
+        if (_isBoss) _maxHP *= Local.Instance.BossHPMul;
+
         _currentHP = _maxHP;
 
         _slowCD = new CooldownManualReset(Local.WaterEffectDuration*1000f);
@@ -136,12 +144,14 @@ public class Enemy : MonoBehaviour/*, Poolable*/
     private Animator animator;
     private void DestroyedByTower()
     {
-        Local.Instance.Gold += Local.Instance.GoldDrop;
+        int goldDrop = Local.Instance.GoldDrop;
+        if (_isBoss) goldDrop *= 2;
+        Local.Instance.Gold += goldDrop;
         ResourceEarnAnimation.CreateResourceEarnAnimation("GoldEarnAnimation"
             , transform.position
             , transform.position +Vector3.up *50
             , 1.6f
-            , Local.Instance.GoldDrop);
+            , goldDrop);
         float r = Random.Range(0, 1f);
         if (r < Local.Instance.EssenceChange)
         {

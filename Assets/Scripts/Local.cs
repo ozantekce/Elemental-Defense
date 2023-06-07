@@ -43,9 +43,9 @@ public class Local : MonoBehaviour
 
     #region TowerFeatureData
     private TowerFeatureData _baseFireTowerFeatureData = new TowerFeatureData(
-        range:90f,
-        attackPower:5f,
-        attackPerSecond:0.5f,
+        range:95f,
+        attackPower:6f,
+        attackPerSecond:0.50f,
         criticalChange:10f,
         criticalDamage:1f
         );
@@ -89,21 +89,21 @@ public class Local : MonoBehaviour
         criticalDamage: 0f
         );
     private TowerFeatureData _increaseWaterTowerFeatureData = new TowerFeatureData(
-        range: 0.7f,
+        range: 0.65f,
         attackPower: 0.5f,
         attackPerSecond: 0.0135f,
         criticalChange: 0f,
         criticalDamage: 0f
         );
     private TowerFeatureData _increaseEarthTowerFeatureData = new TowerFeatureData(
-        range: 0.7f,
+        range: 0.65f,
         attackPower: 0.5f,
         attackPerSecond: 0.0135f,
         criticalChange: 0f,
         criticalDamage: 0f
         );
     private TowerFeatureData _increaseAirTowerFeatureData = new TowerFeatureData(
-        range: 0.7f,
+        range: 0.65f,
         attackPower: 0.5f,
         attackPerSecond: 0.0135f,
         criticalChange: 0f,
@@ -124,7 +124,7 @@ public class Local : MonoBehaviour
 
     private const int Base_GoldDrop = 1;
     private const float Base_EssenceChange = 0.05f;
-    private const float Base_EnemyHP = 10;
+    private const float Base_EnemyHP = 5;
     private const float Base_GameSpeed = 1f;
 
     private const int Base_TowerUpdateCost = 2;
@@ -132,13 +132,13 @@ public class Local : MonoBehaviour
     private const int Increase_TowerCost = 10;
     private const int Max_Towers = 12;
 
-
+    public const int BossWave = 10;
 
     public int NewTowerCost(TowerType type)
     {
         return (int)(
               Increase_TowerCost * Mathf.Pow(NumberOfTowerType(type), 3.2f)
-            + Base_TowerCost)
+            + Base_TowerCost * (1+NumberOfAllTowers))
             ;
     }
 
@@ -308,7 +308,7 @@ public class Local : MonoBehaviour
     {
         if (level >= MaxElemetsLevel) return -1;
         return (int)(
-                Mathf.Log(level, (5f / level) + 1) * 15 + 5 + Mathf.Pow(1.175f, level)
+                Mathf.Log(level, (5f / level) + 1) * 15 + 3 + Mathf.Pow(1.175f, level)
             )
             ;
     }
@@ -430,7 +430,7 @@ public class Local : MonoBehaviour
     public int ResearchCost(int level)
     {
         return (int)(
-                Mathf.Log(level, (50f / level) + 1) * 5 + 4 + Mathf.Pow(1.05f, level)
+                Mathf.Log(level, (50f / level) + 1) * 5 + 2 + Mathf.Pow(1.05f, level)
             );
     }
 
@@ -686,7 +686,13 @@ public class Local : MonoBehaviour
     }
 
 
-
+    public float BossHPMul
+    {
+        get
+        {
+            return 2f;
+        }
+    }
 
     public int Wave
     {
