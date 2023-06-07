@@ -13,7 +13,10 @@ public class Bullet : MonoBehaviour, Poolable
     [SerializeField]
     private float _attackPower;
     [SerializeField]
+    private bool _isCritical;
+    [SerializeField]
     private HitEffect _hitEffect;
+
 
     [SerializeField]
     private string _poolableKey;
@@ -38,20 +41,21 @@ public class Bullet : MonoBehaviour, Poolable
         AttackPower = damage;
         Source = source;
         Destination = destination;
+        IsCritical = isCritical;
 
         _commandQueue.Clear();
-        _commandQueue.Enqueue(new BulletDamageCommand(_destination, _attackPower,isCritical));
+        _commandQueue.Enqueue(new BulletDamageCommand(this));
         if (Source.TowerType == TowerType.Water)
         {
-            _commandQueue.Enqueue(new BulletSlowCommand(_destination));
+            _commandQueue.Enqueue(new BulletSlowCommand(this));
         }
         else if (Source.TowerType == TowerType.Earth)
         {
-            _commandQueue.Enqueue(new BulletStunCommand(_destination));
+            _commandQueue.Enqueue(new BulletStunCommand(this));
         }
         else if (Source.TowerType == TowerType.Air)
         {
-            _commandQueue.Enqueue(new BulletMessyAttackCommand(_destination, _attackPower, isCritical));
+            _commandQueue.Enqueue(new BulletMessyAttackCommand(this));
         }
 
     }
@@ -66,8 +70,13 @@ public class Bullet : MonoBehaviour, Poolable
 
         if(_destination == null)
         {
-            _poolable.AddToPool();
-            return;
+            if (!_waitingToAddPool && TryFindNewDestination()) ;
+            else
+            {
+                _poolable.AddToPool();
+                return;
+            }
+
         }
 
         MoveToDestination();
@@ -98,8 +107,30 @@ public class Bullet : MonoBehaviour, Poolable
     }
 
 
+    private bool TryFindNewDestination()
+    {
+        Destination = FindEnemy();
+        
+        return Destination==null ? false:true;
+    }
 
 
+    private Enemy FindEnemy()
+    {
+        float minDistance = float.MaxValue;
+        Enemy target = null;
+        foreach (Enemy enemy in GameManager.Instance.EnemyList)
+        {
+            float dist = Vector3.Distance(_destinationLastPos, enemy.transform.position);
+            if (dist <= Source.Range && dist < minDistance)
+            {
+                minDistance = dist;
+                target = enemy;
+            }
+        }
+
+        return target;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -118,14 +149,17 @@ public class Bullet : MonoBehaviour, Poolable
     }
 
 
+    private bool _waitingToAddPool;
     private WaitForSeconds _wait0_5Sec;
     private IEnumerator AddToPool()
     {
+        _waitingToAddPool = true;
         if (_wait0_5Sec == null) _wait0_5Sec = new WaitForSeconds(0.5f);
         
         yield return _wait0_5Sec;
 
         _poolable.AddToPool();
+        _waitingToAddPool = false;
     }
 
     private void HitEffect(Transform target)
@@ -148,6 +182,7 @@ public class Bullet : MonoBehaviour, Poolable
     public string Key { get => _poolableKey; set => _poolableKey = value; }
     public MonoBehaviour MonoBehaviour { get => this; }
     public bool Pooled { get => _pooled; set => _pooled = value; }
+    public bool IsCritical { get => _isCritical; set => _isCritical = value; }
     #endregion
 
 
@@ -160,6 +195,7 @@ public class Bullet : MonoBehaviour, Poolable
 
 public interface IBulletCommand
 {
+    Bullet Bullet { get; set; }
     void Execute();
 
 }
@@ -167,16 +203,18 @@ public interface IBulletCommand
 
 public class BulletSlowCommand : IBulletCommand
 {
-    private Enemy _enemy;
 
-    public BulletSlowCommand(Enemy enemy)
+    private Bullet _bullet;
+    public BulletSlowCommand(Bullet bullet)
     {
-        this._enemy = enemy;
+        this._bullet = bullet;
     }
+
+    public Bullet Bullet { get => _bullet; set => _bullet=value; }
 
     public void Execute()
     {
-        _enemy.Status = EnemyStatus.Slowed;
+        Bullet.Destination.Status = EnemyStatus.Slowed;
     }
 
 }
@@ -184,19 +222,20 @@ public class BulletSlowCommand : IBulletCommand
 
 public class BulletStunCommand : IBulletCommand
 {
-    private Enemy _enemy;
 
-    public BulletStunCommand(Enemy enemy)
+    private Bullet _bullet;
+    public BulletStunCommand(Bullet bullet)
     {
-        this._enemy = enemy;
+        this._bullet = bullet;
     }
 
+    public Bullet Bullet { get => _bullet; set => _bullet = value; }
     public void Execute()
     {
         int r = Random.Range(0, 101);
         if (r <= 100f * Local.Instance.ElementEffect(Element.Earth))
         {
-            _enemy.Status = EnemyStatus.Stunned;
+            Bullet.Destination.Status = EnemyStatus.Stunned;
         }
     }
 
@@ -205,28 +244,29 @@ public class BulletStunCommand : IBulletCommand
 
 public class BulletMessyAttackCommand : IBulletCommand
 {
-    private Enemy _enemy;
-    private float _damage;
-    private bool _isCritical;
-    public BulletMessyAttackCommand(Enemy enemy,float damage, bool isCritical)
+    private Bullet _bullet;
+    public BulletMessyAttackCommand(Bullet bullet)
     {
-        this._enemy = enemy;
-        this._damage = damage * Local.Instance.ElementEffect(Element.Air);
-        _isCritical = isCritical;
+        this._bullet = bullet;
     }
+
+    public Bullet Bullet { get => _bullet; set => _bullet = value; }
+    public Enemy Enemy { get => Bullet.Destination; }
+    public float Damage { get => Bullet.AttackPower * Element.Air.ElementEffect(); }
+    public bool IsCritical { get => Bullet.IsCritical; }
 
     public void Execute()
     {
         int layerMask = 1 << LayerMask.NameToLayer("Enemy");
         Collider[] hitColliders
-            = Physics.OverlapSphere(_enemy.transform.position, Local.AirEffectRange, layerMask);
-        string text = _damage.ToString("F0");
-        if (_isCritical) { text = "<color=red>" + text + "!</color>"; }
+            = Physics.OverlapSphere(Enemy.transform.position, Local.AirEffectRange, layerMask);
+        string text = Damage.ToString("F0");
+        if (IsCritical) { text = "<color=red>" + text + "!</color>"; }
         foreach (Collider hitCollider in hitColliders)
         {
             Enemy e = hitCollider.GetComponent<Enemy>();
-            if (e == _enemy) continue;
-            e.TakeDamage(_damage );
+            if (e == Enemy) continue;
+            e.TakeDamage(Damage);
             InfoTextManager.Instance.CreateText(text, hitCollider.transform.position + Vector3.up * 2f);
         }
     }
@@ -235,22 +275,23 @@ public class BulletMessyAttackCommand : IBulletCommand
 
 public class BulletDamageCommand : IBulletCommand
 {
-    private Enemy _enemy;
-    private float _damage;
-    private bool _isCritical;
-    public BulletDamageCommand(Enemy enemy, float damage,bool isCritical)
+    private Bullet _bullet;
+    public BulletDamageCommand(Bullet bullet)
     {
-        this._enemy = enemy;
-        this._damage = damage;
-        this._isCritical = isCritical;
+        this._bullet = bullet;
     }
+
+    public Bullet Bullet { get => _bullet; set => _bullet = value; }
+    public Enemy Enemy { get => Bullet.Destination; }
+    public float Damage { get => Bullet.AttackPower; }
+    public bool IsCritical { get => Bullet.IsCritical; }
 
     public void Execute()
     {
-        _enemy.TakeDamage(_damage);
-        string text = _damage.ToString("F0");
-        if(_isCritical) { text = "<color=red>" + text + "!</color>"; }
-        InfoTextManager.Instance.CreateText(text, _enemy.transform.position+Vector3.up*2f);
+        Enemy.TakeDamage(Damage);
+        string text = Damage.ToString("F0");
+        if(IsCritical) { text = "<color=red>" + text + "!</color>"; }
+        InfoTextManager.Instance.CreateText(text, Enemy.transform.position+Vector3.up*2f);
     }
 }
 

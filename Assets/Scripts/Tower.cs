@@ -37,7 +37,7 @@ public class Tower : MonoBehaviour
 
 
 
-    private int _currentLevel;
+    private int _currentLevel=1;
 
     private CooldownDynamic _attackCD;
 
@@ -148,7 +148,7 @@ public class Tower : MonoBehaviour
         return _nextLevelFeatureData;
     }
 
-
+    private static float _lastTowerShotSound;
     private void SendBullet(Enemy target)
     {
 
@@ -162,7 +162,13 @@ public class Tower : MonoBehaviour
             crit = true;
         }
 
-        SoundManager.Instance.PlaySoundClip("TowerShot");
+        if(Time.time - _lastTowerShotSound > 0.1f)
+        {
+            SoundManager.Instance.PlaySoundClip("TowerShot");
+            _lastTowerShotSound = Time.time;
+        }
+
+        
 
         Poolable poolable = Poolable.GetFromPool(_bulletPrefab);
         Bullet bullet = (Bullet)poolable;

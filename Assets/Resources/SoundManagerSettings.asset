@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: SoundManagerSettings
   m_EditorClassIdentifier: 
   _backgroundMusicName: BackgroundMusic
+  _musicVolumeMul: 0.5
+  _effectVolumeMul: 0.5
   _nameClipPairs:
   - Name: BackgroundMusic
     AudioClip: {fileID: 8300000, guid: 528b396922c72434fa1b30536df8c499, type: 3}

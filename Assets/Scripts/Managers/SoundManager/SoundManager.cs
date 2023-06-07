@@ -34,6 +34,8 @@ public class SoundManager : MonoBehaviour
             {
                 _nameClipPairs = soundManagerSettings.NameClipPairs;
                 _backgroundMusicName = soundManagerSettings.BackgroundMusicName;
+                _musicMultiplier = soundManagerSettings.MusicVolumeMul;
+                _effectMultiplier = soundManagerSettings.EffectVolumeMul;
             }
         }
 
@@ -50,8 +52,9 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    [Range(0f, 1f)]
-    public float musicMultiplier=0.5f;
+
+    private float _musicMultiplier=1f;
+    private float _effectMultiplier=1f;
 
 
     private AudioSource _audioSourceEffects;
@@ -78,22 +81,22 @@ public class SoundManager : MonoBehaviour
 
     public void ArrangeMusicVolume()
     {
-        _audioSourceBackgroundMusic.volume = MusicVolume * musicMultiplier;
+        _audioSourceBackgroundMusic.volume = MusicVolume * _musicMultiplier;
     }
     public void ArrangeMusicVolume(float val)
     {
         MusicVolume = val;
-        _audioSourceBackgroundMusic.volume = MusicVolume * musicMultiplier;
+        _audioSourceBackgroundMusic.volume = MusicVolume * _musicMultiplier;
     }
 
     public void ArrangeEffectVolume()
     {
-        _audioSourceEffects.volume = EffectsVolume;
+        _audioSourceEffects.volume = EffectsVolume * _effectMultiplier;
     }
     public void ArrangeEffectVolume(float val)
     {
         EffectsVolume = val;
-        _audioSourceEffects.volume = EffectsVolume;
+        _audioSourceEffects.volume = EffectsVolume * _effectMultiplier;
     }
 
 

@@ -45,30 +45,30 @@ public class Local : MonoBehaviour
     private TowerFeatureData _baseFireTowerFeatureData = new TowerFeatureData(
         range:95f,
         attackPower:6f,
-        attackPerSecond:0.50f,
+        attackPerSecond:0.55f,
         criticalChange:10f,
-        criticalDamage:1f
+        criticalDamage:1.2f
         );
     private TowerFeatureData _baseWaterTowerFeatureData = new TowerFeatureData(
         range: 105f,
         attackPower: 5f,
         attackPerSecond: 1f,
         criticalChange: 10f,
-        criticalDamage: 1f
+        criticalDamage: 1.2f
         );
     private TowerFeatureData _baseEarthTowerFeatureData = new TowerFeatureData(
-        range: 105f,
-        attackPower: 5f,
-        attackPerSecond: 0.75f,
+        range: 120f,
+        attackPower: 7f,
+        attackPerSecond: 0.5f,
         criticalChange: 10f,
-        criticalDamage: 1f
+        criticalDamage: 1.2f
         );
     private TowerFeatureData _baseAirTowerFeatureData = new TowerFeatureData(
         range: 105f,
         attackPower: 5f,
         attackPerSecond: 1.2f,
         criticalChange: 10f,
-        criticalDamage: 1f
+        criticalDamage: 1.2f
         );
 
     public TowerFeatureData GetBaseFeatureData(Tower tower)
@@ -98,7 +98,7 @@ public class Local : MonoBehaviour
     private TowerFeatureData _increaseEarthTowerFeatureData = new TowerFeatureData(
         range: 0.65f,
         attackPower: 0.5f,
-        attackPerSecond: 0.0135f,
+        attackPerSecond: 0.01f,
         criticalChange: 0f,
         criticalDamage: 0f
         );
@@ -138,7 +138,7 @@ public class Local : MonoBehaviour
     {
         return (int)(
               Increase_TowerCost * Mathf.Pow(NumberOfTowerType(type), 3.2f)
-            + Base_TowerCost * (1+NumberOfAllTowers))
+            + Base_TowerCost * (1+NumberOfAllTowers))/2
             ;
     }
 
@@ -301,7 +301,7 @@ public class Local : MonoBehaviour
     public const float AirEffectRange = 35f;
 
     public const float WaterEffectDuration = 1.5f;
-    public const float EarthEffectDuration = 0.8f;
+    public const float EarthEffectDuration = 1.5f;
 
 
     public int ElementCost(int level)
