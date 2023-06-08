@@ -150,13 +150,13 @@ public class Bullet : MonoBehaviour, Poolable
 
 
     private bool _waitingToAddPool;
-    private WaitForSeconds _wait0_5Sec;
+    private WaitForSeconds _wait;
     private IEnumerator AddToPool()
     {
         _waitingToAddPool = true;
-        if (_wait0_5Sec == null) _wait0_5Sec = new WaitForSeconds(0.5f);
+        if (_wait == null) _wait = new WaitForSeconds(0.1f);
         
-        yield return _wait0_5Sec;
+        yield return _wait;
 
         _poolable.AddToPool();
         _waitingToAddPool = false;

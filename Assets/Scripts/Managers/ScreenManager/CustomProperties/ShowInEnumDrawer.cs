@@ -3,6 +3,9 @@ using UnityEditor;
 using System;
 using System.Linq;
 
+
+
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(ShowInEnumAttribute))]
 public class ShowInEnumDrawer : PropertyDrawer
 {
@@ -72,6 +75,12 @@ public class ShowInEnumDrawer : PropertyDrawer
     }
 
 }
+#else
+    // Runtime code here
+#endif
+
+
+
 
 
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]

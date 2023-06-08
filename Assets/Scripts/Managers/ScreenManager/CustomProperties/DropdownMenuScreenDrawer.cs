@@ -3,6 +3,10 @@ using UnityEditor;
 using System.Collections.Generic;
 using ScreenManagerNS;
 
+
+
+
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(DropdownMenuScreenAttribute))]
 public class DropdownMenuScreenDrawer : PropertyDrawer
 {
@@ -34,6 +38,11 @@ public class DropdownMenuScreenDrawer : PropertyDrawer
         }
     }
 }
+#else
+    // Runtime code here
+#endif
+
+
 
 
 public class DropdownMenuScreenAttribute : PropertyAttribute
